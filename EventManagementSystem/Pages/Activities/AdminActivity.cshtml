@@ -1,0 +1,76 @@
+﻿@page
+@model EventManagementSystem.Pages.Activities.AdminActivityModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>All Activities</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Activity Name:</th>
+            <th>Activity Description:</th>
+            <th>Date and Time:</th>
+            <th>Presentation?</th>
+            <th>Meeting?</th>
+            <th>Program Event?</th>
+            <th>IsActive?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var activity in Model.Activities)
+            {
+                if (activity.IsActive != true)
+                {
+                    <tr class="table-secondary">
+                        <td>@activity.ActivityName</td>
+                        <td>@activity.ActivityDescription</td>
+                        <td>@activity.DateAndTime</td>
+                        <td>@activity.IsPresentation</td>
+                        <td>@activity.IsMeeting</td>
+                        <td>@activity.IsProgramEvent</td>
+                        <td>@activity.IsActive</td>
+                        <td>
+                            <a asp-page="EditActivity" class="btn btn-outline-success" asp-route-activityid="@activity.ActivityID">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="AssignRoom" class="btn btn-outline-light" asp-route-activityid="@activity.ActivityID">Assign Room</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@activity.ActivityName</td>
+                        <td>@activity.ActivityDescription</td>
+                        <td>@activity.DateAndTime</td>
+                        <td>@activity.IsPresentation</td>
+                        <td>@activity.IsMeeting</td>
+                        <td>@activity.IsProgramEvent</td>
+                        <td>@activity.IsActive</td>
+                        <td>
+                            <a asp-page="EditActivity" class="btn btn-outline-success" asp-route-activityid="@activity.ActivityID">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="AssignRoom" class="btn btn-outline-light" asp-route-activityid="@activity.ActivityID">Assign Room</a>
+                        </td>
+                        <td>
+                            <a asp-page="DeleteActivity" class="btn btn-warning" asp-route-activityid="@activity.ActivityID">Deactivate</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+<a asp-page="NewActivity" class="btn btn-light">Create New Activity</a>
+
+<br />
+<br />
+<br />
+<br />

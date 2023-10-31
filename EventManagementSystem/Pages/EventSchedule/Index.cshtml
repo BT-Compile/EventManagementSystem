@@ -1,0 +1,21 @@
+﻿@page
+@model EventManagementSystem.Pages.EventSchedule.IndexModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h3>Select an event to view that its schedule</h3>
+<br />
+
+<form method="post" asp-page-handler="ViewSchedule">
+    <select asp-for="EventID">
+        <option value="">Select Event</option>
+        @foreach (var event1 in Model.Events)
+        {
+            <option value="@event1.Value">@event1.Text</option>
+        }
+    </select>
+
+    &emsp;<button type="submit" class="btn btn-light">View Schedule</button>
+</form>

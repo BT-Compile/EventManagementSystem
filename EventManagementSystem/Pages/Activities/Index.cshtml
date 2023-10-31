@@ -1,0 +1,40 @@
+﻿@page
+@model EventManagementSystem.Pages.Activities.IndexModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>All Activities</h2>
+<br />
+<a asp-page="SearchActivities" class="btn btn-secondary">Search Activities</a>
+<br />
+<br />
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Activity Name:</th>
+            <th>Activity Description:</th>
+            <th>Date and Time:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var activity in Model.Activities)
+            {
+                <tr>
+                    <td>@activity.ActivityName</td>
+                    <td>@activity.ActivityDescription</td>
+                    <td>@activity.DateAndTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+<br />
+<br />
+<br />
+<br />

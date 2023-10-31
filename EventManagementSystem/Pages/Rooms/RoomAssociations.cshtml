@@ -1,0 +1,31 @@
+﻿@page
+@model EventManagementSystem.Pages.Rooms.RoomAssociationsModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>Room Assignments</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Room Name:</th>
+            <th>Activity Name:</th>
+            <th>Event Name:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var association in Model.roomAssociations)
+            {
+                <tr>
+                    <td>@association.RoomName</td>
+                    <td>@association.ActivityName</td>
+                    <td>@association.EventName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a asp-page="AdminRoom" class="btn btn-secondary">Back</a>

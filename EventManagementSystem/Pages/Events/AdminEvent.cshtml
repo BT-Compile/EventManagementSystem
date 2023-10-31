@@ -1,0 +1,67 @@
+﻿@page
+@model EventManagementSystem.Pages.Events.AdminEventModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>All Events</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Event Name:</th>
+            <th>Event Description:</th>
+            <th>Event Start Date & Time:</th>
+            <th>Event End Date & Time:</th>
+            <th>Event Location:</th>
+            <th>IsActive?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var event1 in Model.Events)
+            {
+                if (event1.IsActive != true)
+                {
+                    <tr class="table-secondary">
+                        <td>@event1.EventName</td>
+                        <td>@event1.EventDescription</td>
+                        <td>@event1.EventStartDateAndTime</td>
+                        <td>@event1.EventEndDateAndTime</td>
+                        <td>@event1.EventLocation</td>
+                        <td>@event1.IsActive</td>
+                        <td>
+                            <a asp-page="EditEvent" class="btn btn-outline-success" asp-route-eventid="@event1.EventID">Edit</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@event1.EventName</td>
+                        <td>@event1.EventDescription</td>
+                        <td>@event1.EventStartDateAndTime</td>
+                        <td>@event1.EventEndDateAndTime</td>
+                        <td>@event1.EventLocation</td>
+                        <td>@event1.IsActive</td>
+                        <td>
+                            <a asp-page="EditEvent" class="btn btn-outline-success" asp-route-eventid="@event1.EventID">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-page="DeleteEvent" class="btn btn-warning" asp-route-eventid="@event1.EventID">Deactivate</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+<a asp-page="NewEvent" class="btn btn-light">Create New Event</a>
+
+<br />
+<br />
+<br />
+<br />

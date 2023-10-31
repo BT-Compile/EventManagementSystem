@@ -1,0 +1,14 @@
+﻿@page "{RoomID}"
+@model EventManagementSystem.Pages.Rooms.DeleteRoomModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="DeleteRoom">
+    <div class="text-center">
+        <h1>Are you sure you want to deactivate this room? (RoomID = @Model.RoomToDelete.RoomID)</h1>
+        <button class="btn btn-danger" type="submit">I am sure</button>
+        <a asp-page="/Rooms/AdminRoom" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

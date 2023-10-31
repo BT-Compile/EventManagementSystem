@@ -1,0 +1,34 @@
+﻿@page "{UserID}"
+@model EventManagementSystem.Pages.Users.UserScheduleModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>@Model.UserName's Schedule</h2>
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Event Name:</th>
+            <th>Event Location:</th>
+            <th>Activity Name:</th>
+            <th>Date and Time:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var association in Model.UserAssociations)
+            {
+                <tr>
+                    <td>@association.EventName</td>
+                    <td>@association.EventLocation</td>
+                    <td>@association.ActivityName</td>
+                    <td>@association.DateAndTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a asp-page="UserAssociations" class="btn btn-secondary">Back</a>

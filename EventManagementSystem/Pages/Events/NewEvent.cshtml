@@ -1,0 +1,51 @@
+﻿@page
+@model EventManagementSystem.Pages.Events.NewEventModel
+@{
+    ViewData["Title"] = "New Event";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="NewEvent">
+    <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
+    <label asp-for="@Model.EventToCreate.EventName"></label>
+    <input type="text" asp-for="@Model.EventToCreate.EventName" id="EventName" required />
+    <br />
+    <label asp-for="@Model.EventToCreate.EventDescription"></label>
+    <input type="text" asp-for="@Model.EventToCreate.EventDescription" id="Description" />
+    <br />
+    <label asp-for="@Model.EventToCreate.EventStartDateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.EventToCreate.EventStartDateAndTime" id="EventStartDateAndTime" required />
+    <br />
+    <label asp-for="@Model.EventToCreate.EventEndDateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.EventToCreate.EventEndDateAndTime" id="EventEndDateAndTime" required />
+    <br />
+    <label asp-for="@Model.EventToCreate.EventLocation"></label>
+    <input type="text" asp-for="@Model.EventToCreate.EventLocation" id="Location" required />
+    <br /><br />
+    <button type="button" onclick="populateForm()">Populate</button>
+    &emsp; <!-- Tab character to separate populate and clear buttons -->
+    <button type="button" onclick="clearForm()">Clear</button>
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="NewUser" />
+    <a asp-page="AdminEvent" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("EventName").value = "Circus";
+        document.getElementById("Description").value = "Flaming Hoops";
+        document.getElementById("EventStartDateAndTime").value = "2023-10-10 17:00:00";
+        document.getElementById("EventEndDateAndTime").value = "2023-10-10 22:00:00";
+        document.getElementById("Location").value = "Festival Ballroom";
+    }
+
+    function clearForm() {
+        document.getElementById("EventName").value = "";
+        document.getElementById("Description").value = "";
+        document.getElementById("EventStartDateAndTime").value = "";
+        document.getElementById("EventEndDateAndTime").value = "";
+        document.getElementById("Location").value = "";
+    }
+</script>

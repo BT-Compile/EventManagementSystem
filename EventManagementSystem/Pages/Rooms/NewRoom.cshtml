@@ -1,0 +1,41 @@
+﻿@page
+@model EventManagementSystem.Pages.Rooms.NewRoomModel
+@{
+    ViewData["Title"] = "New Room";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="NewActivity">
+    <input type="hidden" asp-for="@Model.RoomToCreate.RoomID" />
+    <label asp-for="@Model.RoomToCreate.RoomName"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.RoomName" id="RoomName" required />
+    <br />
+    <label asp-for="@Model.RoomToCreate.RoomDescription"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.RoomDescription" id="RoomDescription" />
+    <br />
+    <label asp-for="@Model.RoomToCreate.MaxCapacity"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.MaxCapacity" id="MaxCapacity" required />
+    <br /><br />
+    <button type="button" onclick="populateForm()">Populate</button>
+    &emsp; <!-- Tab character to separate populate and clear buttons -->
+    <button type="button" onclick="clearForm()">Clear</button>
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="NewRoom" />
+    <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("RoomName").value = "2105";
+        document.getElementById("RoomDescription").value = "Medium-sized room";
+        document.getElementById("MaxCapacity").value = "31";
+    }
+
+    function clearForm() {
+        document.getElementById("RoomName").value = "";
+        document.getElementById("RoomDescription").value = "";
+        document.getElementById("MaxCapacity").value = "";
+    }
+</script>

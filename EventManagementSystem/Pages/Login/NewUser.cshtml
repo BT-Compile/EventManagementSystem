@@ -1,0 +1,58 @@
+﻿@page
+@model EventManagementSystem.Pages.Login.NewUserModel
+@{
+    ViewData["Title"] = "New User";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="NewUser">
+    <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
+    <label asp-for="@Model.UserToCreate.FirstName"></label>
+    <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" required />
+    <br />
+    <label asp-for="@Model.UserToCreate.LastName"></label>
+    <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" required />
+    <br />
+    <label asp-for="@Model.UserToCreate.Username"></label>
+    <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" required />
+    <br />
+    <label asp-for="@Model.UserToCreate.Password"></label>
+    <input type="text" asp-for="@Model.UserToCreate.Password" id="Password" required />
+    <br />
+    <label asp-for="@Model.UserToCreate.Email"></label>
+    <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" />
+    <br />
+    <label asp-for="@Model.UserToCreate.PhoneNumber"></label>
+    <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" />
+    <br /><br />
+    <button type="button" onclick="populateForm()">Populate</button>
+    &emsp; <!-- Tab character to separate populate and clear buttons -->
+    <button type="button" onclick="clearForm()">Clear</button>
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="NewUser" />
+    <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("FirstName").value = "Joe";
+        document.getElementById("LastName").value = "White";
+        document.getElementById("Username").value = "username123";
+        document.getElementById("Password").value = "Password321";
+        document.getElementById("Email").value = "JoeWhite032@gmail.com";
+        document.getElementById("PhoneNumber").value = "804-784-8663";
+    }
+
+    function clearForm() {
+        document.getElementById("FirstName").value = "";
+        document.getElementById("LastName").value = "";
+        document.getElementById("Username").value = "";
+        document.getElementById("Password").value = "";
+        document.getElementById("Email").value = "";
+        document.getElementById("PhoneNumber").value = "";
+    }
+</script>
+
+

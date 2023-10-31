@@ -1,0 +1,22 @@
+﻿@page "{RoomID}"
+@model EventManagementSystem.Pages.Rooms.EditRoomModel
+@{
+    ViewData["Title"] = "Edit Room";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="EditRoom">
+    <input type="hidden" asp-for="@Model.RoomToUpdate.RoomID" />
+    <label asp-for="@Model.RoomToUpdate.RoomName"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.RoomName" required />
+    <br />
+    <label asp-for="@Model.RoomToUpdate.RoomDescription"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.RoomDescription" />
+    <br />
+    <label asp-for="@Model.RoomToUpdate.MaxCapacity"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.MaxCapacity" required />
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="EditRoom" />
+    <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>
+</form>

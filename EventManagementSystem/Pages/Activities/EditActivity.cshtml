@@ -1,0 +1,34 @@
+﻿@page "{ActivityID}"
+@model EventManagementSystem.Pages.Activities.EditActivityModel
+@{
+    ViewData["Title"] = "Edit Activity";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="EditActivity">
+    <input type="hidden" asp-for="@Model.ActivityToUpdate.ActivityID" />
+    <label asp-for="@Model.ActivityToUpdate.ActivityName"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.ActivityName" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.ActivityDescription"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.ActivityDescription" />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.DateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.ActivityToUpdate.DateAndTime" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.IsPresentation"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.IsPresentation" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.IsMeeting"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.IsMeeting" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.IsProgramEvent"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.IsProgramEvent" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.EventID"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.EventID" />
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="EditActivity" />
+    <a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
+</form>

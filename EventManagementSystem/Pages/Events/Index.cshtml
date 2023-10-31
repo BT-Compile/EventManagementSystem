@@ -1,0 +1,38 @@
+﻿@page
+@model EventManagementSystem.Pages.Events.IndexModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>All Events</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Event Name:</th>
+            <th>Event Description:</th>
+            <th>Event Start Date & Time:</th>
+            <th>Event End Date & Time:</th>
+            <th>Event Location:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var event1 in Model.Events)
+            {
+                <tr>
+                    <td>@event1.EventName</td>
+                    <td>@event1.EventDescription</td>
+                    <td>@event1.EventStartDateAndTime</td>
+                    <td>@event1.EventEndDateAndTime</td>
+                    <td>@event1.EventLocation</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+<br />
+<br />

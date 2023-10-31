@@ -1,0 +1,47 @@
+﻿@page
+@model EventManagementSystem.Pages.Activities.SearchActivitiesModel
+@{
+}
+
+<h2>Search Activities</h2>
+<br />
+<br />
+<h5>Input keyword(s)</h5>
+<form method="post" asp-page="SearchActivities">
+    <input type="text" asp-for="InputString" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+    &emsp;<button type="submit" class="btn btn-light">Search</button>
+</form>
+<br />
+
+@if (Model.Activities.Count > 0)
+{
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date and Time</th>
+                <th>Is Presentation</th>
+                <th>Is Meeting</th>
+                <th>Is Program Event</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in Model.Activities)
+            {
+                <tr>
+                    <td>@activity.ActivityName</td>
+                    <td>@activity.ActivityDescription</td>
+                    <td>@activity.DateAndTime</td>
+                    <td>@activity.IsPresentation</td>
+                    <td>@activity.IsMeeting</td>
+                    <td>@activity.IsProgramEvent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (@Model.HasPosted)
+{
+    <p>No matches.</p>
+}

@@ -1,0 +1,18 @@
+﻿@page "{UserID}, {ActivityID}"
+@model EventManagementSystem.Pages.SignUp.ConfirmationModel
+@{
+    ViewData["Title"] = "Sign Up Confirmation";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="Confirmation">
+    <div class="text-center">
+        <h1>Are you sure you want this user to sign up for this activity?<br />
+            Name = @Model.UserToSignUp.FirstName @Model.UserToSignUp.LastName
+            <br />
+            Activity = @Model.ActivityToSignUp.ActivityName</h1>
+        <button class="btn btn-success" type="submit">I am sure</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

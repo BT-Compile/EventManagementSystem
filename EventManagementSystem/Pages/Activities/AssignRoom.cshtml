@@ -1,0 +1,29 @@
+﻿@page "{ActivityID}"
+@model EventManagementSystem.Pages.Activities.AssignRoomModel
+@{
+    ViewData["Title"] = "Assign Room";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h3>Select an available room for your activity</h3>
+<br />
+
+<form method="post" asp-page-handler="AssignRoom">
+    <select asp-for="RoomId">
+        <option value="">Select Room</option>
+        @foreach (var room1 in Model.Rooms)
+        {
+            <option value="@room1.Value">@room1.Text</option>
+        }
+    </select>
+
+    &emsp;<button type="submit" class="btn btn-light">Assign Room</button>
+</form>
+
+<a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
+
+<br />
+<br />
+<br />
+<br />

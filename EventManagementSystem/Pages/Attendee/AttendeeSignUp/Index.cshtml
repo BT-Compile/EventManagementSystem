@@ -1,0 +1,49 @@
+﻿@page
+@model EventManagementSystem.Pages.Attendee.AttendeeSignUp.IndexModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>Available Activities</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Event Name:</th>
+            <th>Event Description:</th>
+            <th>Event Location:</th>
+            <th>Activity Name:</th>
+            <th>Activity Description:</th>
+            <th>Date And Time:</th>
+            <th>Room Name:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var record in Model.attendeeSchedules)
+            {
+                <tr>
+                    <td>@record.EventName</td>
+                    <td>@record.EventDescription</td>
+                    <td>@record.EventLocation</td>
+                    <td>@record.ActivityName</td>
+                    <td>@record.ActivityDescription</td>
+                    <td>@record.DateAndTime</td>
+                    <td>@record.RoomName</td>
+                    <td>
+                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-activityid="@record.ActivityID">Sign up</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+<a asp-page="../Index" class="btn btn-secondary">Cancel</a>
+
+<br />
+<br />
+<br />
+<br />

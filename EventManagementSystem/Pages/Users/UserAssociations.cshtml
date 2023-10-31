@@ -1,0 +1,28 @@
+﻿@page
+@model EventManagementSystem.Pages.Users.UserAssociationsModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h3>Select a user to view their schedule</h3>
+<br />
+
+<form method="post" asp-page-handler="ViewSchedule">
+    <select asp-for="UserID">
+        <option value="">Select User</option>
+        @foreach (var user in Model.Users)
+        {
+            <option value="@user.Value">@user.Text</option>
+        }
+    </select>
+
+    &emsp;<button type="submit" class="btn btn-light">View Schedule</button>
+</form>
+
+<a asp-page="Index" class="btn btn-secondary">Back</a>
+
+<br />
+<br />
+<br />
+<br />

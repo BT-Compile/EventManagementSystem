@@ -1,0 +1,34 @@
+﻿@page
+@model EventManagementSystem.Pages.Rooms.IndexModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<h2>All Rooms</h2>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Room Name:</th>
+            <th>Room Description:</th>
+            <th>Max Capacity:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var room in Model.Rooms)
+            {
+                <tr>
+                    <td>@room.RoomName</td>
+                    <td>@room.RoomDescription</td>
+                    <td>@room.MaxCapacity</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+<br />
+<br />

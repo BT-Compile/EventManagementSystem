@@ -1,0 +1,14 @@
+﻿@page "{EventID}"
+@model EventManagementSystem.Pages.Events.DeleteEventModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="DeleteEvent">
+    <div class="text-center">
+        <h1>Are you sure you want to deactivate this event? (EventID = @Model.EventToDelete.EventID)</h1>
+        <button class="btn btn-danger" type="submit">I am sure</button>
+        <a asp-page="/Events/AdminEvent" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

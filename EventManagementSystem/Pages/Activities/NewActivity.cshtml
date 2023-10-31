@@ -1,0 +1,61 @@
+﻿@page
+@model EventManagementSystem.Pages.Activities.NewActivityModel
+@{
+    ViewData["Title"] = "New Activity";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="NewActivity">
+    <input type="hidden" asp-for="@Model.ActivityToCreate.ActivityID" />
+    <label asp-for="@Model.ActivityToCreate.ActivityName"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.ActivityName" id="ActivityName" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.ActivityDescription"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.ActivityDescription" id="Description" />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.DateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.ActivityToCreate.DateAndTime" id="DateAndTime" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.IsPresentation"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.IsPresentation" id="IsPresentation" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.IsMeeting"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.IsMeeting" id="IsMeeting" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.IsProgramEvent"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.IsProgramEvent" id="IsProgramEvent" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.EventID"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.EventID" id="EventID" required />
+    <br /><br />
+    <button type="button" onclick="populateForm()">Populate</button>
+    &emsp; <!-- Tab character to separate populate and clear buttons -->
+    <button type="button" onclick="clearForm()">Clear</button>
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="NewActivity" />
+    <a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
+</form>
+
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("ActivityName").value = "Karaoke";
+        document.getElementById("Description").value = "Singing!";
+        document.getElementById("DateAndTime").value = "2023-10-10 18:00:00";
+        document.getElementById("IsPresentation").value = "False";
+        document.getElementById("IsMeeting").value = "False";
+        document.getElementById("IsProgramEvent").value = "True";
+        document.getElementById("EventID").value = "3";
+    }
+
+    function clearForm() {
+        document.getElementById("ActivityName").value = "";
+        document.getElementById("Description").value = "";
+        document.getElementById("DateAndTime").value = "";
+        document.getElementById("IsPresentation").value = "";
+        document.getElementById("IsMeeting").value = "";
+        document.getElementById("IsProgramEvent").value = "";
+        document.getElementById("EventID").value = "";
+    }
+</script>

@@ -1,0 +1,28 @@
+﻿@page "{EventID}"
+@model EventManagementSystem.Pages.Events.EditEventModel
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="EditEvents">
+    <input type="hidden" asp-for="@Model.EventToUpdate.EventID" />
+    <label asp-for="@Model.EventToUpdate.EventName"></label>
+    <input type="text" asp-for="@Model.EventToUpdate.EventName" required />
+    <br />
+    <label asp-for="@Model.EventToUpdate.EventDescription"></label>
+    <input type="text" asp-for="@Model.EventToUpdate.EventDescription" />
+    <br />
+    <label asp-for="@Model.EventToUpdate.EventStartDateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.EventToUpdate.EventStartDateAndTime" required />
+    <br />
+    <label asp-for="@Model.EventToUpdate.EventEndDateAndTime"></label>
+    <input type="datetime-local" asp-for="@Model.EventToUpdate.EventEndDateAndTime" required />
+    <br />
+    <label asp-for="@Model.EventToUpdate.EventLocation"></label>
+    <input type="text" asp-for="@Model.EventToUpdate.EventLocation" required />
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="EditEvent" />
+    <a asp-page="AdminEvent" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,14 @@
+﻿@page "{UserID}"
+@model EventManagementSystem.Pages.Users.DeleteUserModel
+@{
+}
+
+<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
+
+<form asp-page="DeleteUser">
+    <div class="text-center">
+        <h1>Are you sure you want to deactivate this user? (UserID = @Model.UserToDelete.UserID)</h1>
+        <button class="btn btn-danger" type="submit">I am sure</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
