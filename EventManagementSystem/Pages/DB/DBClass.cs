@@ -8,19 +8,19 @@ namespace EventManagementSystem.Pages.DB
     public class DBClass
     {
         // Connection Object at the class level
-        public static SqlConnection LabDBConnection = new SqlConnection();
+        public static SqlConnection DBConnection = new SqlConnection();
 
         // Connection String
-        public static readonly string LabDBConnString = "Server=Localhost;Database=LAB4;Trusted_Connection=True";
+        public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True";
         // For Hashed Passwords
-        private static readonly string? AuthConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
+        private static readonly string? AuthDBConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
 
         // Can run and return results for any "ExecuteReader query", if results exist.
         // Query is passed from the invoking code.
         public static SqlDataReader GeneralReaderQuery(string sqlQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = new SqlConnection(LabDBConnString);
+            cmdProductRead.Connection = new SqlConnection(CapstoneDBConnString);
             cmdProductRead.CommandText = sqlQuery;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -30,12 +30,12 @@ namespace EventManagementSystem.Pages.DB
 
         // Can run and return results for any ExecuteNonQuery command, if results exist.
         // Query is passed from the invoking code.
-        // This Query is mainly used for interactions to the LAB database
+        // This Query is mainly used for interactions to the CAPSTONE database
         public static void GeneralQuery(string sqlQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = LabDBConnection;
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection = DBConnection;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = sqlQuery;
             cmdProductRead.Connection.Open();
             cmdProductRead.ExecuteNonQuery();
@@ -46,7 +46,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM \"User\" WHERE UserID = " + UserID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -58,7 +58,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Event WHERE EventID = " + EventID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -70,7 +70,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Activity WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -82,7 +82,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room WHERE RoomID = " + RoomID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -94,7 +94,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT ExpectedAttendance FROM Activity WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -108,7 +108,7 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = LabDBConnString;
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room WHERE " +
                 "Room.MaxCapacity >= " + MaxCapacityGet(activityid);
             cmdProductRead.Connection.Open();
@@ -123,7 +123,7 @@ namespace EventManagementSystem.Pages.DB
         {
             string eventName = null;
 
-            using (SqlConnection connection = new SqlConnection(LabDBConnString))
+            using (SqlConnection connection = new SqlConnection(CapstoneDBConnString))
             {
                 connection.Open();
 
@@ -149,7 +149,7 @@ namespace EventManagementSystem.Pages.DB
         {
             string userName = null;
 
-            using (SqlConnection connection = new SqlConnection(LabDBConnString))
+            using (SqlConnection connection = new SqlConnection(CapstoneDBConnString))
             {
                 connection.Open();
 
@@ -196,8 +196,8 @@ namespace EventManagementSystem.Pages.DB
 
 
             SqlCommand cmdCreation = new SqlCommand();
-            cmdCreation.Connection = LabDBConnection;
-            cmdCreation.Connection.ConnectionString = LabDBConnString;
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
 
             cmdCreation.CommandText = creationQuery;
             cmdCreation.Parameters.AddWithValue("@FirstName", firstName);
@@ -221,8 +221,8 @@ namespace EventManagementSystem.Pages.DB
             string loginQuery = "INSERT INTO HashedCredentials (Username,UserPassword) values (@Username, @UserPassword)";
 
             SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = LabDBConnection;
-            cmdLogin.Connection.ConnectionString = AuthConnString;
+            cmdLogin.Connection = DBConnection;
+            cmdLogin.Connection.ConnectionString = AuthDBConnString;
 
             cmdLogin.CommandText = loginQuery;
             cmdLogin.Parameters.AddWithValue("@Username", Username);
@@ -239,16 +239,16 @@ namespace EventManagementSystem.Pages.DB
         {
             SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = new SqlConnection();
-            cmdLogin.Connection.ConnectionString = AuthConnString;
+            cmdLogin.Connection.ConnectionString = AuthDBConnString;
             cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
             cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.CommandText = "sp_Lab4Login";
+            cmdLogin.CommandText = "sp_Login";
             cmdLogin.Connection.Open();
 
             SqlDataReader hashReader = cmdLogin.ExecuteReader();
             if (hashReader.Read())
             {
-                string correctHash = hashReader["UserPassword"].ToString();
+                string correctHash = hashReader["HashedPassword"].ToString();
 
                 if (PasswordHash.ValidatePassword(Password, correctHash))
                 {
@@ -263,8 +263,8 @@ namespace EventManagementSystem.Pages.DB
         {
             string passwordQuery = "SELECT UserPassword FROM HashedCredentials WHERE UserID = @UserID";
             SqlCommand cmdPassword = new SqlCommand();
-            cmdPassword.Connection = LabDBConnection;
-            cmdPassword.Connection.ConnectionString = AuthConnString;
+            cmdPassword.Connection = DBConnection;
+            cmdPassword.Connection.ConnectionString = AuthDBConnString;
             cmdPassword.CommandText = passwordQuery;
 
             cmdPassword.Parameters.AddWithValue("@UserID", UserID);
@@ -286,8 +286,8 @@ namespace EventManagementSystem.Pages.DB
         public static void AuthGeneralQuery(string sqlQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = LabDBConnection;
-            cmdProductRead.Connection.ConnectionString = AuthConnString;
+            cmdProductRead.Connection = DBConnection;
+            cmdProductRead.Connection.ConnectionString = AuthDBConnString;
             cmdProductRead.CommandText = sqlQuery;
             cmdProductRead.Connection.Open();
             cmdProductRead.ExecuteNonQuery();

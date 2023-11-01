@@ -33,7 +33,7 @@ namespace EventManagementSystem.Pages.Events
                 });
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
         }
     }
 }

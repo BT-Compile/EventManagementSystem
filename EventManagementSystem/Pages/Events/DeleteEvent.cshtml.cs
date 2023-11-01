@@ -34,7 +34,7 @@ namespace EventManagementSystem.Pages.Events
                 EventToDelete.EventID = eventid;
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Events
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("/Events/AdminEvent");
         }

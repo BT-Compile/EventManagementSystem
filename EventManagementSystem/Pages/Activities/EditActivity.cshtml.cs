@@ -50,7 +50,7 @@ namespace EventManagementSystem.Pages.Activities
                 }
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -84,7 +84,7 @@ namespace EventManagementSystem.Pages.Activities
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminActivity");
         }

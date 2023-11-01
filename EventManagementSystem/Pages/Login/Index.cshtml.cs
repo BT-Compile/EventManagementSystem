@@ -35,20 +35,20 @@ namespace EventManagementSystem.Pages.Login
                 string UserID = singleUser["UserID"].ToString();
                 HttpContext.Session.SetString("userid", UserID);
 
-                sqlQuery = "SELECT isAdmin FROM \"User\" WHERE Username = '" + Username + "'";
+                sqlQuery = "SELECT RoleID FROM UserRole WHERE UserID = '" + UserID + "'";
                 SqlDataReader isAdminReader = DBClass.GeneralReaderQuery(sqlQuery);
                 isAdminReader.Read();
 
                 // Case that an Admin has logged in
-                if ((bool)isAdminReader["isAdmin"] == true)
+                if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 1)
                 {
-                    DBClass.LabDBConnection.Close();
+                    DBClass.DBConnection.Close();
                     HttpContext.Session.SetString("usertype", "Admin");
                     return RedirectToPage("/Admin/Index");
                 }
                 else // Case that a normal User has logged in
                 {
-                    DBClass.LabDBConnection.Close();
+                    DBClass.DBConnection.Close();
                     HttpContext.Session.SetString("usertype", "Attendee");
                     return RedirectToPage("/Attendee/Index");
                 }
@@ -58,7 +58,7 @@ namespace EventManagementSystem.Pages.Login
                 ViewData["LoginMessage"] = "Username and/or UserPassword Incorrect";
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
 

@@ -28,11 +28,11 @@ namespace EventManagementSystem.Pages.Login
             DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Username,
                 UserToCreate.Email, UserToCreate.PhoneNumber, true, false, false);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }

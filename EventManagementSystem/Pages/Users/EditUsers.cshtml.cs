@@ -43,7 +43,7 @@ namespace EventManagementSystem.Pages.Users
                 UserToUpdate.IsAdmin = (bool)singleUser["IsAdmin"];
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -61,7 +61,7 @@ namespace EventManagementSystem.Pages.Users
                 + "' WHERE UserID=" + UserToUpdate.UserID;
 
             DBClass.GeneralQuery(userQuery);
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             // case that the user has inputted a new password for the user (the input is NOT blank)
             if (UserToUpdate.UserPassword != null)
@@ -72,7 +72,7 @@ namespace EventManagementSystem.Pages.Users
                     "' WHERE UserID=" + UserToUpdate.UserID;
 
                 DBClass.AuthGeneralQuery(credentialsQuery);
-                DBClass.LabDBConnection.Close();
+                DBClass.DBConnection.Close();
             }
 
             return RedirectToPage("Index");

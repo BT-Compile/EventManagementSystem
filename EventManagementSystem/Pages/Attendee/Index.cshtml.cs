@@ -65,7 +65,7 @@ namespace EventManagementSystem.Pages.Attendee
             }
 
             scheduleReader.Close();
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }

@@ -44,7 +44,7 @@ namespace EventManagementSystem.Pages.Rooms
                 });
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }

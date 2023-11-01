@@ -43,7 +43,7 @@ namespace EventManagementSystem.Pages.SignUp
                 UserToSignUp.LastName = singleUser["LastName"].ToString();
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             sqlQuery = "SELECT * FROM Activity WHERE ActivityID = " + activityid;
             SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
@@ -54,7 +54,7 @@ namespace EventManagementSystem.Pages.SignUp
                 ActivityToSignUp.ActivityName = singleActivity["ActivityName"].ToString();
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -66,7 +66,7 @@ namespace EventManagementSystem.Pages.SignUp
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("/Users/UserAssociations");
         }

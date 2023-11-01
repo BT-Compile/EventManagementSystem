@@ -44,7 +44,7 @@ namespace EventManagementSystem.Pages.Activities
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminActivity");
         }

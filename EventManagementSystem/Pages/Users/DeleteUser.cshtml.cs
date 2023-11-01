@@ -34,7 +34,7 @@ namespace EventManagementSystem.Pages.Users
                 UserToDelete.UserID = userid;
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Users
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }

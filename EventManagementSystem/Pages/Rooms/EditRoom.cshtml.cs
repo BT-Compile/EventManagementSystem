@@ -40,7 +40,7 @@ namespace EventManagementSystem.Pages.Rooms
                 // Check if ActivityID is DBNull before casting to int
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -55,7 +55,7 @@ namespace EventManagementSystem.Pages.Rooms
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminRoom");
         }

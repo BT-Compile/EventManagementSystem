@@ -61,7 +61,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                 });
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }

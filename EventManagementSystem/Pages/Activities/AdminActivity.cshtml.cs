@@ -48,7 +48,7 @@ namespace EventManagementSystem.Pages.Activities
                 });
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }

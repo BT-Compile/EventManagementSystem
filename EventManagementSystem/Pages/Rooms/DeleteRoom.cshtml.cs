@@ -34,7 +34,7 @@ namespace EventManagementSystem.Pages.Rooms
                 RoomToDelete.RoomID = roomid;
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Rooms
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("/Rooms/AdminRoom");
         }

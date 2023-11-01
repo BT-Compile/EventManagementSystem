@@ -41,7 +41,7 @@ namespace EventManagementSystem.Pages.Activities
                 Rooms.Add(new SelectListItem(roomInfo, assignRoom["RoomID"].ToString()));
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -56,7 +56,7 @@ namespace EventManagementSystem.Pages.Activities
 
                 DBClass.GeneralQuery(sqlQuery);
 
-                DBClass.LabDBConnection.Close();
+                DBClass.DBConnection.Close();
                 return RedirectToPage("AdminActivity");
             }
             else

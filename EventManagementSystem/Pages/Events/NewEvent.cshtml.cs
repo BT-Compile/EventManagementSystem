@@ -42,7 +42,7 @@ namespace EventManagementSystem.Pages.Events
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }

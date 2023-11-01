@@ -38,11 +38,11 @@ namespace EventManagementSystem.Pages.Users
             DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Username, UserToCreate.Email,
                 UserToCreate.PhoneNumber, UserToCreate.IsAttendee, UserToCreate.IsPresenter, UserToCreate.IsAdmin);
             
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }

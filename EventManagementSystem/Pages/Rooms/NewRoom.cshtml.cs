@@ -40,7 +40,7 @@ namespace EventManagementSystem.Pages.Rooms
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminRoom");
         }

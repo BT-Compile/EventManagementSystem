@@ -30,7 +30,7 @@ namespace EventManagementSystem.Pages.EventSchedule
                 ));
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
         }
 
         public IActionResult OnPost()

@@ -40,7 +40,7 @@ namespace EventManagementSystem.Pages.Users
                 ));
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }

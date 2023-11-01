@@ -39,7 +39,7 @@ namespace EventManagementSystem.Pages.Events
                 EventToUpdate.EventLocation = singleEvent["EventLocation"].ToString();
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -55,7 +55,7 @@ namespace EventManagementSystem.Pages.Events
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminEvent");
         }

@@ -48,7 +48,7 @@ namespace EventManagementSystem.Pages.SignUp
                         UserReader["UserID"].ToString()));
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             // Populate the Activity SELECT control
             SqlDataReader ActivityReader = DBClass.GeneralReaderQuery("SELECT * FROM Activity");
@@ -63,7 +63,7 @@ namespace EventManagementSystem.Pages.SignUp
                         ActivityReader["ActivityID"].ToString()));
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -94,7 +94,7 @@ namespace EventManagementSystem.Pages.SignUp
                     ActivityReader["ActivityID"].ToString()));
                 }
 
-                DBClass.LabDBConnection.Close();
+                DBClass.DBConnection.Close();
 
                 return RedirectToPage("Confirmation", new { UserID = UserID, ActivityID = ActivityID });
             }
@@ -112,12 +112,12 @@ namespace EventManagementSystem.Pages.SignUp
             if (attendanceReader.HasRows)
             {
                 attendanceReader.Close();
-                DBClass.LabDBConnection.Close();
+                DBClass.DBConnection.Close();
                 return true;
             }
 
             attendanceReader.Close();
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
             return false;
         }
 

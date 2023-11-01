@@ -38,7 +38,7 @@ namespace EventManagementSystem.Pages.Users
                 User.LastName = singleUser["LastName"].ToString();
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             EncryptedPassword = DBClass.EncryptedPasswordReader(userid);
 

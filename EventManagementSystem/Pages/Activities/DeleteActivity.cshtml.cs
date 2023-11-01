@@ -34,7 +34,7 @@ namespace EventManagementSystem.Pages.Activities
                 ActivityToDelete.ActivityID = activityid;
             }
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return Page();
         }
@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Activities
 
             DBClass.GeneralQuery(sqlQuery);
 
-            DBClass.LabDBConnection.Close();
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("/Activities/AdminActivity");
         }
