@@ -64,11 +64,11 @@ namespace EventManagementSystem.Pages.Users
             DBClass.LabDBConnection.Close();
 
             // case that the user has inputted a new password for the user (the input is NOT blank)
-            if (UserToUpdate.Password != null)
+            if (UserToUpdate.UserPassword != null)
             {
-                string newPassword = PasswordHash.HashPassword(UserToUpdate.Password);
+                string newPassword = PasswordHash.HashPassword(UserToUpdate.UserPassword);
 
-                string credentialsQuery = "UPDATE HashedCredentials SET Password='" + newPassword +
+                string credentialsQuery = "UPDATE HashedCredentials SET UserPassword='" + newPassword +
                     "' WHERE UserID=" + UserToUpdate.UserID;
 
                 DBClass.AuthGeneralQuery(credentialsQuery);

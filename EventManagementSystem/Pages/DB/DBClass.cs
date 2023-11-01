@@ -218,7 +218,7 @@ namespace EventManagementSystem.Pages.DB
         // A stored procedure is used in this method.
         public static void CreateHashedUser(string Username, string Password)
         {
-            string loginQuery = "INSERT INTO HashedCredentials (Username,Password) values (@Username, @Password)";
+            string loginQuery = "INSERT INTO HashedCredentials (Username,UserPassword) values (@Username, @UserPassword)";
 
             SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = LabDBConnection;
@@ -226,7 +226,7 @@ namespace EventManagementSystem.Pages.DB
 
             cmdLogin.CommandText = loginQuery;
             cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
+            cmdLogin.Parameters.AddWithValue("@UserPassword", PasswordHash.HashPassword(Password));
 
             cmdLogin.Connection.Open();
 
@@ -248,7 +248,7 @@ namespace EventManagementSystem.Pages.DB
             SqlDataReader hashReader = cmdLogin.ExecuteReader();
             if (hashReader.Read())
             {
-                string correctHash = hashReader["Password"].ToString();
+                string correctHash = hashReader["UserPassword"].ToString();
 
                 if (PasswordHash.ValidatePassword(Password, correctHash))
                 {
@@ -261,7 +261,7 @@ namespace EventManagementSystem.Pages.DB
 
         public static string EncryptedPasswordReader(int UserID)
         {
-            string passwordQuery = "SELECT Password FROM HashedCredentials WHERE UserID = @UserID";
+            string passwordQuery = "SELECT UserPassword FROM HashedCredentials WHERE UserID = @UserID";
             SqlCommand cmdPassword = new SqlCommand();
             cmdPassword.Connection = LabDBConnection;
             cmdPassword.Connection.ConnectionString = AuthConnString;
@@ -276,7 +276,7 @@ namespace EventManagementSystem.Pages.DB
             SqlDataReader passwordReader = cmdPassword.ExecuteReader();
             if (passwordReader.Read())
             {
-                password = passwordReader["Password"].ToString();
+                password = passwordReader["UserPassword"].ToString();
             }
 
             return password;

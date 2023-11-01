@@ -55,7 +55,7 @@ namespace EventManagementSystem.Pages.Login
             }
             else // Case where a User with matching credentials (against their encrypted password) has not been found
             {
-                ViewData["LoginMessage"] = "Username and/or Password Incorrect";
+                ViewData["LoginMessage"] = "Username and/or UserPassword Incorrect";
             }
 
             DBClass.LabDBConnection.Close();

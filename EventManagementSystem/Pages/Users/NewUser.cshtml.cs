@@ -40,7 +40,7 @@ namespace EventManagementSystem.Pages.Users
             
             DBClass.LabDBConnection.Close();
 
-            DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.Password);
+            DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
 
             DBClass.LabDBConnection.Close();
 
