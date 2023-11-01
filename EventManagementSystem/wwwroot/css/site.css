@@ -1,18 +1,137 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color: white;
+}
+
+main {
+    background: linear-gradient(to bottom, #450084, white);
+}
+
+footer {
+    text-align: center;
+}
+
+.btn {
+    background: #450084;
+    color: white;
+}
+
+.carimg {
+    border-radius: 25px;
+    width: 500px;
+    height: auto; /* Add this line to maintain the aspect ratio of the images */
+    display: flex;
+    margin: 0 auto;
+}
+
+.carousel-caption h3 {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: white;
+    font-size: 40pt;
+    font-family: 'Arvo', serif;
+}
+
+.carousel-caption p {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: white;
+    font-size: 16pt;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: none;
+    border: 0;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+
+.indexwrapper {
+    margin: 0 15% 0 15%;
+    height: 90vh;
+}
+
+.indexContainer {
+    height: auto;
+    margin: auto;
+    margin-bottom: 5%;
+}
+
+.indexContainer2 {
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.10);
+    padding: 20px;
+    padding-bottom: 50px;
+    border-radius: 25pt;
+    width: 60%;
+}
+
+.indexContainer2 h2 {
+    font-family: 'Arvo', serif;
+    text-align: center;
+    color: #450084;
+}
+
+.indexBox {
+    position: relative;
+    top: 5vh;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.10);
+    padding: 50px;
+    color: #fff;
+    font-size: 14pt;
+    border-radius: 25pt;
+}
+
+.indexBox h2 {
+    font-family: 'Arvo', serif;
+    font-size: 36pt;
+    color: white;
+
+}
+
+.ITguy {
+    float: right;
+    height: auto;
+    width: 400px;
+    margin: 25vh 0vh 0 0;
+}
+
+.logbtn {
+    margin-right: 5%
+}
+
+.navbar {
+    height: 10vh;
+    background: white;
+}
+
+.navbar-brand {
+    padding: 50px;
+    color: rgb(69, 0, 132);
 }
