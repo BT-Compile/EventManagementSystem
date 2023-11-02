@@ -35,8 +35,8 @@ namespace EventManagementSystem.Pages.Users
 
         public IActionResult OnPost()
         {
-            DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Username, UserToCreate.Email,
-                UserToCreate.PhoneNumber, UserToCreate.IsAttendee, UserToCreate.IsPresenter, UserToCreate.IsAdmin);
+            DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
+                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.AllergyNote);
             
             DBClass.DBConnection.Close();
 

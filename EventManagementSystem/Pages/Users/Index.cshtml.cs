@@ -39,13 +39,12 @@ namespace EventManagementSystem.Pages.Users
                     UserID = Int32.Parse(userReader["UserID"].ToString()),
                     FirstName = userReader["FirstName"].ToString(),
                     LastName = userReader["LastName"].ToString(),
-                    Username = userReader["Username"].ToString(),
                     Email = userReader["Email"].ToString(),
                     PhoneNumber = userReader["PhoneNumber"].ToString(),
-                    IsAttendee = (bool)userReader["IsAttendee"],
-                    IsPresenter = (bool)userReader["IsPresenter"],
-                    IsAdmin = (bool)userReader["IsAdmin"],
-                    IsActive = (bool)userReader["IsActive"]
+                    Username = userReader["Username"].ToString(),
+                    AllergyNote = userReader["AllergyNote"].ToString()
+                    // we might need to add IsActive functionality later - SR
+                    //IsActive = (bool)userReader["IsActive"]
                 });
             }
 

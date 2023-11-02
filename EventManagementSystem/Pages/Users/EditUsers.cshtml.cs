@@ -35,12 +35,10 @@ namespace EventManagementSystem.Pages.Users
                 UserToUpdate.UserID = userid;
                 UserToUpdate.FirstName = singleUser["FirstName"].ToString();
                 UserToUpdate.LastName = singleUser["LastName"].ToString();
-                UserToUpdate.Username = singleUser["Username"].ToString();
                 UserToUpdate.Email = singleUser["Email"].ToString();
                 UserToUpdate.PhoneNumber = singleUser["PhoneNumber"].ToString();
-                UserToUpdate.IsAttendee = (bool)singleUser["IsAttendee"];
-                UserToUpdate.IsPresenter = (bool)singleUser["IsPresenter"];
-                UserToUpdate.IsAdmin = (bool)singleUser["IsAdmin"];
+                UserToUpdate.Username = singleUser["Username"].ToString();
+                UserToUpdate.AllergyNote = singleUser["AllergyNote"].ToString();
             }
 
             DBClass.DBConnection.Close();
@@ -55,9 +53,7 @@ namespace EventManagementSystem.Pages.Users
                 + "',Username='" + UserToUpdate.Username
                 + "',Email='" + UserToUpdate.Email
                 + "',PhoneNumber='" + UserToUpdate.PhoneNumber
-                + "',IsAttendee='" + UserToUpdate.IsAttendee
-                + "',IsPresenter='" + UserToUpdate.IsPresenter
-                + "',IsAdmin='" + UserToUpdate.IsAdmin
+                + "',AllergyNote='" + UserToUpdate.AllergyNote
                 + "' WHERE UserID=" + UserToUpdate.UserID;
 
             DBClass.GeneralQuery(userQuery);
@@ -68,7 +64,7 @@ namespace EventManagementSystem.Pages.Users
             {
                 string newPassword = PasswordHash.HashPassword(UserToUpdate.UserPassword);
 
-                string credentialsQuery = "UPDATE HashedCredentials SET UserPassword='" + newPassword +
+                string credentialsQuery = "UPDATE HashedCredentials SET HashedPassword='" + newPassword +
                     "' WHERE UserID=" + UserToUpdate.UserID;
 
                 DBClass.AuthGeneralQuery(credentialsQuery);

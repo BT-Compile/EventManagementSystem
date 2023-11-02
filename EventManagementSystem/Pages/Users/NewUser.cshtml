@@ -4,8 +4,6 @@
     ViewData["Title"] = "New User";
 }
 
-<!-- This code was designed and implemented by Steven Roenker and Devin Vicchio -->
-
 <form asp-page="NewUser">
     <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
     <label asp-for="@Model.UserToCreate.FirstName"></label>
@@ -14,26 +12,21 @@
     <label asp-for="@Model.UserToCreate.LastName"></label>
     <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" required />
     <br />
-    <label asp-for="@Model.UserToCreate.Username"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.UserPassword"></label>
-    <input type="text" asp-for="@Model.UserToCreate.UserPassword" id="Password" required />
-    <br />
     <label asp-for="@Model.UserToCreate.Email"></label>
     <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" />
     <br />
     <label asp-for="@Model.UserToCreate.PhoneNumber"></label>
     <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" />
     <br />
-    <label asp-for="@Model.UserToCreate.IsAttendee"></label>
-    <input type="text" asp-for="@Model.UserToCreate.IsAttendee" id="IsAttendee" required />
+    <label asp-for="@Model.UserToCreate.Username"></label>
+    <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" required />
     <br />
-    <label asp-for="@Model.UserToCreate.IsPresenter"></label>
-    <input type="text" asp-for="@Model.UserToCreate.IsPresenter" id="IsPresenter" required />
+    <label asp-for="@Model.UserToCreate.UserPassword"></label>
+    <input type="text" asp-for="@Model.UserToCreate.UserPassword" id="Password" required />
     <br />
-    <label asp-for="@Model.UserToCreate.IsAdmin"></label>
-    <input type="text" asp-for="@Model.UserToCreate.IsAdmin" id="IsAdmin" required />
+    <label asp-for="@Model.UserToCreate.AllergyNote"></label>
+    <input type="text" asp-for="@Model.UserToCreate.AllergyNote" id="AllergyNote" />
+    <br />
     <br /><br />
     <button type="button" onclick="populateForm()">Populate</button>
     &emsp; <!-- Tab character to separate populate and clear buttons -->
@@ -54,25 +47,21 @@
     {
         document.getElementById("FirstName").value = "Joe";
         document.getElementById("LastName").value = "White";
-        document.getElementById("Username").value = "username123";
-        document.getElementById("Password").value = "Password321";
         document.getElementById("Email").value = "JoeWhite032@gmail.com";
         document.getElementById("PhoneNumber").value = "804-784-8663";
-        document.getElementById("IsAttendee").value = "False";
-        document.getElementById("IsPresenter").value = "True";
-        document.getElementById("IsAdmin").value = "False";
+        document.getElementById("Username").value = "username123";
+        document.getElementById("Password").value = "Password321";
+        document.getElementById("AllergyNote").value = "Pollen";
     }
     
     function clearForm()
     {
         document.getElementById("FirstName").value = "";
         document.getElementById("LastName").value = "";
-        document.getElementById("Username").value = "";
-        document.getElementById("Password").value = "";
         document.getElementById("Email").value = "";
         document.getElementById("PhoneNumber").value = "";
-        document.getElementById("IsAttendee").value = "";
-        document.getElementById("IsPresenter").value = "";
-        document.getElementById("IsAdmin").value = "";
+        document.getElementById("Username").value = "";
+        document.getElementById("Password").value = "";
+        document.getElementById("AllergyNote").value = "";
     }
 </script>
