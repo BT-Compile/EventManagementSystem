@@ -29,7 +29,7 @@ namespace EventManagementSystem.Pages.Rooms
 
                 Rooms.Add(new Room
                 {
-                    BuildingName = roomReader["BuildingName"].ToString(),
+                    BuildingName = roomReader["Name"].ToString(),
                     RoomNumber = Int32.Parse(roomReader["RoomName"].ToString()),
                     Capacity = Int32.Parse(roomReader["Capacity"].ToString())
                 });

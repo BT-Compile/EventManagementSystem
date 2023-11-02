@@ -38,7 +38,7 @@ namespace EventManagementSystem.Pages.Rooms
             {
                 roomAssociations.Add(new RoomAssociation
                 {
-                    BuildingName = associationsReader["BuildingName"].ToString(),
+                    BuildingName = associationsReader["Name"].ToString(),
                     RoomNumber = Int32.Parse(associationsReader["RoomNumber"].ToString()),
                     ActivityName = associationsReader["ActivityName"].ToString(),
                     EventName = associationsReader["EventName"].ToString()

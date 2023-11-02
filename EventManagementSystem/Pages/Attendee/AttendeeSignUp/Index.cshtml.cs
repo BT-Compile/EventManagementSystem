@@ -42,7 +42,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "[User] ON ActivityAttendance.UserID = [User].UserID AND EventAttendance.UserID = [User].UserID " +
                                 "WHERE Activity.ActivityID NOT IN (" +
                                     "SELECT ActivityID " +
-                                    "FROM Attendance " +
+                                    "FROM ActivityAttendance " +
                                     "WHERE UserID = " + HttpContext.Session.GetString("userid") + ") " +
                                 "ORDER BY Event.EventName, Activity.Date;";
 
@@ -59,7 +59,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
                     Date = DateTime.Parse(scheduleReader["Date"].ToString()),
                     StartTime = TimeOnly.Parse(scheduleReader["StartTime"].ToString()),
-                    BuildingName = scheduleReader["BuildingName"].ToString(),
+                    BuildingName = scheduleReader["Name"].ToString(),
                     RoomNumber = Int32.Parse(scheduleReader["RoomNumber"].ToString())
                 });
             }

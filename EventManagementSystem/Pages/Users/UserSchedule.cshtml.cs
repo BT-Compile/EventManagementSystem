@@ -40,7 +40,7 @@ namespace EventManagementSystem.Pages.Users
                     EventName = scheduleViewer["EventName"].ToString(),
                     ActivityName = scheduleViewer["ActivityName"].ToString(),
                     Date = DateTime.Parse(scheduleViewer["Date"].ToString()),
-                    BuildingName = scheduleViewer["BuildingName"].ToString(),
+                    BuildingName = scheduleViewer["Name"].ToString(),
                     RoomNumber = Int32.Parse(scheduleViewer["RoomNumber"].ToString())
                 });
             }
