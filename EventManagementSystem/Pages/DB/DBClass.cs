@@ -171,8 +171,8 @@ namespace EventManagementSystem.Pages.DB
         }
 
         // Method to create a user, while also PREVENTING SQL INJECTION
-        public static void SecureUserCreation(string firstName, string lastName, string username, string email,
-            string phoneNumber, bool isAttendee, bool isPresenter, bool isAdmin)
+        public static void SecureUserCreation(string firstName, string lastName, string email,
+            string phoneNumber, string username, string allergyNote, string accessibility, bool isActive)
         {
             // set all null variables to an empty string
             if (email == null)
@@ -184,15 +184,14 @@ namespace EventManagementSystem.Pages.DB
                 phoneNumber = "";
             }
 
-            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Username, Email, PhoneNumber, IsAttendee, IsPresenter, IsAdmin, IsActive) VALUES (" +
+            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility, isActive) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
-                "@Username," +
                 "@Email," +
                 "@PhoneNumber," +
-                "@isAttendee," +
-                "@isPresenter," +
-                "@isAdmin,1)";
+                "@Username," +
+                "@AllergyNote," +
+                "@Accessibility, 1)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -202,12 +201,11 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.CommandText = creationQuery;
             cmdCreation.Parameters.AddWithValue("@FirstName", firstName);
             cmdCreation.Parameters.AddWithValue("@LastName", lastName);
-            cmdCreation.Parameters.AddWithValue("@Username", username);
             cmdCreation.Parameters.AddWithValue("@Email", email);
             cmdCreation.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-            cmdCreation.Parameters.AddWithValue("@isAttendee", isAttendee);
-            cmdCreation.Parameters.AddWithValue("@isPresenter", isPresenter);
-            cmdCreation.Parameters.AddWithValue("@isAdmin", isAdmin);
+            cmdCreation.Parameters.AddWithValue("@Username", username);
+            cmdCreation.Parameters.AddWithValue("@AllergyNote", allergyNote);
+            cmdCreation.Parameters.AddWithValue("@Accessibility", accessibility);
 
             cmdCreation.Connection.Open();
 

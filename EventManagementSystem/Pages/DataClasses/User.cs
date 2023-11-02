@@ -21,6 +21,8 @@
 
         public string? AllergyNote { get; set; }
 
+        public string? Accessibility {  get; set; }
+
         // Let's keep the IsActive boolean type so that an admin can
         // "activate" or "deactivate" specific users.
         // - Steven
