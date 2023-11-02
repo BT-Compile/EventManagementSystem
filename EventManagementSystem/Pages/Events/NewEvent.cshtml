@@ -15,8 +15,11 @@
     <label asp-for="@Model.EventToCreate.StartDate"></label>
     <input type="datetime-local" asp-for="@Model.EventToCreate.StartDate" id="StartDate" required />
     <br />
-    <label aStartDateoCreate.EventEndDateAndTime"></label>
+    <label asp-for="@Model.EventToCreate.EndDate"></label>
     <input type="datetime-local" asp-for="@Model.EventToCreate.EndDate" id="EndDate" required />
+    <br />
+    <label asp-for="@Model.EventToCreate.RegistrationDeadline"></label>
+    <input type="datetime-local" asp-for="@Model.EventToCreate.RegistrationDeadline" id="RegistrationDeadline" required />
     <br />
     <label asp-for="@Model.EventToCreate.Capacity"></label>
     <input type="text" asp-for="@Model.EventToCreate.Capacity" id="Capacity" required />
@@ -33,17 +36,18 @@
 </form>
 
 <script>
-    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    // links to the Populate button
     function populateForm() {
         document.getElementById("EventName").value = "COB Meet the Firms";
         document.getElementById("Description").value = "Meet some firms at JMU's COB Complex";
-        document.getElementById("StartDate").value = "2023-10-10 17:00:00";
-        document.getElementById("EndDate").value = "2023-10-10 22:00:00";
-        document.getElementById("RegistrationDeadline").value = "2023-10-1 22:00:00";
-        document.getElementById("Capacity").value = "";
-        document.getElementById("Status").value = "";
+        document.getElementById("StartDate").value = "2024-10-10 17:00:00";
+        document.getElementById("EndDate").value = "2024-10-10 22:00:00";
+        document.getElementById("RegistrationDeadline").value = "2024-10-01 22:00:00";
+        document.getElementById("Capacity").value = "200";
+        document.getElementById("Status").value = "Active";
     }
 
+    // links to the Clear button
     function clearForm() {
         document.getElementById("EventName").value = "";
         document.getElementById("Description").value = "";

@@ -9,12 +9,12 @@
         <tr>
             <th>Event Name:</th>
             <th>Event Description:</th>
-            <th>Event Date:</th>
-            <th>Event Start Time:</th>
-            <th>Event End Time:</th>
+            <th>Start Date:</th>
+            <th>End Date:</th>
             <th>Registration Deadline:</th>
             <th>Capacity:</th>
             <th>Status:</th>
+            <th>Building Name:</th>
         </tr>
     </thead>
     <tbody>
@@ -24,49 +24,16 @@
                 <tr class="table-secondary">
                     <td>@event1.EventName</td>
                     <td>@event1.EventDescription</td>
-                    <td>@event1.StartDate.ToShortDateString</td>
-                    <td>@event1.EndDate.ToShortDateString</td>
-                    <td>@event1.RegistrationDeadline.ToShortDateString</td>
+                    <td>@event1.StartDate</td>
+                    <td>@event1.EndDate</td>
+                    <td>@event1.RegistrationDeadline</td>
                     <td>@event1.Capacity</td>
                     <td>@event1.Status</td>
+                    <td>INSERT BUILDING NAME?</td>
                     <td>
                         <a asp-page="EditEvent" class="btn btn-outline-success" asp-route-eventid="@event1.EventID">Edit</a>
                     </td>
                 </tr>
-
-
-                /*
-                if (event1.IsActive != true)
-                {
-                    <tr class="table-secondary">
-                        <td>@event1.EventName</td>
-                        <td>@event1.EventDescription</td>
-                        <td>@event1.StartDate</td>
-                        <td>@event1.EndDate</td>
-                        <td>@event1.EventLocation</td>
-                        <td>@event1.IsActive</td>
-                        <td>
-                            <a asp-page="EditEvent" class="btn btn-outline-success" asp-route-eventid="@event1.EventID">Edit</a>
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td>@event1.EventName</td>
-                        <td>@event1.EventDescription</td>
-                        <td>@event1.StartDate</td>
-                        <td>@event1.EndDate</td>
-                        <td>@event1.EventLocation</td>
-                        <td>@event1.IsActive</td>
-                        <td>
-                            <a asp-page="EditEvent" class="btn btn-outline-success" asp-route-eventid="@event1.EventID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="DeleteEvent" class="btn btn-warning" asp-route-eventid="@event1.EventID">Deactivate</a>
-                        </td>
-                    </tr>
-                } */
             }
         }
     </tbody>

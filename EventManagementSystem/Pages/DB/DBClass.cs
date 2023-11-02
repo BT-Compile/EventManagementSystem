@@ -184,14 +184,14 @@ namespace EventManagementSystem.Pages.DB
                 phoneNumber = "";
             }
 
-            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility, isActive) VALUES (" +
+            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
                 "@Email," +
                 "@PhoneNumber," +
                 "@Username," +
                 "@AllergyNote," +
-                "@Accessibility, 1)";
+                "@Accessibility)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -216,7 +216,7 @@ namespace EventManagementSystem.Pages.DB
         // A stored procedure is used in this method.
         public static void CreateHashedUser(string Username, string Password)
         {
-            string loginQuery = "INSERT INTO HashedCredentials (Username,UserPassword) values (@Username, @UserPassword)";
+            string loginQuery = "INSERT INTO HashedCredentials (Username, HashedPassword) values (@Username, @HashedPassword)";
 
             SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = DBConnection;
@@ -224,7 +224,7 @@ namespace EventManagementSystem.Pages.DB
 
             cmdLogin.CommandText = loginQuery;
             cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@UserPassword", PasswordHash.HashPassword(Password));
+            cmdLogin.Parameters.AddWithValue("@HashedPassword", PasswordHash.HashPassword(Password));
 
             cmdLogin.Connection.Open();
 
@@ -259,7 +259,7 @@ namespace EventManagementSystem.Pages.DB
 
         public static string EncryptedPasswordReader(int UserID)
         {
-            string passwordQuery = "SELECT UserPassword FROM HashedCredentials WHERE UserID = @UserID";
+            string passwordQuery = "SELECT HashedPassword FROM HashedCredentials WHERE UserID = @UserID";
             SqlCommand cmdPassword = new SqlCommand();
             cmdPassword.Connection = DBConnection;
             cmdPassword.Connection.ConnectionString = AuthDBConnString;
@@ -274,7 +274,7 @@ namespace EventManagementSystem.Pages.DB
             SqlDataReader passwordReader = cmdPassword.ExecuteReader();
             if (passwordReader.Read())
             {
-                password = passwordReader["UserPassword"].ToString();
+                password = passwordReader["HashedPassword"].ToString();
             }
 
             return password;
