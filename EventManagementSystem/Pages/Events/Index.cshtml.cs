@@ -27,9 +27,11 @@ namespace EventManagementSystem.Pages.Events
                 {
                     EventName = eventReader["EventName"].ToString(),
                     EventDescription = eventReader["EventDescription"].ToString(),
-                    StartDate = (DateTime)eventReader["StartDate"],
-                    EndDate = (DateTime)eventReader["EndDate"],
-                    EventLocation = eventReader["EventLocation"].ToString()
+                    StartDate = DateTime.Parse(eventReader["StartDate"].ToString()),
+                    EndDate = DateTime.Parse(eventReader["EndDate"].ToString()),
+                    RegistrationDeadline = DateTime.Parse(eventReader["RegistrationDeadline"].ToString()),
+                    Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
+                    Status = eventReader["Status"].ToString()
                 });
             }
 
