@@ -35,7 +35,9 @@ namespace EventManagementSystem.Pages.Rooms
                 RoomToUpdate.RoomID = roomid;
                 RoomToUpdate.RoomName = singleRoom["RoomName"].ToString();
                 RoomToUpdate.RoomDescription = singleRoom["RoomDescription"].ToString();
-                RoomToUpdate.MaxCapacity = (int)singleRoom["MaxCapacity"];
+                RoomToUpdate.Capacity
+ = (int)singleRoom["Capacity
+"];
                 
                 // Check if ActivityID is DBNull before casting to int
             }
@@ -50,7 +52,9 @@ namespace EventManagementSystem.Pages.Rooms
             string sqlQuery;
                 sqlQuery = "UPDATE Room SET RoomName='" + RoomToUpdate.RoomName
                 + "',RoomDescription='" + RoomToUpdate.RoomDescription
-                + "',MaxCapacity='" + RoomToUpdate.MaxCapacity
+                + "',Capacity
+='" + RoomToUpdate.Capacity
+
                 + "' WHERE RoomID=" + RoomToUpdate.RoomID;
 
             DBClass.GeneralQuery(sqlQuery);

@@ -39,7 +39,9 @@ namespace EventManagementSystem.Pages.Rooms
                     RoomID = Int32.Parse(roomReader["RoomID"].ToString()),
                     RoomName = roomReader["RoomName"].ToString(),
                     RoomDescription = roomReader["RoomDescription"].ToString(),
-                    MaxCapacity = Int32.Parse(roomReader["MaxCapacity"].ToString()),
+                    Capacity
+ = Int32.Parse(roomReader["Capacity
+"].ToString()),
                     IsActive = (bool)roomReader["IsActive"]
                 });
             }

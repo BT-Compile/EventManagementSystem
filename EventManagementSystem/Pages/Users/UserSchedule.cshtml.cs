@@ -23,12 +23,12 @@ namespace EventManagementSystem.Pages.Users
         {
             UserName = DBClass.GetUserName(userID);
 
-            string sqlQuery = "SELECT Event.EventName, Event.EventLocation, Activity.ActivityName, Activity.DateAndTime " +
+            string sqlQuery = "SELECT Event.EventName, Event.EventLocation, Activity.ActivityName, Activity.Date " +
                 "FROM Event " +
                 "INNER JOIN Activity ON Event.EventID = Activity.EventID " +
                 "INNER JOIN Attendance ON Activity.ActivityID = Attendance.ActivityID " +
                 "WHERE Attendance.UserID = " + userID +
-                " ORDER BY Activity.DateAndTime;";
+                " ORDER BY Activity.Date;";
 
             SqlDataReader scheduleViewer = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -39,7 +39,7 @@ namespace EventManagementSystem.Pages.Users
                     EventName = scheduleViewer["EventName"].ToString(),
                     EventLocation = scheduleViewer["EventLocation"].ToString(),
                     ActivityName = scheduleViewer["ActivityName"].ToString(),
-                    DateAndTime = (DateTime)scheduleViewer["DateAndTime"]
+                    DateAndTime = (DateTime)scheduleViewer["Date"]
                 });
             }
         }

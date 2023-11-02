@@ -34,8 +34,8 @@ namespace EventManagementSystem.Pages.Events
                 EventToUpdate.EventID = eventid;
                 EventToUpdate.EventName = singleEvent["EventName"].ToString();
                 EventToUpdate.EventDescription = singleEvent["EventDescription"].ToString();
-                EventToUpdate.EventStartDateAndTime = (DateTime)singleEvent["EventStartDateAndTime"];
-                EventToUpdate.EventEndDateAndTime = (DateTime)singleEvent["EventEndDateAndTime"];
+                EventToUpdate.StartDate = (DateTime)singleEvent["StartDate"];
+                EventToUpdate.EndDate = (DateTime)singleEvent["EndDate"];
                 EventToUpdate.EventLocation = singleEvent["EventLocation"].ToString();
             }
 
@@ -48,8 +48,8 @@ namespace EventManagementSystem.Pages.Events
         {
             string sqlQuery = "UPDATE Event SET EventName='" + EventToUpdate.EventName
                 + "',EventDescription='" + EventToUpdate.EventDescription
-                + "',EventStartDateAndTime='" + EventToUpdate.EventStartDateAndTime
-                + "',EventEndDateAndTime='" + EventToUpdate.EventEndDateAndTime
+                + "',StartDate='" + EventToUpdate.StartDate
+                + "',EndDate='" + EventToUpdate.EndDate
                 + "',EventLocation='" + EventToUpdate.EventLocation
                 + "' WHERE EventID=" + EventToUpdate.EventID;
 

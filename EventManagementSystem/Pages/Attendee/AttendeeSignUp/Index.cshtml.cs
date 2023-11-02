@@ -33,7 +33,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             // query to select all relevant information and also exclude all activities
             // this user has signed up for already
             string sqlQuery = "SELECT Event.EventName, Event.EventDescription, " +
-                "Activity.ActivityName, Activity.DateAndTime, " +
+                "Activity.ActivityName, Activity.Date, " +
                 "Activity.ActivityDescription, Event.EventLocation, " +
                 "Room.RoomName, Activity.ActivityID " +
                 "FROM Event " +
@@ -43,7 +43,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     "SELECT ActivityID " +
                     "FROM Attendance " +
                     "WHERE UserID = " + HttpContext.Session.GetString("userid") + ") " +
-                "ORDER BY Event.EventName, Activity.DateAndTime;";
+                "ORDER BY Event.EventName, Activity.Date;";
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (scheduleReader.Read())
@@ -56,7 +56,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     EventLocation = scheduleReader["EventLocation"].ToString(),
                     ActivityName = scheduleReader["ActivityName"].ToString(),
                     ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)scheduleReader["DateAndTime"],
+                    DateAndTime = (DateTime)scheduleReader["Date"],
                     RoomName = scheduleReader["RoomName"].ToString()
                 });
             }

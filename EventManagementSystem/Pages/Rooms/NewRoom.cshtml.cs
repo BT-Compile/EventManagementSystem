@@ -33,10 +33,12 @@ namespace EventManagementSystem.Pages.Rooms
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Room (RoomName, RoomDescription, MaxCapacity, IsActive) VALUES (" +
+            string sqlQuery = "INSERT INTO Room (RoomName, RoomDescription, Capacity
+, IsActive) VALUES (" +
                 "'" + RoomToCreate.RoomName + "'," +
                 "'" + RoomToCreate.RoomDescription + "'," +
-                "'" + RoomToCreate.MaxCapacity + "',1)";
+                "'" + RoomToCreate.Capacity
+ + "',1)";
 
             DBClass.GeneralQuery(sqlQuery);
 

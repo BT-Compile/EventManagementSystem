@@ -29,7 +29,7 @@ namespace EventManagementSystem.Pages.Activities
                 {
                     ActivityName = activityReader["ActivityName"].ToString(),
                     ActivityDescription = activityReader["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)activityReader["DateAndTime"]
+                    Date = (DateTime)activityReader["Date"]
                 });
             }
 

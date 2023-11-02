@@ -33,11 +33,11 @@ namespace EventManagementSystem.Pages.Events
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Event (EventName, EventDescription, EventStartDateAndTime, EventEndDateAndTime, EventLocation, IsActive) VALUES (" +
+            string sqlQuery = "INSERT INTO Event (EventName, EventDescription, StartDate, EndDate, EventLocation, IsActive) VALUES (" +
                 "'" + EventToCreate.EventName + "'," +
                 "'" + EventToCreate.EventDescription + "'," +
-                "'" + EventToCreate.EventStartDateAndTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
-                "'" + EventToCreate.EventEndDateAndTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
+                "'" + EventToCreate.StartDate.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
+                "'" + EventToCreate.EndDate.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                 "'" + EventToCreate.EventLocation + "',1)";
 
             DBClass.GeneralQuery(sqlQuery);

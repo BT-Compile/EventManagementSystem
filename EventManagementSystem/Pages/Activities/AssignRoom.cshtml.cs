@@ -37,7 +37,8 @@ namespace EventManagementSystem.Pages.Activities
 
             while (assignRoom.Read())
             {
-                string roomInfo = assignRoom["RoomName"].ToString() + " - Description: " + assignRoom["RoomDescription"].ToString() + " - Max Capacity: " + assignRoom["MaxCapacity"].ToString();
+                string roomInfo = assignRoom["RoomName"].ToString() + " - Description: " + assignRoom["RoomDescription"].ToString() + " - Max Capacity: " + assignRoom["Capacity
+"].ToString();
                 Rooms.Add(new SelectListItem(roomInfo, assignRoom["RoomID"].ToString()));
             }
 

@@ -8,22 +8,18 @@
 
         public string? ActivityDescription { get; set;}
 
-        public DateTime DateAndTime { get; set; }
+        public DateTime Date { get; set; }
 
-        public int ExpectedAttendance {  get; set; }
+        public TimeOnly StartTime { get; set; }
 
-        public bool IsPresentation { get; set; }
+        public TimeOnly EndTime { get; set; }
 
-        public bool IsMeeting { get; set; }
+        public string? Type { get; set; }
 
-        public bool IsProgramEvent { get; set; }
+        public string? Status { get; set; }
 
         public int? EventID { get; set; }
 
-        public int? PresenterID { get; set; }
-
         public int? RoomID { get; set; }
-
-        public bool IsActive { get; set; }
     }
 }

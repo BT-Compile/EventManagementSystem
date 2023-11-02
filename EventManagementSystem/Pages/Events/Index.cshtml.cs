@@ -27,8 +27,8 @@ namespace EventManagementSystem.Pages.Events
                 {
                     EventName = eventReader["EventName"].ToString(),
                     EventDescription = eventReader["EventDescription"].ToString(),
-                    EventStartDateAndTime = (DateTime)eventReader["EventStartDateAndTime"],
-                    EventEndDateAndTime = (DateTime)eventReader["EventEndDateAndTime"],
+                    StartDate = (DateTime)eventReader["StartDate"],
+                    EndDate = (DateTime)eventReader["EndDate"],
                     EventLocation = eventReader["EventLocation"].ToString()
                 });
             }

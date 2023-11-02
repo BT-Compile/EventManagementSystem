@@ -38,14 +38,14 @@ namespace EventManagementSystem.Pages.Attendee
 
             string sqlQuery = "SELECT Activity.ActivityID, Event.EventName, Event.EventDescription, " +
                 "Event.EventLocation, Activity.ActivityName, Activity.ActivityDescription, " +
-                "Activity.DateAndTime, Room.RoomName " +
+                "Activity.Date, Room.RoomName " +
                 "FROM \"User\" " +
                 "INNER JOIN Attendance ON \"User\".UserID = Attendance.UserID " +
                 "INNER JOIN Activity ON Attendance.ActivityID = Activity.ActivityID " +
                 "INNER JOIN Event ON Activity.EventID = Event.EventID " +
                 "LEFT JOIN Room ON Activity.RoomID = Room.RoomID " +
                 "WHERE \"User\".Username = '" + HttpContext.Session.GetString("username") + "' " +
-                "ORDER BY Activity.DateAndTime;";
+                "ORDER BY Activity.Date;";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -59,7 +59,7 @@ namespace EventManagementSystem.Pages.Attendee
                     EventLocation = scheduleReader["EventLocation"].ToString(),
                     ActivityName = scheduleReader["ActivityName"].ToString(),
                     ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)scheduleReader["DateAndTime"],
+                    DateAndTime = (DateTime)scheduleReader["Date"],
                     RoomName = scheduleReader["RoomName"].ToString()
                 }) ;
             }

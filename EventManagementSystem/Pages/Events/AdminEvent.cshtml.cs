@@ -36,8 +36,8 @@ namespace EventManagementSystem.Pages.Events
                     EventID = Int32.Parse(eventReader["EventID"].ToString()),
                     EventName = eventReader["EventName"].ToString(),
                     EventDescription = eventReader["EventDescription"].ToString(),
-                    EventStartDateAndTime = (DateTime)eventReader["EventStartDateAndTime"],
-                    EventEndDateAndTime = (DateTime)eventReader["EventEndDateAndTime"],
+                    StartDate = (DateTime)eventReader["StartDate"],
+                    EndDate = (DateTime)eventReader["EndDate"],
                     EventLocation = eventReader["EventLocation"].ToString(),
                     IsActive = (bool)eventReader["IsActive"]
                 });

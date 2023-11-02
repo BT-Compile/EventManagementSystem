@@ -34,7 +34,7 @@ namespace EventManagementSystem.Pages.Activities
                 ActivityToUpdate.ActivityID = activityid;
                 ActivityToUpdate.ActivityName = singleActivity["ActivityName"].ToString();
                 ActivityToUpdate.ActivityDescription = singleActivity["ActivityDescription"].ToString();
-                ActivityToUpdate.DateAndTime = (DateTime)singleActivity["DateAndTime"];
+                ActivityToUpdate.Date = (DateTime)singleActivity["Date"];
                 ActivityToUpdate.IsPresentation = (bool)singleActivity["IsPresentation"];
                 ActivityToUpdate.IsMeeting = (bool)(bool)singleActivity["IsMeeting"];
                 ActivityToUpdate.IsProgramEvent = (bool)singleActivity["IsProgramEvent"];
@@ -62,7 +62,7 @@ namespace EventManagementSystem.Pages.Activities
             {
                 sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
                     + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',DateAndTime='" + ActivityToUpdate.DateAndTime
+                    + "',Date='" + ActivityToUpdate.Date
                     + "',IsPresentation='" + ActivityToUpdate.IsPresentation
                     + "',IsMeeting='" + ActivityToUpdate.IsMeeting
                     + "',IsProgramEvent='" + ActivityToUpdate.IsProgramEvent
@@ -73,7 +73,7 @@ namespace EventManagementSystem.Pages.Activities
             {
                 sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
                     + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',DateAndTime='" + ActivityToUpdate.DateAndTime
+                    + "',Date='" + ActivityToUpdate.Date
                     + "',IsPresentation='" + ActivityToUpdate.IsPresentation
                     + "',IsMeeting='" + ActivityToUpdate.IsMeeting
                     + "',IsProgramEvent='" + ActivityToUpdate.IsProgramEvent
