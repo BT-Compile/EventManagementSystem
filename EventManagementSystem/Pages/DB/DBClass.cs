@@ -95,11 +95,11 @@ namespace EventManagementSystem.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT ExpectedAttendance FROM Activity WHERE ActivityID = " + ActivityID;
+            cmdProductRead.CommandText = "SELECT Count(UserID) FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
             tempReader.Read();
-            int result = Int32.Parse(tempReader["ExpectedAttendance"].ToString());
+            int result = Int32.Parse(tempReader["Count(UserID)"].ToString());
 
             return result;
         }
@@ -110,8 +110,7 @@ namespace EventManagementSystem.Pages.DB
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room WHERE " +
-                "Room.Capacity
- >= " + MaxCapacityGet(activityid);
+                "Room.Capacity>= " + MaxCapacityGet(activityid);
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 

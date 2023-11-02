@@ -29,7 +29,8 @@ namespace EventManagementSystem.Pages.Activities
                 {
                     ActivityName = activityReader["ActivityName"].ToString(),
                     ActivityDescription = activityReader["ActivityDescription"].ToString(),
-                    Date = (DateTime)activityReader["Date"]
+                    Date = DateTime.Parse(activityReader["Date"].ToString()),
+                    StartTime = TimeOnly.Parse(activityReader["Date"].ToString())
                 });
             }
 
