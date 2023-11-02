@@ -27,10 +27,10 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT Room.RoomName, Activity.ActivityName, Event.EventName " +
-                "FROM Room " +
-                "LEFT JOIN Activity ON Room.RoomID = Activity.RoomID " +
-                "LEFT JOIN Event ON Activity.EventID = Event.EventID;";
+            string sqlQuery = "SELECT Building.Name, Room.RoomNumber, Activity.ActivityName, Event.EventName " +
+                                "FROM Building INNER JOIN Room ON Building.BuildingID = Room.BuildingID INNER JOIN " +
+                                "Activity ON Room.RoomID = Activity.RoomID INNER JOIN Event ON Building.BuildingID = " +
+                                "Event.BuildingID AND Activity.EventID = Event.EventID ORDER BY Building.Name";
 
             SqlDataReader associationsReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -38,7 +38,8 @@ namespace EventManagementSystem.Pages.Rooms
             {
                 roomAssociations.Add(new RoomAssociation
                 {
-                    RoomName = associationsReader["RoomName"].ToString(),
+                    BuildingName = associationsReader["BuildingName"].ToString(),
+                    RoomNumber = Int32.Parse(associationsReader["RoomNumber"].ToString()),
                     ActivityName = associationsReader["ActivityName"].ToString(),
                     EventName = associationsReader["EventName"].ToString()
                 });

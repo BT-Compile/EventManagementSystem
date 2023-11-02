@@ -7,17 +7,28 @@
 <table class="table table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th>Room Name:</th>
-            <th>Room Description:</th>
+            <th>Building:</th>
+            <th>Room Number:</th>
             <th>Max Capacity:</th>
-            <th>ActivityID:</th>
-            <th>Active?</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach (var room in Model.Rooms)
             {
+                <tr class="table-secondary">
+                    <td>@room.BuildingName</td>
+                    <td>@room.RoomNumber</td>
+                    <td>
+                        @room.Capacity
+                    </td>
+                    <td>
+                        <a asp-page="EditRoom" class="btn btn-outline-success" asp-route-roomid="@room.RoomID">Edit</a>
+                    </td>
+                </tr>
+
+
+                /*
                 if (room.IsActive != true)
                 {
                     <tr class="table-secondary">
@@ -46,7 +57,7 @@
                             <a asp-page="DeleteRoom" class="btn btn-warning" asp-route-roomid="@room.RoomID">Deactivate</a>
                         </td>
                     </tr>
-                }
+                } */
             }
         }
     </tbody>

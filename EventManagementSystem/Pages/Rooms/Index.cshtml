@@ -7,8 +7,8 @@
 <table class="table table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th>Room Name:</th>
-            <th>Room Description:</th>
+            <th>Building:</th>
+            <th>Room Number:</th>
             <th>Max Capacity:</th>
         </tr>
     </thead>
@@ -17,15 +17,11 @@
             foreach (var room in Model.Rooms)
             {
                 <tr>
-                    <td>@room.RoomName</td>
-                    <td>@room.RoomDescription</td>
-                    <td>@room.MaxCapacity</td>
+                    <td>@room.BuildingName</td>
+                    <td>@room.RoomNumber</td>
+                    <td>@room.Capacity</td>
                 </tr>
             }
         }
     </tbody>
-</tablCapacity
->
-<br />
-<br />
-<br />
+</table>
