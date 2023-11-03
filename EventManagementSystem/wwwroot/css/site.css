@@ -1,3 +1,8 @@
+/*-----------------------------Tags--------------------------------*/
+a {
+   color: inherit;
+}
+
 html {
     font-size: 14px;
 }
@@ -26,6 +31,44 @@ footer {
     text-align: center;
 }
 
+/*------------------------------IDs--------------------------------*/
+
+#textfield {
+    border-radius: 10px;
+}
+
+#widebutton {
+    height: 10vh;
+    width: 100%;
+    border-radius: 10px;
+    font-family: 'Arvo', serif;
+    font-size: 24pt;
+}
+
+/*--------------------------Quick Classes--------------------------*/
+
+.wrapper {
+    margin: 0 15% 0 15%;
+}
+
+.centertxt {
+    text-align: center;
+}
+
+.font {
+    font-family: 'Arvo', serif;
+}
+
+.purpletxt {
+    color: #450084;
+}
+
+/*-----------------------------Classes-----------------------------*/
+
+.backgroundimg {
+    background-image: url(../images/chairs.jpg);
+}
+
 .btn {
     background: #450084;
     color: white;
@@ -47,7 +90,7 @@ footer {
 }
 
 .carousel-caption p {
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; /* Outline */
     color: white;
     font-size: 16pt;
 }
@@ -122,8 +165,18 @@ footer {
     margin: 25vh 0vh 0 0;
 }
 
+.logbox {
+    width: 30%;
+    margin: auto;
+}
+
 .logbtn {
     margin-right: 5%
+}
+
+.logtxt {
+    margin-top: 15vh;
+    text-align: center;
 }
 
 .navbar {
