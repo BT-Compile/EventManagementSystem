@@ -4,22 +4,27 @@
     ViewData["Title"] = "Log in";
 }
 
-<h4>Please Log In Below:</h4>
-
-<br />
-<br />
-
-<form asp-page="Index">
-    <label>Enter Username:</label>
-    <input asp-for="Username" class="form-control" required />
+<div class="wrapper">
     <br />
-    <label>Enter Password:</label>
-    <input asp-for="Password" class="form-control" type="password" required />
+
+    <h2 class="logtxt font">Please Log In Below:</h2>
+
     <br />
-    <input type="submit" class="btn btn-success" />
-    <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
-</form>
-<br />
+
+    <div class="logbox">
+        <form asp-page="Index">
+            <input asp-for="Username" placeholder="Username" class="form-control" required id="textfield"/>
+            <br />
+            <input asp-for="Password" placeholder="Password" class="form-control" type="password" required id="textfield" />
+            <br />
+            <input type="submit" class="btn btn-success" id="widebutton" value="Login"/>
+            <br />
+        </form>
+        <br />  
+        <p class="purpletxt centertxt">Dont have an account? <a href="NewUser">Register here</a></p>
+    </div>
+</div>
+
 @{
     if (HttpContext.Session.GetString("username") == null)
     {
