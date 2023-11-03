@@ -6,18 +6,16 @@
 
 <form asp-page="NewActivity">
     <input type="hidden" asp-for="@Model.RoomToCreate.RoomID" />
-    <label asp-for="@Model.RoomToCreate.RoomName"></label>
-    <input type="text" asp-for="@Model.RoomToCreate.RoomName" id="RoomName" required />
+    <label asp-for="@Model.RoomToCreate.RoomNumber"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.RoomNumber" id="RoomNumber" required />
     <br />
-    <label asp-for="@Model.RoomToCreate.RoomDescription"></label>
-    <input type="text" asp-for="@Model.RoomToCreate.RoomDescription" id="RoomDescription" />
+    <label asp-for="@Model.RoomToCreate.Capacity"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.Capacity" id="Capacity" required />
     <br />
-    <label asp-for="@Model.RoomToCreate.MaxCapacity"></label>
-    <input type="text" asp-for="@Model.RoomToCreate.MaxCapacity"Capacity
-acity" required />
-    <br /><br />
-    <button type="button" Capacity
-pulateForm()">Populate</button>
+    <label asp-for="@Model.RoomToCreate.BuildingID"></label>
+    <input type="text" asp-for="@Model.RoomToCreate.BuildingID" id="BuildingID" required />
+    <br />
+    <button type="button" Capacity populateForm()">Populate</button>
     &emsp; <!-- Tab character to separate populate and clear buttons -->
     <button type="button" onclick="clearForm()">Clear</button>
     <br /><br />
@@ -28,14 +26,14 @@ pulateForm()">Populate</button>
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request
     function populateForm() {
-        document.getElementById("RoomName").value = "2105";
-        document.getElementById("RoomDescription").value = "Medium-sized room";
-        document.getElementById("MaxCapacity").value = "31";
+        document.getElementById("RoomNumber").value = "110";
+        document.getElementById("Capacity").value = "31";
+        document.getElementById("BuildingID").value = "1";
     }
 
     function clearForm() {
         document.getElementById("RoomName").value = "";
-        document.getElementById("RoomDescription").value = "";
-        document.getElementById("MaxCapacity").value = "";
+        document.getElementById("Capacity").value = "";
+        document.getElementById("BuildingID").value = "";
     }
 </script>

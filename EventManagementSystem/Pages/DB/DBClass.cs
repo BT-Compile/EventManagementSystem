@@ -95,11 +95,11 @@ namespace EventManagementSystem.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT ExpectedAttendance FROM Activity WHERE ActivityID = " + ActivityID;
+            cmdProductRead.CommandText = "SELECT Count(UserID) FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
             tempReader.Read();
-            int result = Int32.Parse(tempReader["ExpectedAttendance"].ToString());
+            int result = Int32.Parse(tempReader["Count(UserID)"].ToString());
 
             return result;
         }
@@ -111,8 +111,7 @@ namespace EventManagementSystem.Pages.DB
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room WHERE " +
-                "Room.Capacity
- >= " + MaxCapacityGet(activityid);
+                "Room.Capacity>= " + MaxCapacityGet(activityid);
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 
@@ -173,8 +172,8 @@ namespace EventManagementSystem.Pages.DB
         }
 
         // Method to create a user, while also PREVENTING SQL INJECTION
-        public static void SecureUserCreation(string firstName, string lastName, string username, string email,
-            string phoneNumber, bool isAttendee, bool isPresenter, bool isAdmin)
+        public static void SecureUserCreation(string firstName, string lastName, string email,
+            string phoneNumber, string username, string allergyNote, string accessibility, bool isActive)
         {
             // set all null variables to an empty string
             if (email == null)
@@ -186,15 +185,14 @@ namespace EventManagementSystem.Pages.DB
                 phoneNumber = "";
             }
 
-            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Username, Email, PhoneNumber, IsAttendee, IsPresenter, IsAdmin, IsActive) VALUES (" +
+            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
-                "@Username," +
                 "@Email," +
                 "@PhoneNumber," +
-                "@isAttendee," +
-                "@isPresenter," +
-                "@isAdmin,1)";
+                "@Username," +
+                "@AllergyNote," +
+                "@Accessibility)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -204,12 +202,11 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.CommandText = creationQuery;
             cmdCreation.Parameters.AddWithValue("@FirstName", firstName);
             cmdCreation.Parameters.AddWithValue("@LastName", lastName);
-            cmdCreation.Parameters.AddWithValue("@Username", username);
             cmdCreation.Parameters.AddWithValue("@Email", email);
             cmdCreation.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-            cmdCreation.Parameters.AddWithValue("@isAttendee", isAttendee);
-            cmdCreation.Parameters.AddWithValue("@isPresenter", isPresenter);
-            cmdCreation.Parameters.AddWithValue("@isAdmin", isAdmin);
+            cmdCreation.Parameters.AddWithValue("@Username", username);
+            cmdCreation.Parameters.AddWithValue("@AllergyNote", allergyNote);
+            cmdCreation.Parameters.AddWithValue("@Accessibility", accessibility);
 
             cmdCreation.Connection.Open();
 
@@ -220,7 +217,7 @@ namespace EventManagementSystem.Pages.DB
         // A stored procedure is used in this method.
         public static void CreateHashedUser(string Username, string Password)
         {
-            string loginQuery = "INSERT INTO HashedCredentials (Username,UserPassword) values (@Username, @UserPassword)";
+            string loginQuery = "INSERT INTO HashedCredentials (Username, HashedPassword) values (@Username, @HashedPassword)";
 
             SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = DBConnection;
@@ -228,7 +225,7 @@ namespace EventManagementSystem.Pages.DB
 
             cmdLogin.CommandText = loginQuery;
             cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@UserPassword", PasswordHash.HashPassword(Password));
+            cmdLogin.Parameters.AddWithValue("@HashedPassword", PasswordHash.HashPassword(Password));
 
             cmdLogin.Connection.Open();
 
@@ -263,7 +260,7 @@ namespace EventManagementSystem.Pages.DB
 
         public static string EncryptedPasswordReader(int UserID)
         {
-            string passwordQuery = "SELECT UserPassword FROM HashedCredentials WHERE UserID = @UserID";
+            string passwordQuery = "SELECT HashedPassword FROM HashedCredentials WHERE UserID = @UserID";
             SqlCommand cmdPassword = new SqlCommand();
             cmdPassword.Connection = DBConnection;
             cmdPassword.Connection.ConnectionString = AuthDBConnString;
@@ -278,7 +275,7 @@ namespace EventManagementSystem.Pages.DB
             SqlDataReader passwordReader = cmdPassword.ExecuteReader();
             if (passwordReader.Read())
             {
-                password = passwordReader["UserPassword"].ToString();
+                password = passwordReader["HashedPassword"].ToString();
             }
 
             return password;

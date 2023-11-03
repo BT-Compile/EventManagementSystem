@@ -49,6 +49,7 @@ namespace EventManagementSystem.Pages.Activities
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
                 sqlQuery = "SELECT * FROM Activity WHERE ActivityDescription " +
                     "COLLATE Latin1_General_CI_AI LIKE '%" + keyword + "%'";
+
                 SqlDataReader activityReader = DBClass.GeneralReaderQuery(sqlQuery);
 
                 while (activityReader.Read())
@@ -63,10 +64,11 @@ namespace EventManagementSystem.Pages.Activities
                             ActivityID = activityID,
                             ActivityName = activityReader["ActivityName"].ToString(),
                             ActivityDescription = activityReader["ActivityDescription"].ToString(),
-                            Date = (DateTime)activityReader["Date"],
-                            IsPresentation = (bool)activityReader["IsPresentation"],
-                            IsMeeting = (bool)activityReader["IsMeeting"],
-                            IsProgramEvent = (bool)activityReader["IsProgramEvent"]
+                            Date = DateTime.Parse(activityReader["Date"].ToString()),
+                            StartTime = TimeOnly.Parse(activityReader["StartTime"].ToString()),
+                            EndTime = TimeOnly.Parse(activityReader["EndTime"].ToString()),
+                            Type = activityReader["ActivityName"].ToString(),
+                            Status = activityReader["ActivityName"].ToString()
                         });
                     }
                 }

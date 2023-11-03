@@ -25,24 +25,21 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT * FROM Room";
+            string sqlQuery = "SELECT Room.RoomID, Building.Name, Room.RoomNumber, Room.Capacity " +
+                              "FROM  Building INNER JOIN Room ON Building.BuildingID " +
+                              "= Room.BuildingID ORDER BY Building.Name";
 
             SqlDataReader roomReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (roomReader.Read())
             {
-                // Check if ActivityID is NULL
-                
-
+                //Removed room recommendation functionality for now but will reconfigure and add in sprint 2
                 Rooms.Add(new Room
                 {
                     RoomID = Int32.Parse(roomReader["RoomID"].ToString()),
-                    RoomName = roomReader["RoomName"].ToString(),
-                    RoomDescription = roomReader["RoomDescription"].ToString(),
-                    Capacity
- = Int32.Parse(roomReader["Capacity
-"].ToString()),
-                    IsActive = (bool)roomReader["IsActive"]
+                    BuildingName = roomReader["Name"].ToString(),
+                    RoomNumber = Int32.Parse(roomReader["RoomNumber"].ToString()),
+                    Capacity = Int32.Parse(roomReader["Capacity"].ToString())
                 });
             }
 

@@ -15,14 +15,17 @@
     <label asp-for="@Model.ActivityToUpdate.Date"></label>
     <input type="datetime-local" asp-for="@Model.ActivityToUpdate.Date" required />
     <br />
-    <label asp-for="@Model.ActivityToUpdate.IsPresentation"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.IsPresentation" required />
+    <label asp-for="@Model.ActivityToUpdate.StartTime"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.StartTime" required />
     <br />
-    <label asp-for="@Model.ActivityToUpdate.IsMeeting"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.IsMeeting" required />
+    <label asp-for="@Model.ActivityToUpdate.EndTime"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.EndTime" required />
     <br />
-    <label asp-for="@Model.ActivityToUpdate.IsProgramEvent"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.IsProgramEvent" required />
+    <label asp-for="@Model.ActivityToUpdate.Type"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.Type" required />
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.Status"></label>
+    <input type="text" asp-for="@Model.ActivityToUpdate.Status" required />
     <br />
     <label asp-for="@Model.ActivityToUpdate.EventID"></label>
     <input type="text" asp-for="@Model.ActivityToUpdate.EventID" />

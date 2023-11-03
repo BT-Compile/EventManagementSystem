@@ -10,7 +10,8 @@
         <tr>
             <th>Activity Name:</th>
             <th>Description:</th>
-            <th>Date and Time:</th>
+            <th>Date:</th>
+            <th>Start Time:</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +21,8 @@
                 <tr>
                     <td>@activity.ActivityName</td>
                     <td>@activity.ActivityDescription</td>
-                    <td>@activity.Date</td>
+                    <td>@activity.Date.ToShortDateString()</td>
+                    <td>@activity.StartTime.ToShortTimeString()</td>
                 </tr>
             }
         }

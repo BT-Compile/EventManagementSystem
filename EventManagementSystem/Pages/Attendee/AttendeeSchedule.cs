@@ -6,7 +6,7 @@
 
         public string? EventDescription { get; set; }
 
-        public string? EventLocation { get; set; }
+        public string? BuildingName { get; set; }
 
         public int ActivityID { get; set; }
 
@@ -14,9 +14,10 @@
 
         public string? ActivityDescription { get; set; }
 
-        public DateTime DateAndTime { get; set; }
+        public DateTime Date { get; set; }
 
-        public string? RoomName { get; set; }
+        public int RoomNumber { get; set; }
 
+        public TimeOnly StartTime { get; set; }
     }
 }

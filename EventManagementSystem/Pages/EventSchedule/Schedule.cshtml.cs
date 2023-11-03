@@ -31,10 +31,8 @@ namespace EventManagementSystem.Pages.EventSchedule
                 {
                     ActivityName = scheduleViewer["ActivityName"].ToString(),
                     ActivityDescription = scheduleViewer["ActivityDescription"].ToString(),
-                    Date = (DateTime)scheduleViewer["Date"],
-                    IsPresentation = (bool)scheduleViewer["IsPresentation"],
-                    IsMeeting = (bool)scheduleViewer["IsMeeting"],
-                    IsProgramEvent = (bool)scheduleViewer["IsProgramEvent"]
+                    Date = DateTime.Parse(scheduleViewer["Date"].ToString()),
+                    StartTime = TimeOnly.Parse(scheduleViewer["StartTime"].ToString())
                 });
             }
         }

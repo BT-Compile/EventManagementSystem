@@ -32,18 +32,20 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             // query to select all relevant information and also exclude all activities
             // this user has signed up for already
-            string sqlQuery = "SELECT Event.EventName, Event.EventDescription, " +
-                "Activity.ActivityName, Activity.Date, " +
-                "Activity.ActivityDescription, Event.EventLocation, " +
-                "Room.RoomName, Activity.ActivityID " +
-                "FROM Event " +
-                "INNER JOIN Activity ON Event.EventID = Activity.EventID " +
-                "LEFT JOIN Room ON Activity.RoomID = Room.RoomID " +
-                "WHERE Activity.ActivityID NOT IN (" +
-                    "SELECT ActivityID " +
-                    "FROM Attendance " +
-                    "WHERE UserID = " + HttpContext.Session.GetString("userid") + ") " +
-                "ORDER BY Event.EventName, Activity.Date;";
+            string sqlQuery = "SELECT Activity.ActivityID, Event.EventName, Event.EventDescription, Activity.ActivityName, " +
+                                "Activity.ActivityDescription, Activity.[Date], Activity.StartTime, Building.[Name], Room.RoomNumber " +
+                                "FROM  Activity INNER JOIN ActivityAttendance ON Activity.ActivityID = ActivityAttendance.ActivityID " +
+                                "INNER JOIN Event ON Activity.EventID = Event.EventID INNER JOIN " +
+                                "Building ON Event.BuildingID = Building.BuildingID INNER JOIN " +
+                                "EventAttendance ON Event.EventID = EventAttendance.EventID INNER JOIN " +
+                                "Room ON Activity.RoomID = Room.RoomID AND Building.BuildingID = Room.BuildingID INNER JOIN " +
+                                "[User] ON ActivityAttendance.UserID = [User].UserID AND EventAttendance.UserID = [User].UserID " +
+                                "WHERE Activity.ActivityID NOT IN (" +
+                                    "SELECT ActivityID " +
+                                    "FROM ActivityAttendance " +
+                                    "WHERE UserID = " + HttpContext.Session.GetString("userid") + ") " +
+                                "ORDER BY Event.EventName, Activity.Date;";
+
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (scheduleReader.Read())
@@ -53,11 +55,12 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     ActivityID = Int32.Parse(scheduleReader["ActivityID"].ToString()),
                     EventName = scheduleReader["EventName"].ToString(),
                     EventDescription = scheduleReader["EventDescription"].ToString(),
-                    EventLocation = scheduleReader["EventLocation"].ToString(),
                     ActivityName = scheduleReader["ActivityName"].ToString(),
                     ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)scheduleReader["Date"],
-                    RoomName = scheduleReader["RoomName"].ToString()
+                    Date = DateTime.Parse(scheduleReader["Date"].ToString()),
+                    StartTime = TimeOnly.Parse(scheduleReader["StartTime"].ToString()),
+                    BuildingName = scheduleReader["Name"].ToString(),
+                    RoomNumber = Int32.Parse(scheduleReader["RoomNumber"].ToString())
                 });
             }
 

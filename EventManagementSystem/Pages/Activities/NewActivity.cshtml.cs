@@ -33,14 +33,16 @@ namespace EventManagementSystem.Pages.Activities
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Activity (ActivityName, ActivityDescription, Date, IsPresentation, IsMeeting, IsProgramEvent, EventID, IsActive) VALUES (" +
+            string sqlQuery = "INSERT INTO Activity (ActivityName, ActivityDescription, Date, StartTime, EndTime, Type, [Status], EventID, RoomID) VALUES (" +
                 "'" + ActivityToCreate.ActivityName + "'," +
                 "'" + ActivityToCreate.ActivityDescription + "'," +
-                "'" + ActivityToCreate.Date.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
-                "'" + ActivityToCreate.IsPresentation + "'," +
-                "'" + ActivityToCreate.IsMeeting + "'," +
-                "'" + ActivityToCreate.IsProgramEvent + "',"
-                + ActivityToCreate.EventID + ",1)";
+                "'" + ActivityToCreate.Date.ToString("yyyy-MM-dd") + "'," +
+                "'" + ActivityToCreate.StartTime + "'," +
+                "'" + ActivityToCreate.EndTime + "'," +
+                "'" + ActivityToCreate.Type + "'," +
+                "'" + ActivityToCreate.Status + "',"
+                + ActivityToCreate.EventID + 
+                + ActivityToCreate.RoomID + ")";
 
             DBClass.GeneralQuery(sqlQuery);
 
