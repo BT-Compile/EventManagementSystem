@@ -12,21 +12,28 @@
     <label asp-for="@Model.ActivityToCreate.ActivityDescription"></label>
     <input type="text" asp-for="@Model.ActivityToCreate.ActivityDescription" id="Description" />
     <br />
-    <label asp-for="@Model.ActivityToCreate.DateAndTime"></label>
-    <input type="datetime-local" asp-for="@Model.ActivityToCreate.DateAndTime" id="DateAndTime" required />
+    <label asp-for="@Model.ActivityToCreate.Date"></label>
+    <input type="datetime-local" asp-for="@Model.ActivityToCreate.Date" id="Date" required />
     <br />
-    <label asp-for="@Model.ActivityToCreate.IsPresentation"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.IsPresentation" id="IsPresentation" required />
+    <label asp-for="@Model.ActivityToCreate.StartTime"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.StartTime" id="StartTime" required />
     <br />
-    <label asp-for="@Model.ActivityToCreate.IsMeeting"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.IsMeeting" id="IsMeeting" required />
+    <label asp-for="@Model.ActivityToCreate.EndTime"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.EndTime" id="EndTime" required />
     <br />
-    <label asp-for="@Model.ActivityToCreate.IsProgramEvent"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.IsProgramEvent" id="IsProgramEvent" required />
+    <label asp-for="@Model.ActivityToCreate.Type"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.Type" id="Type" required />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.Status"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.Status" id="Status" required />
     <br />
     <label asp-for="@Model.ActivityToCreate.EventID"></label>
     <input type="text" asp-for="@Model.ActivityToCreate.EventID" id="EventID" required />
-    <br /><br />
+    <br />
+    <label asp-for="@Model.ActivityToCreate.RoomID"></label>
+    <input type="text" asp-for="@Model.ActivityToCreate.RoomID" id="RoomID" required />
+    <br />
+    <br />
     <button type="button" onclick="populateForm()">Populate</button>
     &emsp; <!-- Tab character to separate populate and clear buttons -->
     <button type="button" onclick="clearForm()">Clear</button>
@@ -38,22 +45,26 @@
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request
     function populateForm() {
-        document.getElementById("ActivityName").value = "Karaoke";
-        document.getElementById("Description").value = "Singing!";
-        document.getElementById("DateAndTime").value = "2023-10-10 18:00:00";
-        document.getElementById("IsPresentation").value = "False";
-        document.getElementById("IsMeeting").value = "False";
-        document.getElementById("IsProgramEvent").value = "True";
-        document.getElementById("EventID").value = "3";
+        document.getElementById("ActivityName").value = "Kick-Off Luncheon";
+        document.getElementById("Description").value = "Grab a burger and network";
+        document.getElementById("Date").value = "2023-10-10";
+        document.getElementById("StartTime").value = "11:00";
+        document.getElementById("EndTime").value = "12:00";
+        document.getElementById("Type").value = "Luncheon";
+        document.getElementById("Status").value = "Active";
+        document.getElementById("EventID").value = "1";
+        document.getElementById("RoomID").value = "1";
     }
 
     function clearForm() {
         document.getElementById("ActivityName").value = "";
         document.getElementById("Description").value = "";
-        document.getElementById("DateAndTime").value = "";
-        document.getElementById("IsPresentation").value = "";
-        document.getElementById("IsMeeting").value = "";
-        document.getElementById("IsProgramEvent").value = "";
+        document.getElementById("Date").value = "";
+        document.getElementById("StartTime").value = "";
+        document.getElementById("EndTime").value = "";
+        document.getElementById("Type").value = "";
+        document.getElementById("Status").value = "";
         document.getElementById("EventID").value = "";
+        document.getElementById("RoomID").value = "";
     }
 </script>

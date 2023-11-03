@@ -8,13 +8,16 @@
 
         public string? EventDescription { get; set; }
 
-        public DateTime EventStartDateAndTime { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateTime EventEndDateAndTime { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public string? EventLocation { get; set; }
+        public DateTime RegistrationDeadline { get; set; }
 
-        public bool IsActive { get; set; }
+        public int Capacity { get; set; }
 
+        public string? Status { get; set; }
+
+        public int BuildingID { get; set; }
     }
 }

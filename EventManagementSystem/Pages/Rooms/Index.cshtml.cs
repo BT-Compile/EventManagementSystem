@@ -17,7 +17,9 @@ namespace EventManagementSystem.Pages.Rooms
 
         public void OnGet()
         {
-            string sqlQuery = "SELECT * FROM Room";
+            string sqlQuery = "SELECT Building.Name, Room.RoomNumber, Room.Capacity " +
+                              "FROM  Building INNER JOIN Room ON Building.BuildingID " +
+                              "= Room.BuildingID ORDER BY Building.Name";
 
             SqlDataReader roomReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -27,9 +29,9 @@ namespace EventManagementSystem.Pages.Rooms
 
                 Rooms.Add(new Room
                 {
-                    RoomName = roomReader["RoomName"].ToString(),
-                    RoomDescription = roomReader["RoomDescription"].ToString(),
-                    MaxCapacity = Int32.Parse(roomReader["MaxCapacity"].ToString())
+                    BuildingName = roomReader["Name"].ToString(),
+                    RoomNumber = Int32.Parse(roomReader["RoomName"].ToString()),
+                    Capacity = Int32.Parse(roomReader["Capacity"].ToString())
                 });
             }
 

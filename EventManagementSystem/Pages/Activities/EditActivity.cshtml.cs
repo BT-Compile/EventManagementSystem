@@ -34,10 +34,11 @@ namespace EventManagementSystem.Pages.Activities
                 ActivityToUpdate.ActivityID = activityid;
                 ActivityToUpdate.ActivityName = singleActivity["ActivityName"].ToString();
                 ActivityToUpdate.ActivityDescription = singleActivity["ActivityDescription"].ToString();
-                ActivityToUpdate.DateAndTime = (DateTime)singleActivity["DateAndTime"];
-                ActivityToUpdate.IsPresentation = (bool)singleActivity["IsPresentation"];
-                ActivityToUpdate.IsMeeting = (bool)(bool)singleActivity["IsMeeting"];
-                ActivityToUpdate.IsProgramEvent = (bool)singleActivity["IsProgramEvent"];
+                ActivityToUpdate.Date = DateTime.Parse(singleActivity["Date"].ToString());
+                ActivityToUpdate.StartTime = TimeOnly.Parse(singleActivity["StartTime"].ToString());
+                ActivityToUpdate.EndTime = TimeOnly.Parse(singleActivity["EndTime"].ToString());
+                ActivityToUpdate.Type = singleActivity["Type"].ToString();
+                ActivityToUpdate.Status = singleActivity["Status"].ToString();
 
                 // Check if EventID is DBNull before casting to int
                 if (!DBNull.Value.Equals(singleActivity["EventID"]))
@@ -62,10 +63,11 @@ namespace EventManagementSystem.Pages.Activities
             {
                 sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
                     + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',DateAndTime='" + ActivityToUpdate.DateAndTime
-                    + "',IsPresentation='" + ActivityToUpdate.IsPresentation
-                    + "',IsMeeting='" + ActivityToUpdate.IsMeeting
-                    + "',IsProgramEvent='" + ActivityToUpdate.IsProgramEvent
+                    + "',Date='" + ActivityToUpdate.Date
+                    + "',StartTime='" + ActivityToUpdate.StartTime
+                    + "',EndTime='" + ActivityToUpdate.EndTime
+                    + "',Type='" + ActivityToUpdate.Type
+                    + "',Status='" + ActivityToUpdate.Status
                     + "',EventID='" + ActivityToUpdate.EventID
                     + "' WHERE ActivityID=" + ActivityToUpdate.ActivityID;
             }
@@ -73,10 +75,11 @@ namespace EventManagementSystem.Pages.Activities
             {
                 sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
                     + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',DateAndTime='" + ActivityToUpdate.DateAndTime
-                    + "',IsPresentation='" + ActivityToUpdate.IsPresentation
-                    + "',IsMeeting='" + ActivityToUpdate.IsMeeting
-                    + "',IsProgramEvent='" + ActivityToUpdate.IsProgramEvent
+                    + "',Date='" + ActivityToUpdate.Date
+                    + "',StartTime='" + ActivityToUpdate.StartTime
+                    + "',EndTime='" + ActivityToUpdate.EndTime
+                    + "',Type='" + ActivityToUpdate.Type
+                    + "',Status='" + ActivityToUpdate.Status
                     + "',EventID=null"
                     + " WHERE ActivityID=" + ActivityToUpdate.ActivityID;
             }

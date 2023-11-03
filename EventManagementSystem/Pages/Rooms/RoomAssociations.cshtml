@@ -7,7 +7,8 @@
 <table class="table table-bordered table-responsive table-hover">
     <thead>
         <tr>
-            <th>Room Name:</th>
+            <th>Building:</th>
+            <th>Room Number:</th>
             <th>Activity Name:</th>
             <th>Event Name:</th>
         </tr>
@@ -17,7 +18,7 @@
             foreach (var association in Model.roomAssociations)
             {
                 <tr>
-                    <td>@association.RoomName</td>
+                    <td>@association.RoomNumber</td>
                     <td>@association.ActivityName</td>
                     <td>@association.EventName</td>
                 </tr>

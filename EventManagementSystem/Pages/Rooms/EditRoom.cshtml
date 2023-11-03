@@ -6,14 +6,11 @@
 
 <form asp-page="EditRoom">
     <input type="hidden" asp-for="@Model.RoomToUpdate.RoomID" />
-    <label asp-for="@Model.RoomToUpdate.RoomName"></label>
-    <input type="text" asp-for="@Model.RoomToUpdate.RoomName" required />
+    <label asp-for="@Model.RoomToUpdate.RoomNumber"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.RoomNumber" required />
     <br />
-    <label asp-for="@Model.RoomToUpdate.RoomDescription"></label>
-    <input type="text" asp-for="@Model.RoomToUpdate.RoomDescription" />
-    <br />
-    <label asp-for="@Model.RoomToUpdate.MaxCapacity"></label>
-    <input type="text" asp-for="@Model.RoomToUpdate.MaxCapacity" required />
+    <label asp-for="@Model.RoomToUpdate.Capacity"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.Capacity" required />
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditRoom" />
     <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>

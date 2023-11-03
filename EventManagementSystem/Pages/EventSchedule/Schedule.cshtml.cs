@@ -22,7 +22,7 @@ namespace EventManagementSystem.Pages.EventSchedule
         {
             EventName = DBClass.GetEventName(eventID);
 
-            string sqlQuery = "SELECT * FROM Activity WHERE EventID = " + eventID + " ORDER BY DateAndTime";
+            string sqlQuery = "SELECT * FROM Activity WHERE EventID = " + eventID + " ORDER BY Date";
             SqlDataReader scheduleViewer = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (scheduleViewer.Read())
@@ -31,10 +31,8 @@ namespace EventManagementSystem.Pages.EventSchedule
                 {
                     ActivityName = scheduleViewer["ActivityName"].ToString(),
                     ActivityDescription = scheduleViewer["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)scheduleViewer["DateAndTime"],
-                    IsPresentation = (bool)scheduleViewer["IsPresentation"],
-                    IsMeeting = (bool)scheduleViewer["IsMeeting"],
-                    IsProgramEvent = (bool)scheduleViewer["IsProgramEvent"]
+                    Date = DateTime.Parse(scheduleViewer["Date"].ToString()),
+                    StartTime = TimeOnly.Parse(scheduleViewer["StartTime"].ToString())
                 });
             }
         }

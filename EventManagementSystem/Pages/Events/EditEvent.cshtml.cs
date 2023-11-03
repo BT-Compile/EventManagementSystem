@@ -34,9 +34,11 @@ namespace EventManagementSystem.Pages.Events
                 EventToUpdate.EventID = eventid;
                 EventToUpdate.EventName = singleEvent["EventName"].ToString();
                 EventToUpdate.EventDescription = singleEvent["EventDescription"].ToString();
-                EventToUpdate.EventStartDateAndTime = (DateTime)singleEvent["EventStartDateAndTime"];
-                EventToUpdate.EventEndDateAndTime = (DateTime)singleEvent["EventEndDateAndTime"];
-                EventToUpdate.EventLocation = singleEvent["EventLocation"].ToString();
+                EventToUpdate.StartDate = DateTime.Parse(singleEvent["StartDate"].ToString());
+                EventToUpdate.EndDate = DateTime.Parse(singleEvent["EndDate"].ToString());
+                EventToUpdate.RegistrationDeadline = DateTime.Parse(singleEvent["RegistrationDeadline"].ToString());
+                EventToUpdate.Capacity = Int32.Parse(singleEvent["Capacity"].ToString());
+                EventToUpdate.Status = singleEvent["Status"].ToString();
             }
 
             DBClass.DBConnection.Close();
@@ -48,9 +50,11 @@ namespace EventManagementSystem.Pages.Events
         {
             string sqlQuery = "UPDATE Event SET EventName='" + EventToUpdate.EventName
                 + "',EventDescription='" + EventToUpdate.EventDescription
-                + "',EventStartDateAndTime='" + EventToUpdate.EventStartDateAndTime
-                + "',EventEndDateAndTime='" + EventToUpdate.EventEndDateAndTime
-                + "',EventLocation='" + EventToUpdate.EventLocation
+                + "',StartDate='" + EventToUpdate.StartDate
+                + "',EndDate='" + EventToUpdate.EndDate
+                + "',RegistrationDeadline='" + EventToUpdate.RegistrationDeadline
+                + "',Capacity='" + EventToUpdate.Capacity
+                + "',Status='" + EventToUpdate.Status
                 + "' WHERE EventID=" + EventToUpdate.EventID;
 
             DBClass.GeneralQuery(sqlQuery);

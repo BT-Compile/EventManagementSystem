@@ -95,11 +95,11 @@ namespace EventManagementSystem.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT ExpectedAttendance FROM Activity WHERE ActivityID = " + ActivityID;
+            cmdProductRead.CommandText = "SELECT Count(UserID) FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
             tempReader.Read();
-            int result = Int32.Parse(tempReader["ExpectedAttendance"].ToString());
+            int result = Int32.Parse(tempReader["Count(UserID)"].ToString());
 
             return result;
         }
@@ -110,7 +110,7 @@ namespace EventManagementSystem.Pages.DB
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room WHERE " +
-                "Room.MaxCapacity >= " + MaxCapacityGet(activityid);
+                "Room.Capacity>= " + MaxCapacityGet(activityid);
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 
@@ -172,7 +172,7 @@ namespace EventManagementSystem.Pages.DB
 
         // Method to create a user, while also PREVENTING SQL INJECTION
         public static void SecureUserCreation(string firstName, string lastName, string email,
-            string phoneNumber, string username, string allergyNote)
+            string phoneNumber, string username, string allergyNote, string accessibility, bool isActive)
         {
             // set all null variables to an empty string
             if (email == null)
@@ -183,21 +183,15 @@ namespace EventManagementSystem.Pages.DB
             {
                 phoneNumber = "";
             }
-            if (allergyNote == null)
-            {
-                allergyNote = "";
-            }
 
-            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote) VALUES (" +
+            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
                 "@Email," +
                 "@PhoneNumber," +
                 "@Username," +
-                "@AllergyNote)";
-            // NOTE: I got rid of the IsActive attribute within the insert, which
-            // would have been ",1" at the end to include a true boolean status
-            // for this User.
+                "@AllergyNote," +
+                "@Accessibility)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -211,6 +205,7 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
             cmdCreation.Parameters.AddWithValue("@Username", username);
             cmdCreation.Parameters.AddWithValue("@AllergyNote", allergyNote);
+            cmdCreation.Parameters.AddWithValue("@Accessibility", accessibility);
 
             cmdCreation.Connection.Open();
 

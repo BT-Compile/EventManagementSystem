@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Events
 {
@@ -33,19 +34,30 @@ namespace EventManagementSystem.Pages.Events
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Event (EventName, EventDescription, EventStartDateAndTime, EventEndDateAndTime, EventLocation, IsActive) VALUES (" +
-                "'" + EventToCreate.EventName + "'," +
-                "'" + EventToCreate.EventDescription + "'," +
-                "'" + EventToCreate.EventStartDateAndTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
-                "'" + EventToCreate.EventEndDateAndTime.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
-                "'" + EventToCreate.EventLocation + "',1)";
+            string sqlQuery = "INSERT INTO Event (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, Status, BuildingID) " +
+                             "VALUES (@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Status, @BuildingID)";
 
-            DBClass.GeneralQuery(sqlQuery);
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@EventName", EventToCreate.EventName);
+                    cmd.Parameters.AddWithValue("@EventDescription", EventToCreate.EventDescription);
+                    cmd.Parameters.AddWithValue("@StartDate", EventToCreate.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@EndDate", EventToCreate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
+                    cmd.Parameters.AddWithValue("@Status", EventToCreate.Status);
+                    cmd.Parameters.AddWithValue("@BuildingID", 1); // THIS BUILDING ID NEED TO BE CUSTOMIZEABLE - SR
 
-            DBClass.DBConnection.Close();
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
             return RedirectToPage("Index");
         }
+
 
     }
 }

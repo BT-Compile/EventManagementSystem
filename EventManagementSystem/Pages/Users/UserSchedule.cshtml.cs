@@ -23,12 +23,13 @@ namespace EventManagementSystem.Pages.Users
         {
             UserName = DBClass.GetUserName(userID);
 
-            string sqlQuery = "SELECT Event.EventName, Event.EventLocation, Activity.ActivityName, Activity.DateAndTime " +
-                "FROM Event " +
-                "INNER JOIN Activity ON Event.EventID = Activity.EventID " +
-                "INNER JOIN Attendance ON Activity.ActivityID = Attendance.ActivityID " +
-                "WHERE Attendance.UserID = " + userID +
-                " ORDER BY Activity.DateAndTime;";
+            string sqlQuery = "SELECT Event.EventName, Activity.ActivityName, Activity.Date, Building.Name, Room.RoomNumber " +
+                                "FROM Activity INNER JOIN ActivityAttendance ON Activity.ActivityID = ActivityAttendance.ActivityID INNER JOIN " +
+                                "Event ON Activity.EventID = Event.EventID INNER JOIN Building ON Event.BuildingID = Building.BuildingID INNER JOIN " +
+                                "EventAttendance ON Event.EventID = EventAttendance.EventID INNER JOIN [User] ON ActivityAttendance.UserID = " +
+                                "[User].UserID AND EventAttendance.UserID = [User].UserID INNER JOIN Room ON Activity.RoomID = Room.RoomID AND Building.BuildingID = Room.BuildingID " +
+                                "WHERE Attendance.UserID = " + userID +
+                                " ORDER BY Activity.Date;";
 
             SqlDataReader scheduleViewer = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -37,9 +38,10 @@ namespace EventManagementSystem.Pages.Users
                 UserAssociations.Add(new UserAssociations
                 {
                     EventName = scheduleViewer["EventName"].ToString(),
-                    EventLocation = scheduleViewer["EventLocation"].ToString(),
                     ActivityName = scheduleViewer["ActivityName"].ToString(),
-                    DateAndTime = (DateTime)scheduleViewer["DateAndTime"]
+                    Date = DateTime.Parse(scheduleViewer["Date"].ToString()),
+                    BuildingName = scheduleViewer["Name"].ToString(),
+                    RoomNumber = Int32.Parse(scheduleViewer["RoomNumber"].ToString())
                 });
             }
         }

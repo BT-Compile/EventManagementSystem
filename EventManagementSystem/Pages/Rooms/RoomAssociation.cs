@@ -2,7 +2,8 @@
 {
     public class RoomAssociation
     {
-        public string? RoomName { get; set; }
+        public string? BuildingName { get; set; }
+        public int RoomNumber { get; set; }
         public string? ActivityName { get; set; }
         public string? EventName { get; set; }
     }

@@ -39,12 +39,12 @@ namespace EventManagementSystem.Pages.Activities
                     ActivityID = Int32.Parse(activityReader["ActivityID"].ToString()),
                     ActivityName = activityReader["ActivityName"].ToString(),
                     ActivityDescription = activityReader["ActivityDescription"].ToString(),
-                    DateAndTime = (DateTime)activityReader["DateAndTime"],
-                    IsPresentation = (bool)activityReader["IsPresentation"],
-                    IsMeeting = (bool)activityReader["IsMeeting"],
-                    IsProgramEvent = (bool)activityReader["IsProgramEvent"],
-                    EventID = eventID,
-                    IsActive = (bool)activityReader["IsActive"]
+                    Date = DateTime.Parse(activityReader["Date"].ToString()),
+                    StartTime = TimeOnly.Parse(activityReader["StartTime"].ToString()),
+                    EndTime = TimeOnly.Parse(activityReader["EndTime"].ToString()),
+                    Type = activityReader["Type"].ToString(),
+                    Status = activityReader["Status"].ToString(),
+                    EventID = eventID
                 });
             }
 
