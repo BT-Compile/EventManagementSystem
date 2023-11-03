@@ -104,6 +104,7 @@ namespace EventManagementSystem.Pages.DB
             return result;
         }
 
+        // MaxCapacityGet is getting replaced with joining the attendance table to get the room assign feature to work
         public static SqlDataReader AssignRoomReader(int activityid)
         {
             SqlCommand cmdProductRead = new SqlCommand();
