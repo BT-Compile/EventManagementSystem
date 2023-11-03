@@ -95,11 +95,11 @@ namespace EventManagementSystem.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT Count(UserID) FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
+            cmdProductRead.CommandText = "SELECT Count(UserID) As Result FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
             tempReader.Read();
-            int result = Int32.Parse(tempReader["Count(UserID)"].ToString());
+            int result = Int32.Parse(tempReader["Result"].ToString());
 
             return result;
         }
