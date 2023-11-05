@@ -4,33 +4,36 @@
     ViewData["Title"] = "New User";
 }
 
-<form asp-page="NewUser">
-    <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
-    <label asp-for="@Model.UserToCreate.FirstName"></label>
-    <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.UserToCreate.LastName"></label>
-    <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.Username"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.UserPassword"></label>
-    <input type="text" asp-for="@Model.UserToCreate.UserPassword" id="Password" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.Email"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" />
-    <br />
-    <label asp-for="@Model.UserToCreate.PhoneNumber"></label>
-    <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" />
-    <br /><br />
-    <button type="button" onclick="populateForm()">Populate</button>
-    &emsp; <!-- Tab character to separate populate and clear buttons -->
-    <button type="button" onclick="clearForm()">Clear</button>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="NewUser" />
-    <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
-</form>
+    <div class="newlogbox">
+        <form asp-page="NewUser">
+            <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
+            <label asp-for="@Model.UserToCreate.FirstName">- First Name -</label>
+            <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.LastName">- Last Name -</label>
+            <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" class="newlogfield"  required />
+            <br />
+            <label asp-for="@Model.UserToCreate.Username">- Username -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.UserPassword">- Password -</label>
+            <input type="text" asp-for="@Model.UserToCreate.UserPassword" id="Password" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.Email">- Email -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
+            <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
+            <br /><br />
+            <button type="button" class="btn btn-secondary" onclick="populateForm()">Populate</button>
+            <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+            <input type="submit" class="btn btn-success" id="textfield" asp-page="NewUser" />
+            <a asp-page="../Index" class="btn btn-secondary" id="textfield">Cancel</a>
+    </form>
+    </div>
+</div>
 
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request

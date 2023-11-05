@@ -3,6 +3,15 @@ a {
    color: inherit;
 }
 
+a:hover {
+    text-decoration: none;
+    color: #CBB677;
+}
+
+input {
+    border-radius: 25px;
+}
+
 html {
     font-size: 14px;
 }
@@ -34,21 +43,21 @@ footer {
 /*------------------------------IDs--------------------------------*/
 
 #textfield {
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 #widebutton {
     height: 10vh;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 25px;
     font-family: 'Arvo', serif;
     font-size: 24pt;
 }
 
 /*--------------------------Quick Classes--------------------------*/
 
-.wrapper {
-    margin: 0 15% 0 15%;
+.center {
+    margin: auto;
 }
 
 .centertxt {
@@ -61,6 +70,11 @@ footer {
 
 .purpletxt {
     color: #450084;
+}
+
+.wrapper {
+    margin: 0 15% 0 15%;
+    height: auto;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -186,5 +200,32 @@ footer {
 
 .navbar-brand {
     padding: 50px;
+    font-size: 24pt;
     color: rgb(69, 0, 132);
+    font-family: 'Arvo', serif;
+    text-decoration: none;  
+}
+
+.newlogbox {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    justify-content: center;
+}
+
+.newlogbox button {
+    border-radius: 25px;
+    border: none;
+}
+
+.newlogbox label {
+    font-family: 'Arvo', serif;
+}
+
+.newlogfield {
+    border: none;
+    display: block;
+    margin-top: 1vh;
+    padding: .5vh;
+    width: 350px;
 }
