@@ -16,12 +16,6 @@ html {
     font-size: 14px;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
 html {
     position: relative;
     min-height: 100%;
@@ -169,7 +163,6 @@ footer {
     font-family: 'Arvo', serif;
     font-size: 36pt;
     color: white;
-
 }
 
 .ITguy {
@@ -196,6 +189,7 @@ footer {
 .navbar {
     height: 10vh;
     background: white;
+    color: 
 }
 
 .navbar-brand {
@@ -228,4 +222,109 @@ footer {
     margin-top: 1vh;
     padding: .5vh;
     width: 350px;
+}
+
+/*--------------------------Mobile Classes-------------------------*/
+
+@media (max-width: 600px) {
+
+    #widebutton {
+        height: 10vh;
+        width: 100%;
+        border-radius: 25px;
+        font-family: 'Arvo', serif;
+        font-size: 24pt;
+    }
+
+    body {
+        margin: auto;
+    }
+
+    html {
+        font-size: 16px;
+    }
+
+    footer {
+        border-top: #CBB677 solid 1px;
+    }
+
+    .indexwrapper {
+        margin: 0 5% 0 5%;
+        height: 100%;
+    }
+
+    .wrapper {
+        margin: 0 5% 0 5%;
+        height: 100%;
+    }
+
+    .carimg {
+        border-radius: 25px;
+        width: 350px;
+        height: auto; /* Add this line to maintain the aspect ratio of the images */
+        display: flex;
+        margin: 0 auto;
+    }
+
+    .container {
+        width: 50%;
+        height: 100%;
+    }
+
+    .container-fluid {
+        width: 50%;
+        height: 100%;
+    }
+
+    .logbtn {
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .logbox {
+        width: 100%;
+        margin: auto;
+    }
+
+    .navbar {
+        height: 10vh;
+        width: 100%;
+    }
+
+    .navbar-brand {
+        margin: 10px;
+        padding: 0;
+        font-size: 20pt;
+        color: rgb(69, 0, 132);
+        font-family: 'Arvo', serif;
+        text-decoration: none;
+    }
+
+    .indexBox {
+        position: relative;
+        top: 5vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.10);
+        padding: 50px;
+        color: #fff;
+        font-size: 14pt;
+        border-radius: 25pt;
+    }
+    
+    .indexBox h2 {
+        font-size: 24pt;
+    }
+
+    .indexContainer {
+        margin-bottom: 10vh;
+    }
+
+    .indexContainer2 {
+        width: 100%;
+        margin-bottom: 10vh;
+    }
+
+    .ITguy {
+        display: none;
+    }
 }
