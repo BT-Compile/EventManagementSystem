@@ -14,6 +14,9 @@ namespace EventManagementSystem.Pages.Login
         [BindProperty]
         public string Password { get; set; }
 
+        [BindProperty]
+        public string UserType { get; set; }
+
         public void OnGet()
         {
         }

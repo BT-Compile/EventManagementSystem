@@ -50,6 +50,24 @@ footer {
 
 /*--------------------------Quick Classes--------------------------*/
 
+hr {
+    border: solid white 0;
+    border-width: 3px;
+    max-width: 70px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-top: 1px;
+}
+
+.btnvert {
+    margin: 1vh auto;
+    height: auto;
+    width: 500px;
+    font-family: 'Arvo', serif;
+    font-size: 24pt;
+    padding: 25px;
+}
+
 .center {
     margin: auto;
 }
@@ -245,10 +263,6 @@ footer {
 
     html {
         font-size: 16px;
-    }
-
-    footer {
-        border-top: #CBB677 solid 1px;
     }
 
 /*---------------------------Mobile Classes--------------------------*/
