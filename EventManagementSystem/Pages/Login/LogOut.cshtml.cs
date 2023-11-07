@@ -15,7 +15,7 @@ namespace EventManagementSystem.Pages.Login
             HttpContext.Session.Remove("username");
             HttpContext.Session.Remove("password");
             HttpContext.Session.Remove("userid");
-            HttpContext.Session.Remove("usertype");
+            HttpContext.Session.Remove("RoleType");
 
             return Page();
         }

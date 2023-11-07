@@ -11,6 +11,9 @@
     <br />
     <label asp-for="@Model.RoomToUpdate.Capacity"></label>
     <input type="text" asp-for="@Model.RoomToUpdate.Capacity" required />
+    <br />
+    <label asp-for="@Model.RoomToUpdate.BuildingID"></label>
+    <input type="text" asp-for="@Model.RoomToUpdate.BuildingID" required />
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditRoom" />
     <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>

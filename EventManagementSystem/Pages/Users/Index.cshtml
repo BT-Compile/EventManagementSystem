@@ -12,9 +12,9 @@
         <th>Email:</th>
         <th>Phone Number:</th>
         <th>Username:</th>
-        <th>User Password:</th>
         <th>Allergies:</th>
-        <th>Active?</th>
+        <th>Role:</th>
+
     </tr>
 </thead>
 <tbody>
@@ -29,11 +29,9 @@
                         <td>@user.Email</td>
                         <td>@user.PhoneNumber</td>
                         <td>@user.Username</td>
-                        <td>
-                            <a asp-page="ViewPassword" class="btn btn-outline-secondary" asp-route-userid="@user.UserID">View</a>
-                        </td>
                         <td>@user.AllergyNote</td>
-                        <td>@user.IsActive</td>
+                        <td>@user.RoleType</td>
+                        
                         <td>
                             <a asp-page="EditUsers" class="btn btn-outline-success" asp-route-userid="@user.UserID">Edit</a>
                         </td>
@@ -47,10 +45,9 @@
                         <td>@user.Email</td>
                         <td>@user.PhoneNumber</td>
                         <td>@user.Username</td>
-                        <td>
-                            <a asp-page="ViewPassword" class="btn btn-outline-light" asp-route-userid="@user.UserID">View</a>
-                        </td>
-                        <td>@user.IsActive</td>
+                        <td>@user.AllergyNote</td>
+                        <td>@user.RoleType</td>
+                        
                         <td>
                             <a asp-page="EditUsers" class="btn btn-outline-success" asp-route-userid="@user.UserID">Edit</a>
                         </td>
@@ -70,8 +67,3 @@
 &emsp;
 
 <a asp-page="UserAssociations" class="btn btn-light">Show User Registrations</a>
-
-<br />
-<br />
-<br />
-<br />

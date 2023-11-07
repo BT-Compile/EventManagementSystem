@@ -16,17 +16,20 @@ namespace EventManagementSystem.Pages.Events
         }
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT * FROM [Event]";
-
+            string sqlQuery = "SELECT [Event].*, [Building].[Name] AS BuildingName " +
+                "FROM [Event] " +
+                "INNER JOIN [Building] ON [Event].BuildingID = [Building].BuildingID";
             SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (eventReader.Read())
@@ -40,8 +43,9 @@ namespace EventManagementSystem.Pages.Events
                     EndDate = DateTime.Parse(eventReader["EndDate"].ToString()),
                     RegistrationDeadline = DateTime.Parse(eventReader["RegistrationDeadline"].ToString()),
                     Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
-                    Status = eventReader["Status"].ToString()
-                });
+                    Status = eventReader["Status"].ToString(),
+                    BuildingName = eventReader["BuildingName"].ToString()
+                }) ;
             }
 
             DBClass.DBConnection.Close();

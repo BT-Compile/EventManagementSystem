@@ -19,16 +19,21 @@ namespace EventManagementSystem.Pages.Users
 
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT * FROM \"User\"";
+            string sqlQuery = "SELECT [User].*, [Role].[Name] AS RoleName " +
+                "FROM [User] " +
+                "LEFT JOIN UserRole ON [User].UserID = UserRole.UserID " +
+                "LEFT JOIN [Role] ON UserRole.RoleID = [Role].RoleID;";
 
             SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -42,10 +47,10 @@ namespace EventManagementSystem.Pages.Users
                     Email = userReader["Email"].ToString(),
                     PhoneNumber = userReader["PhoneNumber"].ToString(),
                     Username = userReader["Username"].ToString(),
-                    AllergyNote = userReader["AllergyNote"].ToString()
-                    // we might need to add IsActive functionality later - SR
-                    //IsActive = (bool)userReader["IsActive"]
-                });
+                    AllergyNote = userReader["AllergyNote"].ToString(),
+                    RoleType = userReader["RoleName"].ToString(),
+                    //IsActive = (bool)userReader["IsActive"] IMPLEMENT LATER -SR
+                }); 
             }
 
             DBClass.DBConnection.Close();

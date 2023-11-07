@@ -19,11 +19,13 @@ namespace EventManagementSystem.Pages.Rooms
         // we are not updating an Room, only creating a new one
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
@@ -36,7 +38,7 @@ namespace EventManagementSystem.Pages.Rooms
             string sqlQuery = "INSERT INTO Room (RoomNumber, Capacity, BuildingID) VALUES (" +
                 "'" + RoomToCreate.RoomNumber + "', " +
                 "'" + RoomToCreate.Capacity + "', " +
-                "'" + RoomToCreate.BuildingID + ")";
+                "'" + RoomToCreate.BuildingID + "')";
 
             DBClass.GeneralQuery(sqlQuery);
 

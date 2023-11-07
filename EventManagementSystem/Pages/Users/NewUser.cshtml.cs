@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
 namespace EventManagementSystem.Pages.Users
@@ -21,11 +22,13 @@ namespace EventManagementSystem.Pages.Users
         // we are not updating a User, only creating a new one
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
@@ -37,11 +40,35 @@ namespace EventManagementSystem.Pages.Users
         {
             DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
                 UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.AllergyNote, UserToCreate.Accessibility, UserToCreate.IsActive);
-
             DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
+            DBClass.DBConnection.Close();
 
+            // Retrieves the RoleID from the Role table for the corresponding RoleType that was selected
+            string roleQuery = "SELECT RoleID FROM [Role] WHERE Name='" + UserToCreate.RoleType + "'";
+            SqlDataReader roleIDReader = DBClass.GeneralReaderQuery(roleQuery);
+            int roleID = 0;
+            if (roleIDReader.Read())
+            {
+                roleID = Int32.Parse(roleIDReader["RoleID"].ToString());
+            }
+            DBClass.DBConnection.Close();
+
+            // Query to retrieve the userID of the User we just created.
+            string lastUserIDQuery = "SELECT MAX(UserID) AS LastUserID FROM [User]";
+            SqlDataReader lastUserIDReader = DBClass.GeneralReaderQuery(lastUserIDQuery);
+            int lastUserID = 0;
+            if (lastUserIDReader.Read())
+            {
+                lastUserID = Int32.Parse(lastUserIDReader["LastUserID"].ToString());
+            }
+            DBClass.DBConnection.Close();
+
+            // We use MAX(UserID) to identify the most recently created user (inserted above)
+            string userRoleInsert = "INSERT INTO UserRole (UserID, RoleID, AssignDate) VALUES " +
+                "(" + lastUserID + ", " + roleID + ", GETDATE())";
+            DBClass.GeneralQuery(userRoleInsert);
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");

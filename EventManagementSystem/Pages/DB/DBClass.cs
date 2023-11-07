@@ -185,7 +185,7 @@ namespace EventManagementSystem.Pages.DB
                 phoneNumber = "";
             }
 
-            string creationQuery = "INSERT INTO \"User\" (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
+            string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
                 "@Email," +

@@ -18,6 +18,6 @@
 
         public string? Status { get; set; }
 
-        public int BuildingID { get; set; }
+        public string? BuildingName { get; set; }
     }
 }

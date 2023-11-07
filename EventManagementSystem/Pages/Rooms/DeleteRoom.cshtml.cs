@@ -18,11 +18,13 @@ namespace EventManagementSystem.Pages.Rooms
 
         public IActionResult OnGet(int roomid)
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }

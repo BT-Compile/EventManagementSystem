@@ -18,11 +18,13 @@ namespace EventManagementSystem.Pages.Rooms
 
         public IActionResult OnGet(int roomid)
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
@@ -33,10 +35,9 @@ namespace EventManagementSystem.Pages.Rooms
             while (singleRoom.Read())
             {
                 RoomToUpdate.RoomID = roomid;
-                RoomToUpdate.RoomNumber = Int32.Parse(singleRoom["RoomName"].ToString());
+                RoomToUpdate.RoomNumber = Int32.Parse(singleRoom["RoomNumber"].ToString());
                 RoomToUpdate.Capacity = Int32.Parse(singleRoom["Capacity"].ToString());
-                
-                // Check if ActivityID is DBNull before casting to int
+                RoomToUpdate.BuildingID = Int32.Parse(singleRoom["BuildingID"].ToString());
             }
 
             DBClass.DBConnection.Close();
@@ -49,6 +50,7 @@ namespace EventManagementSystem.Pages.Rooms
             string sqlQuery;
                 sqlQuery = "UPDATE Room SET RoomNumber='" + RoomToUpdate.RoomNumber
                 + "', Capacity='" + RoomToUpdate.Capacity
+                + "', BuildingID='" + RoomToUpdate.BuildingID
                 + "' WHERE RoomID=" + RoomToUpdate.RoomID;
 
             DBClass.GeneralQuery(sqlQuery);

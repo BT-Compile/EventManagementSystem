@@ -43,13 +43,35 @@ namespace EventManagementSystem.Pages.Login
                 if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 1)
                 {
                     DBClass.DBConnection.Close();
-                    HttpContext.Session.SetString("usertype", "Admin");
+                    HttpContext.Session.SetString("RoleType", "Admin");
                     return RedirectToPage("/Admin/Index");
                 }
-                else // Case that a normal User has logged in
+                // Case that a Presenter User has logged in
+                else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 2)
                 {
                     DBClass.DBConnection.Close();
-                    HttpContext.Session.SetString("usertype", "Attendee");
+                    HttpContext.Session.SetString("RoleType", "Presenter");
+                    return RedirectToPage("/Attendee/Index");
+                }
+                // Case that a Judge User has logged in
+                else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 3)
+                {
+                    DBClass.DBConnection.Close();
+                    HttpContext.Session.SetString("RoleType", "Judge");
+                    return RedirectToPage("/Attendee/Index");
+                }
+                // Case that a Participant User has logged in
+                else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 4)
+                {
+                    DBClass.DBConnection.Close();
+                    HttpContext.Session.SetString("RoleType", "Participant");
+                    return RedirectToPage("/Attendee/Index");
+                }
+                // Case that a Organizer User has logged in
+                else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 5)
+                {
+                    DBClass.DBConnection.Close();
+                    HttpContext.Session.SetString("RoleType", "Organizer");
                     return RedirectToPage("/Attendee/Index");
                 }
             }

@@ -19,11 +19,13 @@ namespace EventManagementSystem.Pages.Activities
         // we are not updating an Activity, only creating a new one
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
@@ -41,7 +43,7 @@ namespace EventManagementSystem.Pages.Activities
                 "'" + ActivityToCreate.EndTime + "'," +
                 "'" + ActivityToCreate.Type + "'," +
                 "'" + ActivityToCreate.Status + "',"
-                + ActivityToCreate.EventID + 
+                + ActivityToCreate.EventID + ","
                 + ActivityToCreate.RoomID + ")";
 
             DBClass.GeneralQuery(sqlQuery);

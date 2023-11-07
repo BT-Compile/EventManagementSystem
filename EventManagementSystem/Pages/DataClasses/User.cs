@@ -28,13 +28,7 @@
         // - Steven
         public bool IsActive { get; set; }
 
-
-        //Keeping for now so I don't break the fuck out of the solution
-        public bool IsAttendee { get; set; }
-
-        public bool IsPresenter { get; set; }
-
-        public bool IsAdmin { get; set; }
+        public string? RoleType { get; set; }
 
     }
 }

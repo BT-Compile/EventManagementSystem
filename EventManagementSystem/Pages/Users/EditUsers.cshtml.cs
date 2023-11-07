@@ -3,7 +3,6 @@ using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
-using System.Net.Http.Headers;
 
 namespace EventManagementSystem.Pages.Users
 {
@@ -19,17 +18,20 @@ namespace EventManagementSystem.Pages.Users
 
         public IActionResult OnGet(int userid)
         {
-            if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
+            if (HttpContext.Session.GetString("RoleType") != "Admin" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant" || HttpContext.Session.GetString("RoleType") == "Organizer"))
             {
                 return RedirectToPage("/Attendee/Index");
             }
-            else if (HttpContext.Session.GetString("usertype") == null)
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }
 
+            // Read data from the User table into each field
+            // NOTE: This excludes the "RoleType" field because that exists in the associative table
             SqlDataReader singleUser = DBClass.SingleUserReader(userid);
-
             while (singleUser.Read())
             {
                 UserToUpdate.UserID = userid;
@@ -40,7 +42,18 @@ namespace EventManagementSystem.Pages.Users
                 UserToUpdate.Username = singleUser["Username"].ToString();
                 UserToUpdate.AllergyNote = singleUser["AllergyNote"].ToString();
             }
+            DBClass.DBConnection.Close();
 
+            // Retrieves the role name from the Role table for the corresponding User that was selected
+            string roleNameQuery = "SELECT [Role].[Name] AS roleName " +
+                "FROM [Role] " +
+                "INNER JOIN UserRole ON [Role].RoleID = UserRole.RoleID " +
+                "WHERE UserRole.UserID = " + UserToUpdate.UserID;
+            SqlDataReader roleIDReader = DBClass.GeneralReaderQuery(roleNameQuery);
+            if (roleIDReader.Read())
+            {
+                UserToUpdate.RoleType = roleIDReader["roleName"].ToString();
+            }
             DBClass.DBConnection.Close();
 
             return Page();
@@ -48,6 +61,7 @@ namespace EventManagementSystem.Pages.Users
 
         public IActionResult OnPost()
         {
+            // Update User table
             string userQuery = "UPDATE \"User\" SET FirstName='" + UserToUpdate.FirstName
                 + "',LastName='" + UserToUpdate.LastName
                 + "',Username='" + UserToUpdate.Username
@@ -57,6 +71,21 @@ namespace EventManagementSystem.Pages.Users
                 + "' WHERE UserID=" + UserToUpdate.UserID;
 
             DBClass.GeneralQuery(userQuery);
+            DBClass.DBConnection.Close();
+
+            // Retrieves the RoleID from the Role table for the corresponding RoleType that was selected
+            string roleQuery = "SELECT RoleID FROM [Role] WHERE Name='" + UserToUpdate.RoleType + "'";
+            SqlDataReader roleIDReader = DBClass.GeneralReaderQuery(roleQuery);
+            int roleID = 0;
+            if (roleIDReader.Read())
+            {
+                roleID = Int32.Parse(roleIDReader["RoleID"].ToString());
+            }
+            DBClass.DBConnection.Close();
+
+            // Update UserRole table
+            string userRoleQuery = "UPDATE UserRole SET RoleID = '" + roleID + "', AssignDate = GETDATE() WHERE UserID = " + UserToUpdate.UserID;
+            DBClass.GeneralQuery(userRoleQuery);
             DBClass.DBConnection.Close();
 
             // case that the user has inputted a new password for the user (the input is NOT blank)
