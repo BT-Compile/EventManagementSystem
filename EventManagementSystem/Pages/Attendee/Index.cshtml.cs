@@ -25,26 +25,24 @@ namespace EventManagementSystem.Pages.Attendee
                 return RedirectToPage("/Login/Index");
             }
 
+            // Retrive the full name of this logged in User's name
             string nameQuery = "SELECT FirstName, LastName FROM \"User\" WHERE Username = '" + HttpContext.Session.GetString("username") + "'";
-
             SqlDataReader nameReader = DBClass.GeneralReaderQuery(nameQuery);
-
             if (nameReader.Read())
             {
                 FullName = nameReader["FirstName"].ToString() + " " + nameReader["LastName"].ToString();
             }
-
             nameReader.Close();
 
-            // Query to select all user's registered events base don username
+            // Query to select all user's registered events based on username
             string sqlQuery = "SELECT Activity.ActivityID, Event.EventName, Event.EventDescription, Activity.ActivityName, " +
                                 "Activity.ActivityDescription, Activity.[Date], Activity.StartTime, Building.[Name], Room.RoomNumber " +
                                 "FROM  Activity INNER JOIN ActivityAttendance ON Activity.ActivityID = ActivityAttendance.ActivityID " +
-                                "INNER JOIN Event ON Activity.EventID = Event.EventID INNER JOIN " +
-                                "Building ON Event.BuildingID = Building.BuildingID INNER JOIN " +
-                                "EventAttendance ON Event.EventID = EventAttendance.EventID INNER JOIN " +
-                                "Room ON Activity.RoomID = Room.RoomID AND Building.BuildingID = Room.BuildingID INNER JOIN " +
-                                "[User] ON ActivityAttendance.UserID = [User].UserID AND EventAttendance.UserID = [User].UserID " +
+                                "INNER JOIN Event ON Activity.EventID = Event.EventID " +
+                                "INNER JOIN Building ON Event.BuildingID = Building.BuildingID " +
+                                "INNER JOIN EventAttendance ON Event.EventID = EventAttendance.EventID " +
+                                "INNER JOIN Room ON Activity.RoomID = Room.RoomID AND Building.BuildingID = Room.BuildingID " +
+                                "INNER JOIN [User] ON ActivityAttendance.UserID = [User].UserID AND EventAttendance.UserID = [User].UserID " +
                                 "WHERE [User].Username = '" + HttpContext.Session.GetString("username") + "' " +
                                 "ORDER BY Activity.[Date];";
 

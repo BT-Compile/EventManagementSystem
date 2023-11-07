@@ -3,8 +3,8 @@
 @{
 }
 
-<h1 class="display-6">Welcome, @Model.FullName</h1>
-<br /><br />
+<h1 class="display-6">Welcome @HttpContext.Session.GetString("RoleType"),</h1>
+<h2 class="display-6">@Model.FullName</h2>
 <h4>Your scheduled programs:</h4>
 
 <table class="table table-bordered table-responsive table-hover">
