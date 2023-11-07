@@ -5,14 +5,15 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome admin: @HttpContext.Session.GetString("username")</h1> <br />
+    <br />
+    <h1 class="display-4 font">Welcome Admin: @HttpContext.Session.GetString("username")</h1>
     <br />
     <div class="btn-group-vertical">
-        <a class="btn btn-outline-light" href="Users">View/Create Users</a> <br />
-        <a class="btn btn-outline-light" href="Events/AdminEvent">View/Create Events</a> <br />
-        <a class="btn btn-outline-light" href="Activities/AdminActivity">View/Create Activities</a> <br />
-        <a class="btn btn-outline-light" href="Rooms/AdminRoom">View/Create Rooms</a> <br />
-        <a class="btn btn-outline-light" href="/Attendee/Index">View Your User Page</a> <br />
-        <a class="btn btn-outline-info" href="Admin/AdminSignUp">Manual User Sign-Up</a> <br />
+        <a class="btn btnvert" href="Users">Manage Users</a> <br />
+        <a class="btn btnvert" href="Events/AdminEvent">Manage Events</a> <br />
+        <a class="btn btnvert" href="Activities/AdminActivity">Manage Activities</a> <br />
+        <a class="btn btnvert" href="Rooms/AdminRoom">Manage Rooms</a> <br />
+        <a class="btn btnvert" href="/Attendee/Index">Your User Page</a> <br />
+        <a class="btn btnvert" href="Admin/AdminSignUp">Manual User Sign-Up</a> <br />
     </div>
 </div>

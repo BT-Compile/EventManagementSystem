@@ -16,7 +16,20 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container">
-                <a class="navbar-brand" asp-page="/index">Eventra</a>
+                @{
+                    if (Context.Session.GetString("usertype") == "Admin")
+                    {
+                        <a class="navbar-brand" asp-page="../Admin/index">Eventra</a>
+                    }
+                    if (Context.Session.GetString("usertype") == "Attendee")
+                    {
+                        <a class="navbar-brand" asp-page="../Users/index">Eventra</a>
+                    }
+                    if (Context.Session.GetString("usertype") == null)
+                    {
+                        <a class="navbar-brand" asp-page="/index">Eventra</a>
+                    }
+                }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,7 +37,6 @@
             </div>
             <form class="container-fluid justify-content-end">
                 @{
-                    // case that no user is logged in
                     if (Context.Session.GetString("username") != null)
                     {
                         <a class="logbtn btn btn-outline-secondary justify-content-end" asp-page="/Login/LogOut">Log out</a>

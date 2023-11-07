@@ -29,7 +29,7 @@
         public bool IsActive { get; set; }
 
 
-        //Keeping for now so I don't break the fuck out of the solution
+        //Keeping for now so I don't break the solution
         public bool IsAttendee { get; set; }
 
         public bool IsPresenter { get; set; }
