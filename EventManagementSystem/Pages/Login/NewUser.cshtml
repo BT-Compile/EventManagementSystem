@@ -26,6 +26,12 @@
             <br />
             <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
             <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.AllergyNote">- Allergies -</label>
+            <input type="text" asp-for="@Model.UserToCreate.AllergyNote" id="AllergyNote" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.Accessibility">- Accessibility -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Accessibility" id="Accessibility" class="newlogfield" />
             <br /><br />
             <button type="button" class="btn btn-secondary" onclick="populateForm()">Populate</button>
             <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
