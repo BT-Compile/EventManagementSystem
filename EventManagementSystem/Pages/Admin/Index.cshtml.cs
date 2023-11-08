@@ -22,7 +22,6 @@ namespace EventManagementSystem.Pages.Admin
             {
                 return RedirectToPage("/Login/Index");
             }
-
             // Retrive the full name of this logged in User's name
             string nameQuery = "SELECT FirstName, LastName FROM \"User\" WHERE Username = '" + HttpContext.Session.GetString("username") + "'";
             SqlDataReader nameReader = DBClass.GeneralReaderQuery(nameQuery);
