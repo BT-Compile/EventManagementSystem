@@ -28,7 +28,8 @@
         // - Steven
         public bool IsActive { get; set; }
 
-        public string? RoleType { get; set; }
+        public int RoleID { get; set; }
 
+        public string? RoleType { get; set; }
     }
 }

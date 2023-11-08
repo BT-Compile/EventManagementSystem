@@ -213,6 +213,25 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.ExecuteNonQuery();
         }
 
+        public static void NewUserParticipantAssign(string username)
+        {
+            string query = "Insert into UserRole (UserID, RoleID, AssignDate) " +
+                           "select[User].UserID, [Role].RoleID, GETDATE() " +
+                           "from[User], [Role] where[User].Username = @Username " +
+                            "AND[Role].RoleID = 4";
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = query;
+            cmdCreation.Parameters.AddWithValue("@Username", username);
+
+            cmdCreation.Connection.Open();
+
+            cmdCreation.ExecuteNonQuery();
+        }
+
         // Creation of hashed credentials corresponding to the newly created User account.
         // A stored procedure is used in this method.
         public static void CreateHashedUser(string Username, string Password)

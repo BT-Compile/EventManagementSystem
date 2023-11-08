@@ -11,6 +11,8 @@ namespace EventManagementSystem.Pages.Login
         [BindProperty]
         public User UserToCreate { get; set; }
 
+        public int ParticipantRole {  get; set; }
+
         public NewUserModel()
         {
             UserToCreate = new User();
@@ -31,6 +33,10 @@ namespace EventManagementSystem.Pages.Login
             DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
+
+            DBClass.DBConnection.Close();
+
+            DBClass.NewUserParticipantAssign(UserToCreate.Username);
 
             DBClass.DBConnection.Close();
 
