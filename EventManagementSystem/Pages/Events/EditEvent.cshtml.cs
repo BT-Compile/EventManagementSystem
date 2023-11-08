@@ -2,6 +2,8 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Events
@@ -11,12 +13,12 @@ namespace EventManagementSystem.Pages.Events
         [BindProperty]
         public Event EventToUpdate { get; set; }
 
+        public List<SelectListItem> Buildings { get; set; }
+
         public EditEventModel()
         {
             EventToUpdate = new Event();
         }
-
-        int buildingID = 0;
 
         public IActionResult OnGet(int eventid)
         {
@@ -44,16 +46,17 @@ namespace EventManagementSystem.Pages.Events
                 EventToUpdate.RegistrationDeadline = DateTime.Parse(singleEvent["RegistrationDeadline"].ToString());
                 EventToUpdate.Capacity = Int32.Parse(singleEvent["Capacity"].ToString());
                 EventToUpdate.Status = singleEvent["Status"].ToString();
-                buildingID = Int32.Parse(singleEvent["BuildingID"].ToString());
             }
             DBClass.DBConnection.Close();
 
-            // Retrives the Name from the Building table for the corresponding BuildingID
-            string buildingNameQuery = "SELECT [Name] AS BuildingName FROM Building WHERE BuildingID= " + buildingID;
-            SqlDataReader buildingNameReader = DBClass.GeneralReaderQuery(buildingNameQuery);
-            if (buildingNameReader.Read())
+            // Populate the BuildingName select control
+            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
+            Buildings = new List<SelectListItem>();
+            while (BuildingsReader.Read())
             {
-                EventToUpdate.BuildingName = buildingNameReader["BuildingName"].ToString();
+                Buildings.Add(new SelectListItem(
+                    BuildingsReader["Name"].ToString(),
+                    BuildingsReader["BuildingID"].ToString()));
             }
             DBClass.DBConnection.Close();
 
@@ -62,25 +65,58 @@ namespace EventManagementSystem.Pages.Events
 
         public IActionResult OnPost()
         {
-            // Retrives the BuildingID from the Building table for the corresponding Name
-            string buildingIDQuery = "SELECT BuildingID FROM Building WHERE Name= '" + EventToUpdate.BuildingName + "'";
-            SqlDataReader buildingIDReader = DBClass.GeneralReaderQuery(buildingIDQuery);
-            if (buildingIDReader.Read())
+            // Case that the admin inputted a new building for this event to be in
+            if (EventToUpdate.BuildingName != null)
             {
-                buildingID = Int32.Parse(buildingIDReader["BuildingID"].ToString());
-            }
-            DBClass.DBConnection.Close();
+                string sqlQuery = "UPDATE Event SET EventName = @EventName, EventDescription = @EventDescription, " +
+                "StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
+                "Capacity = @Capacity, Status = @Status, BuildingID = @BuildingID WHERE EventID = @EventID";
 
-            string sqlQuery = "UPDATE Event SET EventName='" + EventToUpdate.EventName
-                + "',EventDescription='" + EventToUpdate.EventDescription
-                + "',StartDate='" + EventToUpdate.StartDate
-                + "',EndDate='" + EventToUpdate.EndDate
-                + "',RegistrationDeadline='" + EventToUpdate.RegistrationDeadline
-                + "',Capacity='" + EventToUpdate.Capacity
-                + "',Status='" + EventToUpdate.Status
-                + "',BuildingID=" + buildingID
-                + " WHERE EventID=" + EventToUpdate.EventID;
-            DBClass.GeneralQuery(sqlQuery);
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@EventName", EventToUpdate.EventName);
+                        cmd.Parameters.AddWithValue("@EventDescription", EventToUpdate.EventDescription);
+                        cmd.Parameters.AddWithValue("@StartDate", EventToUpdate.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndDate", EventToUpdate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToUpdate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Capacity", (int)EventToUpdate.Capacity);
+                        cmd.Parameters.AddWithValue("@Status", EventToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@BuildingID", EventToUpdate.BuildingName);
+                        cmd.Parameters.AddWithValue("@EventID", EventToUpdate.EventID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            // Case that the admin has left this event's building field blank
+            else
+            {
+                string sqlQuery = "UPDATE Event SET EventName = @EventName, EventDescription = @EventDescription, " +
+                "StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
+                "Capacity = @Capacity, Status = @Status WHERE EventID = @EventID";
+
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@EventName", EventToUpdate.EventName);
+                        cmd.Parameters.AddWithValue("@EventDescription", EventToUpdate.EventDescription);
+                        cmd.Parameters.AddWithValue("@StartDate", EventToUpdate.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndDate", EventToUpdate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToUpdate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Capacity", (int)EventToUpdate.Capacity);
+                        cmd.Parameters.AddWithValue("@Status", EventToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@EventID", EventToUpdate.EventID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            
             DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminEvent");

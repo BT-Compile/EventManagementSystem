@@ -18,8 +18,14 @@
 
         public string? Status { get; set; }
 
-        public int? EventID { get; set; }
+        public string? EventName { get; set; }
+
+        public string? BuildingName { get; set; }
+
+        public int? RoomNumber { get; set; }
 
         public int? RoomID { get; set; }
+
+        public int? EventID {  get; set; }
     }
 }

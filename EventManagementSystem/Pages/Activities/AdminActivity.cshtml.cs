@@ -28,7 +28,11 @@ namespace EventManagementSystem.Pages.Activities
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT * FROM Activity";
+            string sqlQuery = "SELECT Activity.*, [Event].EventName, Building.Name AS BuildingName, Room.RoomNumber " +
+                "FROM Activity " +
+                "INNER JOIN [Event] ON Activity.EventID = [Event].EventID " +
+                "INNER JOIN Building ON [Event].BuildingID = Building.BuildingID " +
+                "INNER JOIN Room ON Activity.RoomID = Room.RoomID";
             SqlDataReader activityReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (activityReader.Read())
@@ -46,7 +50,9 @@ namespace EventManagementSystem.Pages.Activities
                     EndTime = TimeOnly.Parse(activityReader["EndTime"].ToString()),
                     Type = activityReader["Type"].ToString(),
                     Status = activityReader["Status"].ToString(),
-                    EventID = eventID
+                    EventName = activityReader["EventName"].ToString(),
+                    BuildingName = activityReader["BuildingName"].ToString(),
+                    RoomNumber = Int32.Parse(activityReader["RoomNumber"].ToString())
                 });
             }
 

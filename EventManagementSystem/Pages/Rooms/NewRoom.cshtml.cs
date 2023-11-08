@@ -2,6 +2,8 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Rooms
 {
@@ -9,6 +11,8 @@ namespace EventManagementSystem.Pages.Rooms
     {
         [BindProperty]
         public Room RoomToCreate { get; set; }
+
+        public List<SelectListItem> Buildings { get; set; }
 
         public NewRoomModel()
         {
@@ -30,6 +34,17 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
+            // Populate the BuildingName select control
+            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
+            Buildings = new List<SelectListItem>();
+            while (BuildingsReader.Read())
+            {
+                Buildings.Add(new SelectListItem(
+                    BuildingsReader["Name"].ToString(),
+                    BuildingsReader["BuildingID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
             return Page();
         }
 
@@ -38,7 +53,7 @@ namespace EventManagementSystem.Pages.Rooms
             string sqlQuery = "INSERT INTO Room (RoomNumber, Capacity, BuildingID) VALUES (" +
                 "'" + RoomToCreate.RoomNumber + "', " +
                 "'" + RoomToCreate.Capacity + "', " +
-                "'" + RoomToCreate.BuildingID + "')";
+                "'" + RoomToCreate.BuildingName + "')";
 
             DBClass.GeneralQuery(sqlQuery);
 

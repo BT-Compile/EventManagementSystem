@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Events
@@ -10,6 +11,8 @@ namespace EventManagementSystem.Pages.Events
     {
         [BindProperty]
         public Event EventToCreate { get; set; }
+
+        public List<SelectListItem> Buildings { get; set; }
 
         public NewEventModel()
         {
@@ -31,6 +34,17 @@ namespace EventManagementSystem.Pages.Events
                 return RedirectToPage("/Login/Index");
             }
 
+            // Populate the BuildingName select control
+            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
+            Buildings = new List<SelectListItem>();
+            while (BuildingsReader.Read())
+            {
+                Buildings.Add(new SelectListItem(
+                    BuildingsReader["Name"].ToString(),
+                    BuildingsReader["BuildingID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
             return Page();
         }
 
@@ -51,7 +65,7 @@ namespace EventManagementSystem.Pages.Events
                     cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
                     cmd.Parameters.AddWithValue("@Status", EventToCreate.Status);
-                    cmd.Parameters.AddWithValue("@BuildingID", 1); // THIS BUILDING ID NEED TO BE CUSTOMIZEABLE - SR
+                    cmd.Parameters.AddWithValue("@BuildingID", EventToCreate.BuildingName);
 
                     cmd.ExecuteNonQuery();
                 }

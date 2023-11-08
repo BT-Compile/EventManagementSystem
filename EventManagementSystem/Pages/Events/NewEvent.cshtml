@@ -27,6 +27,11 @@
     <label asp-for="@Model.EventToCreate.Status"></label>
     <input type="text" asp-for="@Model.EventToCreate.Status" id="Status" required />
     <br />
+    <label asp-for="@Model.EventToCreate.BuildingName"></label>
+    <select asp-for="@Model.EventToCreate.BuildingName" asp-items="Model.Buildings" required>
+        <option value=""></option>
+    </select>
+    <br /><br />
     <button type="button" onclick="populateForm()">Populate</button>
     &emsp; <!-- Tab character to separate populate and clear buttons -->
     <button type="button" onclick="clearForm()">Clear</button>

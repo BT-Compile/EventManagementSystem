@@ -25,11 +25,16 @@
     <input type="text" asp-for="@Model.EventToUpdate.Capacity" required />
     <br />
     <label asp-for="@Model.EventToUpdate.BuildingName"></label>
-    <input type="text" asp-for="@Model.EventToUpdate.BuildingName" required />
+    <select asp-for="@Model.EventToUpdate.BuildingName" asp-items="Model.Buildings">
+        <option value=""></option>
+    </select>
     <br />
     <label asp-for="@Model.EventToUpdate.Status"></label>
     <input type="text" asp-for="@Model.EventToUpdate.Status" required />
     <br />
     <input type="submit" class="btn btn-success" asp-page="EditEvent" />
     <a asp-page="AdminEvent" class="btn btn-secondary">Cancel</a>
+    <p style="color: black">
+        NOTE: The "BuildingName" field must be left blank if no building change is desired. Otherwise, select a building to host this event.
+    </p>
 </form>

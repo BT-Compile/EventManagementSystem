@@ -2,6 +2,8 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Rooms
@@ -10,6 +12,8 @@ namespace EventManagementSystem.Pages.Rooms
     {
         [BindProperty]
         public Room RoomToUpdate { get; set; }
+
+        public List<SelectListItem> Buildings { get; set; }
 
         public EditRoomModel()
         {
@@ -30,8 +34,6 @@ namespace EventManagementSystem.Pages.Rooms
             }
 
             SqlDataReader singleRoom = DBClass.SingleRoomReader(roomid);
-
-
             while (singleRoom.Read())
             {
                 RoomToUpdate.RoomID = roomid;
@@ -39,7 +41,17 @@ namespace EventManagementSystem.Pages.Rooms
                 RoomToUpdate.Capacity = Int32.Parse(singleRoom["Capacity"].ToString());
                 RoomToUpdate.BuildingID = Int32.Parse(singleRoom["BuildingID"].ToString());
             }
+            DBClass.DBConnection.Close();
 
+            // Populate the BuildingName select control
+            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
+            Buildings = new List<SelectListItem>();
+            while (BuildingsReader.Read())
+            {
+                Buildings.Add(new SelectListItem(
+                    BuildingsReader["Name"].ToString(),
+                    BuildingsReader["BuildingID"].ToString()));
+            }
             DBClass.DBConnection.Close();
 
             return Page();
@@ -48,10 +60,22 @@ namespace EventManagementSystem.Pages.Rooms
         public IActionResult OnPost()
         {
             string sqlQuery;
+
+            // Case where a new BuildingName is picked
+            if (RoomToUpdate.BuildingName != null)
+            {
                 sqlQuery = "UPDATE Room SET RoomNumber='" + RoomToUpdate.RoomNumber
                 + "', Capacity='" + RoomToUpdate.Capacity
-                + "', BuildingID='" + RoomToUpdate.BuildingID
+                + "', BuildingID='" + RoomToUpdate.BuildingName
                 + "' WHERE RoomID=" + RoomToUpdate.RoomID;
+            }
+            // Case where no new BuildingName is picked
+            else
+            {
+                sqlQuery = "UPDATE Room SET RoomNumber='" + RoomToUpdate.RoomNumber
+                + "', Capacity='" + RoomToUpdate.Capacity
+                + "' WHERE RoomID=" + RoomToUpdate.RoomID;
+            }
 
             DBClass.GeneralQuery(sqlQuery);
 

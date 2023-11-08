@@ -1,0 +1,21 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.IndexModel
+@{
+}
+
+<div class="text-center">
+    <br />
+    <h1 class="display-6">Welcome @HttpContext.Session.GetString("RoleType"),</h1>
+    <h2 class="display-6">@Model.FullName</h2>
+    <br />
+    <div class="btn-group-vertical">
+        <a class="btn btnvert" href="">Create Event</a> <br />
+    </div>
+</div>
+
+
+
+
+
+
+

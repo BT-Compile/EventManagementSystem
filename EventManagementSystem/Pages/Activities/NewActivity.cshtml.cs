@@ -2,6 +2,8 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Activities
 {
@@ -9,6 +11,10 @@ namespace EventManagementSystem.Pages.Activities
     {
         [BindProperty]
         public Activity ActivityToCreate { get; set; }
+
+         public List<SelectListItem> Events { get; set; }
+
+        public List<SelectListItem> Rooms { get; set; }
 
         public NewActivityModel()
         {
@@ -30,23 +36,54 @@ namespace EventManagementSystem.Pages.Activities
                 return RedirectToPage("/Login/Index");
             }
 
+            // Populate the EventName select control
+            SqlDataReader EventsReader = DBClass.GeneralReaderQuery("SELECT * FROM Event");
+            Events = new List<SelectListItem>();
+            while (EventsReader.Read())
+            {
+                Events.Add(new SelectListItem(
+                    EventsReader["EventName"].ToString(),
+                    EventsReader["EventID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
+            // Populate the RoomNumber select control
+            SqlDataReader RoomsReader = DBClass.GeneralReaderQuery("SELECT * FROM Room");
+            Rooms = new List<SelectListItem>();
+            while (RoomsReader.Read())
+            {
+                Rooms.Add(new SelectListItem(
+                    RoomsReader["RoomNumber"].ToString(),
+                    RoomsReader["RoomID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
             return Page();
         }
 
         public IActionResult OnPost()
         {
             string sqlQuery = "INSERT INTO Activity (ActivityName, ActivityDescription, Date, StartTime, EndTime, Type, [Status], EventID, RoomID) VALUES (" +
-                "'" + ActivityToCreate.ActivityName + "'," +
-                "'" + ActivityToCreate.ActivityDescription + "'," +
-                "'" + ActivityToCreate.Date.ToString("yyyy-MM-dd") + "'," +
-                "'" + ActivityToCreate.StartTime + "'," +
-                "'" + ActivityToCreate.EndTime + "'," +
-                "'" + ActivityToCreate.Type + "'," +
-                "'" + ActivityToCreate.Status + "',"
-                + ActivityToCreate.EventID + ","
-                + ActivityToCreate.RoomID + ")";
+                "@ActivityName, @ActivityDescription, @Date, @StartTime, @EndTime, " +
+                "@Type, @Status, @EventID, @RoomID)";
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ActivityName", ActivityToCreate.ActivityName);
+                    cmd.Parameters.AddWithValue("@ActivityDescription", ActivityToCreate.ActivityDescription);
+                    cmd.Parameters.AddWithValue("@Date", ActivityToCreate.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@StartTime", ActivityToCreate.StartTime.ToString("HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@EndTime", ActivityToCreate.EndTime.ToString("HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@Type", ActivityToCreate.Type);
+                    cmd.Parameters.AddWithValue("@Status", ActivityToCreate.Status);
+                    cmd.Parameters.AddWithValue("@EventID", ActivityToCreate.EventName);
+                    cmd.Parameters.AddWithValue("@RoomID", ActivityToCreate.RoomNumber);
 
-            DBClass.GeneralQuery(sqlQuery);
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
             DBClass.DBConnection.Close();
 

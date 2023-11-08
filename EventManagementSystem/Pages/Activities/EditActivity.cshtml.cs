@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Activities
@@ -10,6 +11,10 @@ namespace EventManagementSystem.Pages.Activities
     {
         [BindProperty]
         public Activity ActivityToUpdate { get; set; }
+
+        public List<SelectListItem> Events { get; set; }
+
+        public List<SelectListItem> Rooms { get; set; }
 
         public EditActivityModel() 
         {
@@ -41,18 +46,28 @@ namespace EventManagementSystem.Pages.Activities
                 ActivityToUpdate.EndTime = TimeOnly.Parse(singleActivity["EndTime"].ToString());
                 ActivityToUpdate.Type = singleActivity["Type"].ToString();
                 ActivityToUpdate.Status = singleActivity["Status"].ToString();
-
-                // Check if EventID is DBNull before casting to int
-                if (!DBNull.Value.Equals(singleActivity["EventID"]))
-                {
-                    ActivityToUpdate.EventID = (int)singleActivity["EventID"];
-                }
-                else
-                {
-                    ActivityToUpdate.EventID = null;
-                }
             }
 
+            // Populate the EventName select control
+            SqlDataReader EventsReader = DBClass.GeneralReaderQuery("SELECT * FROM Event");
+            Events = new List<SelectListItem>();
+            while (EventsReader.Read())
+            {
+                Events.Add(new SelectListItem(
+                    EventsReader["EventName"].ToString(),
+                    EventsReader["EventID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
+            // Populate the RoomNumber select control
+            SqlDataReader RoomsReader = DBClass.GeneralReaderQuery("SELECT * FROM Room");
+            Rooms = new List<SelectListItem>();
+            while (RoomsReader.Read())
+            {
+                Rooms.Add(new SelectListItem(
+                    RoomsReader["RoomNumber"].ToString(),
+                    RoomsReader["RoomID"].ToString()));
+            }
             DBClass.DBConnection.Close();
 
             return Page();
@@ -61,36 +76,113 @@ namespace EventManagementSystem.Pages.Activities
         public IActionResult OnPost()
         {
             string sqlQuery;
-            if (ActivityToUpdate.EventID != null)
+            // case that both a new EventID and RoomID are inputted
+            if (ActivityToUpdate.EventName != null && ActivityToUpdate.RoomNumber != null)
             {
-                sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
-                    + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',Date='" + ActivityToUpdate.Date
-                    + "',StartTime='" + ActivityToUpdate.StartTime
-                    + "',EndTime='" + ActivityToUpdate.EndTime
-                    + "',Type='" + ActivityToUpdate.Type
-                    + "',Status='" + ActivityToUpdate.Status
-                    + "',EventID='" + ActivityToUpdate.EventID
-                    + "' WHERE ActivityID=" + ActivityToUpdate.ActivityID;
+                sqlQuery = "UPDATE Activity SET ActivityName = @ActivityName, ActivityDescription = @ActivityDescription, " +
+                    "Date = @Date, StartTime = @StartTime, EndTime = @EndTime, Type = @Type, Status = @Status, " +
+                    "EventID = @EventID, RoomID = @RoomID WHERE ActivityID = @ActivityID";
+
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ActivityName", ActivityToUpdate.ActivityName);
+                        cmd.Parameters.AddWithValue("@ActivityDescription", ActivityToUpdate.ActivityDescription);
+                        cmd.Parameters.AddWithValue("@Date", ActivityToUpdate.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@StartTime", ActivityToUpdate.StartTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndTime", ActivityToUpdate.EndTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Type", ActivityToUpdate.Type);
+                        cmd.Parameters.AddWithValue("@Status", ActivityToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@EventID", ActivityToUpdate.EventName);
+                        cmd.Parameters.AddWithValue("@RoomID", ActivityToUpdate.RoomNumber);
+                        cmd.Parameters.AddWithValue("@ActivityID", ActivityToUpdate.ActivityID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
+            // case that only a new EventID has been inputted, but not a roomID
+            else if (ActivityToUpdate.EventName != null && ActivityToUpdate.RoomNumber == null)
+            {
+                sqlQuery = "UPDATE Activity SET ActivityName = @ActivityName, ActivityDescription = @ActivityDescription, " +
+                    "Date = @Date, StartTime = @StartTime, EndTime = @EndTime, Type = @Type, Status = @Status, " +
+                    "EventID = @EventID WHERE ActivityID = @ActivityID";
+
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ActivityName", ActivityToUpdate.ActivityName);
+                        cmd.Parameters.AddWithValue("@ActivityDescription", ActivityToUpdate.ActivityDescription);
+                        cmd.Parameters.AddWithValue("@Date", ActivityToUpdate.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@StartTime", ActivityToUpdate.StartTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndTime", ActivityToUpdate.EndTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Type", ActivityToUpdate.Type);
+                        cmd.Parameters.AddWithValue("@Status", ActivityToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@EventID", ActivityToUpdate.EventName);
+                        cmd.Parameters.AddWithValue("@ActivityID", ActivityToUpdate.ActivityID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            // case that only a new RoomID has been inputted, but not an EventID
+            else if (ActivityToUpdate.EventName == null && ActivityToUpdate.RoomNumber != null)
+            {
+                sqlQuery = "UPDATE Activity SET ActivityName = @ActivityName, ActivityDescription = @ActivityDescription, " +
+                    "Date = @Date, StartTime = @StartTime, EndTime = @EndTime, Type = @Type, Status = @Status, " +
+                    "RoomID = @RoomID WHERE ActivityID = @ActivityID";
+
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ActivityName", ActivityToUpdate.ActivityName);
+                        cmd.Parameters.AddWithValue("@ActivityDescription", ActivityToUpdate.ActivityDescription);
+                        cmd.Parameters.AddWithValue("@Date", ActivityToUpdate.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@StartTime", ActivityToUpdate.StartTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndTime", ActivityToUpdate.EndTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Type", ActivityToUpdate.Type);
+                        cmd.Parameters.AddWithValue("@Status", ActivityToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@RoomID", ActivityToUpdate.RoomNumber);
+                        cmd.Parameters.AddWithValue("@ActivityID", ActivityToUpdate.ActivityID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            // case that neither a roomid or eventid have been inputted
             else
             {
-                sqlQuery = "UPDATE Activity SET ActivityName='" + ActivityToUpdate.ActivityName
-                    + "',ActivityDescription='" + ActivityToUpdate.ActivityDescription
-                    + "',Date='" + ActivityToUpdate.Date
-                    + "',StartTime='" + ActivityToUpdate.StartTime
-                    + "',EndTime='" + ActivityToUpdate.EndTime
-                    + "',Type='" + ActivityToUpdate.Type
-                    + "',Status='" + ActivityToUpdate.Status
-                    + "',EventID=null"
-                    + " WHERE ActivityID=" + ActivityToUpdate.ActivityID;
-            }
-            
+                sqlQuery = "UPDATE Activity SET ActivityName = @ActivityName, ActivityDescription = @ActivityDescription, " +
+                    "Date = @Date, StartTime = @StartTime, EndTime = @EndTime, Type = @Type, Status = @Status " +
+                    "WHERE ActivityID = @ActivityID";
 
-            DBClass.GeneralQuery(sqlQuery);
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ActivityName", ActivityToUpdate.ActivityName);
+                        cmd.Parameters.AddWithValue("@ActivityDescription", ActivityToUpdate.ActivityDescription);
+                        cmd.Parameters.AddWithValue("@Date", ActivityToUpdate.Date.ToString("yyyy-MM-dd HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@StartTime", ActivityToUpdate.StartTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@EndTime", ActivityToUpdate.EndTime.ToString("HH:mm:ss"));
+                        cmd.Parameters.AddWithValue("@Type", ActivityToUpdate.Type);
+                        cmd.Parameters.AddWithValue("@Status", ActivityToUpdate.Status);
+                        cmd.Parameters.AddWithValue("@ActivityID", ActivityToUpdate.ActivityID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
 
             DBClass.DBConnection.Close();
-
+            
             return RedirectToPage("AdminActivity");
         }
 

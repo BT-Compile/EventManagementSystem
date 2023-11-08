@@ -13,6 +13,9 @@
             <th>Start Time:</th>
             <th>End Time:</th>
             <th>Type</th>
+            <th>Event Name</th>
+            <th>Building Name</th>
+            <th>Room Number</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -27,6 +30,9 @@
                     <td>@activity.StartTime</td>
                     <td>@activity.EndTime</td>
                     <td>@activity.Type</td>
+                    <td>@activity.EventName</td>
+                    <td>@activity.BuildingName</td>
+                    <td>@activity.RoomNumber</td>
                     <td>@activity.Status</td>
                     <td>
                         <a asp-page="EditActivity" class="btn btn-outline-success" asp-route-activityid="@activity.ActivityID">Edit</a>

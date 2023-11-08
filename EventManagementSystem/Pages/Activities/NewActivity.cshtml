@@ -24,14 +24,18 @@
     <label asp-for="@Model.ActivityToCreate.Type"></label>
     <input type="text" asp-for="@Model.ActivityToCreate.Type" id="Type" required />
     <br />
+    <label asp-for="@Model.ActivityToCreate.EventName"></label>
+    <select asp-for="@Model.ActivityToCreate.EventName" asp-items="Model.Events" required>
+        <option value=""></option>
+    </select>
+    <br />
+    <label asp-for="@Model.ActivityToCreate.RoomNumber"></label>
+    <select asp-for="@Model.ActivityToCreate.RoomNumber" asp-items="Model.Rooms" required>
+        <option value=""></option>
+    </select>
+    <br />
     <label asp-for="@Model.ActivityToCreate.Status"></label>
     <input type="text" asp-for="@Model.ActivityToCreate.Status" id="Status" required />
-    <br />
-    <label asp-for="@Model.ActivityToCreate.EventID"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.EventID" id="EventID" required />
-    <br />
-    <label asp-for="@Model.ActivityToCreate.RoomID"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.RoomID" id="RoomID" required />
     <br />
     <br />
     <button type="button" onclick="populateForm()">Populate</button>

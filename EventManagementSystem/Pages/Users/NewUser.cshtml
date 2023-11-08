@@ -31,7 +31,9 @@
     <input type="text" asp-for="@Model.UserToCreate.Accessibility" id="Accessibility" />
     <br />
     <label asp-for="@Model.UserToCreate.RoleType"></label>
-    <input type="text" asp-for="@Model.UserToCreate.RoleType" id="RoleType" />
+    <select asp-for="@Model.UserToCreate.RoleType" asp-items="Model.Roles" required>
+        <option value=""></option>
+    </select>
     <br />
     <br />
     <button type="button" onclick="populateForm()">Populate</button>

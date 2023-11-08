@@ -24,12 +24,23 @@
     <label asp-for="@Model.ActivityToUpdate.Type"></label>
     <input type="text" asp-for="@Model.ActivityToUpdate.Type" required />
     <br />
+    <label asp-for="@Model.ActivityToUpdate.EventName"></label>
+    <select asp-for="@Model.ActivityToUpdate.EventName" asp-items="Model.Events">
+        <option value=""></option>
+    </select>
+    <br />
+    <label asp-for="@Model.ActivityToUpdate.RoomNumber"></label>
+    <select asp-for="@Model.ActivityToUpdate.RoomNumber" asp-items="Model.Rooms">
+        <option value=""></option>
+    </select>
+    <br />
     <label asp-for="@Model.ActivityToUpdate.Status"></label>
     <input type="text" asp-for="@Model.ActivityToUpdate.Status" required />
-    <br />
-    <label asp-for="@Model.ActivityToUpdate.EventID"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.EventID" />
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditActivity" />
     <a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
+    <p style="color: black">
+        NOTE: The "EventName" field must be left blank if no Event Name change is desired. Otherwise, select an EventName from the dropdown.
+        NOTE: The "RoomNumber" field must be left blank if no Room Number change is desired. Otherwise, select a Room Number from the dropdown.
+    </p>
 </form>
