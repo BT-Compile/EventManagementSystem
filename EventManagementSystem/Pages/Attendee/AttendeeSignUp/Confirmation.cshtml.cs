@@ -49,6 +49,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             {
                 ActivityToSignUp.ActivityID = activityid;
                 ActivityToSignUp.ActivityName = singleActivity["ActivityName"].ToString();
+                ActivityToSignUp.EventID = Int32.Parse(singleActivity["EventID"].ToString());
             }
 
             DBClass.DBConnection.Close();
@@ -58,12 +59,22 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Attendance (UserID, ActivityID) VALUES (" +
-                HttpContext.Session.GetString("userid") + "," + ActivityToSignUp.ActivityID + ")";
+            string sqlQuery = "INSERT INTO ActivityAttendance (UserID, ActivityID, RegistrationDate) VALUES (" +
+                HttpContext.Session.GetString("userid") + ", " + ActivityToSignUp.ActivityID + ", GETDATE())";
             
             DBClass.GeneralQuery(sqlQuery);
 
             DBClass.DBConnection.Close();
+
+            // Need to fix this so it signs up users for an event that the activity is at
+            /*
+            string eventQuery = "INSERT INTO EventAttendance (EventID, UserID, RegistrationDate) VALUES (" +
+                                HttpContext.Session.GetString("EventID") + ", " + HttpContext.Session.GetString("userid") +
+                                ", GETDATE())";
+
+            DBClass.GeneralQuery(eventQuery);
+
+            DBClass.DBConnection.Close(); */
 
             return RedirectToPage("../Index");
         }

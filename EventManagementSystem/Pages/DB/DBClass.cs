@@ -184,6 +184,14 @@ namespace EventManagementSystem.Pages.DB
             {
                 phoneNumber = "";
             }
+            if (allergyNote == null)
+            {
+                allergyNote = "";
+            }
+            if (accessibility == null)
+            {
+                accessibility = "";
+            }
 
             string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
                 "@FirstName," +
