@@ -1,0 +1,18 @@
+﻿@page "{TeamID}"
+@model EventManagementSystem.Pages.Attendee.TeamSignUp.ConfirmationModel
+@{
+}
+
+<form asp-page="Confirmation">
+    <div class="text-center">
+        <h1>
+            Are you sure you want to join this team?<br />
+            <br />
+            Name =@Model.UserToJoin.UserID @Model.UserToJoin.FirstName @Model.UserToJoin.LastName
+            <br />
+            Team =@Model.TeamToJoin.TeamID @Model.TeamToJoin.Name
+        </h1>
+        <button class="btn btn-success" type="submit">I am sure</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

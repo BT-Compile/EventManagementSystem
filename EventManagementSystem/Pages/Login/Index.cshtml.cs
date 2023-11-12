@@ -54,16 +54,16 @@ namespace EventManagementSystem.Pages.Login
                 {
                     DBClass.DBConnection.Close();
                     HttpContext.Session.SetString("RoleType", "Presenter");
-                    return RedirectToPage("/Attendee/Index");
+                    return RedirectToPage("/Presenter/Index");
                 }
                 // Case that a Judge User has logged in
                 else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 3)
                 {
                     DBClass.DBConnection.Close();
                     HttpContext.Session.SetString("RoleType", "Judge");
-                    return RedirectToPage("/Attendee/Index");
+                    return RedirectToPage("/Judge/Index");
                 }
-                // Case that a Participant User has logged in
+                // Case that a Participant (Attendee) User has logged in
                 else if (Int32.Parse(isAdminReader["RoleID"].ToString()) == 4)
                 {
                     DBClass.DBConnection.Close();
@@ -75,7 +75,7 @@ namespace EventManagementSystem.Pages.Login
                 {
                     DBClass.DBConnection.Close();
                     HttpContext.Session.SetString("RoleType", "Organizer");
-                    return RedirectToPage("/Attendee/Index");
+                    return RedirectToPage("/Organizer/Index");
                 }
             }
             else // Case where a User with matching credentials (against their encrypted password) has not been found

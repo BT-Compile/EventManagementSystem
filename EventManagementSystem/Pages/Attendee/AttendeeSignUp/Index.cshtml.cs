@@ -57,7 +57,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     ActivityName = scheduleReader["ActivityName"].ToString(),
                     ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
-                    Date = DateTime.Parse(scheduleReader["Date"].ToString()),
+                    
                     StartTime = TimeOnly.Parse(scheduleReader["StartTime"].ToString()),
                     BuildingName = scheduleReader["Name"].ToString(),
                     RoomNumber = Int32.Parse(scheduleReader["RoomNumber"].ToString())
