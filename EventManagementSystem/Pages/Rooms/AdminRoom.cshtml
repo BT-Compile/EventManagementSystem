@@ -3,70 +3,36 @@
 @{
 }
 
-<h2>All Rooms</h2>
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Building:</th>
-            <th>Room Number:</th>
-            <th>Max Capacity:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var room in Model.Rooms)
-            {
-                <tr class="table-secondary">
-                    <td>@room.BuildingName</td>
-                    <td>@room.RoomNumber</td>
-                    <td>
-                        @room.Capacity
-                    </td>
-                    <td>
-                        <a asp-page="EditRoom" class="btn btn-outline-success" asp-route-roomid="@room.RoomID">Edit</a>
-                    </td>
-                </tr>
-
-
-                /*
-                if (room.IsActive != true)
+<div class="wrapper">
+    <br />
+    <h2 class="font">All Rooms</h2>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Building:</th>
+                <th>Room Number:</th>
+                <th>Max Capacity:</th>
+                <th>Edit:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var room in Model.Rooms)
                 {
                     <tr class="table-secondary">
-                        <td>@room.RoomName</td>
-                        <td>@room.RoomDescription</td>
-                        <td>@room.Capacity
-</td>
-                        <td>@room.IsActive</td>
+                        <td>@room.BuildingName</td>
+                        <td>@room.RoomNumber</td>
                         <td>
-                            <a asp-page="EditRoom" class="btn btn-outline-success" asp-route-roomid="@room.RoomID">Edit</a>
+                            @room.Capacity
+                        </td>
+                        <td>
+                            <a asp-page="EditRoom" class="btn rndbtn btn-warning" asp-route-roomid="@room.RoomID">Edit</a>
                         </td>
                     </tr>
                 }
-                else
-                {
-                    <tr>
-                        <td>@room.RoomName</td>
-                        <td>@room.RoomDescription</td>
-                        <td>@room.Capacity
-</td>
-                        <td>@room.IsActive</td>
-                        <td>
-                            <a asp-page="EditRoom" class="btn btn-outline-success" asp-route-roomid="@room.RoomID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="DeleteRoom" class="btn btn-warning" asp-route-roomid="@room.RoomID">Deactivate</a>
-                        </td>
-                    </tr>
-                } */
             }
-        }
-    </tbody>
-</table>
-
-<br />
-
-<a asp-page="NewRoom" class="btn btn-light">Create New Room</a>
-&emsp;
-<a asp-page="RoomAssociations" class="btn btn-light">Show Room Assignments</a>
-
-<br /><br /><br /><br />
+        </tbody>
+    </table>
+    <a asp-page="NewRoom" class="btn rndbtn btn-warning">Create New Room</a>
+    <a asp-page="RoomAssociations" class="btn rndbtn btn-warning">Show Room Assignments</a>
+</div>

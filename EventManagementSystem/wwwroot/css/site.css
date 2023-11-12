@@ -5,11 +5,30 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: #CBB677;
+    color: black;
+}
+
+body {
+    margin-bottom: 60px;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    background-color: #CBB677;
 }
 
 input {
     border-radius: 25px;
+}
+
+hr {
+    border: solid white 0;
+    border-width: 3px;
+    max-width: 70px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-top: 1px;
 }
 
 html {
@@ -21,16 +40,16 @@ html {
     min-height: 100%;
 }
 
-body {
-    margin-bottom: 60px;
-    color: white;
-}
-
 main {
-    background: linear-gradient(to bottom, #450084, white);
+    background: linear-gradient(to bottom, #450084, #CBB677);
 }
 
-footer {
+th {
+    color: #450084;
+}
+
+thead {
+    background-color: #CBB677;
     text-align: center;
 }
 
@@ -50,21 +69,10 @@ footer {
 
 /*--------------------------Quick Classes--------------------------*/
 
-hr {
-    border: solid white 0;
-    border-width: 3px;
-    max-width: 70px;
-    margin: auto;
-    margin-bottom: 20px;
-    border-top: 1px;
-}
-
 .btnvert {
     margin: 1vh auto;
-    height: auto;
-    width: 500px;
     font-family: 'Arvo', serif;
-    font-size: 24pt;
+    font-size: 20pt;
     padding: 25px;
 }
 
@@ -80,24 +88,54 @@ hr {
     font-family: 'Arvo', serif;
 }
 
+.justify {
+    justify-content: center;
+}
+
 .purpletxt {
     color: #450084;
 }
 
+.goldtxt {
+    color: #CBB677;
+}
+
+.round {
+    border-radius: 25pt;
+}
+
 .wrapper {
     margin: 0 15% 0 15%;
-    height: auto;
+    height: 90vh;
 }
 
 /*-----------------------------Classes-----------------------------*/
 
-.backgroundimg {
-    background-image: url(../images/chairs.jpg);
-}
-
 .btn {
     background: #450084;
     color: white;
+}
+
+.btn-light {
+    border: none;
+}
+
+.btn-dark {
+    border: none;
+}
+
+.btn-warning {
+    border: none;
+    background-color: red;
+}
+
+.tblbtn {
+    background: #450084;
+    color: white;
+    width: 100px;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 25pt;
+    font-family: 'Arvo', serif;
 }
 
 .carimg {
@@ -160,12 +198,6 @@ hr {
     width: 60%;
 }
 
-.indexContainer2 h2 {
-    font-family: 'Arvo', serif;
-    text-align: center;
-    color: #450084;
-}
-
 .indexBox {
     position: relative;
     top: 5vh;
@@ -186,8 +218,8 @@ hr {
 .ITguy {
     float: right;
     height: auto;
-    width: 400px;
-    margin: 25vh 0vh 0 0;
+    width: 300px;
+    margin: 25vh 5vh 0 0;
 }
 
 .logbox {
@@ -195,8 +227,19 @@ hr {
     margin: auto;
 }
 
+.rndbtn {
+    font-family: 'Arvo', serif;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 25pt;
+    font-size: 12pt;
+}
+
 .logbtn {
-    margin-right: 5%
+    font-family: 'Arvo', serif;
+    margin-right: 5%;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 25pt;
+    font-size: 12pt;
 }
 
 .logtxt {
@@ -209,12 +252,21 @@ hr {
     background: white;
 }
 
+.nav-item {
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.nav-item :hover {
+    color: grey;
+}
+
 .navbar-brand {
     padding: 50px;
     font-size: 24pt;
-    color: rgb(69, 0, 132);
+    color: #450084;
     font-family: 'Arvo', serif;
-    text-decoration: none;  
+    text-decoration: none;
 }
 
 .newlogbox {
@@ -239,6 +291,10 @@ hr {
     margin-top: 1vh;
     padding: .5vh;
     width: 350px;
+}
+
+.table-secondary {
+    text-align: center;
 }
 
 /*-----------------------------MOBILE------------------------------*/

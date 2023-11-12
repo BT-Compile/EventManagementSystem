@@ -3,38 +3,36 @@
 @{
 }
 
-<h2>All Events</h2>
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Event Name:</th>
-            <th>Event Description:</th>
-            <th>Event Start Date:</th>
-            <th>Event End Date:</th>
-            <th>Registration Deadline:</th>
-            <th>Event Max Capacity:</th>
-            <th>Event Status:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var event1 in Model.Events)
-            {
+<div class="wrapper">
+    <br />
+    <h2 class="font">All Events</h2>
+        <table class="table table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@event1.EventName</td>
-                    <td>@event1.EventDescription</td>
-                    <td>@event1.StartDate</td>
-                    <td>@event1.EndDate</td>
-                    <td>@event1.RegistrationDeadline</td>
-                    <td>@event1.Capacity</td>
-                    <td>@event1.Status</td>
+                    <th>Event Name:</th>
+                    <th>Event Description:</th>
+                    <th>Start Date:</th>
+                    <th>End Date:</th>
+                    <th>Registration Deadline:</th>
+                    <th>Capacity:</th>
+                    <th>Status:</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
-
-<br />
-<br />
-<br />
-<br />
+            </thead>
+            <tbody>
+                @{
+                    foreach (var event1 in Model.Events)
+                    {
+                        <tr class="table-secondary">
+                            <td>@event1.EventName</td>
+                            <td>@event1.EventDescription</td>
+                            <td>@event1.StartDate</td>
+                            <td>@event1.EndDate</td>
+                            <td>@event1.RegistrationDeadline</td>
+                            <td>@event1.Capacity</td>
+                            <td>@event1.Status</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+</div>

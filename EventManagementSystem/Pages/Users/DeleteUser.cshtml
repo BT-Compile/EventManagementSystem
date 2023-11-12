@@ -3,10 +3,14 @@
 @{
 }
 
+<br />
+<div class="wrapper">
 <form asp-page="DeleteUser">
     <div class="text-center">
-        <h1>Are you sure you want to deactivate this user? (UserID = @Model.UserToDelete.UserID)</h1>
-        <button class="btn btn-danger" type="submit">I am sure</button>
-        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        <h1>Are you sure you want to deactivate this user</h1>
+            <br />
+        <button class="btn rndbtn btn-warning" type="submit">Delete</button>
+        <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
     </div>
 </form>
+</div>

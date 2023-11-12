@@ -3,25 +3,27 @@
 @{
 }
 
-<h2>All Users</h2>
-<table class="table table-bordered table-responsive table-hover">
-<thead>
-    <tr>
-        <th>First Name:</th>
-        <th>Last Name:</th>
-        <th>Email:</th>
-        <th>Phone Number:</th>
-        <th>Username:</th>
-        <th>Allergies:</th>
-        <th>Role:</th>
-
-    </tr>
-</thead>
-<tbody>
-        @{
-            foreach (var user in Model.Users)
-            {
-                if (user.IsActive != true)
+<div class="wrapper">
+     <br />
+    <h2 class="font">All Users</h2>
+    <br />
+    <table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>Email:</th>
+            <th>Phone Number:</th>
+            <th>Username:</th>
+            <th>Allergies:</th>
+            <th>Role:</th>
+            <th>Edit:</th>
+            <th>Deactivate Account:</th>
+        </tr>
+    </thead>
+    <tbody>
+            @{
+                foreach (var user in Model.Users)
                 {
                     <tr class="table-secondary">
                         <td>@user.FirstName</td>
@@ -31,39 +33,19 @@
                         <td>@user.Username</td>
                         <td>@user.AllergyNote</td>
                         <td>@user.RoleType</td>
-                        
+
                         <td>
-                            <a asp-page="EditUsers" class="btn btn-outline-success" asp-route-userid="@user.UserID">Edit</a>
-                        </td>
-                    </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>@user.Username</td>
-                        <td>@user.AllergyNote</td>
-                        <td>@user.RoleType</td>
-                        
-                        <td>
-                            <a asp-page="EditUsers" class="btn btn-outline-success" asp-route-userid="@user.UserID">Edit</a>
+                            <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
                         </td>
                         <td>
-                            <a asp-page="DeleteUser" class="btn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
+                            <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
                         </td>
                     </tr>
                 }
             }
-        }
-</tbody>
-</table>
-
-<br />
-
-<a asp-page="NewUser" class="btn btn-light">Create New User</a>
-&emsp;
-
-<a asp-page="UserAssociations" class="btn btn-light">Show User Registrations</a>
+    </tbody>
+    </table>
+    <br />
+    <a asp-page="NewUser" class="btn rndbtn btn-light">Create New User</a>
+    <a asp-page="UserAssociations" class="btn rndbtn btn-light">Show User Registrations</a>
+</div>

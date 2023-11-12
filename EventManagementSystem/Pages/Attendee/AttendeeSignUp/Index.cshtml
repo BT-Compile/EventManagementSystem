@@ -3,8 +3,9 @@
 @{
 }
 
+<div class="wrapper">
 <h2>Available Activities</h2>
-<table class="table table-bordered table-responsive table-hover">
+<table class="table table-responsive table-hover">
     <thead>
         <tr>
             <th>Event Name:</th>
@@ -15,13 +16,14 @@
             <th>Time:</th>
             <th>Building:</th>
             <th>Room Number:</th>
+            <th>Sign Up:</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach (var record in Model.attendeeSchedules)
             {
-                <tr>
+                <tr class="table-secondary">
                     <td>@record.EventName</td>
                     <td>@record.EventDescription</td>
                     <td>@record.ActivityName</td>
@@ -31,7 +33,7 @@
                     <td>@record.BuildingName</td>
                     <td>@record.RoomNumber</td>
                     <td>
-                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-activityid="@record.ActivityID">Sign up</a>
+                        <a asp-page="Confirmation" class="btn  tblbtn btn-outline-success" asp-route-activityid="@record.ActivityID">Sign up</a>
                     </td>
                 </tr>
             }
@@ -47,3 +49,4 @@
 <br />
 <br />
 <br />
+</div>

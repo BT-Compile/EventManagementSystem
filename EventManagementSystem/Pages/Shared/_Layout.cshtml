@@ -21,7 +21,7 @@
                     {
                         <a class="navbar-brand" asp-page="/Admin/Index">Eventra</a>
                     }
-                    if (Context.Session.GetString("RoleType") == "Attendee")
+                    if (Context.Session.GetString("RoleType") == "Participant")
                     {
                         <a class="navbar-brand" asp-page="/Users/Index">Eventra</a>
                     }
@@ -29,6 +29,36 @@
                     {
                         <a class="navbar-brand" asp-page="/Index">Eventra</a>
                     }
+
+                    <ul class="navbar-nav flex-grow-1">
+                        @{
+                            @if (Context.Session.GetString("RoleType") == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Admin/Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Events/AdminEvent">Create Event</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Attendee/AttendeeSignUp/Index">Sign up for an event</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Users/Index">User Data</a>
+                                </li>
+                            }
+
+                            @if (Context.Session.GetString("RoleType") == "Participant")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="">Sign up for an event</a>
+                                </li>
+                            }
+                        }
+                    </ul>
                 }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -39,12 +69,12 @@
                 @{
                     if (Context.Session.GetString("username") != null)
                     {
-                        <a class="logbtn btn btn-outline-secondary justify-content-end" asp-page="/Login/LogOut">Log out</a>
+                        <a class="logbtn btn btn-dark justify-content-end" asp-page="/Login/LogOut">Log out</a>
                     }
                     // case that any User is currently logged in
                     else
                     {
-                        <a class="logbtn btn btn-outline-secondary justify-content-end" asp-page="/Login/Index">Register or Log In ></a>
+                        <a class="logbtn btn btn-dark justify-content-end" asp-page="/Login/Index">Register or Log In</a>
                     }
                 }
             </form>
@@ -56,7 +86,7 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
+    <footer class="footer purpletxt">
         <div class="container">
             &copy; 2023 - Eventra - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>

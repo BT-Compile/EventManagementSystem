@@ -71,7 +71,7 @@ namespace EventManagementSystem.Pages.Events
                 }
             }
 
-            return RedirectToPage("Index");
+            return RedirectToPage("/Events/AdminEvent");
         }
 
 
