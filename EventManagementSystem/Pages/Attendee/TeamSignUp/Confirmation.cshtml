@@ -8,9 +8,9 @@
         <h1>
             Are you sure you want to join this team?<br />
             <br />
-            Name =@Model.UserToJoin.UserID @Model.UserToJoin.FirstName @Model.UserToJoin.LastName
+            Name = @Model.UserToJoin.FirstName @Model.UserToJoin.LastName
             <br />
-            Team =@Model.TeamToJoin.TeamID @Model.TeamToJoin.Name
+            Team = @Model.TeamToJoin.Name
         </h1>
         <button class="btn btn-success" type="submit">I am sure</button>
         <a asp-page="Index" class="btn btn-secondary">Cancel</a>

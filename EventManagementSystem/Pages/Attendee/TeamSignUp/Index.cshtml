@@ -3,6 +3,9 @@
 @{
 }
 
+<h4>Leave current team?</h4>
+<a asp-page="LeaveTeam" class="btn btn-outline-danger" >Leave</a>
+
 <h3>Available Teams</h3>
 
 <table class="table table-bordered table-responsive table-hover">
@@ -21,7 +24,7 @@
                     <td>@team.Name</td>
                     <td>@team.Description</td>
                     <td>
-                        <a asp-page="Confirmation" class="btn btn-outline-danger" asp-route-teamid="@team.TeamID">Join</a>
+                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-teamid="@team.TeamID">Join</a>
                     </td>
                 </tr>
             }
