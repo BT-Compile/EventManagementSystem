@@ -1,17 +1,17 @@
-﻿@page "{ActivityID}"
+﻿@page "{EventID}"
 @model EventManagementSystem.Pages.Attendee.AttendeeSignUp.ConfirmationModel
 @{
-    ViewData["Title"] = "Sign Up Confirmation";
+    ViewData["Title"] = "Event Sign Up Confirmation";
 }
 
 <form asp-page="Confirmation">
     <div class="text-center">
         <h1>
-            Are you sure you want to sign up for this activity?<br />
+            Are you sure you want to sign up for this event?<br />
             <br />
             Name = @Model.UserToSignUp.FirstName @Model.UserToSignUp.LastName
             <br />
-            Activity = @Model.ActivityToSignUp.ActivityName
+            Event = @Model.EventToSignUp.EventName
         </h1>
         <button class="btn btn-success" type="submit">I am sure</button>
         <a asp-page="Index" class="btn btn-secondary">Cancel</a>

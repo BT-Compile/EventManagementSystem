@@ -3,6 +3,7 @@ using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Attendee
@@ -15,11 +16,11 @@ namespace EventManagementSystem.Pages.Attendee
         [BindProperty]
         public string TeamName { get; set; }
 
-        public List<AttendeeSchedule> attendeeSchedules { get; set; }
+        public List<Event> Events { get; set; }
 
         public IndexModel()
         {
-            attendeeSchedules = new List<AttendeeSchedule>();
+            Events = new List<Event>();
         }
 
         public IActionResult OnGet()
@@ -38,39 +39,6 @@ namespace EventManagementSystem.Pages.Attendee
             }
             nameReader.Close();
 
-            // Query to select all user's registered events based on username
-            string scheduleQuery = "SELECT [Event].EventName, [Event].EventDescription, [Event].StartDate, [Event].EndDate, [Activity].ActivityName, [Activity].ActivityDescription, [Activity].Date AS ActivityDate, [Activity].StartTime AS ActivityStartTime, [Activity].EndTime AS ActivityEndTime, [Room].RoomNumber, Building.Name AS BuildingName " +
-                "FROM[User] " +
-                "INNER JOIN EventAttendance ON[User].UserID = EventAttendance.UserID " +
-                "INNER JOIN[Event] ON EventAttendance.EventID = [Event].EventID " +
-                "LEFT JOIN ActivityAttendance ON[User].UserID = ActivityAttendance.UserID " +
-                "LEFT JOIN Activity ON ActivityAttendance.ActivityID = Activity.ActivityID " +
-                "LEFT JOIN Room ON Activity.RoomID = Room.RoomID " +
-                "LEFT JOIN Building ON Room.BuildingID = Building.BuildingID " +
-                "WHERE[User].Username = '" + HttpContext.Session.GetString("username") + "' " +
-                "ORDER BY[Activity].EndTime DESC, [Activity].Date DESC";
-            SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(scheduleQuery);
-
-            while (scheduleReader.Read())
-            {
-                attendeeSchedules.Add(new AttendeeSchedule
-                {
-                    EventName = scheduleReader["EventName"].ToString(),
-                    EventDescription = scheduleReader["EventDescription"].ToString(),
-                    StartDate = DateOnly.Parse(scheduleReader["StartDate"].ToString()),
-                    EndDate = DateOnly.Parse(scheduleReader["EndDate"].ToString()),
-                    ActivityName = scheduleReader["ActivityName"].ToString(),
-                    ActivityDescription = scheduleReader["ActivityDescription"].ToString(),
-                    ActivityDate = DateOnly.Parse(scheduleReader["ActivityDate"].ToString()),
-                    StartTime = TimeOnly.Parse(scheduleReader["StartTime"].ToString()),
-                    EndTime = TimeOnly.Parse(scheduleReader["EndTime"].ToString()),
-                    BuildingName = scheduleReader["BuildingName"].ToString(),
-                    RoomNumber = Int32.Parse(scheduleReader["RoomNumber"].ToString())
-                }) ;
-            }
-            scheduleReader.Close();
-            DBClass.DBConnection.Close();
-
             // Retrieve this participant's team name (if any)
             string teamNameQuery = "SELECT Team.Name AS TeamName " +
                 "FROM [User] " +
@@ -84,6 +52,31 @@ namespace EventManagementSystem.Pages.Attendee
                 TeamName = teamNameReader["TeamName"].ToString();
             }
             teamNameReader.Close();
+
+            // query to select all events that this user has signed up for already
+            string sqlQuery = "SELECT [Event].EventID, [Event].EventName, [Event].EventDescription, [Event].StartDate, [Event].EndDate, [Event].RegistrationDeadline, Building.Name AS BuildingName " +
+                "FROM [User] " +
+                "INNER JOIN EventAttendance ON[User].UserID = EventAttendance.UserID " +
+                "INNER JOIN[Event] ON EventAttendance.EventID = [Event].EventID " +
+                "INNER JOIN Building ON[Event].BuildingID = Building.BuildingID " +
+                "WHERE [User].UserID = " + HttpContext.Session.GetString("userid") +
+                " ORDER BY [Event].StartDate DESC";
+
+            SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (scheduleReader.Read())
+            {
+                Events.Add(new Event
+                {
+                    EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
+                    EventName = scheduleReader["EventName"].ToString(),
+                    EventDescription = scheduleReader["EventDescription"].ToString(),
+                    StartDate = (DateTime)scheduleReader["StartDate"],
+                    EndDate = (DateTime)scheduleReader["EndDate"],
+                    RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
+                    BuildingName = scheduleReader["BuildingName"].ToString()
+                });
+            }
 
             return Page();
         }
