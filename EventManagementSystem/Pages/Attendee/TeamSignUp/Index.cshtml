@@ -1,0 +1,42 @@
+﻿@page
+@model EventManagementSystem.Pages.Attendee.TeamSignUpModel
+@{
+}
+
+<h4>Leave current team?</h4>
+<a asp-page="LeaveTeam" class="btn btn-outline-danger" >Leave</a>
+
+<h3>Available Teams</h3>
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Team Name:</th>
+            <th>Team Description:</th>
+            <th>Sign Up:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var team in Model.Teams)
+            {
+                <tr>
+                    <td>@team.Name</td>
+                    <td>@team.Description</td>
+                    <td>
+                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-teamid="@team.TeamID">Join</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+

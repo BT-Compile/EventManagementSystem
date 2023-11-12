@@ -12,15 +12,15 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         public User UserToSignUp { get; set; }
 
         [BindProperty]
-        public Activity ActivityToSignUp { get; set; }
+        public Event EventToSignUp { get; set; }
 
         public ConfirmationModel()
         {
             UserToSignUp = new User();
-            ActivityToSignUp = new Activity();
+            EventToSignUp = new Event();
         }
 
-        public IActionResult OnGet(int activityid)
+        public IActionResult OnGet(int eventid)
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -42,14 +42,13 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT * FROM Activity WHERE ActivityID = " + activityid;
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
             SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (singleActivity.Read())
             {
-                ActivityToSignUp.ActivityID = activityid;
-                ActivityToSignUp.ActivityName = singleActivity["ActivityName"].ToString();
-                ActivityToSignUp.EventID = Int32.Parse(singleActivity["EventID"].ToString());
+                EventToSignUp.EventID = eventid;
+                EventToSignUp.EventName = singleActivity["EventName"].ToString();
             }
 
             DBClass.DBConnection.Close();
@@ -59,22 +58,10 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO ActivityAttendance (UserID, ActivityID, RegistrationDate) VALUES (" +
-                HttpContext.Session.GetString("userid") + ", " + ActivityToSignUp.ActivityID + ", GETDATE())";
-            
+            string sqlQuery = "INSERT INTO EventAttendance (EventID, UserID, RegistrationDate) VALUES (" +
+                EventToSignUp.EventID + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
             DBClass.GeneralQuery(sqlQuery);
-
             DBClass.DBConnection.Close();
-
-            // Need to fix this so it signs up users for an event that the activity is at
-            /*
-            string eventQuery = "INSERT INTO EventAttendance (EventID, UserID, RegistrationDate) VALUES (" +
-                                HttpContext.Session.GetString("EventID") + ", " + HttpContext.Session.GetString("userid") +
-                                ", GETDATE())";
-
-            DBClass.GeneralQuery(eventQuery);
-
-            DBClass.DBConnection.Close(); */
 
             return RedirectToPage("../Index");
         }

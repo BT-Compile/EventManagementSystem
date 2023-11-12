@@ -9,18 +9,18 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
     public class CancelModel : PageModel
     {
         [BindProperty]
-        public User UserToSignUp { get; set; }
+        public User UserToCancel { get; set; }
 
         [BindProperty]
-        public Activity ActivityToSignUp { get; set; }
+        public Event EventToCancel { get; set; }
 
         public CancelModel()
         {
-            UserToSignUp = new User();
-            ActivityToSignUp = new Activity();
+            UserToCancel = new User();
+            EventToCancel = new Event();
         }
 
-        public IActionResult OnGet(int activityid)
+        public IActionResult OnGet(int eventid)
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -35,20 +35,20 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             while (singleUser.Read())
             {
-                UserToSignUp.UserID = Int32.Parse(singleUser["UserID"].ToString());
-                UserToSignUp.FirstName = singleUser["FirstName"].ToString();
-                UserToSignUp.LastName = singleUser["LastName"].ToString();
+                UserToCancel.UserID = Int32.Parse(singleUser["UserID"].ToString());
+                UserToCancel.FirstName = singleUser["FirstName"].ToString();
+                UserToCancel.LastName = singleUser["LastName"].ToString();
             }
 
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT * FROM Activity WHERE ActivityID = " + activityid;
-            SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
+            SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
 
-            while (singleActivity.Read())
+            while (singleEvent.Read())
             {
-                ActivityToSignUp.ActivityID = activityid;
-                ActivityToSignUp.ActivityName = singleActivity["ActivityName"].ToString();
+                EventToCancel.EventID = eventid;
+                EventToCancel.EventName = singleEvent["EventName"].ToString();
             }
 
             DBClass.DBConnection.Close();
@@ -58,11 +58,10 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "DELETE FROM Attendance " +
+            string sqlQuery = "DELETE FROM EventAttendance " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
-                " AND ActivityID = " + ActivityToSignUp.ActivityID;
+                " AND EventID = " + EventToCancel.EventID;
             DBClass.GeneralQuery(sqlQuery);
-
             DBClass.DBConnection.Close();
 
             return RedirectToPage("../Index");

@@ -1,7 +1,7 @@
-﻿@page "{ActivityID}"
+﻿@page "{EventID}"
 @model EventManagementSystem.Pages.Attendee.AttendeeSignUp.CancelModel
 @{
-    ViewData["Title"] = "Cancel Confirmation";
+    ViewData["Title"] = "Cancel Event Confirmation";
 }
 
 <form asp-page="Cancel">
@@ -9,9 +9,9 @@
         <h1>
             Are you sure you want to cancel your attendance for this activity?<br />
             <br />
-            Name = @Model.UserToSignUp.FirstName @Model.UserToSignUp.LastName
+            Name = @Model.UserToCancel.FirstName @Model.UserToCancel.LastName
             <br />
-            Activity = @Model.ActivityToSignUp.ActivityName
+            Event = @Model.EventToCancel.EventName
         </h1>
         <button class="btn btn-success" type="submit">I am sure</button>
         <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
