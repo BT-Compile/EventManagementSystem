@@ -3,24 +3,23 @@
 @{
 }
 
-<h2>Available Activities</h2>
+<h2>Available Events:</h2>
 <table class="table table-bordered table-responsive table-hover">
     <thead>
         <tr>
             <th>Event Name:</th>
             <th>Event Description:</th>
-
-            <th>Date:</th>
-            <th>Time:</th>
-            <th>Building:</th>
-            <th>Room Number:</th>
+            <th>Start Date:</th>
+            <th>End Date:</th>
+            <th>Registration Deadline:</th>
+            <th>Building Name:</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach (var record in Model.Events)
             {
-                <tr class="table-secondary">
+                <tr>
                     <td>@record.EventName</td>
                     <td>@record.EventDescription</td>
                     <td>@record.StartDate</td>
@@ -28,7 +27,7 @@
                     <td>@record.RegistrationDeadline</td>
                     <td>@record.BuildingName</td>
                     <td>
-                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-activityid="@record.ActivityID">Sign up</a>
+                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-eventid="@record.EventID">Sign up</a>
                     </td>
                 </tr>
             }
@@ -39,8 +38,3 @@
 <br />
 
 <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
-
-<br />
-<br />
-<br />
-<br />
