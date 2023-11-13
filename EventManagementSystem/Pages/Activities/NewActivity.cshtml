@@ -4,47 +4,63 @@
     ViewData["Title"] = "New Activity";
 }
 
-<form asp-page="NewActivity">
-    <input type="hidden" asp-for="@Model.ActivityToCreate.ActivityID" />
-    <label asp-for="@Model.ActivityToCreate.ActivityName"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.ActivityName" id="ActivityName" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.ActivityToCreate.ActivityDescription"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.ActivityDescription" id="Description" />
+    <h2 class="font centertxt">Enter New Activity Data</h2>
     <br />
-    <label asp-for="@Model.ActivityToCreate.Date"></label>
-    <input type="datetime-local" asp-for="@Model.ActivityToCreate.Date" id="Date" required />
+    <hr />
     <br />
-    <label asp-for="@Model.ActivityToCreate.StartTime"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.StartTime" id="StartTime" required />
-    <br />
-    <label asp-for="@Model.ActivityToCreate.EndTime"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.EndTime" id="EndTime" required />
-    <br />
-    <label asp-for="@Model.ActivityToCreate.Type"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.Type" id="Type" required />
-    <br />
-    <label asp-for="@Model.ActivityToCreate.EventName"></label>
-    <select asp-for="@Model.ActivityToCreate.EventName" asp-items="Model.Events" required>
-        <option value=""></option>
-    </select>
-    <br />
-    <label asp-for="@Model.ActivityToCreate.RoomNumber"></label>
-    <select asp-for="@Model.ActivityToCreate.RoomNumber" asp-items="Model.Rooms" required>
-        <option value=""></option>
-    </select>
-    <br />
-    <label asp-for="@Model.ActivityToCreate.Status"></label>
-    <input type="text" asp-for="@Model.ActivityToCreate.Status" id="Status" required />
-    <br />
-    <br />
-    <button type="button" onclick="populateForm()">Populate</button>
-    &emsp; <!-- Tab character to separate populate and clear buttons -->
-    <button type="button" onclick="clearForm()">Clear</button>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="NewActivity" />
-    <a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
-</form>
+    <div class="newlogbox">
+        <form asp-page="NewActivity">
+            <input type="hidden" asp-for="@Model.ActivityToCreate.ActivityID" />
+            <label asp-for="@Model.ActivityToCreate.ActivityName">- Activity Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.ActivityName" id="ActivityName" required />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.ActivityDescription">- Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.ActivityDescription" id="Description" />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.Date">- Date -</label>
+            <br />
+            <input type="datetime-local" class="newlogfield" asp-for="@Model.ActivityToCreate.Date" id="Date" required />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.StartTime">- Start Time -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.StartTime" id="StartTime" required />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.EndTime">- End Time -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.EndTime" id="EndTime" required />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.Type">- Event Type -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.Type" id="Type" required />
+            <br />
+            <label asp-for="@Model.ActivityToCreate.EventName">- Event Name -</label>
+            <br />
+            <select asp-for="@Model.ActivityToCreate.EventName" class="newlogfield" asp-items="Model.Events" required>
+                <option value=""></option>
+            </select>
+            <br />
+            <label asp-for="@Model.ActivityToCreate.RoomNumber">- Room Number -</label>
+            <br />
+            <select asp-for="@Model.ActivityToCreate.RoomNumber" class="newlogfield" asp-items="Model.Rooms" required>
+                <option value=""></option>
+            </select>
+            <br />
+            <label asp-for="@Model.ActivityToCreate.Status">- Status -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToCreate.Status" id="Status" required />
+            <br />
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewActivity" />
+            <a asp-page="AdminActivity" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
 
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request

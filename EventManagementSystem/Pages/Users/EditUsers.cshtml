@@ -6,40 +6,50 @@
 
 <div class="wrapper">
     <br />
-    <form asp-page="EditUsers">
-        <input type="hidden" asp-for="@Model.UserToUpdate.UserID"  />
-        <label asp-for="@Model.UserToUpdate.FirstName"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.FirstName" required />
-        <br />
-        <label asp-for="@Model.UserToUpdate.LastName"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.LastName" required />
-        <br />
-        <label asp-for="@Model.UserToUpdate.Email"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.Email" />
-        <br />
-        <label asp-for="@Model.UserToUpdate.PhoneNumber"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.PhoneNumber" />
-        <br />
-        <label asp-for="@Model.UserToUpdate.Username"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.Username" required />
-        <br />
-        <label asp-for="@Model.UserToUpdate.UserPassword"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.UserPassword" />
-        <br />
-        <label asp-for="@Model.UserToUpdate.AllergyNote"></label>
-        <input type="text" asp-for="@Model.UserToUpdate.AllergyNote" />
-        <br />
-        <label asp-for="@Model.UserToUpdate.RoleType"></label>
-        <select asp-for="@Model.UserToUpdate.RoleType" asp-items="Model.Roles">
-            <option value=""></option>
-        </select>
-        <br /><br />
-        <input type="submit" class="btn btn-success" asp-page="EditUsers" />
-        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
-        <br /><br />
-        <p style="color: black">
-            NOTE: The "Password" field must be left blank if no password change is desired. Otherwise, enter a password, and it will be encrypted.
-            NOTE: The "RoleType" field must be left balnk if no role change is desired. Otherwise, select a role for this user.
-        </p>
-    </form>
+    <h2 class="font centertxt">Edit User Data</h2>
+    <br />
+    <hr />
+    <br />
+    <p class="notetxt">NOTE: The "Password" field must be left blank if no password change is desired. Otherwise, enter a password, and it will be encrypted.</p>
+    <p class="notetxt">NOTE: The "RoleType" field must be left blank if no role change is desired. Otherwise, select a role for this user.</p>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="EditUsers">
+            <input type="hidden" asp-for="@Model.UserToUpdate.UserID"  />
+            <label asp-for="@Model.UserToUpdate.FirstName">- First Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.FirstName" required />
+            <br />
+            <label asp-for="@Model.UserToUpdate.LastName">- Last Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.LastName" required />
+            <br />
+            <label asp-for="@Model.UserToUpdate.Username">- Username -</label>
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Username" required />
+            <br />
+            <label asp-for="@Model.UserToUpdate.UserPassword">- Password -</label>
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.UserPassword" />
+            <br />
+            <label asp-for="@Model.UserToUpdate.Email">- Email -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Email" />
+            <br />
+            <label asp-for="@Model.UserToUpdate.PhoneNumber">- Phone -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.PhoneNumber" />
+            <br />
+            <label asp-for="@Model.UserToUpdate.AllergyNote">- Allergies -</label>
+            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.AllergyNote" />
+            <br />
+            <label asp-for="@Model.UserToUpdate.RoleType">- Role -</label>
+            <br />
+            <select asp-for="@Model.UserToUpdate.RoleType" asp-items="Model.Roles">
+                <option value=""></option>
+            </select>
+            <br />
+            <br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditUsers" />
+            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>  
 </div>

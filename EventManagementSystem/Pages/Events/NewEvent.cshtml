@@ -4,41 +4,59 @@
     ViewData["Title"] = "New Event";
 }
 
-<form asp-page="NewEvent">
-    <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
-    <label asp-for="@Model.EventToCreate.EventName"></label>
-    <input type="text" asp-for="@Model.EventToCreate.EventName" id="EventName" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.EventToCreate.EventDescription"></label>
-    <input type="text" asp-for="@Model.EventToCreate.EventDescription" id="Description" />
+    <h2 class="font centertxt">Enter New Event Data</h2>
     <br />
-    <label asp-for="@Model.EventToCreate.StartDate"></label>
-    <input type="datetime-local" asp-for="@Model.EventToCreate.StartDate" id="StartDate" required />
+    <hr />
     <br />
-    <label asp-for="@Model.EventToCreate.EndDate"></label>
-    <input type="datetime-local" asp-for="@Model.EventToCreate.EndDate" id="EndDate" required />
-    <br />
-    <label asp-for="@Model.EventToCreate.RegistrationDeadline"></label>
-    <input type="datetime-local" asp-for="@Model.EventToCreate.RegistrationDeadline" id="RegistrationDeadline" required />
-    <br />
-    <label asp-for="@Model.EventToCreate.Capacity"></label>
-    <input type="text" asp-for="@Model.EventToCreate.Capacity" id="Capacity" required />
-    <br />
-    <label asp-for="@Model.EventToCreate.Status"></label>
-    <input type="text" asp-for="@Model.EventToCreate.Status" id="Status" required />
-    <br />
-    <label asp-for="@Model.EventToCreate.BuildingName"></label>
-    <select asp-for="@Model.EventToCreate.BuildingName" asp-items="Model.Buildings" required>
-        <option value=""></option>
-    </select>
-    <br /><br />
-    <button type="button" onclick="populateForm()">Populate</button>
-    &emsp; <!-- Tab character to separate populate and clear buttons -->
-    <button type="button" onclick="clearForm()">Clear</button>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="NewUser" />
-    <a asp-page="AdminEvent" class="btn btn-secondary">Cancel</a>
-</form>
+    <div class="newlogbox">
+            <form asp-page="NewEvent">
+            <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
+            <label asp-for="@Model.EventToCreate.EventName">- Event -</label>
+                <br />
+            <input type="text" class="newlogfield" id="EventName" asp-for="@Model.EventToCreate.EventName" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.EventDescription">- Description -</label>
+                <br />
+            <input type="text" class="newlogfield" id="Description" asp-for="@Model.EventToCreate.EventDescription" />
+                <br />
+            <label asp-for="@Model.EventToCreate.StartDate">- Start Date -</label>
+                <br />
+            <input type="datetime-local" class="newlogfield" id="StartDate" asp-for="@Model.EventToCreate.StartDate" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.EndDate">- End Date -</label>
+                <br />
+            <input type="datetime-local" class="newlogfield" id="EndDate" asp-for="@Model.EventToCreate.EndDate" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.RegistrationDeadline">- Registration Deadline -</label>
+                <br />
+            <input type="datetime-local" class="newlogfield" id="RegistrationDeadline" asp-for="@Model.EventToCreate.RegistrationDeadline" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.Capacity">- Capacity -</label>
+                <br />
+            <input type="text" class="newlogfield" id="Capacity" asp-for="@Model.EventToCreate.Capacity" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.BuildingName">- Building Name -</label>
+                <br />
+            <select asp-for="@Model.EventToCreate.BuildingName" asp-items="Model.Buildings">
+                    <option value=""></option>
+            </select>
+                <br />
+                <br />
+            <label asp-for="@Model.EventToCreate.Status">- Status -</label>
+                <br />
+            <input type="text" class="newlogfield" id="Status" asp-for=" @Model.EventToCreate.Status" required />
+            <br />
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewUser" />
+            <a asp-page="AdminEvent" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
+
 
 <script>
     // links to the Populate button

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/EventManagementSystem.styles.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=block" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -51,10 +51,10 @@
                             @if (Context.Session.GetString("RoleType") == "Participant")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="">Home</a>
+                                    <a class="nav-link purpletxt font" asp-page="">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="">Sign up for an event</a>
+                                    <a class="nav-link purpletxt font" asp-page="">Sign up for an event</a>
                                 </li>
                             }
                         }
@@ -74,7 +74,7 @@
                     // case that any User is currently logged in
                     else
                     {
-                        <a class="logbtn btn btn-dark justify-content-end" asp-page="/Login/Index">Register or Log In</a>
+                        <a class="logbtn btn btn-dark justify-content-end" asp-page="/Login/Index">Register | Log In</a>
                     }
                 }
             </form>

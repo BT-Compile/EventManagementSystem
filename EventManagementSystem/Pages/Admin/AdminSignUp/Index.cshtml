@@ -5,19 +5,26 @@
     ViewData["Title"] = "Admin User Manual Sign Up";
 }
 
-<form asp-action="Index" method="post">
-    <h2>Admin user manual sign up:</h2>
+<div class="wrapper">
     <br />
-    <select asp-for="UserID" asp-items="Model.Users">
-        <option value="">Choose a user</option>
-    </select>
-    <br /><br />
-    <select id="SelectedActivity" asp-for="ActivityID" asp-items="Model.Activities">
-        <option value="">Choose an activity to attend</option>
-    </select>
-    <br /><br />
-    <button type="submit" class="btn btn-success">Confirm</button>
-    <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
-    <br /><br />
-    <p class="text-danger">@Model.Message</p>
-</form>
+    <h2 class="font centertxt">Admin user manual sign up:</h2>
+    <br />
+    <hr />
+    <br />
+    <div class="newlogbox">
+        <form asp-action="Index" method="post">
+            <select asp-for="UserID" class="newlogfield" asp-items="Model.Users">
+                <option value="">Choose a user</option>
+            </select>
+            <br />
+            <select id="SelectedActivity" class="newlogfield" asp-for="ActivityID" asp-items="Model.Activities">
+                <option value="">Choose an activity to attend</option>
+            </select>
+            <br /><br />
+            <button type="submit" class="btn rndbtn btn-light">Confirm</button>
+            <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+            <br /><br />
+            <p class="text-danger">@Model.Message</p>
+        </form>
+    </div>
+</div>

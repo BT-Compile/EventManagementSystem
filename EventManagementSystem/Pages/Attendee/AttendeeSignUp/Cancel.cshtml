@@ -6,14 +6,14 @@
 
 <form asp-page="Cancel">
     <div class="text-center">
-        <h1>
-            Are you sure you want to cancel your attendance for this activity?<br />
-            <br />
-            Name = @Model.UserToCancel.FirstName @Model.UserToCancel.LastName
-            <br />
-            Event = @Model.EventToCancel.EventName
-        </h1>
-        <button class="btn btn-success" type="submit">I am sure</button>
-        <a asp-page="../Index" class="btn btn-secondary">Cancel</a>
+        <br />
+        <h2 class="font"> Are you sure you want to cancel your attendance for this activity?</h2>
+        <br />
+        <hr />
+        <br />
+        <h3 class="font">@Model.EventToCancel.EventName</h3>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
     </div>
 </form>

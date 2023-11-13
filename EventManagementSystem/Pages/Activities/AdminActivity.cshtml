@@ -6,6 +6,7 @@
 <div class="wrapper">
     <br />
     <h2 class="font">All Activities</h2>
+    <br />
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -28,7 +29,7 @@
                 foreach (var activity in Model.Activities)
                 {
                     <tr class="table-secondary">
-                        <td>@activity.ActivityName</td>
+                        <td><b>@activity.ActivityName</b></td>
                         <td>@activity.ActivityDescription</td>
                         <td>@activity.Date</td>
                         <td>@activity.StartTime</td>
@@ -49,5 +50,6 @@
             }
         </tbody>
     </table>
+    <br />
     <a asp-page="NewActivity" class="btn rndbtn btn-dark">Create New Activity</a>
 </div>

@@ -4,20 +4,33 @@
     ViewData["Title"] = "Edit Room";
 }
 
-<form asp-page="EditRoom">
-    <input type="hidden" asp-for="@Model.RoomToUpdate.RoomID" />
-    <label asp-for="@Model.RoomToUpdate.RoomNumber"></label>
-    <input type="text" asp-for="@Model.RoomToUpdate.RoomNumber" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.RoomToUpdate.Capacity"></label>
-    <input type="text" asp-for="@Model.RoomToUpdate.Capacity" required />
+    <h2 class="font centertxt">Edit Room Data</h2>
     <br />
-    <label asp-for="@Model.RoomToUpdate.BuildingName"></label>
-    <select asp-for="@Model.RoomToUpdate.BuildingName" asp-items="Model.Buildings">
-        <option value=""></option>
-    </select>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="EditRoom" />
-    <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>
-    <p style="color: black">NOTE: The "BuildingName" field must be left blank if no Building change is desired. Otherwise, select a building from the dropdown.</p>
-</form>
+    <hr />
+    <br />
+    <p class="notetxt">NOTE: The "BuildingName" field must be left blank if no Building change is desired. Otherwise, select a building from the dropdown.</p>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="EditRoom">
+            <input type="hidden" asp-for="@Model.RoomToUpdate.RoomID" />
+            <label asp-for="@Model.RoomToUpdate.RoomNumber">- Room Number -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoomToUpdate.RoomNumber" required />
+            <br />
+            <label asp-for="@Model.RoomToUpdate.Capacity">- Capacity -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoomToUpdate.Capacity" required />
+            <br />
+            <label asp-for="@Model.RoomToUpdate.BuildingName">- Building -</label>
+            <br />
+            <select asp-for="@Model.RoomToUpdate.BuildingName" class="newlogfield" asp-items="Model.Buildings">
+                <option value=""></option>
+            </select>
+            <br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditRoom" />
+            <a asp-page="AdminRoom" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

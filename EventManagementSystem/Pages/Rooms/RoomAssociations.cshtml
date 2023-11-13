@@ -3,28 +3,34 @@
 @{
 }
 
-<h2>Room Assignments</h2>
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Building:</th>
-            <th>Room Number:</th>
-            <th>Activity Name:</th>
-            <th>Event Name:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var association in Model.roomAssociations)
-            {
-                <tr>
-                    <td>@association.RoomNumber</td>
-                    <td>@association.ActivityName</td>
-                    <td>@association.EventName</td>
-                </tr>
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Room Assignments</h2>
+    <br />
+    <hr />  
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Building:</th>
+                <th>Room Number:</th>
+                <th>Activity Name:</th>
+                <th>Event Name:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var association in Model.roomAssociations)
+                {
+                    <tr>
+                        <td>@association.RoomNumber</td>
+                        <td>@association.ActivityName</td>
+                        <td>@association.EventName</td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<a asp-page="AdminRoom" class="btn btn-secondary">Back</a>
+    <a asp-page="AdminRoom" class="btn rndbtn btn-light">Back</a>
+</div>

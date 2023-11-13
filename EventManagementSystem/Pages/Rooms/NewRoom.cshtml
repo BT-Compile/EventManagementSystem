@@ -4,26 +4,36 @@
     ViewData["Title"] = "New Room";
 }
 
-<form asp-page="NewActivity">
-    <input type="hidden" asp-for="@Model.RoomToCreate.RoomID" />
-    <label asp-for="@Model.RoomToCreate.RoomNumber"></label>
-    <input type="text" asp-for="@Model.RoomToCreate.RoomNumber" id="RoomNumber" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.RoomToCreate.Capacity"></label>
-    <input type="text" asp-for="@Model.RoomToCreate.Capacity" id="Capacity" required />
+    <h2 class="font centertxt">Enter New Room Data</h2>
     <br />
-    <label asp-for="@Model.RoomToCreate.BuildingName"></label>
-    <select asp-for="@Model.RoomToCreate.BuildingName" asp-items="Model.Buildings" required>
-        <option value=""></option>
-    </select>
+    <hr />
     <br />
-    <button type="button" onclick="populateForm()">Populate</button>
-    &emsp; <!-- Tab character to separate populate and clear buttons -->
-    <button type="button" onclick="clearForm()">Clear</button>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="NewRoom" />
-    <a asp-page="AdminRoom" class="btn btn-secondary">Cancel</a>
-</form>
+    <div class="newlogbox">
+        <form asp-page="NewActivity">
+            <input type="hidden" asp-for="@Model.RoomToCreate.RoomID" />
+            <label asp-for="@Model.RoomToCreate.RoomNumber">- Room Number -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoomToCreate.RoomNumber" id="RoomNumber" required />
+            <br />
+            <label asp-for="@Model.RoomToCreate.Capacity">- Capacity -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoomToCreate.Capacity" id="Capacity" required />
+            <br />
+            <label asp-for="@Model.RoomToCreate.BuildingName">- Building -</label>
+            <br />
+            <select asp-for="@Model.RoomToCreate.BuildingName" class="newlogfield" asp-items="Model.Buildings" required>
+                <option value=""></option>
+            </select>
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewRoom" />
+            <a asp-page="AdminRoom" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
 
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request

@@ -4,43 +4,60 @@
     ViewData["Title"] = "Edit Activity";
 }
 
-<form asp-page="EditActivity">
-    <input type="hidden" asp-for="@Model.ActivityToUpdate.ActivityID" />
-    <label asp-for="@Model.ActivityToUpdate.ActivityName"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.ActivityName" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.ActivityToUpdate.ActivityDescription"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.ActivityDescription" />
+    <h2 class="font centertxt">Edit Activity Data</h2>
     <br />
-    <label asp-for="@Model.ActivityToUpdate.Date"></label>
-    <input type="datetime-local" asp-for="@Model.ActivityToUpdate.Date" required />
+    <hr />
     <br />
-    <label asp-for="@Model.ActivityToUpdate.StartTime"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.StartTime" required />
+    <p class="notetxt">NOTE: The "EventName" field must be left blank if no Event Name change is desired. Otherwise, select an EventName from the dropdown.</p>
+    <p class="notetxt">NOTE: The "RoomNumber" field must be left blank if no Room Number change is desired. Otherwise, select a Room Number from the dropdown.</p>
     <br />
-    <label asp-for="@Model.ActivityToUpdate.EndTime"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.EndTime" required />
-    <br />
-    <label asp-for="@Model.ActivityToUpdate.Type"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.Type" required />
-    <br />
-    <label asp-for="@Model.ActivityToUpdate.EventName"></label>
-    <select asp-for="@Model.ActivityToUpdate.EventName" asp-items="Model.Events">
-        <option value=""></option>
-    </select>
-    <br />
-    <label asp-for="@Model.ActivityToUpdate.RoomNumber"></label>
-    <select asp-for="@Model.ActivityToUpdate.RoomNumber" asp-items="Model.Rooms">
-        <option value=""></option>
-    </select>
-    <br />
-    <label asp-for="@Model.ActivityToUpdate.Status"></label>
-    <input type="text" asp-for="@Model.ActivityToUpdate.Status" required />
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="EditActivity" />
-    <a asp-page="AdminActivity" class="btn btn-secondary">Cancel</a>
-    <p style="color: black">
-        NOTE: The "EventName" field must be left blank if no Event Name change is desired. Otherwise, select an EventName from the dropdown.
-        NOTE: The "RoomNumber" field must be left blank if no Room Number change is desired. Otherwise, select a Room Number from the dropdown.
-    </p>
-</form>
+    <div class="newlogbox">
+        <form asp-page="EditActivity">
+            <input type="hidden" asp-for="@Model.ActivityToUpdate.ActivityID" />
+            <label asp-for="@Model.ActivityToUpdate.ActivityName">- Activity Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.ActivityName" required />  
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.ActivityDescription">- Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.ActivityDescription" />
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.Date">- Date -</label>
+            <br />
+            <input type="datetime-local" class="newlogfield" asp-for="@Model.ActivityToUpdate.Date" required />
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.StartTime">- Start Time -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.StartTime" required />
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.EndTime">- End Time -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.EndTime" required />
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.Type">- Event Type -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.Type" required />
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.EventName">- Event Name -</label>
+            <br />
+            <select asp-for="@Model.ActivityToUpdate.EventName" class="newlogfield" asp-items="Model.Events">
+                <option value=""></option>
+            </select>
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.RoomNumber">- Room Number -</label>
+            <br />
+            <select asp-for="@Model.ActivityToUpdate.RoomNumber" class="newlogfield" asp-items="Model.Rooms">
+                <option value=""></option>
+            </select>
+            <br />
+            <label asp-for="@Model.ActivityToUpdate.Status">- Status -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.ActivityToUpdate.Status" required />
+            <br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditActivity" />
+            <a asp-page="AdminActivity" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -11,15 +11,19 @@ a:hover {
 body {
     margin-bottom: 60px;
     color: white;
+    background: linear-gradient(to bottom, #450084, #CBB677);
+    font-size: 14pt;
 }
 
 footer {
     text-align: center;
-    background-color: #CBB677;
+    background-color: transparent;
+    font-size: 12px;
 }
 
 input {
     border-radius: 25px;
+    text-align: center;
 }
 
 hr {
@@ -38,10 +42,6 @@ html {
 html {
     position: relative;
     min-height: 100%;
-}
-
-main {
-    background: linear-gradient(to bottom, #450084, #CBB677);
 }
 
 th {
@@ -65,7 +65,6 @@ thead {
     border-radius: 25px;
     font-family: 'Arvo', serif;
     font-size: 24pt;
-    padding: auto;
 }
 
 /*--------------------------Quick Classes--------------------------*/
@@ -107,7 +106,6 @@ thead {
 
 .wrapper {
     margin: 0 15% 0 15%;
-    height: 90vh;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -130,13 +128,9 @@ thead {
     background-color: red;
 }
 
-.tblbtn {
-    background: #450084;
-    color: white;
-    width: 100px;
-    padding: 5pt 10pt 5pt 10pt;
-    border-radius: 25pt;
-    font-family: 'Arvo', serif;
+.box {
+    width: 30%;
+    margin: auto;
 }
 
 .carimg {
@@ -219,13 +213,16 @@ thead {
 .ITguy {
     float: right;
     height: auto;
-    width: 300px;
+    width: 350px;
     margin: 25vh 5vh 0 0;
 }
 
 .logbox {
     width: 30%;
-    margin: auto;
+    margin: 20vh auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 25pt;
 }
 
 .rndbtn {
@@ -243,11 +240,6 @@ thead {
     font-size: 12pt;
 }
 
-.logtxt {
-    margin-top: 15vh;
-    text-align: center;
-}
-
 .navbar {
     height: 10vh;
     background: white;
@@ -255,7 +247,8 @@ thead {
 
 .nav-item {
     text-decoration: none;
-    font-size: 12pt;
+    font-size: 14pt;
+    margin: 0 1vh 0 1vh;
 }
 
 .nav-item :hover {
@@ -271,6 +264,7 @@ thead {
 }
 
 .newlogbox {
+    text-align: center;
     display: flex;
     margin: auto;
     width: 50%;
@@ -291,7 +285,12 @@ thead {
     display: block;
     margin-top: 1vh;
     padding: .5vh;
-    width: 350px;
+    width: 500px;
+}
+
+.notetxt {
+    text-align: center;
+    font-size: 16px;
 }
 
 .table-secondary {

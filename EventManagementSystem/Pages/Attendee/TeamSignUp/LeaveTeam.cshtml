@@ -5,15 +5,15 @@
 
 <form asp-page="LeaveTeam">
     <div class="text-center">
-        <h1>
-            Are you sure you want to leave this team?<br />
-            <br />
-            Name = @Model.UserToLeave.FirstName @Model.UserToLeave.LastName
-            <br />
-            Team = @Model.TeamToLeave.Name
-        </h1>
-        <button class="btn btn-success" type="submit">I am sure</button>
-        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        <br />
+        <h2 class="font">Are you sure you want to leave this team?</h2>
+        <br />
+        <hr />
+        <br />
+        <h2 class="font">@Model.TeamToLeave.Name</h2>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
     </div>
 </form>
 

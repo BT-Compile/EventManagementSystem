@@ -3,34 +3,38 @@
 @{
 }
 
-<h4>Leave current team?</h4>
-<a asp-page="LeaveTeam" class="btn btn-outline-danger" >Leave</a>
-
-<h3>Available Teams</h3>
-
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Team Name:</th>
-            <th>Team Description:</th>
-            <th>Sign Up:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var team in Model.Teams)
-            {
-                <tr>
-                    <td>@team.Name</td>
-                    <td>@team.Description</td>
-                    <td>
-                        <a asp-page="Confirmation" class="btn btn-outline-success" asp-route-teamid="@team.TeamID">Join</a>
-                    </td>
-                </tr>
+<div class="wrapper">
+    <br />
+    <h2 class="font">Available Teams</h2>
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Team Name:</th>
+                <th>Team Description:</th>
+                <th>Sign Up:</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            @{
+                foreach (var team in Model.Teams)
+                {
+                    <tr>
+                        <td><b>@team.Name</b></td>
+                        <td>@team.Description</td>
+                        <td>
+                            <a asp-page="Confirmation" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Join</a>
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <br />
+    <h2 class="font">Leave current team?</h2>
+    <br />
+    <a asp-page="LeaveTeam" class="btn rndbtn btn-warning">Leave Team</a>
+</div>
 
 
 

@@ -4,45 +4,53 @@
     ViewData["Title"] = "New User";
 }
 
-<form asp-page="NewUser">
-    <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
-    <label asp-for="@Model.UserToCreate.FirstName"></label>
-    <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" required/>
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.UserToCreate.LastName"></label>
-    <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" required />
+    <h2 class="font centertxt">Enter New User Data</h2>
     <br />
-    <label asp-for="@Model.UserToCreate.Email"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" />
+    <hr />
     <br />
-    <label asp-for="@Model.UserToCreate.PhoneNumber"></label>
-    <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" />
-    <br />
-    <label asp-for="@Model.UserToCreate.Username"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.UserPassword"></label>
-    <input type="text" asp-for="@Model.UserToCreate.UserPassword" id="Password" required />
-    <br />
-    <label asp-for="@Model.UserToCreate.AllergyNote"></label>
-    <input type="text" asp-for="@Model.UserToCreate.AllergyNote" id="AllergyNote" />
-    <br />
-    <label asp-for="@Model.UserToCreate.Accessibility"></label>
-    <input type="text" asp-for="@Model.UserToCreate.Accessibility" id="Accessibility" />
-    <br />
-    <label asp-for="@Model.UserToCreate.RoleType"></label>
-    <select asp-for="@Model.UserToCreate.RoleType" asp-items="Model.Roles" required>
-        <option value=""></option>
-    </select>
-    <br />
-    <br />
-    <button type="button" onclick="populateForm()">Populate</button>
-    &emsp; <!-- Tab character to separate populate and clear buttons -->
-    <button type="button" onclick="clearForm()">Clear</button>
-    <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="NewUser" />
-    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
-</form>
+    <div class="newlogbox">
+        <form asp-page="NewUser">
+            <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
+            <label asp-for="@Model.UserToCreate.FirstName">- First Name -</label>
+            <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.LastName">- Last Name -</label>
+            <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.Username">- Username -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.UserPassword">- Password -</label>
+            <input type="password" asp-for="@Model.UserToCreate.UserPassword" id="Password" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.UserToCreate.Email">- Email -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
+            <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.AllergyNote">- Relevant Allergies -</label>
+            <input type="text" asp-for="@Model.UserToCreate.AllergyNote" id="AllergyNote" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.Accessibility">- Accommodations -</label>
+            <input type="text" asp-for="@Model.UserToCreate.Accessibility" id="Accessibility" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.UserToCreate.RoleType">- Role -</label>
+            <br />
+            <select asp-for="@Model.UserToCreate.RoleType" asp-items="Model.Roles">
+                <option value=""></option>
+            </select>
+            <br />
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewUser" />
+            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
 
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request

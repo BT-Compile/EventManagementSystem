@@ -4,20 +4,17 @@
     ViewData["Title"] = "Log in";
 }
 
-<div class="wrapper">
+<div class="wrapper"> 
     <br />
-
-    <h2 class="logtxt font">Please Log In Below:</h2>
-
-    <br />
-
     <div class="logbox">
+        <h2 class="purpletxt logtxt font centertxt">Please Log In Below:</h2>
+        <br />
         <form asp-page="Index">
             <input asp-for="Username" placeholder="Username" class="form-control" required id="textfield"/>
             <br />
             <input asp-for="Password" placeholder="Password" class="form-control" type="password" required id="textfield" />
             <br />
-            <input type="submit" class="btn btn-light" id="widebutton" value="Login"/>
+            <input type="submit" class="btn btn-dark" id="widebutton" value="Login"/>
             <br />
         </form>
         <br />

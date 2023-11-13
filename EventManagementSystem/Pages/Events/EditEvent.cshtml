@@ -4,37 +4,57 @@
     ViewData["Title"] = "Edit Event";
 }
 
-<form asp-page="EditEvents">
-    <input type="hidden" asp-for="@Model.EventToUpdate.EventID" />
-    <label asp-for="@Model.EventToUpdate.EventName"></label>
-    <input type="text" asp-for="@Model.EventToUpdate.EventName" required />
+<div class="wrapper">
     <br />
-    <label asp-for="@Model.EventToUpdate.EventDescription"></label>
-    <input type="text" asp-for="@Model.EventToUpdate.EventDescription" />
+    <h2 class="font centertxt">Edit Event Data</h2>
     <br />
-    <label asp-for="@Model.EventToUpdate.StartDate"></label>
-    <input type="datetime-local" asp-for="@Model.EventToUpdate.StartDate" required />
+    <hr />
     <br />
-    <label asp-for="@Model.EventToUpdate.EndDate"></label>
-    <input type="datetime-local" asp-for="@Model.EventToUpdate.EndDate" required />
-    <br />
-    <label asp-for="@Model.EventToUpdate.RegistrationDeadline"></label>
-    <input type="datetime-local" asp-for="@Model.EventToUpdate.RegistrationDeadline" required />
-    <br />
-    <label asp-for="@Model.EventToUpdate.Capacity"></label>
-    <input type="text" asp-for="@Model.EventToUpdate.Capacity" required />
-    <br />
-    <label asp-for="@Model.EventToUpdate.BuildingName"></label>
-    <select asp-for="@Model.EventToUpdate.BuildingName" asp-items="Model.Buildings">
-        <option value=""></option>
-    </select>
-    <br />
-    <label asp-for="@Model.EventToUpdate.Status"></label>
-    <input type="text" asp-for="@Model.EventToUpdate.Status" required />
-    <br />
-    <input type="submit" class="btn btn-success" asp-page="EditEvent" />
-    <a asp-page="AdminEvent" class="btn btn-secondary">Cancel</a>
-    <p style="color: black">
+    <p class="notetxt">
         NOTE: The "BuildingName" field must be left blank if no building change is desired. Otherwise, select a building to host this event.
     </p>
-</form>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="EditEvents">
+            <input type="hidden" asp-for="@Model.EventToUpdate.EventID" />
+            <label asp-for="@Model.EventToUpdate.EventName">- Event -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventName" required />
+            <br />
+            <label asp-for="@Model.EventToUpdate.EventDescription">- Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventDescription" />
+            <br />
+            <label asp-for="@Model.EventToUpdate.StartDate">- Start Date -</label>
+            <br />
+            <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.StartDate" required />
+            <br />
+            <label asp-for="@Model.EventToUpdate.EndDate">- End Date -</label>
+            <br />
+            <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.EndDate" required />
+            <br />
+            <label asp-for="@Model.EventToUpdate.RegistrationDeadline">- Registration Deadline -</label>
+            <br />
+            <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.RegistrationDeadline" required />
+            <br />
+            <label asp-for="@Model.EventToUpdate.Capacity">- Capacity -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.Capacity" required />
+            <br />
+            <label asp-for="@Model.EventToUpdate.BuildingName">- Building Name -</label>
+            <br />
+            <select asp-for="@Model.EventToUpdate.BuildingName" asp-items="Model.Buildings">
+                <option value=""></option>
+            </select>
+            <br />
+            <br />
+            <label asp-for="@Model.EventToUpdate.Status">- Status -</label>
+            <br />
+            <input type="text" asp-for="@Model.EventToUpdate.Status" required />
+            <br />
+            <br />
+            <input type="submit" class="btn rndbtn btn-light" asp-page="EditEvent" />
+            <a asp-page="AdminEvent" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

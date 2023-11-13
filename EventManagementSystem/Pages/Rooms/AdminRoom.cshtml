@@ -6,6 +6,7 @@
 <div class="wrapper">
     <br />
     <h2 class="font">All Rooms</h2>
+    <br />
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -26,13 +27,14 @@
                             @room.Capacity
                         </td>
                         <td>
-                            <a asp-page="EditRoom" class="btn rndbtn btn-warning" asp-route-roomid="@room.RoomID">Edit</a>
+                            <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-roomid="@room.RoomID">Edit</a>
                         </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
-    <a asp-page="NewRoom" class="btn rndbtn btn-warning">Create New Room</a>
-    <a asp-page="RoomAssociations" class="btn rndbtn btn-warning">Show Room Assignments</a>
+    <br />
+    <a asp-page="NewRoom" class="btn rndbtn btn-light">Create New Room</a>
+    <a asp-page="RoomAssociations" class="btn rndbtn btn-light">Show Room Assignments</a>
 </div>

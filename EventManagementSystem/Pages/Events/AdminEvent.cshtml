@@ -26,7 +26,7 @@
                 foreach (var event1 in Model.Events)
                 {
                     <tr class="table-secondary">
-                        <td>@event1.EventName</td>
+                        <td><b>@event1.EventName</b></td>
                         <td>@event1.EventDescription</td>
                         <td>@event1.StartDate</td>
                         <td>@event1.EndDate</td>
@@ -35,7 +35,7 @@
                         <td>@event1.Status</td>
                         <td>@event1.BuildingName</td>
                         <td>
-                            <a asp-page="EditEvent" class="btn tblbtn btn-warning" asp-route-eventid="@event1.EventID">Edit</a>
+                            <a asp-page="EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
                         </td>
                     </tr>
                 }

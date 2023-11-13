@@ -5,14 +5,14 @@
 
 <form asp-page="Confirmation">
     <div class="text-center">
-        <h1>
-            Are you sure you want to join this team?<br />
-            <br />
-            Name = @Model.UserToJoin.FirstName @Model.UserToJoin.LastName
-            <br />
-            Team = @Model.TeamToJoin.Name
-        </h1>
-        <button class="btn btn-success" type="submit">I am sure</button>
-        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        <br />
+        <h2 class="font">Are you sure you want to join this team?</h2>
+        <br />
+        <hr />
+        <br />
+        <h2 class="font">@Model.TeamToJoin.Name</h2>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
     </div>
 </form>
