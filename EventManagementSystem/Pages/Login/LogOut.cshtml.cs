@@ -7,10 +7,10 @@ namespace EventManagementSystem.Pages.Login
     {
         public IActionResult OnGet()
         {
-            //if (HttpContext.Session.GetString("username") == null)
-            //{
-            //    return RedirectToPage("/Login/Index");
-            //}
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("/Login/Index");
+            }
 
             HttpContext.Session.Remove("username");
             HttpContext.Session.Remove("password");

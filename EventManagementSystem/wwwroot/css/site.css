@@ -65,6 +65,7 @@ thead {
     border-radius: 25px;
     font-family: 'Arvo', serif;
     font-size: 24pt;
+    padding: auto;
 }
 
 /*--------------------------Quick Classes--------------------------*/
