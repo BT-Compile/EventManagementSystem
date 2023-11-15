@@ -3,49 +3,11 @@
 @{
 }
 
-<div class="wrapper">
+<form asp-page="Index">
+    <label>Enter User Name:</label>
+    <input asp-for="User" class="form-control" placeholder="Enter Presenter Name" />
     <br />
-    <h2 class="font">All Users</h2>
-    <br />
-    <table class="table table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>First Name:</th>
-            <th>Last Name:</th>
-            <th>Email:</th>
-            <th>Phone Number:</th>
-            <th>Username:</th>
-            <th>Allergies:</th>
-            <th>Role:</th>
-            <th>Edit:</th>
-            <th>Deactivate Account:</th>
-        </tr>
-    </thead>
-    <tbody>
-            @{
-                foreach (var user in Model.Users)
-                {
-                    <tr class="table-secondary">
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>@user.Username</td>
-                        <td>@user.AllergyNote</td>
-                        <td>@user.RoleType</td>
-
-                        <td>
-                            <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
-                        </td>
-                    </tr>
-                }
-            }
-    </tbody>
-    </table>
-    <br />
-    <a asp-page="NewUser" class="btn rndbtn btn-light">Create New User</a>
-    <a asp-page="UserAssociations" class="btn rndbtn btn-light">Show User Registrations</a>
-</div>
+    <input type="submit" class="btn btn-primary" />
+    <button asp-page-handler="ReturnHandler" class="btn btn-primary" id="ReturnButton">Return</button>
+</form>
+<br />
