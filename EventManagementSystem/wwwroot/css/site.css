@@ -70,7 +70,7 @@ thead {
 /*--------------------------Quick Classes--------------------------*/
 
 .btnvert {
-    margin: 1vh auto;
+    margin: 2vh auto;
     font-family: 'Arvo', serif;
     font-size: 20pt;
     padding: 25px;
@@ -248,11 +248,11 @@ thead {
 .nav-item {
     text-decoration: none;
     font-size: 14pt;
-    margin: 0 1vh 0 1vh;
+    margin-right: 2%;
 }
 
 .nav-item :hover {
-    color: grey;
+    color: black;
 }
 
 .navbar-brand {

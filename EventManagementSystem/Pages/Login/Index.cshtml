@@ -18,13 +18,13 @@
             <br />
         </form>
         <br />
+        @{
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                <p class="text-danger">@ViewData["LoginMessage"]</p>
+            }
+        }
         <p class="purpletxt centertxt">Don't have an account? <a asp-page="NewUser">Register here</a></p>
     </div>
 </div>
 
-@{
-    if (HttpContext.Session.GetString("username") == null)
-    {
-        <p class="text-danger">@ViewData["LoginMessage"]</p>
-    }
-}
