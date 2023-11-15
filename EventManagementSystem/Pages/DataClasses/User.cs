@@ -19,9 +19,9 @@
         // - Steven
         public string? UserPassword { get; set; }
 
-        public string? AllergyNote { get; set; }
+        public string? AllergyID { get; set; }
 
-        public string? Accessibility {  get; set; }
+        public string? Accomodation {  get; set; }
 
         // Let's keep the IsActive boolean type so that an admin can
         // "activate" or "deactivate" specific users.
@@ -31,5 +31,7 @@
         public int RoleID { get; set; }
 
         public string? RoleType { get; set; }
+
+        public string? Category {  get; set; }
     }
 }

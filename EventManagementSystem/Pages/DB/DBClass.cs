@@ -193,14 +193,14 @@ namespace EventManagementSystem.Pages.DB
                 accessibility = "";
             }
 
-            string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, AllergyNote, Accessibility) VALUES (" +
+            string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, AllergyID, Accomodation) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
                 "@Email," +
                 "@PhoneNumber," +
                 "@Username," +
-                "@AllergyNote," +
-                "@Accessibility)";
+                "@AllergyID," +
+                "@Accomodation)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -213,8 +213,8 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@Email", email);
             cmdCreation.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
             cmdCreation.Parameters.AddWithValue("@Username", username);
-            cmdCreation.Parameters.AddWithValue("@AllergyNote", allergyNote);
-            cmdCreation.Parameters.AddWithValue("@Accessibility", accessibility);
+            cmdCreation.Parameters.AddWithValue("@AllergyID", allergyNote);
+            cmdCreation.Parameters.AddWithValue("@Accomodation", accessibility);
 
             cmdCreation.Connection.Open();
 

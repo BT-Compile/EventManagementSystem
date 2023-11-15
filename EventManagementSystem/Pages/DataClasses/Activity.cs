@@ -27,5 +27,7 @@
         public int? RoomID { get; set; }
 
         public int? EventID {  get; set; }
+
+        public int? ParentActivityID { get; set; }
     }
 }

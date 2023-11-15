@@ -53,7 +53,7 @@ namespace EventManagementSystem.Pages.Users
         public IActionResult OnPost()
         {
             DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
-                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.AllergyNote, UserToCreate.Accessibility, UserToCreate.IsActive);
+                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.AllergyID, UserToCreate.Accomodation, UserToCreate.IsActive);
             DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);

@@ -43,7 +43,7 @@ namespace EventManagementSystem.Pages.Users
                 UserToUpdate.Email = singleUser["Email"].ToString();
                 UserToUpdate.PhoneNumber = singleUser["PhoneNumber"].ToString();
                 UserToUpdate.Username = singleUser["Username"].ToString();
-                UserToUpdate.AllergyNote = singleUser["AllergyNote"].ToString();
+                UserToUpdate.AllergyID = singleUser["AllergyID"].ToString();
             }
             DBClass.DBConnection.Close();
 
@@ -69,7 +69,7 @@ namespace EventManagementSystem.Pages.Users
                 + "',Username='" + UserToUpdate.Username
                 + "',Email='" + UserToUpdate.Email
                 + "',PhoneNumber='" + UserToUpdate.PhoneNumber
-                + "',AllergyNote='" + UserToUpdate.AllergyNote
+                + "',AllergyID='" + UserToUpdate.AllergyID
                 + "' WHERE UserID=" + UserToUpdate.UserID;
 
             DBClass.GeneralQuery(userQuery);
