@@ -3,11 +3,19 @@
 @{
 }
 
-<form asp-page="Search">
-    <label>Enter User Name:</label>
-    <input asp-for="User" class="form-control" placeholder="Enter Presenter Name" />
+<div class="wrapper">
     <br />
-    <input type="submit" class="btn btn-primary" />
-    <button asp-page-handler="ReturnHandler" class="btn btn-primary" id="ReturnButton">Return</button>
-</form>
-<br />
+    <div class="newlogbox">
+    <form asp-page="Search">
+        <label class="font centertxt">Enter User Name:</label>
+        <br />
+        <br />
+        <input asp-for="User" class="newlogfield form-control" placeholder="Enter Presenter Name" />
+        <br />
+        <input type="submit" class="btn rndbtn btn-light" />
+        <br />
+        <br />
+        <button asp-page-handler="ReturnHandler" class="btn rndbtn btn-light" id="ReturnButton">Return</button>
+    </form>
+    </div>
+</div>

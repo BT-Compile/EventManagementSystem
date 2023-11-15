@@ -60,50 +60,5 @@ namespace EventManagementSystem.Pages.Users
                 return Page();
             }
         }
-
-
-        //public List<UserAssociations> userAssociations {  get; set; }
-
-        //public UserAssociationsModel()
-        //{
-        //    userAssociations = new List<UserAssociations>();
-        //}
-
-        //public IActionResult OnGet()
-        //{
-        //    if (HttpContext.Session.GetString("usertype") != "Admin" && HttpContext.Session.GetString("usertype") == "Attendee")
-        //    {
-        //        return RedirectToPage("/Attendee/Index");
-        //    }
-        //    else if (HttpContext.Session.GetString("usertype") == null)
-        //    {
-        //        return RedirectToPage("/Login/Index");
-        //    }
-
-        //    string sqlQuery = "SELECT " +
-        //        "\"User\".FirstName, \"User\".LastName, \"User\".IsAdmin, Activity.ActivityName, Event.EventName " +
-        //        "FROM \"User\" " +
-        //        "LEFT JOIN Attendance ON \"User\".UserID = Attendance.UserID " +
-        //        "LEFT JOIN Activity ON Attendance.ActivityID = Activity.ActivityID " +
-        //        "LEFT JOIN Event ON Activity.EventID = Event.EventID;";
-
-        //    SqlDataReader associationsReader = DBClass.GeneralReaderQuery(sqlQuery);
-
-        //    while (associationsReader.Read())
-        //    {
-        //        userAssociations.Add(new UserAssociations
-        //        {
-        //            FirstName = associationsReader["FirstName"].ToString(),
-        //            LastName = associationsReader["LastName"].ToString(),
-        //            IsAdmin = associationsReader["IsAdmin"].ToString(),
-        //            ActivityName = associationsReader["ActivityName"].ToString(),
-        //            EventName = associationsReader["EventName"].ToString()
-        //        });
-        //    }
-
-        //    associationsReader.Close();
-
-        //    return Page();
-        //}
     }
 }
