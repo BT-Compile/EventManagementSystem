@@ -97,8 +97,6 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                 DBClass.DBConnection.Close();
             }
 
-            //DBClass.DBConnection.Close();
-
             return RedirectToPage("../Index");
         }
     }

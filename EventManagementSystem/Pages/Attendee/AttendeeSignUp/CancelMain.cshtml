@@ -5,7 +5,7 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Select Events to Cancel Registration For:</h2>
+    <h2 class="font">Select Subevents to Cancel Registration For:</h2>
     <br />
     <table class="table table-responsive table-hover">
         <thead>
@@ -16,7 +16,7 @@
                 <th>End Date:</th>
                 <th>Registration Deadline:</th>
                 <th>Location:</th>
-                <th>Sign Up:</th>
+                <th>Cancel Registration:</th>
             </tr>
         </thead>
         <form method="post" class="table-secondary">
@@ -24,6 +24,9 @@
                 foreach (var record in Model.Events)
                 {
                 <tr>
+                    <td>
+                        <input type="hidden" name="EventID" value="@record.EventID" />
+                    </td>
                     <td><b>@record.EventName</b></td>
                     <td>@record.EventDescription</td>
                     <td>@record.StartDate</td>
@@ -31,15 +34,18 @@
                     <td>@record.RegistrationDeadline</td>
                     <td>@record.SpaceName</td>
                     <td>
-                        <button type"submit" class="btn rndbtn btn-light">Join</button>
+                        <input name="Checked" type="checkbox" value="@record.EventID" />
                     </td>
                 </tr>
                 }
             }
+        <input type="submit" value="Cancel Registration" class="btn rndbtn btn-warning" />
         </form>
     </table>
 
     <br />
 
     <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
+    <br />
+    <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@Model.ParentID">Cancel Registration</a>
 </div>

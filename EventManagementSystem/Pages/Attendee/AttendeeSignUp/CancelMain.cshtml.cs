@@ -8,7 +8,12 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 {
     public class CancelMainModel : PageModel
     {
+        public int ParentID { get; set; }
+
         public List<Event> Events { get; set; }
+
+        [BindProperty]
+        public List<int> Checked {  get; set; }
 
         public CancelMainModel()
         {
@@ -39,6 +44,20 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             }
 
             return Page();
+        }
+
+        public IActionResult OnPost(List<int> Checked)
+        {
+            foreach (int i in Checked)
+            {
+                string sqlQuery = "DELETE FROM EventRegister " +
+                "WHERE UserID = " + HttpContext.Session.GetString("userid") +
+                " AND EventID = " + i;
+                DBClass.GeneralQuery(sqlQuery);
+                DBClass.DBConnection.Close();
+            }
+
+            return RedirectToPage("../Index");
         }
     }
 }
