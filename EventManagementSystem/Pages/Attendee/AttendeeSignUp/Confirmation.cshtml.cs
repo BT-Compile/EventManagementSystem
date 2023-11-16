@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
+//Not Using this page for now, but will implement it later
+
 namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 {
     public class ConfirmationModel : PageModel

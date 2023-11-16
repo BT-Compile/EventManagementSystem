@@ -58,12 +58,18 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "DELETE FROM EventRegister " +
-                "WHERE UserID = " + HttpContext.Session.GetString("userid") +
-                " AND EventID = " + EventToCancel.EventID;
+            string sqlQuery = "DELETE FROM EventRegister WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventID IN (Select Event.EventID FROM  Event INNER JOIN " +
+                                "EventRegister ON Event.EventID = EventRegister.EventID WHERE ParentEventID = " + EventToCancel.EventID + ")";
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
 
+            
+            string ssqlQuery = "DELETE FROM EventRegister " +
+                "WHERE UserID = " + HttpContext.Session.GetString("userid") +
+                " AND EventID = " + EventToCancel.EventID;
+            DBClass.GeneralQuery(ssqlQuery);
+            DBClass.DBConnection.Close();
+            
             return RedirectToPage("../Index");
         }
     }
