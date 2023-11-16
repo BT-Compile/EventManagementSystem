@@ -28,7 +28,7 @@ namespace EventManagementSystem.Pages.Activities
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT Activity.*, [Event].EventName, Building.Name AS BuildingName, Room.RoomNumber " +
+            string sqlQuery = "SELECT Activity.*, [Event].EventName, Building.Name AS SpaceName, Room.RoomNumber " +
                 "FROM Activity " +
                 "INNER JOIN [Event] ON Activity.EventID = [Event].EventID " +
                 "INNER JOIN Building ON [Event].BuildingID = Building.BuildingID " +
@@ -51,7 +51,7 @@ namespace EventManagementSystem.Pages.Activities
                     Type = activityReader["Type"].ToString(),
                     Status = activityReader["Status"].ToString(),
                     EventName = activityReader["EventName"].ToString(),
-                    BuildingName = activityReader["BuildingName"].ToString(),
+                    BuildingName = activityReader["SpaceName"].ToString(),
                     RoomNumber = Int32.Parse(activityReader["RoomNumber"].ToString())
                 });
             }

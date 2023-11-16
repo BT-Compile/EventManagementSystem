@@ -6,13 +6,13 @@
 
         public string? EventDescription { get; set; }
 
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public string? BuildingName { get; set; }
+        public string? SpaceName { get; set; }
 
-        public int ActivityID { get; set; }
+        public int EventID { get; set; }
 
     }
 }

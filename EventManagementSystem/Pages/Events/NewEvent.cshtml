@@ -37,9 +37,9 @@
                 <br />
             <input type="text" class="newlogfield" id="Capacity" asp-for="@Model.EventToCreate.Capacity" required />
                 <br />
-            <label asp-for="@Model.EventToCreate.BuildingName">- Building Name -</label>
+            <label asp-for="@Model.EventToCreate.SpaceName">- Building Name -</label>
                 <br />
-            <select asp-for="@Model.EventToCreate.BuildingName" asp-items="Model.Buildings">
+            <select asp-for="@Model.EventToCreate.SpaceName" asp-items="Model.Buildings">
                     <option value=""></option>
             </select>
                 <br />

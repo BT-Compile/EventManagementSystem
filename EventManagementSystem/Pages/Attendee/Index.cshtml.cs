@@ -53,14 +53,13 @@ namespace EventManagementSystem.Pages.Attendee
             }
             teamNameReader.Close();
 
+            // This only displays the major EVENTS that contain subevents, the parent events only
             // query to select all events that this user has signed up for already
-            string sqlQuery = "SELECT [Event].EventID, [Event].EventName, [Event].EventDescription, [Event].StartDate, [Event].EndDate, [Event].RegistrationDeadline, Building.Name AS BuildingName " +
-                "FROM [User] " +
-                "INNER JOIN EventAttendance ON[User].UserID = EventAttendance.UserID " +
-                "INNER JOIN[Event] ON EventAttendance.EventID = [Event].EventID " +
-                "INNER JOIN Building ON[Event].BuildingID = Building.BuildingID " +
-                "WHERE [User].UserID = " + HttpContext.Session.GetString("userid") +
-                " ORDER BY [Event].StartDate DESC";
+            string sqlQuery =  "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name " +
+                                "FROM Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
+                                "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = Space.SpaceID " +
+                                "WHERE Event.ParentEventID IS NULL AND[User].UserID = " + HttpContext.Session.GetString("userid") +
+                                " ORDER BY [Event].StartDate DESC";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -73,8 +72,7 @@ namespace EventManagementSystem.Pages.Attendee
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
-                    RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
-                    BuildingName = scheduleReader["BuildingName"].ToString()
+                    SpaceName = scheduleReader["Name"].ToString()
                 });
             }
 

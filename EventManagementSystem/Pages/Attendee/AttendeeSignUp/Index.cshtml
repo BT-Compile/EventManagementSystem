@@ -15,7 +15,7 @@
                 <th>Start Date:</th>
                 <th>End Date:</th>
                 <th>Registration Deadline:</th>
-                <th>Building Name:</th>
+                <th>Location:</th>
                 <th>Sign Up:</th>
             </tr>
         </thead>
@@ -29,9 +29,9 @@
                         <td>@record.StartDate</td> 
                         <td>@record.EndDate</td>
                         <td>@record.RegistrationDeadline</td>
-                        <td>@record.BuildingName</td>
+                        <td>@record.SpaceName</td>
                         <td>
-                            <a asp-page="Confirmation" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">Join</a>
+                            <a asp-page="ActivitySignUp" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">Join</a>
                         </td>
                     </tr>
                 }

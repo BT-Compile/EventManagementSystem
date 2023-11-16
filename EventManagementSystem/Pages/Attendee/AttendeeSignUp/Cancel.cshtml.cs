@@ -58,7 +58,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "DELETE FROM EventAttendance " +
+            string sqlQuery = "DELETE FROM EventRegister " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
                 " AND EventID = " + EventToCancel.EventID;
             DBClass.GeneralQuery(sqlQuery);

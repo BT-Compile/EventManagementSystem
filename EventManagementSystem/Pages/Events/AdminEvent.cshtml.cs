@@ -27,7 +27,7 @@ namespace EventManagementSystem.Pages.Events
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT [Event].*, [Building].[Name] AS BuildingName " +
+            string sqlQuery = "SELECT [Event].*, [Building].[Name] AS SpaceName " +
                 "FROM [Event] " +
                 "INNER JOIN [Building] ON [Event].BuildingID = [Building].BuildingID";
             SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
@@ -44,7 +44,7 @@ namespace EventManagementSystem.Pages.Events
                     RegistrationDeadline = DateTime.Parse(eventReader["RegistrationDeadline"].ToString()),
                     Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
                     Status = eventReader["Status"].ToString(),
-                    BuildingName = eventReader["BuildingName"].ToString()
+                    SpaceName = eventReader["SpaceName"].ToString()
                 }) ;
             }
 

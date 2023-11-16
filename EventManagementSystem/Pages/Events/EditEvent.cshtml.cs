@@ -66,7 +66,7 @@ namespace EventManagementSystem.Pages.Events
         public IActionResult OnPost()
         {
             // Case that the admin inputted a new building for this event to be in
-            if (EventToUpdate.BuildingName != null)
+            if (EventToUpdate.SpaceName != null)
             {
                 string sqlQuery = "UPDATE Event SET EventName = @EventName, EventDescription = @EventDescription, " +
                 "StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
@@ -84,7 +84,7 @@ namespace EventManagementSystem.Pages.Events
                         cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToUpdate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
                         cmd.Parameters.AddWithValue("@Capacity", (int)EventToUpdate.Capacity);
                         cmd.Parameters.AddWithValue("@Status", EventToUpdate.Status);
-                        cmd.Parameters.AddWithValue("@BuildingID", EventToUpdate.BuildingName);
+                        cmd.Parameters.AddWithValue("@BuildingID", EventToUpdate.SpaceName);
                         cmd.Parameters.AddWithValue("@EventID", EventToUpdate.EventID);
 
                         cmd.ExecuteNonQuery();

@@ -65,7 +65,7 @@ namespace EventManagementSystem.Pages.Events
                     cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
                     cmd.Parameters.AddWithValue("@Status", EventToCreate.Status);
-                    cmd.Parameters.AddWithValue("@BuildingID", EventToCreate.BuildingName);
+                    cmd.Parameters.AddWithValue("@BuildingID", EventToCreate.SpaceName);
 
                     cmd.ExecuteNonQuery();
                 }
