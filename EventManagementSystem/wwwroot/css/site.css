@@ -32,7 +32,6 @@ hr {
     border-width: 3px;
     max-width: 70px;
     margin: auto;
-    margin-bottom: 20px;
     border-top: 1px;
 }
 
@@ -107,6 +106,7 @@ thead {
 
 .wrapper {
     margin: 0 15% 0 15%;
+    height: 100%;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -136,9 +136,8 @@ thead {
 
 .carimg {
     border-radius: 25px;
-    width: 500px;
-    height: auto; /* Add this line to maintain the aspect ratio of the images */
-    display: flex;
+    width: 40%;
+    height: auto; /* maintains the aspect ratio of the images */
     margin: 0 auto;
 }
 
@@ -220,8 +219,14 @@ thead {
 .ITguy {
     float: right;
     height: auto;
-    width: 200px;
-    margin: 8vh 20vh 0 0;
+    width: 250px;
+    margin: 5vh 10% 0 0;
+}
+
+.jmufoot {
+    width: 50px;
+    height: auto;
+    margin-top: .5%;
 }
 
 .logbox {
