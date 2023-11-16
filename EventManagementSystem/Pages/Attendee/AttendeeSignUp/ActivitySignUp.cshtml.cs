@@ -12,7 +12,12 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         public List<Event> Events { get; set; }
 
         [BindProperty]
+        public List<int> Checked { get; set; }
+
+        [BindProperty]
         public Event ParentEvent { get; set; }
+
+        public static int ParentEventStatic {  get; set; }
 
         public ActivitySignUpModel()
         {
@@ -66,21 +71,33 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             return Page();
         }
-        public IActionResult OnPost()
+        public IActionResult OnPost(List<int> Checked)
         {
-            foreach (Event e in Events)
+            string sqlQuery = "SELECT * FROM Event WHERE EventID = " + ParentEvent.EventID;
+            SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (singleActivity.Read())
             {
-                string sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
-                e.EventID + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
-                DBClass.GeneralQuery(sqlQuery);
+                ParentEvent.EventID = Int32.Parse(singleActivity["ParentEventID"].ToString());
             }
 
             DBClass.DBConnection.Close();
 
-            string ssqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
+            sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
                 ParentEvent.EventID + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
-            DBClass.GeneralQuery(ssqlQuery);
+            DBClass.GeneralQuery(sqlQuery);
 
+            DBClass.DBConnection.Close();
+
+            foreach (int i in Checked)
+            {
+                sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
+                i + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
+                DBClass.GeneralQuery(sqlQuery);
+                DBClass.DBConnection.Close();
+            }
+
+            //DBClass.DBConnection.Close();
 
             return RedirectToPage("../Index");
         }

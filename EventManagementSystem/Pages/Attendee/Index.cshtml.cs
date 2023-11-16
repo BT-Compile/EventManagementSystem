@@ -58,7 +58,7 @@ namespace EventManagementSystem.Pages.Attendee
             string sqlQuery =  "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name " +
                                 "FROM Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
                                 "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = Space.SpaceID " +
-                                "WHERE Event.ParentEventID IS NULL AND[User].UserID = " + HttpContext.Session.GetString("userid") +
+                                "WHERE Event.ParentEventID IS NULL AND [User].UserID = " + HttpContext.Session.GetString("userid") +
                                 " ORDER BY [Event].StartDate DESC";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);

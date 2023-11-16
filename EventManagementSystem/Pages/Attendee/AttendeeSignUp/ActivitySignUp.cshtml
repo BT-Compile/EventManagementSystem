@@ -24,6 +24,9 @@
                 foreach (var record in Model.Events)
                 {
                     <tr>
+                        <td>
+                            <input type="hidden" name="EventID" value="@record.EventID" />
+                        </td>
                         <td><b>@record.EventName</b></td>
                         <td>@record.EventDescription</td>
                         <td>@record.StartDate</td>
@@ -31,11 +34,12 @@
                         <td>@record.RegistrationDeadline</td>
                         <td>@record.SpaceName</td>
                         <td>
-                            <button type"submit" class="btn rndbtn btn-light">Join</button>
+                            <input name="Checked" type="checkbox" value="@record.EventID" />
                         </td>
                     </tr>
                 }
             }
+        <input type="submit" value="Register" class="btn rndbtn btn-light" />
         </form>
     </table>
 

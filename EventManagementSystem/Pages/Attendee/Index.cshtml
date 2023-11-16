@@ -26,7 +26,7 @@
                 <th>End Date:</th>
                 <th>Location:</th>
                 <th>View Schedule</th>
-                <th>Cancel Attendence:</th>
+                <th>Cancel Registration:</th>
             </tr>
         </thead>
         <tbody class="table-secondary">
@@ -40,7 +40,10 @@
                         <td>@record.EndDate</td>
                         <td>@record.SpaceName</td>
                         <td>
-                            <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Attendance</a>
+                            <a asp-page="AttendeeSignUp/ViewSchedule" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Schedule</a>
+                        </td>
+                        <td>
+                            <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
                         </td>
                     </tr>
                 }
