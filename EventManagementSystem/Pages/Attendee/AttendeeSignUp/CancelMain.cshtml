@@ -5,8 +5,38 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Select Subevents to Cancel Registration For:</h2>
+    <h2 class="font">Select Event or Subevents to Cancel Registration For:</h2>
     <br />
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Event Name:</th>
+                <th>Start Date:</th>
+                <th>End Date:</th>
+                <th>Location:</th>
+                <th>Cancel Registration:</th>
+            </tr>
+        </thead>
+        <form method="post" class="table-secondary">
+            @{
+                <tr>
+                    <td>
+                        <input type="hidden" name="EventID" value="@Model.ParentEvent.EventID" />
+                    </td>
+                    <td><b>@Model.ParentEvent.EventName</b></td>
+                    <td>@Model.ParentEvent.StartDate</td>
+                    <td>@Model.ParentEvent.EndDate</td>
+                    <td>@Model.ParentEvent.SpaceName</td>
+                    <td>
+                        <input name="Checked" type="checkbox" value="@Model.ParentEvent.EventID" />
+                    </td>
+                </tr>
+            }
+        <input type="submit" value="Cancel Registration" class="btn rndbtn btn-warning" />
+        </form>
+    </table>
+
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -47,5 +77,5 @@
 
     <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
     <br />
-    <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@Model.ParentID">Cancel Registration</a>
+    <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@Model.ParentEvent.EventID">Cancel Registration</a>
 </div>

@@ -1,0 +1,46 @@
+﻿@page
+@model EventManagementSystem.Pages.Attendee.ViewScheduleModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font">Subevents at @Model.ParentEvent.EventName:</h2>
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Event Name:</th>
+                <th>Start Date:</th>
+                <th>End Date:</th>
+                <th>Location:</th>
+                <th>View Details:</th>
+                <th>Cancel Registration:</th>
+            </tr>
+        </thead>
+        <form method="post" class="table-secondary">
+            @{
+                foreach (var record in Model.Events)
+                {
+                <tr>
+                    <td><b>@record.EventName</b></td>
+                    <td>@record.StartDate</td>
+                    <td>@record.EndDate</td>
+                    <td>@record.SpaceName</td>
+                    <td>
+                        <a asp-page="Attendee/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                    </td>
+                    <td>
+                        <a asp-page="AttendeeSignUp/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
+                    </td>
+                </tr>
+                }
+            }
+        <input type="submit" value="Register" class="btn rndbtn btn-light" />
+        </form>
+    </table>
+
+    <br />
+
+    <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
+</div>

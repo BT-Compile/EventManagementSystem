@@ -2,13 +2,15 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 {
     public class CancelMainModel : PageModel
     {
-        public int ParentID { get; set; }
+        [BindProperty]
+        public Event ParentEvent { get; set; }
 
         public List<Event> Events { get; set; }
 
@@ -18,6 +20,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         public CancelMainModel()
         {
             Events = new List<Event>();
+            ParentEvent = new Event();
         }
 
         public IActionResult OnGet(int eventID)
@@ -42,6 +45,21 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     SpaceName = scheduleReader["Name"].ToString()
                 });
             }
+
+            DBClass.DBConnection.Close();
+
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventID;
+            SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (singleEvent.Read())
+            {
+                ParentEvent.EventID = eventID;
+                ParentEvent.EventName = singleEvent["EventName"].ToString();
+                ParentEvent.StartDate = (DateTime)singleEvent["StartDate"];
+                ParentEvent.EndDate = (DateTime)singleEvent["EndDate"];
+            }
+
+            DBClass.DBConnection.Close();
 
             return Page();
         }

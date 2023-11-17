@@ -2,25 +2,20 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
+namespace EventManagementSystem.Pages.Attendee
 {
-    public class ActivitySignUpModel : PageModel
+    public class ViewScheduleModel : PageModel
     {
         public List<Event> Events { get; set; }
 
         [BindProperty]
-        public List<int> Checked { get; set; }
-
-        [BindProperty]
         public Event ParentEvent { get; set; }
 
-        public ActivitySignUpModel()
+        public ViewScheduleModel()
         {
             Events = new List<Event>();
-            ParentEvent = new Event();
         }
 
         public IActionResult OnGet(int eventID)
@@ -47,28 +42,16 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                 {
                     EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
                     EventName = scheduleReader["EventName"].ToString(),
-                    EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
-                    RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
                     SpaceName = scheduleReader["Name"].ToString()
                 });
             }
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventID;
-            SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (singleActivity.Read())
-            {
-                ParentEvent.EventID = eventID;
-                ParentEvent.EventName = singleActivity["EventName"].ToString();
-            }
-
-            DBClass.DBConnection.Close();
-
             return Page();
         }
+        /*
         public IActionResult OnPost(List<int> Checked)
         {
             string sqlQuery = "SELECT * FROM Event WHERE EventID = " + ParentEvent.EventID;
@@ -96,6 +79,6 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             }
 
             return RedirectToPage("../Index");
-        }
+        } */
     }
 }
