@@ -65,6 +65,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             return Page();
         }
 
+        //Post Request for search functionality for events to sign up for
         public IActionResult OnPost()
         {
             HasPosted = true;
@@ -82,7 +83,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "SELECT " + HttpContext.Session.GetString("userid") +
                                 "FROM EventRegister " +
                                 "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventRegister.EventID = Event.EventID) " +
-                                "AND ParentEventID IS NULL AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE'%" + keyword + "%')" +
+                                "AND ParentEventID IS NULL AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE'%" + keyword + "%') " +
                                 "ORDER BY Event.StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);

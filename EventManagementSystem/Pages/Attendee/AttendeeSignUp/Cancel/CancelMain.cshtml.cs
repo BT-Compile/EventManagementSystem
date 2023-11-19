@@ -65,7 +65,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
             DBClass.GeneralQuery(ssqlQuery);
             DBClass.DBConnection.Close();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("/Attendee/Index");
         }
     }
 }

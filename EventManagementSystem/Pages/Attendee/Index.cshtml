@@ -16,6 +16,11 @@
     <hr />
     <h2 class="font">Your scheduled events:</h2>
     <br />
+    <form method="post" asp-page="Index">
+        <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn btn-light">Search</button>
+    </form>
+    <br />
 
     <table class="table table-responsive table-hover">
         <thead>

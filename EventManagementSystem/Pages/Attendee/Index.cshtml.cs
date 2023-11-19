@@ -5,11 +5,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using System.Text.RegularExpressions;
 
 namespace EventManagementSystem.Pages.Attendee
 {
     public class IndexModel : PageModel
     {
+        [BindProperty]
+        public bool HasPosted { get; set; }
+
+        [BindProperty]
+        public string? InputString { get; set; }
+
+        public string[]? Keywords { get; set; }
+
         [BindProperty]
         public string FullName { get; set; }
 
@@ -21,6 +31,7 @@ namespace EventManagementSystem.Pages.Attendee
         public IndexModel()
         {
             Events = new List<Event>();
+            HasPosted = false;
         }
 
         public IActionResult OnGet()
@@ -74,6 +85,49 @@ namespace EventManagementSystem.Pages.Attendee
                     EndDate = (DateTime)scheduleReader["EndDate"],
                     SpaceName = scheduleReader["Name"].ToString()
                 });
+            }
+
+            return Page();
+        }
+
+        //Post request for search functionality
+        public IActionResult OnPost()
+        {
+            HasPosted = true;
+            Keywords = Regex.Split(InputString, @"\s+");
+            string keyword, sqlQuery;
+
+            for (int i = 0; i < Keywords.Length; i++)
+            {
+                keyword = Keywords[i];
+
+                // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
+                sqlQuery = "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name " +
+                           "FROM Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
+                           "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = Space.SpaceID " +
+                           "WHERE Event.ParentEventID IS NULL AND [User].UserID = " + HttpContext.Session.GetString("userid") + " AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE'%" + keyword + "%') " +
+                           "ORDER BY Event.StartDate DESC";
+
+                SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+                while (eventReader.Read())
+                {
+                    int eventID = Int32.Parse(eventReader["EventID"].ToString());
+
+                    // Check if an activity with the same ID already exists in the list
+                    if (!Events.Any(a => a.EventID == eventID))
+                    {
+                        Events.Add(new Event
+                        {
+                            EventID = eventID,
+                            EventName = eventReader["EventName"].ToString(),
+                            EventDescription = eventReader["EventDescription"].ToString(),
+                            StartDate = (DateTime)eventReader["StartDate"],
+                            EndDate = (DateTime)eventReader["EndDate"],
+                            SpaceName = eventReader["Name"].ToString()
+                        });
+                    }
+                }
             }
 
             return Page();
