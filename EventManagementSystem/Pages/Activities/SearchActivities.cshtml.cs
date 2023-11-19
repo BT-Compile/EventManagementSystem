@@ -47,7 +47,7 @@ namespace EventManagementSystem.Pages.Activities
                 keyword = Keywords[i];
                 
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
-                sqlQuery = "SELECT * FROM Activity WHERE ActivityDescription " +
+                sqlQuery = "SELECT * FROM [Event] WHERE EventDescription " +
                     "COLLATE Latin1_General_CI_AI LIKE '%" + keyword + "%'";
 
                 SqlDataReader activityReader = DBClass.GeneralReaderQuery(sqlQuery);
