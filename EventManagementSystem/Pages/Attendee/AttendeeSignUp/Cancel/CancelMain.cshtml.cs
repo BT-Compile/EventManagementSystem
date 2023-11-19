@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
+namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
 {
     public class CancelMainModel : PageModel
     {
@@ -15,7 +15,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         public List<Event> Events { get; set; }
 
         [BindProperty]
-        public List<int> Checked {  get; set; }
+        public List<int> Checked { get; set; }
 
         public CancelMainModel()
         {
@@ -37,7 +37,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             {
                 Events.Add(new Event
                 {
-                    EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
+                    EventID = int.Parse(scheduleReader["EventID"].ToString()),
                     EventName = scheduleReader["EventName"].ToString(),
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
