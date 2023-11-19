@@ -7,6 +7,11 @@
     <br />
     <h2 class="font">Available Subevents at @Model.ParentEvent.EventName:</h2>
     <br />
+    <form method="post" asp-page="ActivitySignUp" asp-page-handler="Search">
+        <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn btn-light">Search</button>
+    </form>
+    <br />
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -19,7 +24,7 @@
                 <th>Sign Up:</th>
             </tr>
         </thead>
-        <form method="post" class="table-secondary">
+        <form method="post" asp-page-handler="Register" class="table-secondary">
             @{
                 foreach (var record in Model.Events)
                 {

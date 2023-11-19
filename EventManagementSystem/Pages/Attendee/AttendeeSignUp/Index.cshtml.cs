@@ -19,6 +19,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         public string? InputString { get; set; }
 
         public string[]? Keywords { get; set; }
+
         public List<Event> Events { get; set; }
 
         public IndexModel()
