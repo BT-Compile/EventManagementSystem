@@ -10,53 +10,46 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
     public class CancelMainModel : PageModel
     {
         [BindProperty]
-        public Event ParentEvent { get; set; }
-
-        public List<Event> Events { get; set; }
+        public User UserToCancel { get; set; }
 
         [BindProperty]
-        public List<int> Checked { get; set; }
+        public Event EventToCancel { get; set; }
 
         public CancelMainModel()
         {
-            Events = new List<Event>();
-            ParentEvent = new Event();
+            UserToCancel = new User();
+            EventToCancel = new Event();
         }
 
-        public IActionResult OnGet(int eventID)
+        public IActionResult OnGet(int eventid)
         {
-            string sqlQuery = "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name " +
-                                "FROM Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
-                                "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = Space.SpaceID " +
-                                "WHERE Event.ParentEventID = " + eventID + " AND [User].UserID = " + HttpContext.Session.GetString("userid") +
-                                " ORDER BY [Event].StartDate DESC";
-
-            SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (scheduleReader.Read())
+            if (HttpContext.Session.GetString("username") == null)
             {
-                Events.Add(new Event
-                {
-                    EventID = int.Parse(scheduleReader["EventID"].ToString()),
-                    EventName = scheduleReader["EventName"].ToString(),
-                    EventDescription = scheduleReader["EventDescription"].ToString(),
-                    StartDate = (DateTime)scheduleReader["StartDate"],
-                    EndDate = (DateTime)scheduleReader["EndDate"],
-                    SpaceName = scheduleReader["Name"].ToString()
-                });
+                return RedirectToPage("/Login/Index");
+            }
+
+            string sqlQuery;
+
+            sqlQuery = "SELECT * FROM \"User\" " +
+                "WHERE Username = '" + HttpContext.Session.GetString("username") + "';";
+            SqlDataReader singleUser = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (singleUser.Read())
+            {
+                UserToCancel.UserID = Int32.Parse(singleUser["UserID"].ToString());
+                UserToCancel.FirstName = singleUser["FirstName"].ToString();
+                UserToCancel.LastName = singleUser["LastName"].ToString();
             }
 
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventID;
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
             SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (singleEvent.Read())
             {
-                ParentEvent.EventID = eventID;
-                ParentEvent.EventName = singleEvent["EventName"].ToString();
-                ParentEvent.StartDate = (DateTime)singleEvent["StartDate"];
-                ParentEvent.EndDate = (DateTime)singleEvent["EndDate"];
+                EventToCancel.EventID = eventid;
+                EventToCancel.EventName = singleEvent["EventName"].ToString();
             }
 
             DBClass.DBConnection.Close();
@@ -64,16 +57,13 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
             return Page();
         }
 
-        public IActionResult OnPost(List<int> Checked)
+        public IActionResult OnPost()
         {
-            foreach (int i in Checked)
-            {
-                string sqlQuery = "DELETE FROM EventRegister " +
+            string ssqlQuery = "DELETE FROM EventRegister " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
-                " AND EventID = " + i;
-                DBClass.GeneralQuery(sqlQuery);
-                DBClass.DBConnection.Close();
-            }
+                " AND EventID = " + EventToCancel.EventID;
+            DBClass.GeneralQuery(ssqlQuery);
+            DBClass.DBConnection.Close();
 
             return RedirectToPage("../Index");
         }
