@@ -63,34 +63,5 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             return Page();
         }
-        /*
-        public IActionResult OnPost(List<int> Checked)
-        {
-            string sqlQuery = "SELECT * FROM Event WHERE EventID = " + ParentEvent.EventID;
-            SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (singleActivity.Read())
-            {
-                ParentEvent.EventID = Int32.Parse(singleActivity["ParentEventID"].ToString());
-            }
-
-            DBClass.DBConnection.Close();
-
-            sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
-                ParentEvent.EventID + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
-            DBClass.GeneralQuery(sqlQuery);
-
-            DBClass.DBConnection.Close();
-
-            foreach (int i in Checked)
-            {
-                sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
-                i + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
-                DBClass.GeneralQuery(sqlQuery);
-                DBClass.DBConnection.Close();
-            }
-
-            return RedirectToPage("../Index");
-        } */
     }
 }

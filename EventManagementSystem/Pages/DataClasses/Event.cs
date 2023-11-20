@@ -19,5 +19,17 @@
         public string? Status { get; set; }
 
         public string? SpaceName { get; set; }
+
+        public string? EventType { get; set;}
+
+        public string? SpaceAddress { get; set;}
+
+        public string? AmenityName { get; set;}
+
+        public string? AmenityDescription { get; set;}
+
+        public string? AmenityType { get; set;}
+
+        public string? URL { get; set;}
     }
 }

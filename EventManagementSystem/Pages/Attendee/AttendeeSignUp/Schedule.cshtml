@@ -28,7 +28,7 @@
                     <td>@record.EndDate</td>
                     <td>@record.SpaceName</td>
                     <td>
-                        <a asp-page="Attendee/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                        <a asp-page="/Attendee/AttendeeSignUp/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
                     </td>
                     <td>
                         <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
