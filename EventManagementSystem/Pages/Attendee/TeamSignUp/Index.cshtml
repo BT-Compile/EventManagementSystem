@@ -31,9 +31,12 @@
         </tbody>
     </table>
     <br />
-    <h2 class="font">Leave current team?</h2>
-    <br />
-    <a asp-page="LeaveTeam" class="btn rndbtn btn-warning">Leave Team</a>
+    @if (Model.HasTeam)
+    {
+        <h2 class="font">Leave current team?</h2>
+        <br />
+        <a asp-page="LeaveTeam" class="btn rndbtn btn-warning">Leave Team</a>
+    }
 </div>
 
 
