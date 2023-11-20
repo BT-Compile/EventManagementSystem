@@ -20,7 +20,7 @@ namespace EventManagementSystem.Pages.Organizer
             Id = HttpContext.Session.GetString("userid");
 
             DBClass.SecurePendingEventCreation(EventToCreate.EventName, EventToCreate.EventDescription, EventToCreate.StartDate, EventToCreate.EndDate, EventToCreate.RegistrationDeadline,
-                                        EventToCreate.Capacity, EventToCreate.EventType, EventToCreate.Status, Id);
+                                        EventToCreate.Capacity, EventToCreate.EventType, Id);
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");

@@ -319,7 +319,7 @@ namespace EventManagementSystem.Pages.DB
         }
 
         public static void SecurePendingEventCreation(string eventName, string eventDescription, DateTime startDate,
-            DateTime endDate, DateTime registrationDeadline, int? capacity, string type, string status, string userid)
+            DateTime endDate, DateTime registrationDeadline, int? capacity, string type, string userid)
         {
             // set all null variables to an empty string
             if (eventName == null)
@@ -334,13 +334,9 @@ namespace EventManagementSystem.Pages.DB
             {
                 type = "";
             }
-            if (status == null)
-            {
-                status = "";
-            }
 
             string creationQuery = "INSERT INTO PendingEvent (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], UserID) VALUES " +
-                                   "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, @Status, @UserID)";
+                                   "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, NULL, @UserID)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -355,7 +351,6 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@RegistrationDeadline", registrationDeadline);
             cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
             cmdCreation.Parameters.AddWithValue("@Type", type);
-            cmdCreation.Parameters.AddWithValue("@Status", status);
             cmdCreation.Parameters.AddWithValue("@UserID", userid);
 
             cmdCreation.Connection.Open();
