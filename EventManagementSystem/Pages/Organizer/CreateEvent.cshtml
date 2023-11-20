@@ -6,4 +6,41 @@
 <h5>REMINDER: All newly created events must be approved by the system admin for further activity creation</h5>
 <br />
 
-
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Please Enter Your Information</h2>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="NewUser">
+            <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
+            <label asp-for="@Model.EventToCreate.EventName">- Event Name -</label>
+            <input type="text" asp-for="@Model.EventToCreate.EventName" id="EventName" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.EventToCreate.EventDescription">- Event Description -</label>
+            <input type="text" asp-for="@Model.EventToCreate.EventDescription" id="EventDescription" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.EventToCreate.StartDate">- Start Date -</label>
+            <input type="text" asp-for="@Model.EventToCreate.StartDate" id="StartDate" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.EventToCreate.EndDate">- End Date -</label>
+            <input type="text" asp-for="@Model.EventToCreate.EndDate" id="EndDate" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.EventToCreate.RegistrationDeadline">- Registration Deadline -</label>
+            <input type="text" asp-for="@Model.EventToCreate.RegistrationDeadline" id="RegistrationDeadline" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.EventToCreate.Capacity">- Capacity -</label>
+            <input type="text" asp-for="@Model.EventToCreate.Capacity" id="Capacity" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.EventToCreate.EventType">-  Event Type -</label>
+            <input type="text" asp-for="@Model.EventToCreate.EventType" id="EventType" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.EventToCreate.Status">- Status -</label>
+            <input type="text" asp-for="@Model.EventToCreate.Status" id="Status" class="newlogfield" />
+            <br /><br />
+            <button type="button" class="btn btn-light" onclick="populateForm()">Populate</button>
+            <button type="button" class="btn btn-light" onclick="clearForm()">Clear</button>
+            <input value="Create Event" type="submit" class="btn btn-light" id="textfield" asp-page="Organizer/Index" />
+            <a asp-page="../Index" class="btn btn-light" id="textfield">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -14,7 +14,7 @@
 
         public DateTime RegistrationDeadline { get; set; }
 
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
 
         public string? Status { get; set; }
 
@@ -31,5 +31,7 @@
         public string? AmenityType { get; set;}
 
         public string? URL { get; set;}
+
+        public int? ParentEventID { get; set; }
     }
 }

@@ -318,5 +318,48 @@ namespace EventManagementSystem.Pages.DB
             cmdProductRead.ExecuteNonQuery();
         }
 
+        public static void SecurePendingEventCreation(string eventName, string eventDescription, DateTime startDate,
+            DateTime endDate, DateTime registrationDeadline, int? capacity, string type, string status, string userid)
+        {
+            // set all null variables to an empty string
+            if (eventName == null)
+            {
+                eventName = "";
+            }
+            if (eventDescription == null)
+            {
+                eventDescription = "";
+            }
+            if (type == null)
+            {
+                type = "";
+            }
+            if (status == null)
+            {
+                status = "";
+            }
+
+            string creationQuery = "INSERT INTO PendingEvent (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], UserID) VALUES " +
+                                   "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, @Status, @UserID)";
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@EventName", eventName);
+            cmdCreation.Parameters.AddWithValue("@EventDescription", eventDescription);
+            cmdCreation.Parameters.AddWithValue("@StartDate", startDate);
+            cmdCreation.Parameters.AddWithValue("@EndDate", endDate);
+            cmdCreation.Parameters.AddWithValue("@RegistrationDeadline", registrationDeadline);
+            cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
+            cmdCreation.Parameters.AddWithValue("@Type", type);
+            cmdCreation.Parameters.AddWithValue("@Status", status);
+            cmdCreation.Parameters.AddWithValue("@UserID", userid);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
     }
 }
