@@ -58,7 +58,18 @@ namespace EventManagementSystem.Pages.Attendee.TeamSignUp
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO UserTeam (UserID, TeamID, JoinDate) VALUES " +
+            // query to check and see if the logged in user is already on a team
+            string sqlQuery = "SELECT * FROM UserTeam WHERE UserID = " + HttpContext.Session.GetString("userid");
+            SqlDataReader userTeamReader = DBClass.GeneralReaderQuery(sqlQuery);
+            if (userTeamReader.Read())
+            {
+                sqlQuery = "DELETE FROM UserTeam WHERE UserID = " + HttpContext.Session.GetString("userid");
+                DBClass.GeneralQuery(sqlQuery);
+            }
+            DBClass.DBConnection.Close();
+
+            // query to add the user to the selected team
+            sqlQuery = "INSERT INTO UserTeam (UserID, TeamID, JoinDate) VALUES " +
                 "(" + HttpContext.Session.GetString("userid") + ", " + TeamToJoin.TeamID + ", GETDATE())";
             DBClass.GeneralQuery(sqlQuery);
             

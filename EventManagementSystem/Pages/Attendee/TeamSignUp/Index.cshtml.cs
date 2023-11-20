@@ -10,9 +10,13 @@ namespace EventManagementSystem.Pages.Attendee
     {
         public List<Team> Teams { get; set; }
 
+        [BindProperty]
+        public bool HasTeam { get; set; }
+
         public TeamSignUpModel()
         {
             Teams = new List<Team>();
+            HasTeam = false;
         }
 
         public IActionResult OnGet()
@@ -40,6 +44,16 @@ namespace EventManagementSystem.Pages.Attendee
                     Name = teamNamesReader["Name"].ToString(),
                     Description = teamNamesReader["Description"].ToString()
                 });
+            }
+
+            // Retrieve the TeamID that the user is currently on (if any) and binds it to a true value,
+            // signifying that the user logged in already is on a team.
+            // This is used as a failsafe against leaving a team without already being on one
+            string teamNameQuery = "SELECT TeamID FROM UserTeam WHERE UserID = " + HttpContext.Session.GetString("userid");
+            SqlDataReader teamNameReader = DBClass.GeneralReaderQuery(teamNameQuery);
+            if (teamNameReader.Read())
+            {
+                HasTeam = true;
             }
 
             return Page();
