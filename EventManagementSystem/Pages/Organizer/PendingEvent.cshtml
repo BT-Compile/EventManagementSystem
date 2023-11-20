@@ -3,6 +3,7 @@
 @{
 }
 
+<div class="wrapper">
 <h2 class="font">Your Events Awaiting Approval:</h2>
 <br />
 <form method="post" asp-page="Organizer/PendingEvent">
@@ -19,7 +20,6 @@
             <th>Start Date:</th>
             <th>End Date:</th>
             <th>Registration Deadline:</th>
-            <th>Max Capacity:</th>
             <th>Event Type:</th>
         </tr>
     </thead>
@@ -33,10 +33,10 @@
                     <td>@record.StartDate</td>
                     <td>@record.EndDate</td>
                     <td>@record.RegistrationDeadline</td>
-                    <td>@record.Capacity</td>
                     <td>@record.EventType</td>
                 </tr>
             }
         }
     </tbody>
 </table>
+</div>
