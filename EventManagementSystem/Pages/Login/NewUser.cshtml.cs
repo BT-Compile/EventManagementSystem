@@ -28,16 +28,13 @@ namespace EventManagementSystem.Pages.Login
         public IActionResult OnPost()
         {
             DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
-                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.AllergyID, UserToCreate.Accomodation, UserToCreate.IsActive);
-
+                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
             DBClass.DBConnection.Close();
 
             DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
-
             DBClass.DBConnection.Close();
 
             DBClass.NewUserParticipantAssign(UserToCreate.Username);
-
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");

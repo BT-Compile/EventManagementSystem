@@ -12,7 +12,18 @@ namespace EventManagementSystem.Pages.Organizer
 
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("username") == null)
+            if (HttpContext.Session.GetString("RoleType") != "Organizer" &&
+                (HttpContext.Session.GetString("RoleType") == "Presenter"
+                || HttpContext.Session.GetString("RoleType") == "Judge"
+                || HttpContext.Session.GetString("RoleType") == "Participant"))
+            {
+                return RedirectToPage("/Attendee/Index");
+            }
+            else if (HttpContext.Session.GetString("RoleType") == "Admin")
+            {
+                return RedirectToPage("/Admin/Index");
+            }
+            else if (HttpContext.Session.GetString("RoleType") == null)
             {
                 return RedirectToPage("/Login/Index");
             }

@@ -173,7 +173,7 @@ namespace EventManagementSystem.Pages.DB
 
         // Method to create a user, while also PREVENTING SQL INJECTION
         public static void SecureUserCreation(string firstName, string lastName, string email,
-            string phoneNumber, string username, string allergyNote, string accessibility, bool isActive)
+            string phoneNumber, string username, string accomodation, string allergyID)
         {
             // set all null variables to an empty string
             if (email == null)
@@ -184,23 +184,24 @@ namespace EventManagementSystem.Pages.DB
             {
                 phoneNumber = "";
             }
-            if (allergyNote == null)
+            if (accomodation == null)
             {
-                allergyNote = "";
+                accomodation = "";
             }
-            if (accessibility == null)
+            if (allergyID == null)
             {
-                accessibility = "";
+                allergyID = "1";
             }
 
-            string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, AllergyID, Accomodation) VALUES (" +
+            string creationQuery = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Username, Accomodation, IsActive, AllergyID) VALUES (" +
                 "@FirstName," +
                 "@LastName," +
                 "@Email," +
                 "@PhoneNumber," +
                 "@Username," +
-                "@AllergyID," +
-                "@Accomodation)";
+                "@Accomodation," +
+                "@IsActive," +
+                "@AllergyID)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
@@ -213,11 +214,11 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@Email", email);
             cmdCreation.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
             cmdCreation.Parameters.AddWithValue("@Username", username);
-            cmdCreation.Parameters.AddWithValue("@AllergyID", allergyNote);
-            cmdCreation.Parameters.AddWithValue("@Accomodation", accessibility);
+            cmdCreation.Parameters.AddWithValue("@Accomodation", accomodation);
+            cmdCreation.Parameters.AddWithValue("@IsActive", 1);
+            cmdCreation.Parameters.AddWithValue("@AllergyID", allergyID);
 
             cmdCreation.Connection.Open();
-
             cmdCreation.ExecuteNonQuery();
         }
 
@@ -236,7 +237,6 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@Username", username);
 
             cmdCreation.Connection.Open();
-
             cmdCreation.ExecuteNonQuery();
         }
 
@@ -255,7 +255,6 @@ namespace EventManagementSystem.Pages.DB
             cmdLogin.Parameters.AddWithValue("@HashedPassword", PasswordHash.HashPassword(Password));
 
             cmdLogin.Connection.Open();
-
             cmdLogin.ExecuteNonQuery();
         }
 
