@@ -16,6 +16,8 @@
 
         public int? Capacity { get; set; }
 
+        public int UserID { get; set; }
+
         public string? Status { get; set; }
 
         public string? SpaceID { get; set; }
@@ -33,7 +35,6 @@
         public string? URL { get; set;}
 
         public string? ParentEventName { get; set; }
-
 
         public int? ParentEventID { get; set; }
 

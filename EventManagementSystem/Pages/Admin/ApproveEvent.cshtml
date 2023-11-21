@@ -1,0 +1,19 @@
+﻿@page "{EventID}"
+@model EventManagementSystem.Pages.Admin.ApproveEventModel
+@{
+}
+
+<form asp-page="ApproveEvent">
+    <div class="text-center">
+        <br />
+        <h2 class="font"> Are you sure you want to approve the creation for this Event?</h2>
+        <h3 class="font"> (This will allow the organizer to create subevents independently)</h3>
+        <br />
+        <hr />
+        <br />
+        <h3 class="font">@Model.EventToApprove.EventName</h3>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+    </div>
+</form>

@@ -49,6 +49,7 @@ namespace EventManagementSystem.Pages.Admin
             {
                 Events.Add(new Event
                 {
+                    EventID = Int32.Parse(scheduleReader["PendingEventID"].ToString()),
                     EventName = scheduleReader["EventName"].ToString(),
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
@@ -100,31 +101,5 @@ namespace EventManagementSystem.Pages.Admin
             return Page();
 
         }
-
-        public IActionResult OnPostApprove(int eventID)
-        {
-            string sqlQuery = "INSERT INTO[Event](EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type]) " +
-                              "SELECT EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type] FROM PendingEvent " +
-                              "WHERE PendingEvent.EventID = " + eventID;
-
-            DBClass.GeneralQuery(sqlQuery);
-
-            DBClass.DBConnection.Close();
-
-            sqlQuery = "INSERT INTO [Event] ([Status], ParentEventID) " +
-                       "VALUES ('Active', NULL) WHERE PendningEvent.EventID = " + eventID;
-
-            DBClass.GeneralQuery(sqlQuery);
-
-            DBClass.DBConnection.Close();
-
-            return Page();
-        }
-
-        public IActionResult OnPostDecline() 
-        { 
-            return Page();
-        }
-
     }
 }

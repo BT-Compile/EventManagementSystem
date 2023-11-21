@@ -38,8 +38,8 @@
                         <td>@record.RegistrationDeadline</td>
                         <td>@record.EventType</td>
                         <td>
-                            <a asp-page="Admin/ApproveDeclineEvent" class="btn rndbtn btn-success" asp-page-handler="Approve">Approve</a>
-                            <a asp-page="Admin/ApproveDeclineEvent" class="btn rndbtn btn-warning" asp-page-handler="Decline">Decline</a>
+                            <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
+                            <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>
                         </td>
                     </tr>
                 }
