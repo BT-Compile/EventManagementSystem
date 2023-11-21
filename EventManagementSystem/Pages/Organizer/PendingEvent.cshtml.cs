@@ -38,9 +38,9 @@ namespace EventManagementSystem.Pages.Organizer
                 return RedirectToPage("/Login/Index");
             }
 
-            // This only displays the major EVENTS that contain subevents, the parent events only
-            // query to select all events that this user has signed up for already
-            string sqlQuery = "SELECT * FROM PendingEvent";
+            // Displays events created by the organizer that are pending approval
+            string sqlQuery = "SELECT * FROM [Event] INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = [Space].SpaceID INNER JOIN " +
+                              "[Location] ON [Space].LocationID = [Location].LocationID WHERE [Status] = 'Pending' AND OrganizerID = " + HttpContext.Session.GetString("userid");
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -54,7 +54,10 @@ namespace EventManagementSystem.Pages.Organizer
                     EndDate = (DateTime)scheduleReader["EndDate"],
                     RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
                     Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
-                    EventType = scheduleReader["Type"].ToString()
+                    EventType = scheduleReader["Type"].ToString(),
+                    UserID = Int32.Parse(scheduleReader["OrganizerID"].ToString()),
+                    SpaceName = scheduleReader["Name"].ToString(),
+                    SpaceAddress = scheduleReader["Address"].ToString()
                 });
             }
 
@@ -73,8 +76,8 @@ namespace EventManagementSystem.Pages.Organizer
                 keyword = Keywords[i];
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
-                sqlQuery = "SELECT * FROM PendingEvent " +
-                           "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
+                sqlQuery = "SELECT * FROM Event " +
+                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
                            "ORDER BY StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);

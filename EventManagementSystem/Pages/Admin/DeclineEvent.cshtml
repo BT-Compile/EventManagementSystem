@@ -1,0 +1,19 @@
+﻿@page "{EventID}"
+@model EventManagementSystem.Pages.Admin.DeclineEventModel
+@{
+}
+
+<form asp-page="DeclineEvent">
+    <div class="text-center">
+        <br />
+        <h2 class="font"> Are you sure you want to decline the creation of this Event?</h2>
+        <h4 class="font"> (This will set the status of this event to "Not Approved")</h4>
+        <br />
+        <hr />
+        <br />
+        <h3 class="font">@Model.EventToApprove.EventName</h3>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+    </div>
+</form>

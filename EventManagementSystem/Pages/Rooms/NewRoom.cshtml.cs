@@ -10,13 +10,13 @@ namespace EventManagementSystem.Pages.Rooms
     public class NewRoomModel : PageModel
     {
         [BindProperty]
-        public Room RoomToCreate { get; set; }
+        public Space SpaceToCreate { get; set; }
 
-        public List<SelectListItem> Buildings { get; set; }
+        public List<SelectListItem> ParentSpaces { get; set; }
 
         public NewRoomModel()
         {
-            RoomToCreate = new Room();
+            SpaceToCreate = new Space();
         }
 
         // No Room is needed to get in this method,
@@ -34,26 +34,40 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            // Populate the BuildingName select control
-            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
-            Buildings = new List<SelectListItem>();
-            while (BuildingsReader.Read())
+            // Populate the ParentSpaceName select control
+            SqlDataReader parentSpaceReader = DBClass.GeneralReaderQuery("SELECT * FROM Space");
+            ParentSpaces = new List<SelectListItem>();
+            while (parentSpaceReader.Read())
             {
-                Buildings.Add(new SelectListItem(
-                    BuildingsReader["Name"].ToString(),
-                    BuildingsReader["BuildingID"].ToString()));
+                ParentSpaces.Add(new SelectListItem(
+                    parentSpaceReader["Name"].ToString(),
+                    parentSpaceReader["SpaceID"].ToString()));
             }
             DBClass.DBConnection.Close();
 
             return Page();
         }
-
+        
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Room (RoomNumber, Capacity, BuildingID) VALUES (" +
-                "'" + RoomToCreate.RoomNumber + "', " +
-                "'" + RoomToCreate.Capacity + "', " +
-                "'" + RoomToCreate.BuildingName + "')";
+            string sqlQuery = "";
+            // Case where a new ParentSpaceName is picked
+            if (SpaceToCreate.ParentSpaceID != null)
+            {
+                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES (" +
+                "'" + SpaceToCreate.Name + "', " +
+                "'" + SpaceToCreate.Address + "', " +
+                "'" + SpaceToCreate.Capacity + "', " +
+                "'" + SpaceToCreate.ParentSpaceID + "', NULL)";
+            }
+            // Case where no new ParentSpaceName is picked
+            else
+            {
+                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES (" +
+                "'" + SpaceToCreate.Name + "', " +
+                "'" + SpaceToCreate.Address + "', " +
+                "'" + SpaceToCreate.Capacity + "', NULL, NULL)";
+            }
 
             DBClass.GeneralQuery(sqlQuery);
 

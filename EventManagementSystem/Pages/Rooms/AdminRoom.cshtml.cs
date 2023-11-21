@@ -8,11 +8,11 @@ namespace EventManagementSystem.Pages.Rooms
 {
     public class AdminRoomModel : PageModel
     {
-        public List<Room> Rooms { get; set; }
+        public List<Space> Spaces { get; set; }
 
         public AdminRoomModel()
         {
-            Rooms = new List<Room>();
+            Spaces = new List<Space>();
         }
         public IActionResult OnGet()
         {
@@ -27,21 +27,20 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT Room.RoomID, Building.Name, Room.RoomNumber, Room.Capacity " +
-                              "FROM  Building INNER JOIN Room ON Building.BuildingID " +
-                              "= Room.BuildingID ORDER BY Building.Name";
+            string sqlQuery = "SELECT S1.SpaceID, S1.Name, S1.Address, S1.Capacity, S1.LocationID, S2.Name AS ParentSpaceName " +
+                "FROM Space S1 " +
+                "LEFT JOIN Space S2 ON S1.ParentSpaceID = S2.SpaceID";
+            SqlDataReader spaceReader = DBClass.GeneralReaderQuery(sqlQuery);
 
-            SqlDataReader roomReader = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (roomReader.Read())
+            while (spaceReader.Read())
             {
-                //Removed room recommendation functionality for now but will reconfigure and add in sprint 2
-                Rooms.Add(new Room
+                Spaces.Add(new Space
                 {
-                    RoomID = Int32.Parse(roomReader["RoomID"].ToString()),
-                    BuildingName = roomReader["Name"].ToString(),
-                    RoomNumber = Int32.Parse(roomReader["RoomNumber"].ToString()),
-                    Capacity = Int32.Parse(roomReader["Capacity"].ToString())
+                    SpaceID = Int32.Parse(spaceReader["SpaceID"].ToString()),
+                    Name = spaceReader["Name"].ToString(),
+                    Address = spaceReader["Address"].ToString(),
+                    Capacity = Int32.Parse(spaceReader["Capacity"].ToString()),
+                    ParentSpaceName = spaceReader["ParentSpaceName"].ToString()
                 });
             }
 

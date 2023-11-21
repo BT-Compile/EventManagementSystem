@@ -1,31 +1,35 @@
-﻿@page "{RoomID}"
+﻿@page "{SpaceID}"
 @model EventManagementSystem.Pages.Rooms.EditRoomModel
 @{
-    ViewData["Title"] = "Edit Room";
+    ViewData["Title"] = "Edit Space";
 }
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Room Data</h2>
+    <h2 class="font centertxt">Edit Space Data</h2>
     <br />
     <hr />
     <br />
-    <p class="notetxt">NOTE: The "BuildingName" field must be left blank if no Building change is desired. Otherwise, select a building from the dropdown.</p>
+    <p class="notetxt">NOTE: The "Parent Space Name" field must be left blank if there exists no parent space. Otherwise, select a parent space from the dropdown.</p>
     <br />
     <div class="newlogbox">
         <form asp-page="EditRoom">
-            <input type="hidden" asp-for="@Model.RoomToUpdate.RoomID" />
-            <label asp-for="@Model.RoomToUpdate.RoomNumber">- Room Number -</label>
+            <input type="hidden" asp-for="@Model.SpaceToUpdate.SpaceID" />
+            <label asp-for="@Model.SpaceToUpdate.Name">- Space Name -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoomToUpdate.RoomNumber" required />
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Name" required />
             <br />
-            <label asp-for="@Model.RoomToUpdate.Capacity">- Capacity -</label>
+            <label asp-for="@Model.SpaceToUpdate.Address">- Address -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoomToUpdate.Capacity" required />
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Address" required />
             <br />
-            <label asp-for="@Model.RoomToUpdate.BuildingName">- Building -</label>
+            <label asp-for="@Model.SpaceToUpdate.Capacity">- Capacity -</label>
             <br />
-            <select asp-for="@Model.RoomToUpdate.BuildingName" class="newlogfield" asp-items="Model.Buildings">
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Capacity" required />
+            <br />
+            <label asp-for="@Model.SpaceToUpdate.ParentSpaceID">- Parent Space Name -</label>
+            <br />
+            <select asp-for="@Model.SpaceToUpdate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces">
                 <option value=""></option>
             </select>
             <br />

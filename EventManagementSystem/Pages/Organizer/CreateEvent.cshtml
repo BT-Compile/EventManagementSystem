@@ -33,6 +33,21 @@
             <br />
             <label asp-for="@Model.EventToCreate.EventType">-  Event Type -</label>
             <input type="text" asp-for="@Model.EventToCreate.EventType" id="EventType" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Name">- Location Name -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Name" id="SpaceName" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Address">- Location Address -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Address" id="SpaceAddress" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Capacity">- Location Capacity -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Capacity" id="SpaceCapacity" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.LocationToCreate.City">- City -</label>
+            <input type="text" asp-for="@Model.LocationToCreate.City" id="City" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.LocationToCreate.State">- State -</label>
+            <input type="text" asp-for="@Model.LocationToCreate.State" id="State" class="newlogfield" />
             <br /><br />
             <button type="button" class="btn btn-light" onclick="clearForm()">Clear</button>
             <input value="Create Event" type="submit" class="btn btn-light" id="textfield" asp-page="Organizer/Index" />

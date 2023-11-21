@@ -11,5 +11,9 @@
         public int? Capacity { get; set; }
 
         public int? ParentSpaceID { get; set; }
+
+        public int? LocationID { get; set; }
+
+        public string? ParentSpaceName { get; set; }
     }
 }
