@@ -69,11 +69,11 @@ namespace EventManagementSystem.Pages.Users
             return Page();
         }
 
-        public IActionResult OnPostSearch()
+        public IActionResult OnPostSearch(string keyword)
         {
             test = true;
             Keywords = Regex.Split(InputString, @"\s+");
-            string keyword, sqlQuery;
+            string sqlQuery;
 
             for (int i = 0; i < Keywords.Length; i++)
             {
@@ -81,8 +81,8 @@ namespace EventManagementSystem.Pages.Users
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Event Table 
                 sqlQuery = "SELECT * FROM [User] " +
-                           "WHERE UserID = " + HttpContext.Session.GetString("userid") +
-                           "ORDER BY UserID DESC";
+                           "WHERE (concat_ws(' ', [User].FirstName, [User].LastName) LIKE '%" + keyword + "%' " +
+                           "OR Username LIKE '%" + keyword + "%') ORDER BY UserID DESC";
 
                 SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 
