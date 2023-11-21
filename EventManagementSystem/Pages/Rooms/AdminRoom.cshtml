@@ -5,29 +5,29 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">All Rooms</h2>
+    <h2 class="font">All Spaces</h2>
     <br />
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
-                <th>Building:</th>
-                <th>Room Number:</th>
-                <th>Max Capacity:</th>
+                <th>Parent Space Name:</th>
+                <th>Name:</th>
+                <th>Address:</th>
+                <th>Capacity:</th>
                 <th>Edit:</th>
             </tr>
         </thead>
         <tbody>
             @{
-                foreach (var room in Model.Rooms)
+                foreach (var space in Model.Spaces)
                 {
                     <tr class="table-secondary">
-                        <td><b>@room.BuildingName</b></td>
-                        <td>@room.RoomNumber</td>
+                        <td><b>@space.ParentSpaceName</b></td>
+                        <td>@space.Name</td>
+                        <td>@space.Address</td>
+                        <td>@space.Capacity</td>
                         <td>
-                            @room.Capacity
-                        </td>
-                        <td>
-                            <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-roomid="@room.RoomID">Edit</a>
+                            <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-spaceid="@space.SpaceID">Edit</a>
                         </td>
                     </tr>
                 }

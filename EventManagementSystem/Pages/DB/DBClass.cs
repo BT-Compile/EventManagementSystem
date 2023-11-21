@@ -83,12 +83,12 @@ namespace EventManagementSystem.Pages.DB
             return tempReader;
         }
 
-        public static SqlDataReader SingleRoomReader(int RoomID)
+        public static SqlDataReader SingleSpaceReader(int SpaceID)
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM Room WHERE RoomID = " + RoomID;
+            cmdProductRead.CommandText = "SELECT * FROM Space WHERE SpaceID = " + SpaceID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 
