@@ -1,29 +1,33 @@
 ﻿@page
 @model EventManagementSystem.Pages.Rooms.NewRoomModel
 @{
-    ViewData["Title"] = "New Room";
+    ViewData["Title"] = "New Space";
 }
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Enter New Room Data</h2>
+    <h2 class="font centertxt">Enter New Space Data</h2>
     <br />
-    <hr />
+    <hr /> <!-- THIS DOES NOT HAVE FUNCTIONALITY FOR LOCATION -->
     <br />
     <div class="newlogbox">
-        <form asp-page="NewActivity">
-            <input type="hidden" asp-for="@Model.RoomToCreate.RoomID" />
-            <label asp-for="@Model.RoomToCreate.RoomNumber">- Room Number -</label>
+        <form asp-page="NewSpace">
+            <input type="hidden" asp-for="@Model.SpaceToCreate.SpaceID" />
+            <label asp-for="@Model.SpaceToCreate.Name">- Space Name -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoomToCreate.RoomNumber" id="RoomNumber" required />
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Name" id="RoomNumber" required />
             <br />
-            <label asp-for="@Model.RoomToCreate.Capacity">- Capacity -</label>
+            <label asp-for="@Model.SpaceToCreate.Address">- Address -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoomToCreate.Capacity" id="Capacity" required />
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Address" id="Address" required />
             <br />
-            <label asp-for="@Model.RoomToCreate.BuildingName">- Building -</label>
+            <label asp-for="@Model.SpaceToCreate.Capacity">- Capacity -</label>
             <br />
-            <select asp-for="@Model.RoomToCreate.BuildingName" class="newlogfield" asp-items="Model.Buildings" required>
+            <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Capacity" id="Capacity" required />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.ParentSpaceID">- Parent Space Name -</label>
+            <br />
+            <select asp-for="@Model.SpaceToCreate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces" >
                 <option value=""></option>
             </select>
             <br />

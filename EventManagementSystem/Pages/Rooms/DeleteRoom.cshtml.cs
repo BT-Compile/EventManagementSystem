@@ -29,7 +29,7 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            SqlDataReader singleRoom = DBClass.SingleRoomReader(roomid);
+            SqlDataReader singleRoom = DBClass.SingleSpaceReader(roomid);
 
             while (singleRoom.Read())
             {

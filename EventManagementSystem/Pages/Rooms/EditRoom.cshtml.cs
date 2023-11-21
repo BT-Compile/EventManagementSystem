@@ -11,16 +11,16 @@ namespace EventManagementSystem.Pages.Rooms
     public class EditRoomModel : PageModel
     {
         [BindProperty]
-        public Room RoomToUpdate { get; set; }
+        public Space SpaceToUpdate { get; set; }
 
-        public List<SelectListItem> Buildings { get; set; }
+        public List<SelectListItem> ParentSpaces { get; set; }
 
         public EditRoomModel()
         {
-            RoomToUpdate = new Room();
+            SpaceToUpdate = new Space();
         }
 
-        public IActionResult OnGet(int roomid)
+        public IActionResult OnGet(int spaceid)
         {
             if (HttpContext.Session.GetString("RoleType") != "Admin" &&
                 (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
@@ -33,24 +33,24 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            SqlDataReader singleRoom = DBClass.SingleRoomReader(roomid);
-            while (singleRoom.Read())
+            SqlDataReader singleSpace = DBClass.SingleSpaceReader(spaceid);
+            while (singleSpace.Read())
             {
-                RoomToUpdate.RoomID = roomid;
-                RoomToUpdate.RoomNumber = Int32.Parse(singleRoom["RoomNumber"].ToString());
-                RoomToUpdate.Capacity = Int32.Parse(singleRoom["Capacity"].ToString());
-                RoomToUpdate.BuildingID = Int32.Parse(singleRoom["BuildingID"].ToString());
+                SpaceToUpdate.SpaceID = spaceid;
+                SpaceToUpdate.Name = singleSpace["Name"].ToString();
+                SpaceToUpdate.Address = singleSpace["Address"].ToString();
+                SpaceToUpdate.Capacity = Int32.Parse(singleSpace["Capacity"].ToString());
             }
             DBClass.DBConnection.Close();
 
-            // Populate the BuildingName select control
-            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
-            Buildings = new List<SelectListItem>();
-            while (BuildingsReader.Read())
+            // Populate the ParentSpaceName select control
+            SqlDataReader parentSpaceReader = DBClass.GeneralReaderQuery("SELECT * FROM Space WHERE SpaceID <> " + spaceid);
+            ParentSpaces = new List<SelectListItem>();
+            while (parentSpaceReader.Read())
             {
-                Buildings.Add(new SelectListItem(
-                    BuildingsReader["Name"].ToString(),
-                    BuildingsReader["BuildingID"].ToString()));
+                ParentSpaces.Add(new SelectListItem(
+                    parentSpaceReader["Name"].ToString(),
+                    parentSpaceReader["SpaceID"].ToString()));
             }
             DBClass.DBConnection.Close();
 
@@ -61,20 +61,23 @@ namespace EventManagementSystem.Pages.Rooms
         {
             string sqlQuery;
 
-            // Case where a new BuildingName is picked
-            if (RoomToUpdate.BuildingName != null)
+            // Case where a new ParentSpaceName is picked
+            if (SpaceToUpdate.ParentSpaceID != null)
             {
-                sqlQuery = "UPDATE Room SET RoomNumber='" + RoomToUpdate.RoomNumber
-                + "', Capacity='" + RoomToUpdate.Capacity
-                + "', BuildingID='" + RoomToUpdate.BuildingName
-                + "' WHERE RoomID=" + RoomToUpdate.RoomID;
+                sqlQuery = "UPDATE Space SET Name ='" + SpaceToUpdate.Name
+                    + "', Address='" + SpaceToUpdate.Address
+                    + "', Capacity='" + SpaceToUpdate.Capacity
+                    + "', ParentSpaceID='" + SpaceToUpdate.ParentSpaceID
+                    + "' WHERE SpaceID=" + SpaceToUpdate.SpaceID;
             }
-            // Case where no new BuildingName is picked
+            // Case where no new ParentSpaceName is picked
             else
             {
-                sqlQuery = "UPDATE Room SET RoomNumber='" + RoomToUpdate.RoomNumber
-                + "', Capacity='" + RoomToUpdate.Capacity
-                + "' WHERE RoomID=" + RoomToUpdate.RoomID;
+                sqlQuery = "UPDATE Space SET Name='" + SpaceToUpdate.Name
+                    + "', Address='" + SpaceToUpdate.Address
+                    + "', Capacity='" + SpaceToUpdate.Capacity
+                    + "', ParentSpaceID=NULL"
+                    + " WHERE SpaceID=" + SpaceToUpdate.SpaceID;
             }
 
             DBClass.GeneralQuery(sqlQuery);
