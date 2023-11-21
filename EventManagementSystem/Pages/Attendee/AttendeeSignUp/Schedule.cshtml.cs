@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     EventName = scheduleReader["EventName"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
-                    SpaceName = scheduleReader["Name"].ToString()
+                    SpaceID = scheduleReader["Name"].ToString()
                 });
             }
             DBClass.DBConnection.Close();

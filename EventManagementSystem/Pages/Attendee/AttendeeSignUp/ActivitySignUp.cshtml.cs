@@ -64,7 +64,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
                     RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
-                    SpaceName = scheduleReader["Name"].ToString()
+                    SpaceID = scheduleReader["Name"].ToString()
                 });
             }
             DBClass.DBConnection.Close();
@@ -116,7 +116,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                         StartDate = (DateTime)scheduleReader["StartDate"],
                         EndDate = (DateTime)scheduleReader["EndDate"],
                         RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
-                        SpaceName = scheduleReader["Name"].ToString()
+                        SpaceID = scheduleReader["Name"].ToString()
                     });
                 }
                 DBClass.DBConnection.Close();

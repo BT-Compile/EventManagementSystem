@@ -27,9 +27,16 @@ namespace EventManagementSystem.Pages.Events
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT [Event].*, [Building].[Name] AS SpaceName " +
-                "FROM [Event] " +
-                "INNER JOIN [Building] ON [Event].BuildingID = [Building].BuildingID";
+            string sqlQuery = "SELECT E.EventID, E.EventName, E.EventDescription, E.StartDate, E.EndDate, E.RegistrationDeadline, E.Capacity, " +
+                "E.Type AS EventType, E.Status AS EventStatus," +
+                "CASE " +
+                "   WHEN E.ParentEventID IS NOT NULL THEN ParentEvent.EventName " +
+                "   ELSE NULL " +
+                "END AS ParentEventName, S.Name AS SpaceID " +
+                "FROM [Event] E " +
+                "INNER JOIN EventSpace ES ON E.EventID = ES.EventID " +
+                "INNER JOIN [Space] S ON ES.SpaceID = S.SpaceID " +
+                "LEFT JOIN [Event] ParentEvent ON E.ParentEventID = ParentEvent.EventID";
             SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (eventReader.Read())
@@ -43,9 +50,11 @@ namespace EventManagementSystem.Pages.Events
                     EndDate = DateTime.Parse(eventReader["EndDate"].ToString()),
                     RegistrationDeadline = DateTime.Parse(eventReader["RegistrationDeadline"].ToString()),
                     Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
-                    Status = eventReader["Status"].ToString(),
-                    SpaceName = eventReader["SpaceName"].ToString()
-                }) ;
+                    EventType = eventReader["EventType"].ToString(),
+                    Status = eventReader["EventStatus"].ToString(),
+                    ParentEventName = eventReader["ParentEventName"].ToString(),
+                    SpaceID = eventReader["SpaceID"].ToString()
+                });
             }
 
             DBClass.DBConnection.Close();
