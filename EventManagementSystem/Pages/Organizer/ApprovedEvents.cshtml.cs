@@ -77,7 +77,7 @@ namespace EventManagementSystem.Pages.Organizer
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
                 sqlQuery = "SELECT * FROM Event " +
-                           "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
+                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
                            "ORDER BY StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
