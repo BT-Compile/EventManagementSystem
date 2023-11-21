@@ -48,7 +48,7 @@
                                 </li>
                             }
 
-                            @if (Context.Session.GetString("RoleType") != "Admin")
+                            @if (Context.Session.GetString("RoleType") != "Admin" && Context.Session.GetString("RoleType") != null)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link purpletxt font" asp-page="/Users/Index">My Profile</a>
