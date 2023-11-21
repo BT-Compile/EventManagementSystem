@@ -38,9 +38,8 @@ namespace EventManagementSystem.Pages.Organizer
                 return RedirectToPage("/Login/Index");
             }
 
-            // This only displays the major EVENTS that contain subevents, the parent events only
-            // query to select all events that this user has signed up for already
-            string sqlQuery = "SELECT * FROM PendingEvent";
+            // Displays events created by the organizer that are pending approval
+            string sqlQuery = "SELECT * FROM PendingEvent WHERE UserID = " + HttpContext.Session.GetString("userid");
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
