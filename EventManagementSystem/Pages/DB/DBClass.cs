@@ -341,7 +341,7 @@ namespace EventManagementSystem.Pages.DB
             }
 
             string creationQuery = "INSERT INTO PendingEvent (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], UserID) VALUES " +
-                                   "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, NULL, @UserID)";
+                                   "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, 'Pending', @UserID)";
 
 
             SqlCommand cmdCreation = new SqlCommand();
