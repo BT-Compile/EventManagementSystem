@@ -83,7 +83,7 @@ namespace EventManagementSystem.Pages.Attendee
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
-                    SpaceName = scheduleReader["Name"].ToString()
+                    SpaceID = scheduleReader["Name"].ToString()
                 });
             }
 
@@ -124,7 +124,7 @@ namespace EventManagementSystem.Pages.Attendee
                             EventDescription = eventReader["EventDescription"].ToString(),
                             StartDate = (DateTime)eventReader["StartDate"],
                             EndDate = (DateTime)eventReader["EndDate"],
-                            SpaceName = eventReader["Name"].ToString()
+                            SpaceID = eventReader["Name"].ToString()
                         });
                     }
                 }

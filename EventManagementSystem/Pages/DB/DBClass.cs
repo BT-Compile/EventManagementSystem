@@ -59,7 +59,12 @@ namespace EventManagementSystem.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM Event WHERE EventID = " + EventID;
+            cmdProductRead.CommandText = "SELECT E.EventName, E.EventDescription, E.StartDate, E.EndDate, E.RegistrationDeadline, " +
+                "E.Capacity, E.Type AS EventType, E.Status, S.Name AS SpaceID " +
+                "FROM [Event] E " +
+                "INNER JOIN EventSpace ES ON E.EventID = ES.EventID " +
+                "INNER JOIN [Space] S ON ES.SpaceID = S.SpaceID " +
+                "WHERE E.EventID = " + EventID;
             cmdProductRead.Connection.Open();
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 

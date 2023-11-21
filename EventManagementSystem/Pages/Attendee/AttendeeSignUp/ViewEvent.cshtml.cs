@@ -44,7 +44,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
                     EventType = scheduleReader["Type"].ToString(),
                     Status = scheduleReader["Status"].ToString(),
-                    SpaceName = scheduleReader["Name"].ToString(),
+                    SpaceID = scheduleReader["Name"].ToString(),
                     SpaceAddress = scheduleReader["Address"].ToString(),
                     AmenityName = scheduleReader["AmenityName"].ToString(),
                     AmenityDescription = scheduleReader["Description"].ToString(),

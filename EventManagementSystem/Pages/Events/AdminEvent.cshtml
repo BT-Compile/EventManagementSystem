@@ -10,14 +10,16 @@
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
+                <th>Parent Event Name</th>
                 <th>Event Name:</th>
                 <th>Event Description:</th>
                 <th>Start Date:</th>
                 <th>End Date:</th>
                 <th>Registration Deadline:</th>
                 <th>Capacity:</th>
+                <th>Event Type:</th>
                 <th>Status:</th>
-                <th>Building Name:</th>
+                <th>Space Name:</th>
                 <th>Edit:</th>
             </tr>
         </thead>
@@ -26,14 +28,16 @@
                 foreach (var event1 in Model.Events)
                 {
                     <tr class="table-secondary">
+                        <td>@event1.ParentEventName</td>
                         <td><b>@event1.EventName</b></td>
                         <td>@event1.EventDescription</td>
                         <td>@event1.StartDate</td>
                         <td>@event1.EndDate</td>
                         <td>@event1.RegistrationDeadline</td>
                         <td>@event1.Capacity</td>
+                        <td>@event1.EventType</td>
                         <td>@event1.Status</td>
-                        <td>@event1.SpaceName</td>
+                        <td>@event1.SpaceID</td>
                         <td>
                             <a asp-page="EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
                         </td>
