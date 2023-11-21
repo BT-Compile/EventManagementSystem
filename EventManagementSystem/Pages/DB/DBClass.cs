@@ -340,7 +340,7 @@ namespace EventManagementSystem.Pages.DB
                 type = "";
             }
 
-            string creationQuery = "INSERT INTO PendingEvent (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], UserID) VALUES " +
+            string creationQuery = "INSERT INTO Event (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], OrganizerID) VALUES " +
                                    "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, 'Pending', @UserID)";
 
 
