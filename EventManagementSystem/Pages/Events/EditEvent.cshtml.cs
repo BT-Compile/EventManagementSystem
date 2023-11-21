@@ -52,7 +52,7 @@ namespace EventManagementSystem.Pages.Events
             }
             DBClass.DBConnection.Close();
 
-            // Populate the SpaceID select control
+            // Populate the Space Name select control
             SqlDataReader SpacesReader = DBClass.GeneralReaderQuery("SELECT * FROM Space");
             Spaces = new List<SelectListItem>();
             while (SpacesReader.Read())

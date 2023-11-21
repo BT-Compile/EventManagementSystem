@@ -13,7 +13,7 @@
     <div class="newlogbox">
             <form asp-page="NewEvent">
             <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
-            <label asp-for="@Model.EventToCreate.EventName">- Event -</label>
+            <label asp-for="@Model.EventToCreate.EventName">- Event Name -</label>
                 <br />
             <input type="text" class="newlogfield" id="EventName" asp-for="@Model.EventToCreate.EventName" required />
                 <br />
@@ -37,9 +37,13 @@
                 <br />
             <input type="text" class="newlogfield" id="Capacity" asp-for="@Model.EventToCreate.Capacity" required />
                 <br />
-            <label asp-for="@Model.EventToCreate.SpaceID">- Building Name -</label>
+            <label asp-for="@Model.EventToCreate.EventType">- Event Type -</label>
                 <br />
-            <select asp-for="@Model.EventToCreate.SpaceID" asp-items="Model.Buildings">
+            <input type="text" class="newlogfield" id="EventType" asp-for="@Model.EventToCreate.EventType" required />
+                <br />
+            <label asp-for="@Model.EventToCreate.SpaceID">- Space Name -</label>
+                <br />
+            <select asp-for="@Model.EventToCreate.SpaceID" asp-items="Model.Spaces">
                     <option value=""></option>
             </select>
                 <br />

@@ -12,7 +12,7 @@ namespace EventManagementSystem.Pages.Events
         [BindProperty]
         public Event EventToCreate { get; set; }
 
-        public List<SelectListItem> Buildings { get; set; }
+        public List<SelectListItem> Spaces { get; set; }
 
         public NewEventModel()
         {
@@ -34,14 +34,14 @@ namespace EventManagementSystem.Pages.Events
                 return RedirectToPage("/Login/Index");
             }
 
-            // Populate the BuildingName select control
-            SqlDataReader BuildingsReader = DBClass.GeneralReaderQuery("SELECT * FROM Building");
-            Buildings = new List<SelectListItem>();
-            while (BuildingsReader.Read())
+            // Populate the Space Name select control
+            SqlDataReader SpacesReader = DBClass.GeneralReaderQuery("SELECT * FROM Space");
+            Spaces = new List<SelectListItem>();
+            while (SpacesReader.Read())
             {
-                Buildings.Add(new SelectListItem(
-                    BuildingsReader["Name"].ToString(),
-                    BuildingsReader["BuildingID"].ToString()));
+                Spaces.Add(new SelectListItem(
+                    SpacesReader["Name"].ToString(),
+                    SpacesReader["SpaceID"].ToString()));
             }
             DBClass.DBConnection.Close();
 
@@ -50,8 +50,8 @@ namespace EventManagementSystem.Pages.Events
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Event (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, Status, BuildingID) " +
-                             "VALUES (@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Status, @BuildingID)";
+            string sqlQuery = "INSERT INTO [Event] (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], ParentEventID)" + 
+                              "VALUES(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @[Type], @[Status], @ParentEventID)";
 
             using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
             {
@@ -64,8 +64,9 @@ namespace EventManagementSystem.Pages.Events
                     cmd.Parameters.AddWithValue("@EndDate", EventToCreate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
-                    cmd.Parameters.AddWithValue("@Status", EventToCreate.Status);
-                    cmd.Parameters.AddWithValue("@BuildingID", EventToCreate.SpaceID);
+                    cmd.Parameters.AddWithValue("@[Type]", EventToCreate.EventType);
+                    cmd.Parameters.AddWithValue("@[Status]", EventToCreate.Status);
+                    cmd.Parameters.AddWithValue("@ParentEventID", EventToCreate.ParentEventID);
 
                     cmd.ExecuteNonQuery();
                 }

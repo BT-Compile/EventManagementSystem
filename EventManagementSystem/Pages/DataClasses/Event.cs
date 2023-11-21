@@ -16,13 +16,12 @@
 
         public int? Capacity { get; set; }
 
+        public string? EventType { get; set;}
         public int UserID { get; set; }
 
         public string? Status { get; set; }
 
         public string? SpaceID { get; set; }
-
-        public string? EventType { get; set;}
 
         public string? SpaceAddress { get; set;}
 

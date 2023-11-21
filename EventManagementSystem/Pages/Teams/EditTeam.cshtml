@@ -1,0 +1,31 @@
+﻿@page "{TeamID}"
+@model EventManagementSystem.Pages.Teams.EditTeamModel
+@{
+    ViewData["Title"] = "Edit Team";
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Edit Team Data</h2>
+    <br />
+    <br />
+    <div class="newlogbox">
+        <form asp-page="EditTeam">
+            <input type="hidden" asp-for="@Model.TeamToUpdate.TeamID" />
+            <label asp-for="@Model.TeamToUpdate.Name">- Team Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.TeamToUpdate.Name" required />
+            <br />
+            <label asp-for="@Model.TeamToUpdate.Description">- Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.TeamToUpdate.Description" required />
+            <br />
+            <label asp-for="@Model.TeamToUpdate.MaxSize">- Max Size -</label>
+            <input type="text" class="newlogfield" asp-for="@Model.TeamToUpdate.MaxSize" required />
+            <br />
+            <br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditTeams" />
+            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
