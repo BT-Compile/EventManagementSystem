@@ -4,11 +4,12 @@
 }
 
 <div class="wrapper">
+    <br />
     <h2 class="font">Events Pending Approval:</h2>
     <br />
     <form method="post" asp-page="Admin/ApproveDeclineEvent" asp-page-handler="Search">
         <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn btn-light">Search</button>
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
 
@@ -22,6 +23,8 @@
                 <th>End Date:</th>
                 <th>Registration Deadline:</th>
                 <th>Event Type:</th>
+                <th>Location:</th>
+                <th>Address:</th>
                 <th>Action:</th>
             </tr>
         </thead>
@@ -37,6 +40,8 @@
                         <td>@record.EndDate</td>
                         <td>@record.RegistrationDeadline</td>
                         <td>@record.EventType</td>
+                        <td>@record.SpaceName</td>
+                        <td>@record.SpaceAddress</td>
                         <td>
                             <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
                             <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>

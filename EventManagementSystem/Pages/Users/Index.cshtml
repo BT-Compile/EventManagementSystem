@@ -16,6 +16,7 @@
                 <th>Username:</th>
                 <th>Allergies:</th>
                 <th>Role:</th>
+                <th>View:</th>
                 <th>Edit:</th>
                 <th>Deactivate Account:</th>
             </tr>
@@ -31,7 +32,9 @@
                         <td>@user.Username</td>
                         <td>@user.Category</td>
                         <td>@user.RoleType</td>
-
+                        <td>
+                            <a asp-page="ViewUser" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">View</a>
+                        </td>
                         <td>
                             <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
                         </td>

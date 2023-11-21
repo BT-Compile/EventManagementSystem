@@ -1,5 +1,6 @@
 ﻿using EventManagementSystem.Pages.DataClasses;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
@@ -351,8 +352,12 @@ namespace EventManagementSystem.Pages.DB
             {
                 type = "";
             }
+            if (capacity == null)
+            {
+                capacity = 1;
+            }
 
-            string creationQuery = "INSERT INTO PendingEvent (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], UserID) VALUES " +
+            string creationQuery = "INSERT INTO Event (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], OrganizerID) VALUES " +
                                    "(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, 'Pending', @UserID)";
 
 
@@ -369,6 +374,68 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
             cmdCreation.Parameters.AddWithValue("@Type", type);
             cmdCreation.Parameters.AddWithValue("@UserID", userid);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
+        public static void SecurePendingEventLocationCreation(string city, string state)
+        {
+            // set all null variables to an empty string
+            if (city == null)
+            {
+                city = "";
+            }
+            if (state == null)
+            {
+                state = "";
+            }
+
+            string creationQuery = "INSERT INTO Location (City, State) VALUES " +
+                                   "(@City, @State)";
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@City", city);
+            cmdCreation.Parameters.AddWithValue("@State", state);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
+        public static void SecurePendingEventSpaceCreation(string name, string address, int? capacity, int? locationID)
+        {
+            // set all null variables to an empty string
+            if (name == null)
+            {
+                name = "";
+            }
+            if (address == null)
+            {
+                address = "";
+            }
+            if (capacity == null)
+            {
+                capacity = 1;
+            }
+
+            string creationQuery = "INSERT INTO Space (Name, Address, Capacity, LocationID, ParentSpaceID) VALUES " +
+                                   "(@Name, @Address, @Capacity, @LocationID, NULL)";
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@Name", name);
+            cmdCreation.Parameters.AddWithValue("@Address", address);
+            cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
+            cmdCreation.Parameters.AddWithValue("@LocationID", locationID);
 
             cmdCreation.Connection.Open();
             cmdCreation.ExecuteNonQuery();

@@ -12,6 +12,8 @@
 
         public int? ParentSpaceID { get; set; }
 
+        public int? LocationID { get; set; }
+
         public string? ParentSpaceName { get; set; }
     }
 }
