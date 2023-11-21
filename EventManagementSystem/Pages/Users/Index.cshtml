@@ -7,7 +7,7 @@
     <br />
     <h2 class="font">All Users</h2>
     <br />
-    <form method="post" asp-page="/SearchResult" asp-page-handler="Search">
+    <form method="post" asp-page="/Index" asp-page-handler="Search">
         <input type="text" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
