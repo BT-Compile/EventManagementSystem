@@ -22,6 +22,8 @@
                 <th>End Date:</th>
                 <th>Registration Deadline:</th>
                 <th>Event Type:</th>
+                <th>Location:</th>
+                <th>Address:</th>
                 <th>Action:</th>
             </tr>
         </thead>
@@ -37,6 +39,8 @@
                         <td>@record.EndDate</td>
                         <td>@record.RegistrationDeadline</td>
                         <td>@record.EventType</td>
+                        <td>@record.SpaceName</td>
+                        <td>@record.SpaceAddress</td>
                         <td>
                             <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
                             <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>

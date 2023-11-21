@@ -41,7 +41,8 @@ namespace EventManagementSystem.Pages.Admin
 
             // This only displays the major EVENTS that contain subevents, the parent events only
             // query to select all events that this user has signed up for already
-            string sqlQuery = "SELECT * FROM Event WHERE Status = 'Pending'";
+            string sqlQuery = "SELECT * FROM [Event] INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = [Space].SpaceID INNER JOIN " +
+                              "[Location] ON [Space].LocationID = [Location].LocationID WHERE [Status] = 'Pending'";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -57,7 +58,9 @@ namespace EventManagementSystem.Pages.Admin
                     RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
                     Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
                     EventType = scheduleReader["Type"].ToString(),
-                    UserID = Int32.Parse(scheduleReader["OrganizerID"].ToString())
+                    UserID = Int32.Parse(scheduleReader["OrganizerID"].ToString()),
+                    SpaceName = scheduleReader["Name"].ToString(),
+                    SpaceAddress = scheduleReader["Address"].ToString()
                 });
             }
 
