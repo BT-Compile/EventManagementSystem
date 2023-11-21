@@ -21,11 +21,7 @@
                     {
                         <a class="navbar-brand" asp-page="/Admin/Index">Eventra</a>
                     }
-                    if (Context.Session.GetString("RoleType") == "Participant")
-                    {
-                        <a class="navbar-brand" asp-page="/Index">Eventra</a>
-                    }
-                    if (Context.Session.GetString("RoleType") == null)
+                    else
                     {
                         <a class="navbar-brand" asp-page="/Index">Eventra</a>
                     }
@@ -52,7 +48,7 @@
                                 </li>
                             }
 
-                            @if (Context.Session.GetString("RoleType") == "Participant")
+                            @if (Context.Session.GetString("RoleType") != "Admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link purpletxt font" asp-page="/Users/Index">My Profile</a>
@@ -79,7 +75,6 @@
             @RenderBody()
         </main>
     </div>
-    <!-- Ben, you might need to remove the borders/margins of the JMU image to have it more flush as a heads up :) -->
     <footer class="footer purpletxt font">
         <div class="container">
             - &copy; 2023 - 

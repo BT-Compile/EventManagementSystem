@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using System.Text.RegularExpressions;
 
 namespace EventManagementSystem.Pages.Users
 {
@@ -12,9 +14,18 @@ namespace EventManagementSystem.Pages.Users
     {
         public List<User> Users { get; set; }
 
+        [BindProperty]
+        public string? InputString { get; set; }
+
+        public string[]? Keywords { get; set; }
+
+        [BindProperty]
+        public bool test { get; set; }
+
         public IndexModel()
         {
             Users = new List<User>();
+            test = false;
         }
 
         public IActionResult OnGet(string User)
@@ -57,5 +68,39 @@ namespace EventManagementSystem.Pages.Users
 
             return Page();
         }
-    }
+
+        public IActionResult OnPostSearch()
+        {
+            test = true;
+            Keywords = Regex.Split(InputString, @"\s+");
+            string keyword, sqlQuery;
+
+            for (int i = 0; i < Keywords.Length; i++)
+            {
+                keyword = Keywords[i];
+
+                // query to do a CASE INSENSITIVE search for a keyword in the Event Table 
+                sqlQuery = "SELECT * FROM [User] " +
+                           "WHERE UserID = " + HttpContext.Session.GetString("userid") +
+                           "ORDER BY UserID DESC";
+
+                SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+                while (userReader.Read())
+                {
+                    Users.Add(new User
+                    {
+                        UserID = Int32.Parse(userReader["UserID"].ToString()),
+                        FirstName = userReader["FullName"].ToString(),
+                        Email = userReader["Email"].ToString(),
+                        PhoneNumber = userReader["PhoneNumber"].ToString(),
+                        Username = userReader["Username"].ToString(),
+                        Accomodation = userReader["Accomodation"].ToString(),
+                        Category = userReader["Category"].ToString(),
+                        IsActive = Boolean.Parse(userReader["IsActive"].ToString()),
+                        RoleType = userReader["Name"].ToString()
+                    });
+                }
+            }
+        }
 }

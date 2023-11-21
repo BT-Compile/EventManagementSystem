@@ -4,11 +4,12 @@
 }
 
 <div class="wrapper">
+    <br />
     <h2 class="font">Your Approved Events:</h2>
     <br />
     <form method="post" asp-page="Organizer/ApprovedEvents">
         <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn btn-light">Search</button>
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
 
@@ -23,6 +24,7 @@
                 <th>Event Type:</th>
                 <th>Event Status:</th>
                 <th>Date Approved:</th>
+                <th>Define SubEvents:</th>
             </tr>
         </thead>
         <tbody class="table-secondary">
@@ -38,6 +40,9 @@
                         <td>@record.EventType</td>
                         <td>@record.Status</td>
                         <td>@record.RequestDate</td>
+                        <td>
+                            <button class="btn rndbtn btn-light">WIP</button>
+                        </td>
                     </tr>
                 }
             }

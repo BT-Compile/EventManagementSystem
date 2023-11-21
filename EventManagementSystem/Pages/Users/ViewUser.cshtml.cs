@@ -24,15 +24,14 @@ namespace EventManagementSystem.Pages.Users
         {
             UserName = DBClass.GetUserName(userID);
 
-            // JON USE THE DATACLASS
-            string sqlQuery = "";
-
+            string sqlQuery = "SELECT U.FirstName, U.LastName, U.Email, U.PhoneNumber, U.Username, U.Accomodation, E.EventName, E.StartDate, E.EndDate " +
+                "FROM [User] U LEFT JOIN EventRegister ER ON U.UserID = ER.UserID LEFT JOIN [Event] E ON ER.EventID = E.EventID WHERE U.UserID = " + userID;
 
             SqlDataReader UserViewer = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (UserViewer.Read())
             {
-                Users.UserData.Add(new UserData
+                UserData.Add(new UserData
                 {
                     FirstName = UserViewer["FirstName"].ToString(),
                     LastName = UserViewer["LastName"].ToString(),
@@ -41,9 +40,6 @@ namespace EventManagementSystem.Pages.Users
                     Username = UserViewer["Username"].ToString(),
                     Accomodation = UserViewer["Accomodation"].ToString(),
                     EventName = UserViewer["EventName"].ToString(),
-                    Date = DateTime.Parse(UserViewer["Date"].ToString()),
-                    BuildingName = UserViewer["Name"].ToString(),
-                    RoomNumber = int.Parse(UserViewer["RoomNumber"].ToString())
                 });
             }
         }

@@ -15,18 +15,5 @@
         public string? Accomodation { get; set; }
 
         public string? EventName { get; set; }
-
-        public string? BuildingName { get; set; }
-
-        public string? ActivityName { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public int RoomNumber { get; set; }
-
-        internal static void Add(UserData userData)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

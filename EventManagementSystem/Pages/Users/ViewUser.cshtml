@@ -6,8 +6,10 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Fullname</h2>
+    <h2 class="font centertxt"></h2>
     <br />
+
+    
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -16,12 +18,11 @@
                 <th>Email:</th>
                 <th>Phone Number:</th>
                 <th>Username:</th>
-                <th>Accomodation:</th>
+                <th>Accomodations:</th>
                 <th>Event Names:</th>
-                <th>Dates:</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-secondary">
             @{
                 foreach (var data in Model.UserData)
                 {
@@ -33,7 +34,6 @@
                         <td>@data.Username</td>
                         <td>@data.Accomodation</td>
                         <td>@data.EventName</td>
-                        <td>@data.Date</td>
                     </tr>
                 }
             }

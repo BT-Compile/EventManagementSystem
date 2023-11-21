@@ -3,12 +3,15 @@
 @{
 }
 
-<h5>REMINDER: All newly created events must be approved by the system admin for further activity creation</h5>
-<br />
-
 <div class="wrapper">
     <br />
     <h2 class="font centertxt">Please Enter Your Information</h2>
+    <br />
+    <hr />
+    <br />
+    <p class="notetxt">
+        NOTE: All newly created events must be approved by the system admin for further activity creation
+    </p>
     <br />
     <div class="newlogbox">
         <form asp-page="NewUser">
@@ -49,9 +52,9 @@
             <label asp-for="@Model.LocationToCreate.State">- State -</label>
             <input type="text" asp-for="@Model.LocationToCreate.State" id="State" class="newlogfield" />
             <br /><br />
-            <button type="button" class="btn btn-light" onclick="clearForm()">Clear</button>
-            <input value="Create Event" type="submit" class="btn btn-light" id="textfield" asp-page="Organizer/Index" />
-            <a asp-page="../Index" class="btn btn-light" id="textfield">Cancel</a>
+            <button type="button" class="btn rndbtn btn-light" onclick="clearForm()">Clear</button>
+            <input value="Create Event" type="submit" class="btn rndbtn btn-light" id="textfield" asp-page="Organizer/Index" />
+            <a asp-page="../Index" class="btn rndbtn btn-light" id="textfield">Cancel</a>
         </form>
     </div>
 </div>
