@@ -102,5 +102,8 @@ namespace EventManagementSystem.Pages.Users
                     });
                 }
             }
+
+            return Page();
         }
+    }
 }
