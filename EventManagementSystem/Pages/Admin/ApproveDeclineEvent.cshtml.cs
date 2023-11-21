@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
@@ -62,7 +63,7 @@ namespace EventManagementSystem.Pages.Admin
         }
 
         //Post request for search functionality
-        public IActionResult OnPost()
+        public IActionResult OnPostSearch()
         {
             HasPosted = true;
             Keywords = Regex.Split(InputString, @"\s+");
@@ -83,6 +84,8 @@ namespace EventManagementSystem.Pages.Admin
                 {
                     Events.Add(new Event
                     {
+                        EventID = Int32.Parse(eventReader["EventID"].ToString()),
+                        RequestDate = (DateTime)eventReader["RequestDate"], //Broken I will try to fix later
                         EventName = eventReader["EventName"].ToString(),
                         EventDescription = eventReader["EventDescription"].ToString(),
                         StartDate = (DateTime)eventReader["StartDate"],
@@ -97,5 +100,31 @@ namespace EventManagementSystem.Pages.Admin
             return Page();
 
         }
+
+        public IActionResult OnPostApprove(int eventID)
+        {
+            string sqlQuery = "INSERT INTO[Event](EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type]) " +
+                              "SELECT EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type] FROM PendingEvent " +
+                              "WHERE PendingEvent.EventID = " + eventID;
+
+            DBClass.GeneralQuery(sqlQuery);
+
+            DBClass.DBConnection.Close();
+
+            sqlQuery = "INSERT INTO [Event] ([Status], ParentEventID) " +
+                       "VALUES ('Active', NULL) WHERE PendningEvent.EventID = " + eventID;
+
+            DBClass.GeneralQuery(sqlQuery);
+
+            DBClass.DBConnection.Close();
+
+            return Page();
+        }
+
+        public IActionResult OnPostDecline() 
+        { 
+            return Page();
+        }
+
     }
 }

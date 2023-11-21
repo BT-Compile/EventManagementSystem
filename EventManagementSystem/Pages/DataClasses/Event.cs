@@ -33,5 +33,7 @@
         public string? URL { get; set;}
 
         public int? ParentEventID { get; set; }
+
+        public DateTime RequestDate { get; set; }
     }
 }
