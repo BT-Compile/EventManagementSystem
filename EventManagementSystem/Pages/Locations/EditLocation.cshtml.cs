@@ -1,22 +1,22 @@
 using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
-using EventManagementSystem.Pages.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Teams
+namespace EventManagementSystem.Pages.Locations
 {
-    public class NewTeamModel : PageModel
+    public class EditLocationModel : PageModel
     {
         [BindProperty]
-        public Team TeamToCreate { get; set; }
+        public Location LocationToUpdate { get; set; }
 
-        public NewTeamModel()
+        public EditLocationModel()
         {
-            TeamToCreate = new Team();
+            LocationToUpdate = new Location();
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int locationid)
         {
             if (HttpContext.Session.GetString("RoleType") != "Admin" &&
                 (HttpContext.Session.GetString("RoleType") == "Presenter" || HttpContext.Session.GetString("RoleType") == "Judge"
@@ -29,18 +29,26 @@ namespace EventManagementSystem.Pages.Teams
                 return RedirectToPage("/Login/Index");
             }
 
+            SqlDataReader singleLocation = DBClass.SingleLocationReader(locationid);
+            if (singleLocation.Read())
+            {
+                LocationToUpdate.LocationID = locationid;
+                LocationToUpdate.City = singleLocation["City"].ToString();
+                LocationToUpdate.State = singleLocation["State"].ToString();
+            }
+            DBClass.DBConnection.Close();
+
             return Page();
         }
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Team ([Name], [Description], MaxSize) VALUES (" +
-                "'" + TeamToCreate.Name + "'," +
-                "'" + TeamToCreate.Description + "'," +
-                "'" + TeamToCreate.MaxSize + "')";
+            string sqlQuery = "UPDATE Location SET City = '" + LocationToUpdate.City +
+                "', State = '" + LocationToUpdate.State +
+                "' WHERE LocationID = " + LocationToUpdate.LocationID;
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
-            
+
             return RedirectToPage("Index");
         }
     }

@@ -1,19 +1,18 @@
 using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
-using EventManagementSystem.Pages.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Teams
+namespace EventManagementSystem.Pages.Locations
 {
-    public class NewTeamModel : PageModel
+    public class IndexModel : PageModel
     {
-        [BindProperty]
-        public Team TeamToCreate { get; set; }
+        public List<Location> Locations { get; set; }
 
-        public NewTeamModel()
+        public IndexModel()
         {
-            TeamToCreate = new Team();
+            Locations = new List<Location>();
         }
 
         public IActionResult OnGet()
@@ -29,19 +28,22 @@ namespace EventManagementSystem.Pages.Teams
                 return RedirectToPage("/Login/Index");
             }
 
-            return Page();
-        }
+            string sqlQuery = "SELECT * FROM Location";
+            SqlDataReader locationReader = DBClass.GeneralReaderQuery(sqlQuery);
 
-        public IActionResult OnPost()
-        {
-            string sqlQuery = "INSERT INTO Team ([Name], [Description], MaxSize) VALUES (" +
-                "'" + TeamToCreate.Name + "'," +
-                "'" + TeamToCreate.Description + "'," +
-                "'" + TeamToCreate.MaxSize + "')";
-            DBClass.GeneralQuery(sqlQuery);
+            while (locationReader.Read())
+            {
+                Locations.Add(new Location
+                {
+                    LocationID = Int32.Parse(locationReader["LocationID"].ToString()),
+                    City = locationReader["City"].ToString(),
+                    State = locationReader["State"].ToString()
+                });
+            }
+
             DBClass.DBConnection.Close();
-            
-            return RedirectToPage("Index");
+
+            return Page();
         }
     }
 }
