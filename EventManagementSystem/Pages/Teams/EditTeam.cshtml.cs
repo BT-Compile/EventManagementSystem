@@ -46,11 +46,23 @@ namespace EventManagementSystem.Pages.Teams
         public IActionResult OnPost()
         {
             string sqlQuery = "UPDATE TEAM SET " +
-                "Name = '" + TeamToUpdate.Name +
-                "', Description = '" + TeamToUpdate.Description +
-                "', MaxSize = " + TeamToUpdate.MaxSize + 
-                " WHERE TeamID = " + TeamToUpdate.TeamID;
-            DBClass.GeneralQuery(sqlQuery);
+                "Name = @Name, Description = @Description, MaxSize = @MaxSize " +
+                "WHERE TeamID = @TeamID";
+
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Name", TeamToUpdate.Name ?? "");
+                    cmd.Parameters.AddWithValue("@Description", TeamToUpdate.Description ?? "");
+                    cmd.Parameters.AddWithValue("@MaxSize", TeamToUpdate.MaxSize);
+                    cmd.Parameters.AddWithValue("@TeamID", TeamToUpdate.TeamID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");

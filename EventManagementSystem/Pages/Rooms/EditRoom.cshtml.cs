@@ -64,27 +64,45 @@ namespace EventManagementSystem.Pages.Rooms
             // Case where a new ParentSpaceName is picked
             if (SpaceToUpdate.ParentSpaceID != null)
             {
-                sqlQuery = "UPDATE Space SET Name ='" + SpaceToUpdate.Name
-                    + "', Address='" + SpaceToUpdate.Address
-                    + "', Capacity='" + SpaceToUpdate.Capacity
-                    + "', ParentSpaceID='" + SpaceToUpdate.ParentSpaceID
-                    + "' WHERE SpaceID=" + SpaceToUpdate.SpaceID;
+                sqlQuery = "UPDATE Space SET Name = @Name, Address = @Address, Capacity = @Capacity, ParentSpaceID = @ParentSpaceID WHERE SpaceID = @SpaceID";
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", SpaceToUpdate.Name ?? "");
+                        cmd.Parameters.AddWithValue("@Address", SpaceToUpdate.Address ?? "");
+                        cmd.Parameters.AddWithValue("@Capacity", SpaceToUpdate.Capacity);
+                        cmd.Parameters.AddWithValue("@ParentSpaceID", SpaceToUpdate.ParentSpaceID ?? null);
+                        cmd.Parameters.AddWithValue("@SpaceID", SpaceToUpdate.SpaceID);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             // Case where no new ParentSpaceName is picked
             else
             {
-                sqlQuery = "UPDATE Space SET Name='" + SpaceToUpdate.Name
-                    + "', Address='" + SpaceToUpdate.Address
-                    + "', Capacity='" + SpaceToUpdate.Capacity
-                    + "', ParentSpaceID=NULL"
-                    + " WHERE SpaceID=" + SpaceToUpdate.SpaceID;
-            }
+                sqlQuery = "UPDATE Space SET Name = @Name, Address = @Address, Capacity = @Capacity, ParentSpaceID = NULL WHERE SpaceID = @SpaceID";
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", SpaceToUpdate.Name ?? "");
+                        cmd.Parameters.AddWithValue("@Address", SpaceToUpdate.Address ?? "");
+                        cmd.Parameters.AddWithValue("@Capacity", SpaceToUpdate.Capacity);
+                        cmd.Parameters.AddWithValue("@SpaceID", SpaceToUpdate.SpaceID);
 
-            DBClass.GeneralQuery(sqlQuery);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
 
             DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminRoom");
         }
+
     }
 }

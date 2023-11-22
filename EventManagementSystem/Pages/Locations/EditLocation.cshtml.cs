@@ -43,13 +43,25 @@ namespace EventManagementSystem.Pages.Locations
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "UPDATE Location SET City = '" + LocationToUpdate.City +
-                "', State = '" + LocationToUpdate.State +
-                "' WHERE LocationID = " + LocationToUpdate.LocationID;
-            DBClass.GeneralQuery(sqlQuery);
+            string sqlQuery = "UPDATE Location SET City = @City, State = @State WHERE LocationID = @LocationID";
+
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@City", LocationToUpdate.City ?? "");
+                    cmd.Parameters.AddWithValue("@State", LocationToUpdate.State ?? "");
+                    cmd.Parameters.AddWithValue("@LocationID", LocationToUpdate.LocationID);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }
+
     }
 }

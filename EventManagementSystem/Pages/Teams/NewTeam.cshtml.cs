@@ -3,6 +3,7 @@ using EventManagementSystem.Pages.DB;
 using EventManagementSystem.Pages.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Teams
 {
@@ -34,14 +35,26 @@ namespace EventManagementSystem.Pages.Teams
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Team ([Name], [Description], MaxSize) VALUES (" +
-                "'" + TeamToCreate.Name + "'," +
-                "'" + TeamToCreate.Description + "'," +
-                "'" + TeamToCreate.MaxSize + "')";
-            DBClass.GeneralQuery(sqlQuery);
+            string sqlQuery = "INSERT INTO Team ([Name], [Description], MaxSize) VALUES " +
+                "(@Name, @Description, @MaxSize)";
+
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Name", TeamToCreate.Name ?? "");
+                    cmd.Parameters.AddWithValue("@Description", TeamToCreate.Description ?? "");
+                    cmd.Parameters.AddWithValue("@MaxSize", TeamToCreate.MaxSize);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             DBClass.DBConnection.Close();
-            
+
             return RedirectToPage("Index");
         }
+
     }
 }

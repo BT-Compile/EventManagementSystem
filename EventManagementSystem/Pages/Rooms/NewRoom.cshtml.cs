@@ -47,33 +47,52 @@ namespace EventManagementSystem.Pages.Rooms
 
             return Page();
         }
-        
+
         public IActionResult OnPost()
         {
             string sqlQuery = "";
             // Case where a new ParentSpaceName is picked
             if (SpaceToCreate.ParentSpaceID != null)
             {
-                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES (" +
-                "'" + SpaceToCreate.Name + "', " +
-                "'" + SpaceToCreate.Address + "', " +
-                "'" + SpaceToCreate.Capacity + "', " +
-                "'" + SpaceToCreate.ParentSpaceID + "', NULL)";
+                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES " +
+                    "(@Name, @Address, @Capacity, @ParentSpaceID, NULL)";
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", SpaceToCreate.Name ?? "");
+                        cmd.Parameters.AddWithValue("@Address", SpaceToCreate.Address ?? "");
+                        cmd.Parameters.AddWithValue("@Capacity", SpaceToCreate.Capacity);
+                        cmd.Parameters.AddWithValue("@ParentSpaceID", SpaceToCreate.ParentSpaceID ?? null);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             // Case where no new ParentSpaceName is picked
             else
             {
-                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES (" +
-                "'" + SpaceToCreate.Name + "', " +
-                "'" + SpaceToCreate.Address + "', " +
-                "'" + SpaceToCreate.Capacity + "', NULL, NULL)";
-            }
+                sqlQuery = "INSERT INTO [Space] ([Name], [Address], Capacity, ParentSpaceID, LocationID) VALUES " +
+                    "(@Name, @Address, @Capacity, NULL, NULL)";
+                using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", SpaceToCreate.Name ?? "");
+                        cmd.Parameters.AddWithValue("@Address", SpaceToCreate.Address ?? "");
+                        cmd.Parameters.AddWithValue("@Capacity", SpaceToCreate.Capacity);
 
-            DBClass.GeneralQuery(sqlQuery);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
 
             DBClass.DBConnection.Close();
 
             return RedirectToPage("AdminRoom");
         }
+
     }
 }

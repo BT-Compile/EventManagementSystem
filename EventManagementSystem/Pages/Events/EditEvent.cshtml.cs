@@ -91,6 +91,27 @@ namespace EventManagementSystem.Pages.Events
                 "StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
                 "Capacity = @Capacity, Type = @Type, Status = @Status WHERE EventID = @EventID";
 
+            if (EventToUpdate.EventName == null)
+            {
+                EventToUpdate.EventName = "";
+            }
+            if (EventToUpdate.EventDescription == null)
+            {
+                EventToUpdate.EventDescription = "";
+            }
+            if (EventToUpdate.Capacity == null)
+            {
+                EventToUpdate.Capacity = 0;
+            }
+            if (EventToUpdate.EventType == null)
+            {
+                EventToUpdate.EventType = "";
+            }
+            if (EventToUpdate.Status == null)
+            {
+                EventToUpdate.Status = "";
+            }
+            
             using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
             {
                 connection.Open();

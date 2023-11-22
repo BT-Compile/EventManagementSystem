@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Locations
 {
@@ -33,12 +34,24 @@ namespace EventManagementSystem.Pages.Locations
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO [Location] (City, [State]) VALUES " +
-                "('" + LocationToCreate.City + "', '" + LocationToCreate.State + "')";
-            DBClass.GeneralQuery(sqlQuery);
+            string sqlQuery = "INSERT INTO [Location] (City, [State]) VALUES (@City, @State)";
+
+            using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@City", LocationToCreate.City ?? "");
+                    cmd.Parameters.AddWithValue("@State", LocationToCreate.State ?? "");
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
             DBClass.DBConnection.Close();
 
             return RedirectToPage("Index");
         }
+
     }
 }
