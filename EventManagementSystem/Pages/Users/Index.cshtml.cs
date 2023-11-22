@@ -57,10 +57,7 @@ namespace EventManagementSystem.Pages.Users
                     Email = userReader["Email"].ToString(),
                     PhoneNumber = userReader["PhoneNumber"].ToString(),
                     Username = userReader["Username"].ToString(),
-                    Accomodation = userReader["Accomodation"].ToString(),
-                    Category = userReader["Category"].ToString(),
-                    IsActive = Boolean.Parse(userReader["IsActive"].ToString()),
-                    RoleType = userReader["Name"].ToString()
+                    Accomodation = userReader["Category"].ToString()
                 });
             }
 
@@ -69,7 +66,7 @@ namespace EventManagementSystem.Pages.Users
             return Page();
         }
 
-        public IActionResult OnPostSearch(string keyword)
+        public IActionResult OnPost(string keyword)
         {
             test = true;
             Keywords = Regex.Split(InputString, @"\s+");
@@ -80,9 +77,12 @@ namespace EventManagementSystem.Pages.Users
                 keyword = Keywords[i];
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Event Table 
-                sqlQuery = "SELECT * FROM [User] " +
-                           "WHERE (concat_ws(' ', [User].FirstName, [User].LastName) LIKE '%" + keyword + "%' " +
-                           "OR Username LIKE '%" + keyword + "%') ORDER BY UserID DESC";
+                sqlQuery = "SELECT [User].UserID, concat_ws(' ', [User].FirstName, [User].LastName) as FullName, [User].Email, [User].PhoneNumber, [User].Username, Allergy.Category, " +
+                            "[User].Accomodation, [User].IsActive, Role.Name FROM Allergy INNER JOIN " +
+                            "[User] ON Allergy.AllergyID = [User].AllergyID INNER JOIN UserRole ON[User].UserID = UserRole.UserID INNER JOIN " +
+                            "Role ON UserRole.RoleID = Role.RoleID " +
+                            "WHERE [User].FirstName LIKE '%" + keyword + "%' OR [User].LastName LIKE '%" + keyword + "%' " +
+                            "OR [User].Username LIKE '%" + keyword + "%' ORDER BY UserID DESC";
 
                 SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -95,13 +95,11 @@ namespace EventManagementSystem.Pages.Users
                         Email = userReader["Email"].ToString(),
                         PhoneNumber = userReader["PhoneNumber"].ToString(),
                         Username = userReader["Username"].ToString(),
-                        Accomodation = userReader["Accomodation"].ToString(),
-                        Category = userReader["Category"].ToString(),
-                        IsActive = Boolean.Parse(userReader["IsActive"].ToString()),
-                        RoleType = userReader["Name"].ToString()
+                        Accomodation = userReader["Category"].ToString()
                     });
                 }
             }
+            DBClass.DBConnection.Close();
 
             return Page();
         }
