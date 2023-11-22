@@ -15,18 +15,22 @@
             <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
             <p class="font">@e.SpaceName</p>
             <br />
-            <h1 class="font">@e.EventName <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a> </h1>
+            <h1 class="font">@e.EventName <a asp-page="/Organizer/ModifyEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Modify Event</a>    <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a> </h1>
             <br />
             <p class="font">@e.EventDescription</p>
             <br />
 
+            <h3 class="font">Subevents</h3>
+
+            <hr />
+
+            <a asp-page="/Organizer/AddSubevent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Add Subevent</a>
+
             foreach (var s in Model.Subevents)
             {
-                <h3 class="font">@s.EventName</h3>
+                <p class="font">@s.EventName</p>
             }
             <br />
-
-            <a asp-page="Organizer/AddSubevent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Add Subevent</a>
         }
     }
 </div>
