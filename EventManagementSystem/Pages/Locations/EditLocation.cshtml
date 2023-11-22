@@ -1,0 +1,28 @@
+﻿@page "{LocationID}"
+@model EventManagementSystem.Pages.Locations.EditLocationModel
+@{
+    ViewData["Title"] = "Edit Location";
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Edit Location Data</h2>
+    <br />
+    <br />
+    <div class="newlogbox">
+        <form asp-page="EditLocation">
+            <input type="hidden" asp-for="@Model.LocationToUpdate.LocationID" />
+            <label asp-for="@Model.LocationToUpdate.City">- City -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.City" required />
+            <br />
+            <label asp-for="@Model.LocationToUpdate.State">- State -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.State" required />
+            <br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditRoom" />
+            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
+

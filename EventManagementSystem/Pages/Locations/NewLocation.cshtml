@@ -1,0 +1,40 @@
+﻿@page
+@model EventManagementSystem.Pages.Locations.NewLocationModel
+@{
+    ViewData["Title"] = "New Location";
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Enter New Location Data</h2>
+    <br />
+    <hr /> 
+    <br />
+    <div class="newlogbox">
+        <form asp-page="NewLocation">
+            <input type="hidden" asp-for="@Model.LocationToCreate.LocationID" />
+            <label asp-for="@Model.LocationToCreate.City">- City -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.LocationToCreate.City" id="City" required />
+            <br />
+            <label asp-for="@Model.LocationToCreate.State">- State -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.LocationToCreate.State" id="State" required />
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewRoom" />
+            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

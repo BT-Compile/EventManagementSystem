@@ -96,6 +96,18 @@ namespace EventManagementSystem.Pages.DB
             return tempReader;
         }
 
+        public static SqlDataReader SingleLocationReader(int LocationID)
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = new SqlConnection();
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
+            cmdProductRead.CommandText = "SELECT * FROM Location WHERE LocationID = " + LocationID;
+            cmdProductRead.Connection.Open();
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+
+            return tempReader;
+        }
+
         public static SqlDataReader SingleTeamReader(int TeamID)
         {
             SqlCommand cmdProductRead = new SqlCommand();

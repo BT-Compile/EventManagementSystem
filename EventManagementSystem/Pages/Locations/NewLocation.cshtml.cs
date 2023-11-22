@@ -1,19 +1,18 @@
 using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
-using EventManagementSystem.Pages.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EventManagementSystem.Pages.Teams
+namespace EventManagementSystem.Pages.Locations
 {
-    public class NewTeamModel : PageModel
+    public class NewLocationModel : PageModel
     {
         [BindProperty]
-        public Team TeamToCreate { get; set; }
+        public Location LocationToCreate { get; set; }
 
-        public NewTeamModel()
+        public NewLocationModel()
         {
-            TeamToCreate = new Team();
+            LocationToCreate = new Location();
         }
 
         public IActionResult OnGet()
@@ -34,13 +33,11 @@ namespace EventManagementSystem.Pages.Teams
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO Team ([Name], [Description], MaxSize) VALUES (" +
-                "'" + TeamToCreate.Name + "'," +
-                "'" + TeamToCreate.Description + "'," +
-                "'" + TeamToCreate.MaxSize + "')";
+            string sqlQuery = "INSERT INTO [Location] (City, [State]) VALUES " +
+                "('" + LocationToCreate.City + "', '" + LocationToCreate.State + "')";
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
-            
+
             return RedirectToPage("Index");
         }
     }
