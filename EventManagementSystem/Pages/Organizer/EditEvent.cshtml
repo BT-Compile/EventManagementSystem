@@ -1,0 +1,32 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.EditEventModel
+@{
+}
+
+<div class="wrapper">
+    @{
+        foreach (var e in Model.Events)
+        {
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
+            <p class="font">@e.SpaceName</p>
+            <br />
+            <h1 class="font">@e.EventName <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a> </h1>
+            <br />
+            <p class="font">@e.EventDescription</p>
+            <br />
+
+            foreach (var s in Model.Subevents)
+            {
+                <h3 class="font">@s.EventName</h3>
+            }
+            <br />
+
+            <a asp-page="Organizer/AddSubevent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Add Subevent</a>
+        }
+    }
+</div>

@@ -24,7 +24,7 @@
                 <th>Event Type:</th>
                 <th>Event Status:</th>
                 <th>Date Approved:</th>
-                <th>Define SubEvents:</th>
+                <th>Event Details:</th>
             </tr>
         </thead>
         <tbody class="table-secondary">
@@ -41,7 +41,7 @@
                         <td>@record.Status</td>
                         <td>@record.RequestDate</td>
                         <td>
-                            <button class="btn rndbtn btn-light">WIP</button>
+                            <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View/Edit</a>
                         </td>
                     </tr>
                 }

@@ -49,6 +49,7 @@ namespace EventManagementSystem.Pages.Organizer
             {
                 Events.Add(new Event
                 {
+                    EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
                     EventName = scheduleReader["EventName"].ToString(),
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
@@ -76,9 +77,11 @@ namespace EventManagementSystem.Pages.Organizer
                 keyword = Keywords[i];
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
-                sqlQuery = "SELECT * FROM Event " +
-                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
-                           "ORDER BY StartDate DESC";
+                sqlQuery = "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Event.RegistrationDeadline, " +
+                            "Event.Capacity, Event.Type, Event.Status, EventCreate.CreationDate FROM Event INNER JOIN EventCreate ON Event.EventID = " +
+                            "EventCreate.EventID INNER JOIN [User] ON EventCreate.UserID = [User].UserID WHERE EventCreate.UserID = " + HttpContext.Session.GetString("userid") +
+                            " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
+                            "ORDER BY StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -92,6 +95,7 @@ namespace EventManagementSystem.Pages.Organizer
                         EndDate = (DateTime)eventReader["EndDate"],
                         RegistrationDeadline = (DateTime)eventReader["RegistrationDeadline"],
                         Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
+                        Status = eventReader["Status"].ToString(),
                         EventType = eventReader["Type"].ToString()
                     });
                 }
