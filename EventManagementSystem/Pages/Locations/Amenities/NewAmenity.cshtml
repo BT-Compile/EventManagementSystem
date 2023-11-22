@@ -1,0 +1,38 @@
+﻿@page "{LocationID}"
+@model EventManagementSystem.Pages.Locations.Amenities.NewAmenityModel
+@{
+    ViewData["Title"] = "New Amenity";
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Enter New Amenity Data</h2>
+    <br />
+    <hr />
+    <br />
+    <div class="newlogbox">
+        <form asp-page="NewLocation">
+            <input type="hidden" asp-for="@Model.AmenityToCreate.AmenityID" />
+            <label asp-for="@Model.AmenityToCreate.Name">- Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Name" id="Name" required />
+            <br />
+            <label asp-for="@Model.AmenityToCreate.Type">- Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Description" id="Description" />
+            <br />
+            <label asp-for="@Model.AmenityToCreate.Type">- Type -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Type" id="Type" />
+            <br />
+            <label asp-for="@Model.AmenityToCreate.URL">- URL -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.URL" id="URL" />
+            <br />
+            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
+            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewAmenity" />
+            <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

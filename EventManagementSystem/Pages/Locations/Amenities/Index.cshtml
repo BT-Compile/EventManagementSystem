@@ -1,0 +1,40 @@
+﻿@page "{LocationID}"
+@model EventManagementSystem.Pages.Locations.Amenities.IndexModel
+@{
+    ViewData["Title"] = "Amenities for Location";
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font">All Amenities for @Model.Location.City, @Model.Location.State</h2>
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Description:</th>
+                <th>Type:</th>
+                <th>URL:</th>
+                <th>Edit:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var amenity in Model.Amenities)
+                {
+                    <tr class="table-secondary">
+                        <td><b>@amenity.Name</b></td>
+                        <td>@amenity.Description</td>
+                        <td>@amenity.Type</td>
+                        <td>@amenity.URL</td>
+                        <td>
+                            <a asp-page="EditAmenity" class="btn rndbtn btn-light" asp-route-amenityid="@amenity.AmenityID">Edit</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <br />
+    <a asp-page="NewAmenity" class="btn rndbtn btn-light" asp-route-locationid="@Model.Location.LocationID">Create a new amenity for this location</a>
+</div>

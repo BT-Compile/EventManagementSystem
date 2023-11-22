@@ -1,6 +1,7 @@
 ﻿@page
 @model EventManagementSystem.Pages.Locations.IndexModel
 @{
+    ViewData["Title"] = "All Locations";
 }
 
 <div class="wrapper">
@@ -24,7 +25,7 @@
                         <td><b>@location.City</b></td>
                         <td>@location.State</td>
                         <td>
-                            <a asp-page="ViewAmenities" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">View Amenities</a>
+                            <a asp-page="Amenities/Index" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">View Amenities</a>
                         </td>
                         <td>
                             <a asp-page="EditLocation" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">Edit</a>
@@ -37,11 +38,3 @@
     <br />
     <a asp-page="NewLocation" class="btn rndbtn btn-light">Create New Location</a>
 </div>
-
-
-
-
-
-
-
-
