@@ -391,6 +391,49 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.ExecuteNonQuery();
         }
 
+        public static void SecureEventModification(string eventName, string eventDescription, DateTime startDate,
+            DateTime endDate, DateTime registrationDeadline, int? capacity, string type, int? eventid)
+        {
+            // set all null variables to an empty string
+            if (eventName == null)
+            {
+                eventName = "";
+            }
+            if (eventDescription == null)
+            {
+                eventDescription = "";
+            }
+            if (type == null)
+            {
+                type = "";
+            }
+            if (capacity == null)
+            {
+                capacity = 1;
+            }
+
+            string creationQuery = "UPDATE [Event] SET EventName = @EventName, EventDescription = @EventDescription, StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
+                                   "Capacity = @Capacity, Type = @Type " +
+                                   "WHERE EventID = " + eventid;
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@EventName", eventName);
+            cmdCreation.Parameters.AddWithValue("@EventDescription", eventDescription);
+            cmdCreation.Parameters.AddWithValue("@StartDate", startDate);
+            cmdCreation.Parameters.AddWithValue("@EndDate", endDate);
+            cmdCreation.Parameters.AddWithValue("@RegistrationDeadline", registrationDeadline);
+            cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
+            cmdCreation.Parameters.AddWithValue("@Type", type);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
         public static void SecureSubeventCreation(string eventName, string eventDescription, DateTime startDate,
             DateTime endDate, DateTime registrationDeadline, int? capacity, string type, string userid, int? parentid)
         {
@@ -463,6 +506,33 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.ExecuteNonQuery();
         }
 
+        public static void SecureLocationModification(string city, string state, int? id)
+        {
+            // set all null variables to an empty string
+            if (city == null)
+            {
+                city = "";
+            }
+            if (state == null)
+            {
+                state = "";
+            }
+
+            string creationQuery = "UPDATE [Location] SET City = @City, State = @State WHERE LocationID = " + id;
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@City", city);
+            cmdCreation.Parameters.AddWithValue("@State", state);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
         public static void SecurePendingEventSpaceCreation(string name, string address, int? capacity, int? locationID)
         {
             // set all null variables to an empty string
@@ -482,6 +552,38 @@ namespace EventManagementSystem.Pages.DB
             string creationQuery = "INSERT INTO Space (Name, Address, Capacity, LocationID, ParentSpaceID) VALUES " +
                                    "(@Name, @Address, @Capacity, @LocationID, NULL)";
 
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@Name", name);
+            cmdCreation.Parameters.AddWithValue("@Address", address);
+            cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
+            cmdCreation.Parameters.AddWithValue("@LocationID", locationID);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
+        public static void SecureSpaceModification(string name, string address, int? capacity, int? locationID, int? spaceid)
+        {
+            // set all null variables to an empty string
+            if (name == null)
+            {
+                name = "";
+            }
+            if (address == null)
+            {
+                address = "";
+            }
+            if (capacity == null)
+            {
+                capacity = 1;
+            }
+
+            string creationQuery = "UPDATE [Space] SET Name = @Name, Address = @Address, Capacity = @Capacity, LocationID = @LocationID WHERE SpaceID = " + spaceid;
 
             SqlCommand cmdCreation = new SqlCommand();
             cmdCreation.Connection = DBConnection;

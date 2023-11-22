@@ -20,13 +20,17 @@
             <p class="font">@e.EventDescription</p>
             <br />
 
-            foreach (var s in Model.Subevents)
-            {
-                <h3 class="font">@s.EventName</h3>
-            }
-            <br />
+            <h3 class="font">Subevents</h3>
+
+            <hr />
 
             <a asp-page="/Organizer/AddSubevent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Add Subevent</a>
+
+            foreach (var s in Model.Subevents)
+            {
+                <p class="font">@s.EventName</p>
+            }
+            <br />
         }
     }
 </div>

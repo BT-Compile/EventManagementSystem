@@ -52,16 +52,17 @@ namespace EventManagementSystem.Pages.Organizer
 
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT Event.*, [Space].*, Location.* FROM Location INNER JOIN " +
-                               "[Space] ON Location.LocationID = [Space].LocationID INNER JOIN Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID ON[Space].SpaceID = EventSpace.SpaceID " +
-                               "WHERE Event.ParentEventID = " + eventID + "AND [Event].OrganizerID = " + HttpContext.Session.GetString("userid") +
-                               " ORDER BY Event.StartDate DESC";
+            sqlQuery = "SELECT Event.*, [Space].*, Location.* FROM  Event INNER JOIN " +
+                       "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = [Space].SpaceID INNER JOIN " +
+                       "Location ON [Space].LocationID = Location.LocationID " +
+                       "WHERE [Event].ParentEventID = " + eventID + " AND [Event].OrganizerID = " + HttpContext.Session.GetString("userid") +
+                       " ORDER BY Event.StartDate DESC";
 
             SqlDataReader subeventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
-            while (scheduleReader.Read())
+            while (subeventReader.Read())
             {
-                Events.Add(new Event
+                Subevents.Add(new Event
                 {
                     EventID = Int32.Parse(subeventReader["EventID"].ToString()),
                     EventName = subeventReader["EventName"].ToString(),

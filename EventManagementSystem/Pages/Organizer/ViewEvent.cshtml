@@ -19,11 +19,17 @@
             <br />
             <p class="font">@e.EventDescription</p>
             <br />
-        }
 
-        foreach (var s in Model.Subevents)
-        {
-            <h3 class="font">@s.EventName</h3>
+
+            <h3 class="font">Subevents</h3>
+
+            <hr />
+
+            foreach (var s in Model.Subevents)
+            {
+                <p class="font">@s.EventName</p>
+            }
+            <br />
         }
     }
 </div>
