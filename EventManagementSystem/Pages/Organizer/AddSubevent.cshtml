@@ -2,3 +2,53 @@
 @model EventManagementSystem.Pages.Organizer.AddSubeventModel
 @{
 }
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Please Enter Your Information</h2>
+    <br />
+    <hr />
+    <br />
+    <p class="notetxt">
+        NOTE: All newly created events must be approved by the system admin for further activity creation
+    </p>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="NewUser">
+            <input type="hidden" asp-for="@Model.SubeventToCreate.EventID" />
+            <label asp-for="@Model.SubeventToCreate.EventName">- Event Name -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.EventName" id="EventName" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.EventDescription">- Event Description -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.EventDescription" id="EventDescription" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.StartDate">- Start Date -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.StartDate" id="StartDate" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.EndDate">- End Date -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.EndDate" id="EndDate" class="newlogfield" required />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.RegistrationDeadline">- Registration Deadline -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.RegistrationDeadline" id="RegistrationDeadline" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.Capacity">- Capacity -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.Capacity" id="Capacity" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SubeventToCreate.EventType">-  Event Type -</label>
+            <input type="text" asp-for="@Model.SubeventToCreate.EventType" id="EventType" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Name">- Location Name -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Name" id="SpaceName" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Address">- Location Address -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Address" id="SpaceAddress" class="newlogfield" />
+            <br />
+            <label asp-for="@Model.SpaceToCreate.Capacity">- Location Capacity -</label>
+            <input type="text" asp-for="@Model.SpaceToCreate.Capacity" id="SpaceCapacity" class="newlogfield" />
+            <br /><br />
+            <button type="button" class="btn rndbtn btn-light" onclick="clearForm()">Clear</button>
+            <input value="Create Event" type="submit" class="btn rndbtn btn-light" id="textfield" asp-page="Organizer/Index" />
+            <a asp-page="../Index" class="btn rndbtn btn-light" id="textfield">Cancel</a>
+        </form>
+    </div>
+</div>
