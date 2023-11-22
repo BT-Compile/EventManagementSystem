@@ -11,6 +11,9 @@ namespace EventManagementSystem.Pages.Organizer
     {
         public int? TempEventID { get; set; }
 
+        [BindProperty]
+        public int? RouteID { get; set; }
+
         public int TempLocationID { get; set; }
 
         public int TempSpaceID { get; set; }
@@ -40,6 +43,8 @@ namespace EventManagementSystem.Pages.Organizer
 
             HttpContext.Session.SetInt32("parentlocationid", TempLocationID);
             HttpContext.Session.SetInt32("spaceid", TempSpaceID);
+
+            RouteID = eventid;
         }
         public IActionResult OnPost()
         {

@@ -12,6 +12,9 @@ namespace EventManagementSystem.Pages.Organizer
 
         public int? ParentID { get; set; }
 
+        [BindProperty]
+        public int? RouteID { get; set; }
+
         public int ParentLocationID { get; set; }
 
         public int? ParentLocationIDGet { get; set; }
@@ -45,6 +48,8 @@ namespace EventManagementSystem.Pages.Organizer
 
             HttpContext.Session.SetInt32("parentlocationid", ParentLocationID);
             HttpContext.Session.SetInt32("parentspaceid", ParentSpaceID);
+
+            RouteID = eventID;
         }
 
         public IActionResult OnPost()

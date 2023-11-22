@@ -17,12 +17,10 @@
         <thead>
             <tr>
                 <th>Event Name:</th>
-                <th>Event Description:</th>
                 <th>Start Date:</th>
                 <th>End Date:</th>
-                <th>Registration Deadline:</th>
                 <th>Event Type:</th>
-                <th>Event Status:</th>
+                <th>Status:</th>
                 <th>Date Approved:</th>
                 <th>Event Details:</th>
             </tr>
@@ -33,13 +31,11 @@
                 {
                     <tr>
                         <td><b>@record.EventName</b></td>
-                        <td>@record.EventDescription</td>
-                        <td>@record.StartDate</td>
-                        <td>@record.EndDate</td>
-                        <td>@record.RegistrationDeadline</td>
+                        <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
                         <td>@record.EventType</td>
                         <td>@record.Status</td>
-                        <td>@record.RequestDate</td>
+                        <td>@record.RequestDate.ToString("MM/dd/yyyy")</td>
                         <td>
                             <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View/Edit</a>
                         </td>
