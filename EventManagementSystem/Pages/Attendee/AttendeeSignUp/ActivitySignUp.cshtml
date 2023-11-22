@@ -9,7 +9,7 @@
     <br />
     <form method="post" asp-page="ActivitySignUp" asp-page-handler="Search">
         <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn btn-light">Search</button>
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
     <table class="table table-responsive table-hover">
@@ -24,10 +24,11 @@
                 <th>Sign Up:</th>
             </tr>
         </thead>
-        <form method="post" asp-page-handler="Register" class="table-secondary">
-            @{
-                foreach (var record in Model.Events)
-                {
+        <tbody class="table-secondary">
+            <form method="post" asp-page-handler="Register" class="table-secondary">
+                @{
+                    foreach (var record in Model.Events)
+                    {
                     <tr>
                         <td><b>@record.EventName</b></td>
                         <td>@record.EventDescription</td>
@@ -37,16 +38,15 @@
                         <td>@record.SpaceID</td>
                         <td>
                             <input type="hidden" name="EventID" value="@record.EventID" />
-                            <input name="Checked" type="checkbox" value="@record.EventID" />
+                            <input name="Checked" type="checkbox" style="transform: scale(2)" value="@record.EventID" />
                         </td>
                     </tr>
+                    }
                 }
-            }
-        <input type="submit" value="Register" class="btn rndbtn btn-light" />
-        </form>
+            </form>
+        </tbody>
     </table>
-
     <br />
-
-    <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
+    <input type="submit" value="Register" class="btn rndbtn btn-light" />
+    <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
 </div>
