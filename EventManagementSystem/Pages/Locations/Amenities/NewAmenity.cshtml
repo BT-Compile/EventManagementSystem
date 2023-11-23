@@ -15,15 +15,15 @@
             <input type="hidden" asp-for="@Model.AmenityToCreate.AmenityID" />
             <label asp-for="@Model.AmenityToCreate.Name">- Name -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Name" id="Name" required />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Name" id="LocationName" required />
             <br />
             <label asp-for="@Model.AmenityToCreate.Type">- Description -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Description" id="Description" />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Description" id="LocationDescription" />
             <br />
             <label asp-for="@Model.AmenityToCreate.Type">- Type -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Type" id="Type" />
+            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Type" id="LocationType" />
             <br />
             <label asp-for="@Model.AmenityToCreate.URL">- URL -</label>
             <br />
@@ -36,3 +36,20 @@
         </form>
     </div>
 </div>
+
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("LocationName").value = "Test Hotel";
+        document.getElementById("LocationDescription").value = "Test Hotel Description";
+        document.getElementById("LocationType").value = "Hotel";
+        document.getElementById("URL").value = "www.fakehotel.com";
+    }
+
+    function clearForm() {
+        document.getElementById("TeamName").value = "";
+        document.getElementById("TeamDescription").value = "";
+        document.getElementById("TeamSize").value = "";
+        document.getElementById("TeamSize").value = "";
+    }
+</script>

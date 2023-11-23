@@ -2,6 +2,8 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Login
 {
@@ -13,6 +15,8 @@ namespace EventManagementSystem.Pages.Login
 
         public int ParticipantRole {  get; set; }
 
+        public List<SelectListItem> Allergies { get; set; }
+
         public NewUserModel()
         {
             UserToCreate = new User();
@@ -22,7 +26,15 @@ namespace EventManagementSystem.Pages.Login
         // we are not updating a User, only creating a new one
         public void OnGet()
         {
-
+            SqlDataReader AllergyReader = DBClass.GeneralReaderQuery("SELECT * FROM Allergy");
+            Allergies = new List<SelectListItem>();
+            while (AllergyReader.Read())
+            {
+                Allergies.Add(new SelectListItem(
+                    AllergyReader["Category"].ToString(),
+                    AllergyReader["AllergyID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
         }
 
         public IActionResult OnPost()

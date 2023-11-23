@@ -30,9 +30,13 @@
                 <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
                 <br />
                 <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Allergies -</label>
-                <input type="text" asp-for="@Model.UserToCreate.AllergyID" id="AllergyNote" class="newlogfield" />
                 <br />
-            <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
+                <select asp-for="@Model.UserToCreate.AllergyID" asp-items="Model.Allergies">
+                    <option value=""></option>
+                </select>
+                <br /> 
+                <br />
+                <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
                 <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />
                 <br /><br />
                 <button type="button" class="btn btn-light" onclick="populateForm()">Populate</button>

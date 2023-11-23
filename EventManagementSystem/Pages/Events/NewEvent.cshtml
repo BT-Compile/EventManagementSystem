@@ -43,10 +43,9 @@
                 <br />
             <label asp-for="@Model.EventToCreate.SpaceID">- Space Name -</label>
                 <br />
-            <select asp-for="@Model.EventToCreate.SpaceID" asp-items="Model.Spaces">
+            <select asp-for="@Model.EventToCreate.SpaceID" class="newlogfield" asp-items="Model.Spaces">
                     <option value=""></option>
             </select>
-                <br />
                 <br />
             <label asp-for="@Model.EventToCreate.Status">- Status -</label>
                 <br />

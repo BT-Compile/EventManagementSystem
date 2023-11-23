@@ -31,7 +31,7 @@ namespace EventManagementSystem.Pages.Login
 
                 HttpContext.Session.SetString("username", Username);
 
-                sqlQuery = "SELECT * FROM \"User\" WHERE Username = '" + HttpContext.Session.GetString("username") + "';";
+                sqlQuery = "SELECT * FROM [User] WHERE Username = '" + HttpContext.Session.GetString("username") + "';";
                 SqlDataReader singleUser = DBClass.GeneralReaderQuery(sqlQuery);
                 singleUser.Read();
 

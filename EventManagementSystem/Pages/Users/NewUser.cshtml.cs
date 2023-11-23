@@ -16,6 +16,8 @@ namespace EventManagementSystem.Pages.Users
 
         public List<SelectListItem> Roles { get; set; }
 
+        public List<SelectListItem> Allergies { get; set; }
+
         public NewUserModel()
         {
             UserToCreate = new User();
@@ -35,6 +37,16 @@ namespace EventManagementSystem.Pages.Users
             {
                 return RedirectToPage("/Login/Index");
             }
+
+            SqlDataReader AllergyReader = DBClass.GeneralReaderQuery("SELECT * FROM Allergy");
+            Allergies = new List<SelectListItem>();
+            while (AllergyReader.Read())
+            {
+                Allergies.Add(new SelectListItem(
+                    AllergyReader["Category"].ToString(),
+                    AllergyReader["AllergyID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
 
             // Populate the roles select control
             SqlDataReader RolesReader = DBClass.GeneralReaderQuery("SELECT * FROM [Role]");

@@ -32,14 +32,17 @@
             <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
             <br />
             <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Allergies -</label>
-            <input type="text" asp-for="@Model.UserToCreate.AllergyID" id="AllergyNote" class="newlogfield" />
+            <br />
+            <select asp-for="@Model.UserToCreate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
+                <option value=""></option>
+            </select>
             <br />
             <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
             <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />
             <br />
             <label asp-for="@Model.UserToCreate.RoleType">- Role -</label>
             <br />
-            <select asp-for="@Model.UserToCreate.RoleType" asp-items="Model.Roles">
+            <select asp-for="@Model.UserToCreate.RoleType" class="newlogfield" asp-items="Model.Roles">
                 <option value=""></option>
             </select>
             <br />

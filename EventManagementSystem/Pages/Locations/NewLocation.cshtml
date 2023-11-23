@@ -29,7 +29,18 @@
     </div>
 </div>
 
+<script>
+    // links to the Populate button, which populates all fields but DOES NOT send a post request
+    function populateForm() {
+        document.getElementById("City").value = "Los Angeles";
+        document.getElementById("State").value = "California";
+    }
 
+    function clearForm() {
+        document.getElementById("City").value = "";
+        document.getElementById("State").value = "";
+    }
+</script>
 
 
 

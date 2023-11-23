@@ -4,43 +4,44 @@
 }
 
 <div class="wrapper">
-<h2 class="font">Your Events Awaiting Approval:</h2>
-<br />
-<form method="post" asp-page="Organizer/PendingEvent">
-    <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-    &emsp;<button type="submit" class="btn btn-light">Search</button>
-</form>
-<br />
+    <br />
+    <h2 class="font">Your Events Awaiting Approval:</h2>
+    <br />
+    <form method="post" asp-page="Organizer/PendingEvent">
+        <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
+    <br />
 
-<table class="table table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Event Name:</th>
-            <th>Event Description:</th>
-            <th>Start Date:</th>
-            <th>End Date:</th>
-            <th>Registration Deadline:</th>
-            <th>Event Type:</th>
-            <th>Location:</th>
-            <th>Address:</th>
-        </tr>
-    </thead>
-    <tbody class="table-secondary">
-        @{
-            foreach (var record in Model.Events)
-            {
-                <tr>
-                    <td><b>@record.EventName</b></td>
-                    <td>@record.EventDescription</td>
-                    <td>@record.StartDate</td>
-                    <td>@record.EndDate</td>
-                    <td>@record.RegistrationDeadline</td>
-                    <td>@record.EventType</td>
-                    <td>@record.SpaceName</td>
-                    <td>@record.SpaceAddress</td>
-                </tr>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>Event Name:</th>
+                <th>Event Description:</th>
+                <th>Start Date:</th>
+                <th>End Date:</th>
+                <th>Registration Deadline:</th>
+                <th>Event Type:</th>
+                <th>Location:</th>
+                <th>Address:</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            @{
+                foreach (var record in Model.Events)
+                {
+                    <tr>
+                        <td><b>@record.EventName</b></td>
+                        <td>@record.EventDescription</td>
+                        <td>@record.StartDate</td>
+                        <td>@record.EndDate</td>
+                        <td>@record.RegistrationDeadline</td>
+                        <td>@record.EventType</td>
+                        <td>@record.SpaceName</td>
+                        <td>@record.SpaceAddress</td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
