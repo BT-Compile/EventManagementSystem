@@ -5,19 +5,21 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="display-6 font centertxt">Welcome</h2>
+    <h2 class="display-6 font centertxt">Welcome,</h2>
     <h2 class="display-6 font centertxt">@Model.FullName</h2>
+    <br />
+    <img class="profilepic" src="/images/profile.png" />
     <br />
     <hr />
     <br />
         <h3 class="font centertxt">Team: @Model.TeamName</h3>
-        <p class="centertxt">Want to sign up / change teams? Click <a class="font" href="/Attendee/TeamSignUp">HERE</a></p>
+    <p class="centertxt">Want to sign up / change teams? <a class="font" href="/Attendee/TeamSignUp"> Click Here</a></p>
     <br />
     <hr />
     <h2 class="font">Your scheduled events:</h2>
     <br />
     <form method="post" asp-page="Index">
-        <input type="text" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />

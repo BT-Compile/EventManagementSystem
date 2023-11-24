@@ -12,7 +12,7 @@ a:hover {
 body {
     margin-bottom: 60px;
     color: white;
-    background: linear-gradient(to bottom, #450084, #CBB677);
+    background: linear-gradient(to left top, #450084, #CBB677);
     font-size: 14pt;
 }
 
@@ -78,7 +78,7 @@ thead {
 
 .card {
     border-radius: 10pt;
-    border: none;
+    border: solid 3px #450084;
 }
 
 .center {
@@ -141,7 +141,7 @@ thead {
 
 .carimg {
     border-radius: 25px;
-    width: 40%;
+    width: 60%;
     height: auto; /* maintains the aspect ratio of the images */
     margin: 0 auto;
 }
@@ -150,7 +150,7 @@ thead {
     background-color: white;
     border-radius: 15px;
     filter: opacity(75%);
-    width: 60%;
+    width: 80%;
     margin: auto;
 }
 
@@ -173,7 +173,7 @@ thead {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 5%;
     padding: 0;
     color: #fff;
     text-align: center;
@@ -195,13 +195,14 @@ thead {
 }
 
 .indexContainer2 {
+    float: right;
     margin: auto;
     height: auto;
     background-color: rgba(0, 0, 0, 0.10);
     padding: 20px;
     padding-bottom: 50px;
     border-radius: 25pt;
-    width: 100%;
+    width: 60%;
 }
 
 .indexBox {
@@ -310,8 +311,27 @@ thead {
     font-size: 16px;
 }
 
+.profilepic {
+    border-radius: 50%;
+    width: 250px;
+    height: auto;
+    display: flex;
+    margin: auto;
+}
+
 .table-secondary {
     text-align: center;
+}
+
+.scheduleimg {
+    width: 300px;
+    height: auto;
+    margin: 5% 0 0 10%;
+}
+
+.searchbar {
+    border: none;
+    padding: 5px;
 }
 
 .shdwbox {

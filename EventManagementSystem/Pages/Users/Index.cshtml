@@ -8,7 +8,7 @@
     <h2 class="font">All Users</h2>
     <br />
     <form method="post" asp-page="Users/Index">
-        <input type="text" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
@@ -38,7 +38,7 @@
                                 <td>@user.Username</td>
                                 <td>@user.Accomodation</td>
                                 <td>
-                                    <a asp-page="ViewUser" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">View</a>
+                                    <a asp-page="" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">View</a>
                                 </td>
                                 <td>
                                     <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
