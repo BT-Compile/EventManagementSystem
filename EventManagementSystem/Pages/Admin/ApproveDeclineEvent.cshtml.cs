@@ -18,12 +18,6 @@ namespace EventManagementSystem.Pages.Admin
 
         public string[]? Keywords { get; set; }
 
-        [BindProperty]
-        public string FullName { get; set; }
-
-        [BindProperty]
-        public string TeamName { get; set; }
-
         public List<Event> Events { get; set; }
 
         public ApproveDeclineEventModel()
@@ -40,9 +34,8 @@ namespace EventManagementSystem.Pages.Admin
             }
 
             // This only displays the major EVENTS that contain subevents, the parent events only
-            // query to select all events that this user has signed up for already
-            string sqlQuery = "SELECT * FROM [Event] INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = [Space].SpaceID INNER JOIN " +
-                              "[Location] ON [Space].LocationID = [Location].LocationID WHERE [Status] = 'Pending'";
+            string sqlQuery = "SELECT Event.*, Space.* FROM Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN " +
+                              "Space ON EventSpace.SpaceID = Space.SpaceID WHERE [Status] = 'Pending'";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -63,12 +56,12 @@ namespace EventManagementSystem.Pages.Admin
                     SpaceAddress = scheduleReader["Address"].ToString()
                 });
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
         //Post request for search functionality
-        public IActionResult OnPostSearch()
+        public IActionResult OnPost()
         {
             HasPosted = true;
             Keywords = Regex.Split(InputString, @"\s+");
@@ -79,29 +72,32 @@ namespace EventManagementSystem.Pages.Admin
                 keyword = Keywords[i];
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Event Table 
-                sqlQuery = "SELECT * FROM Event " +
-                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
-                           "ORDER BY StartDate DESC";
+                sqlQuery = "SELECT Event.*, Space.* FROM Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN " +
+                            "Space ON EventSpace.SpaceID = Space.SpaceID WHERE Event.[Status] = 'Pending' " +
+                            "AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE '%" + keyword + "%') " +
+                            "ORDER BY StartDate DESC";
 
-                SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
+                SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
-                while (eventReader.Read())
+                while (scheduleReader.Read())
                 {
                     Events.Add(new Event
                     {
-                        EventID = Int32.Parse(eventReader["EventID"].ToString()),
-                        RequestDate = (DateTime)eventReader["RequestDate"], //Broken I will try to fix later
-                        EventName = eventReader["EventName"].ToString(),
-                        EventDescription = eventReader["EventDescription"].ToString(),
-                        StartDate = (DateTime)eventReader["StartDate"],
-                        EndDate = (DateTime)eventReader["EndDate"],
-                        RegistrationDeadline = (DateTime)eventReader["RegistrationDeadline"],
-                        Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
-                        EventType = eventReader["Type"].ToString()
+                        EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
+                        EventName = scheduleReader["EventName"].ToString(),
+                        EventDescription = scheduleReader["EventDescription"].ToString(),
+                        StartDate = (DateTime)scheduleReader["StartDate"],
+                        EndDate = (DateTime)scheduleReader["EndDate"],
+                        RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
+                        Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
+                        EventType = scheduleReader["Type"].ToString(),
+                        UserID = Int32.Parse(scheduleReader["OrganizerID"].ToString()),
+                        SpaceName = scheduleReader["Name"].ToString(),
+                        SpaceAddress = scheduleReader["Address"].ToString()
                     });
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
 
         }

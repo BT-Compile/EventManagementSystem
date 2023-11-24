@@ -7,7 +7,7 @@
     <br />
     <h2 class="font">Events Pending Approval:</h2>
     <br />
-    <form method="post" asp-page="Admin/ApproveDeclineEvent" asp-page-handler="Search">
+    <form method="post" asp-page="ApproveDeclineEvent">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -17,12 +17,10 @@
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
-                        <th>Date Submitted:</th>
                         <th>Event Name:</th>
                         <th>Event Description:</th>
                         <th>Start Date:</th>
                         <th>End Date:</th>
-                        <th>Registration Deadline:</th>
                         <th>Event Type:</th>
                         <th>Location:</th>
                         <th>Address:</th>
@@ -35,12 +33,10 @@
                         foreach (var record in Model.Events)
                         {
                             <tr>
-                                <td>@record.RequestDate</td>
                                 <td><b>@record.EventName</b></td>
                                 <td>@record.EventDescription</td>
-                                <td>@record.StartDate</td>
-                                <td>@record.EndDate</td>
-                                <td>@record.RegistrationDeadline</td>
+                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
                                 <td>@record.EventType</td>
                                 <td>@record.SpaceName</td>
                                 <td>@record.SpaceAddress</td>

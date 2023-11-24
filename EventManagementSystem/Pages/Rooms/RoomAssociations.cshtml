@@ -5,29 +5,37 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Room Assignments</h2>
+    <h2 class="font centertxt">Space Assignments:</h2>
     <br />
     <hr />  
+    <br />
+    <form method="post" asp-page="RoomAssociations">
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
     <br />
     <div class="shdwbox">
         <div class="table-responsive card">
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
-                        <th>Building:</th>
-                        <th>Room Number:</th>
-                        <th>Activity Name:</th>
+                        <th>Space Name:</th>
                         <th>Event Name:</th>
+                        <th>Address:</th>
+                        <th>Capacity:</th>
+                        <th>Date:</th>
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                        foreach (var association in Model.roomAssociations)
+                        foreach (var space in Model.Spaces)
                         {
-                            <tr>
-                                <td>@association.RoomNumber</td>
-                                <td>@association.ActivityName</td>
-                                <td>@association.EventName</td>
+                            <tr class="table-secondary">
+                                <td><b>@space.SpaceName</b></td>
+                                <td>@space.EventName</td>
+                                <td>@space.Address</td>
+                                <td>@space.Capacity</td>
+                                <td>@space.EventDate.ToString("MM/dd/yyyy")</td>
                             </tr>
                         }
                     }
@@ -35,5 +43,6 @@
             </table>
         </div>
     </div>
+    <br />
     <a asp-page="AdminRoom" class="btn rndbtn btn-light">Back</a>
 </div>

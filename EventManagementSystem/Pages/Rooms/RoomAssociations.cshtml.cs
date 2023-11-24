@@ -4,16 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace EventManagementSystem.Pages.Rooms
 {
     public class RoomAssociationsModel : PageModel
     {
-        public List<RoomAssociation> roomAssociations { get; set; }
+        [BindProperty]
+        public bool HasPosted { get; set; }
+
+        [BindProperty]
+        public string? InputString { get; set; }
+
+        public string[]? Keywords { get; set; }
+
+        public List<RoomAssociation> Spaces { get; set; }
+
+        public List<RoomAssociation> Subspaces { get; set; }
 
         public RoomAssociationsModel()
         {
-            roomAssociations = new List<RoomAssociation>();
+            Spaces = new List<RoomAssociation>();
+            Subspaces = new List<RoomAssociation>();
         }
 
         public IActionResult OnGet()
@@ -29,27 +43,62 @@ namespace EventManagementSystem.Pages.Rooms
                 return RedirectToPage("/Login/Index");
             }
 
-            string sqlQuery = "SELECT Building.Name, Room.RoomNumber, Activity.ActivityName, Event.EventName " +
-                                "FROM Building INNER JOIN Room ON Building.BuildingID = Room.BuildingID INNER JOIN " +
-                                "Activity ON Room.RoomID = Activity.RoomID INNER JOIN Event ON Building.BuildingID = " +
-                                "Event.BuildingID AND Activity.EventID = Event.EventID ORDER BY Building.Name";
+            string sqlQuery = "SELECT [Space].*, Event.* FROM  Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] " +
+                              "ON EventSpace.SpaceID = [Space].SpaceID";
 
-            SqlDataReader associationsReader = DBClass.GeneralReaderQuery(sqlQuery);
+            SqlDataReader spaceReader = DBClass.GeneralReaderQuery(sqlQuery);
 
-            while (associationsReader.Read())
+            while (spaceReader.Read())
             {
-                roomAssociations.Add(new RoomAssociation
+                Spaces.Add(new RoomAssociation
                 {
-                    BuildingName = associationsReader["Name"].ToString(),
-                    RoomNumber = Int32.Parse(associationsReader["RoomNumber"].ToString()),
-                    ActivityName = associationsReader["ActivityName"].ToString(),
-                    EventName = associationsReader["EventName"].ToString()
+                    SpaceID = Int32.Parse(spaceReader["SpaceID"].ToString()),
+                    SpaceName = spaceReader["Name"].ToString(),
+                    Address = spaceReader["Address"].ToString(),
+                    Capacity = Int32.Parse(spaceReader["Capacity"].ToString()),
+                    EventName = spaceReader["EventName"].ToString()
                 });
             }
+            DBClass.DBConnection.Close();
+            return Page();
+        }
 
-            associationsReader.Close();
+        public IActionResult OnPost()
+        {
+            HasPosted = true;
+            Keywords = Regex.Split(InputString, @"\s+");
+            string keyword, sqlQuery;
+
+            for (int i = 0; i < Keywords.Length; i++)
+            {
+                keyword = Keywords[i];
+
+                // query to do a CASE INSENSITIVE search for a keyword in the Space table for Main Spaces
+                sqlQuery = "SELECT [Space].*, Event.* FROM  Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] " +
+                              "ON EventSpace.SpaceID = [Space].SpaceID WHERE ([Name] LIKE '%" + keyword + "%' OR [Address] LIKE '%" + keyword + "%' OR " +
+                              "EventName LIKE '%" + keyword + "%')  ORDER BY StartDate, [Name]";
+
+                SqlDataReader spaceReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+                while (spaceReader.Read())
+                {
+                    Spaces.Add(new RoomAssociation
+                    {
+                        SpaceID = Int32.Parse(spaceReader["SpaceID"].ToString()),
+                        SpaceName = spaceReader["Name"].ToString(),
+                        Address = spaceReader["Address"].ToString(),
+                        Capacity = Int32.Parse(spaceReader["Capacity"].ToString()),
+                        EventDate = (DateTime)spaceReader["StartDate"],
+                        EventName = spaceReader["EventName"].ToString()
+                    });
+                }
+                DBClass.DBConnection.Close();
+            }
 
             return Page();
         }
     }
 }
+
+
+

@@ -7,22 +7,22 @@
 <div class="wrapper">
     <h2 class="font">All Events</h2>
     <br />
+    <form method="post" asp-page="Events/AdminEvent">
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
+    <br />
     <div class="shdwbox">
         <div class="table-responsive card">
             <table class="table table-responsive table-hover">
                 <thead>
                     <tr>
-                        <th>Parent Event Name</th>
                         <th>Event Name:</th>
-                        <th>Event Description:</th>
                         <th>Start Date:</th>
                         <th>End Date:</th>
-                        <th>Registration Deadline:</th>
-                        <th>Capacity:</th>
                         <th>Event Type:</th>
                         <th>Status:</th>
-                        <th>Space Name:</th>
-                        <th>Edit:</th>
+                        <th>Event Details:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,18 +30,13 @@
                         foreach (var event1 in Model.Events)
                         {
                             <tr class="table-secondary">
-                                <td><b>@event1.ParentEventName</b></td>
                                 <td>@event1.EventName</td>
-                                <td>@event1.EventDescription</td>
-                                <td>@event1.StartDate</td>
-                                <td>@event1.EndDate</td>
-                                <td>@event1.RegistrationDeadline</td>
-                                <td>@event1.Capacity</td>
+                                <td>@event1.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@event1.EndDate.ToString("MM/dd/yyyy")</td>
                                 <td>@event1.EventType</td>
                                 <td>@event1.Status</td>
-                                <td>@event1.SpaceID</td>
                                 <td>
-                                    <a asp-page="EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
+                                    <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
                                 </td>
                             </tr>
                         }
@@ -51,5 +46,5 @@
         </div>
     </div>
     <br />
-    <a asp-page="NewEvent" class="btn logbtn btn-light">Create New Event</a>
+    <a asp-page="/Admin/Index" class="btn logbtn btn-light">Back</a> <a asp-page="NewEvent" class="btn logbtn btn-light">Create New Event</a>
 </div>

@@ -53,13 +53,15 @@
                 <option value=""></option>
             </select>
             <br />
-            <label asp-for="@Model.EventToUpdate.Status">- Status -</label>
+            <label asp-for="@Model.EventToUpdate.Status">- Event Status -</label>
             <br />
-            <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.Status" required />
+            <select asp-for="@Model.EventToUpdate.Status" class="newlogfield" asp-items="Model.EventStatus">
+                <option value=""></option>
+            </select>
             <br />
             <br />
             <input type="submit" class="btn rndbtn btn-light" asp-page="EditEvent" />
-            <a asp-page="AdminEvent" class="btn rndbtn btn-light">Cancel</a>
+            <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventID="@Model.eventID">Cancel</a>
         </form>
     </div>
 </div>

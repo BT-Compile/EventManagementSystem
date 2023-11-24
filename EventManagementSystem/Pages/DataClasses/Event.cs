@@ -38,7 +38,7 @@
 
         public string? ParentEventName { get; set; }
 
-        public int? ParentEventID { get; set; }
+        public string? ParentEventID { get; set; }
 
         public DateTime RequestDate { get; set; }
     }

@@ -3,9 +3,11 @@ using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Events
@@ -18,6 +20,11 @@ namespace EventManagementSystem.Pages.Events
         public List<SelectListItem> Spaces { get; set; }
 
         public List<SelectListItem> EventType { get; set; }
+
+        public List<SelectListItem> EventStatus { get; set; }
+
+        [BindProperty]
+        public int? eventID { get; set; }
 
         public EditEventModel()
         {
@@ -36,6 +43,9 @@ namespace EventManagementSystem.Pages.Events
             {
                 return RedirectToPage("/Login/Index");
             }
+
+            HttpContext.Session.SetInt32("tempeventid", eventid);
+            eventID = HttpContext.Session.GetInt32("tempeventid");
 
             // Read data from the Event table into each field
             // NOTE: This excludes the "SpaceID" field
@@ -72,6 +82,16 @@ namespace EventManagementSystem.Pages.Events
                 Spaces.Add(new SelectListItem(
                     SpacesReader["Name"].ToString(),
                     SpacesReader["SpaceID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
+            SqlDataReader EventStatusReader = DBClass.GeneralReaderQuery("SELECT DISTINCT [Status] FROM Event");
+            EventStatus = new List<SelectListItem>();
+            while (EventStatusReader.Read())
+            {
+                EventStatus.Add(new SelectListItem(
+                    EventStatusReader["Status"].ToString(),
+                    EventStatusReader["Status"].ToString()));
             }
             DBClass.DBConnection.Close();
 
@@ -142,10 +162,11 @@ namespace EventManagementSystem.Pages.Events
                     cmd.ExecuteNonQuery();
                 }
             }
-
             DBClass.DBConnection.Close();
 
-            return RedirectToPage("AdminEvent");
+            eventID = HttpContext.Session.GetInt32("tempeventid");
+
+            return RedirectToPage("AdminViewEvent", new { eventID });
         }
 
     }
