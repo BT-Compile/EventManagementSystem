@@ -7,33 +7,37 @@
     <br />
     <h2 class="font">All Spaces</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Parent Space Name:</th>
-                <th>Name:</th>
-                <th>Address:</th>
-                <th>Capacity:</th>
-                <th>Edit:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var space in Model.Spaces)
-                {
-                    <tr class="table-secondary">
-                        <td><b>@space.ParentSpaceName</b></td>
-                        <td>@space.Name</td>
-                        <td>@space.Address</td>
-                        <td>@space.Capacity</td>
-                        <td>
-                            <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-spaceid="@space.SpaceID">Edit</a>
-                        </td>
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Parent Space Name:</th>
+                        <th>Name:</th>
+                        <th>Address:</th>
+                        <th>Capacity:</th>
+                        <th>Edit:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var space in Model.Spaces)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@space.ParentSpaceName</b></td>
+                                <td>@space.Name</td>
+                                <td>@space.Address</td>
+                                <td>@space.Capacity</td>
+                                <td>
+                                    <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-spaceid="@space.SpaceID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     <a asp-page="NewRoom" class="btn rndbtn btn-light">Create New Room</a>
     <a asp-page="RoomAssociations" class="btn rndbtn btn-light">Show Room Assignments</a>

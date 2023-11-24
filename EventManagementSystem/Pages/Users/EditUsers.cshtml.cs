@@ -14,6 +14,8 @@ namespace EventManagementSystem.Pages.Users
 
         public List<SelectListItem> Roles { get; set; }
 
+        public List<SelectListItem> Allergies { get; set; }
+
         public EditUsersModel()
         {
             UserToUpdate = new User();
@@ -44,6 +46,16 @@ namespace EventManagementSystem.Pages.Users
                 UserToUpdate.PhoneNumber = singleUser["PhoneNumber"].ToString();
                 UserToUpdate.Username = singleUser["Username"].ToString();
                 UserToUpdate.AllergyID = singleUser["AllergyID"].ToString();
+            }
+            DBClass.DBConnection.Close();
+
+            SqlDataReader AllergyReader = DBClass.GeneralReaderQuery("SELECT * FROM Allergy");
+            Allergies = new List<SelectListItem>();
+            while (AllergyReader.Read())
+            {
+                Allergies.Add(new SelectListItem(
+                    AllergyReader["Category"].ToString(),
+                    AllergyReader["AllergyID"].ToString()));
             }
             DBClass.DBConnection.Close();
 

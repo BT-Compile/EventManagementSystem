@@ -49,7 +49,7 @@ th {
 }
 
 thead {
-    background-color: #CBB677;
+    background-color: #B599CE;
     text-align: center;
 }
 
@@ -74,6 +74,11 @@ thead {
     font-family: 'Arvo', serif;
     font-size: 20pt;
     padding: 25px;
+}
+
+.card {
+    border-radius: 10pt;
+    border: none;
 }
 
 .center {
@@ -226,7 +231,7 @@ thead {
 .jmufoot {
     width: 50px;
     height: auto;
-    margin-top: .5%;
+    margin: 7px 5px 0 5px;
 }
 
 .logbox {
@@ -309,6 +314,13 @@ thead {
     text-align: center;
 }
 
+.shdwbox {
+    background-color: rgba(0, 0, 0, 0.10);
+    border-radius: 25px;
+    padding: 20px;
+    margin: auto;
+}
+
 /*-----------------------------MOBILE------------------------------*/
 
 @media (max-width: 768px) {
@@ -327,10 +339,16 @@ thead {
 
     body {
         margin: auto;
+        height: 100%;
     }
 
     html {
         font-size: 16px;
+        height: 100vh
+    }
+
+    footer {
+        text-align: center;
     }
 
 /*---------------------------Mobile Classes--------------------------*/
@@ -345,9 +363,6 @@ thead {
         height: 100%;
     }
 
-    .btn {
-    }
-
     .carimg {
         border-radius: 25px;
         width: 350px;
@@ -358,12 +373,16 @@ thead {
 
     .container {
         width: 50%;
-        height: 100%;
     }
 
     .container-fluid {
         width: 50%;
-        height: 100%;
+    }
+
+    .jmufoot {
+        width: 50px;
+        height: auto;
+        margin-top: 2%;
     }
 
     .logbtn {
@@ -373,7 +392,7 @@ thead {
 
     .logbox {
         width: 100%;
-        margin: auto;
+        margin: 20vh auto;
     }
 
     .navbar {
@@ -388,6 +407,10 @@ thead {
         color: rgb(69, 0, 132);
         font-family: 'Arvo', serif;
         text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: none;
     }
 
     .indexBox {

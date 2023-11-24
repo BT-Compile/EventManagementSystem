@@ -20,7 +20,7 @@
             <label asp-for="@Model.LocationToCreate.State">- State -</label>
             <br />
             <input type="text" class="newlogfield" asp-for="@Model.LocationToCreate.State" id="State" required />
-            <br />
+            <br /><br />
             <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
             <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
             <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewRoom" />

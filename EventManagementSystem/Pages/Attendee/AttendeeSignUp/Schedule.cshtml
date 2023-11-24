@@ -7,38 +7,41 @@
     <br />
     <h2 class="font">Subevents at @Model.ParentEvent.EventName:</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Event Name:</th>
-                <th>Start Date:</th>
-                <th>End Date:</th>
-                <th>Location:</th>
-                <th>View Details:</th>
-                <th>Cancel Registration:</th>
-            </tr>
-        </thead>
-        <tbody class="table-secondary">
-            @{
-                foreach (var record in Model.Events)
-                {
-                <tr>
-                    <td><b>@record.EventName</b></td>
-                    <td>@record.StartDate</td>
-                    <td>@record.EndDate</td>
-                    <td>@record.SpaceID</td>
-                    <td>
-                        <a asp-page="/Attendee/AttendeeSignUp/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
-                    </td>
-                    <td>
-                        <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
-                    </td>
-                </tr>
-                }
-            }
-        </tbody>
-    </table>
-
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Event Name:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Location:</th>
+                        <th>View Details:</th>
+                        <th>Cancel Registration:</th>
+                    </tr>
+                </thead>
+                <tbody class="table-secondary">
+                    @{
+                        foreach (var record in Model.Events)
+                        {
+                        <tr>
+                            <td><b>@record.EventName</b></td>
+                            <td>@record.StartDate</td>
+                            <td>@record.EndDate</td>
+                            <td>@record.SpaceID</td>
+                            <td>
+                                <a asp-page="/Attendee/AttendeeSignUp/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                            </td>
+                            <td>
+                                <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
+                            </td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
 
     <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>

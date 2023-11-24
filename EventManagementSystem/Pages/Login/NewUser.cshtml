@@ -29,12 +29,11 @@
                 <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
                 <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
                 <br />
-                <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Allergies -</label>
+                <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Food Allergies -</label>
                 <br />
-                <select asp-for="@Model.UserToCreate.AllergyID" asp-items="Model.Allergies">
+                <select asp-for="@Model.UserToCreate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
                     <option value=""></option>
                 </select>
-                <br /> 
                 <br />
                 <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
                 <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />

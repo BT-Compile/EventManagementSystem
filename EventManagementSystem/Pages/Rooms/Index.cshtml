@@ -4,24 +4,28 @@
 }
 
 <h2>All Rooms</h2>
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Building:</th>
-            <th>Room Number:</th>
-            <th>Max Capacity:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var room in Model.Rooms)
-            {
+<div class="shdwbox">
+    <div class="table-responsive card">
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@room.BuildingName</td>
-                    <td>@room.RoomNumber</td>
-                    <td>@room.Capacity</td>
+                    <th>Building:</th>
+                    <th>Room Number:</th>
+                    <th>Max Capacity:</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var room in Model.Rooms)
+                    {
+                        <tr>
+                            <td>@room.BuildingName</td>
+                            <td>@room.RoomNumber</td>
+                            <td>@room.Capacity</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

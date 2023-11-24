@@ -14,6 +14,8 @@ namespace EventManagementSystem.Pages.Events
 
         public List<SelectListItem> Spaces { get; set; }
 
+        public List<SelectListItem> EventType { get; set; }
+
         public NewEventModel()
         {
             EventToCreate = new Event();
@@ -42,6 +44,16 @@ namespace EventManagementSystem.Pages.Events
                 Spaces.Add(new SelectListItem(
                     SpacesReader["Name"].ToString(),
                     SpacesReader["SpaceID"].ToString()));
+            }
+            DBClass.DBConnection.Close();
+
+            SqlDataReader EventTypeReader = DBClass.GeneralReaderQuery("SELECT DISTINCT Type FROM Event");
+            EventType = new List<SelectListItem>();
+            while (EventTypeReader.Read())
+            {
+                EventType.Add(new SelectListItem(
+                    EventTypeReader["Type"].ToString(),
+                    EventTypeReader["Type"].ToString()));
             }
             DBClass.DBConnection.Close();
 

@@ -8,33 +8,37 @@
     <br />
     <h2 class="font">All Locations</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>City:</th>
-                <th>State:</th>
-                <th>Amenities:</th>
-                <th>Edit:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var location in Model.Locations)
-                {
-                    <tr class="table-secondary">
-                        <td><b>@location.City</b></td>
-                        <td>@location.State</td>
-                        <td>
-                            <a asp-page="Amenities/Index" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">View Amenities</a>
-                        </td>
-                        <td>
-                            <a asp-page="EditLocation" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">Edit</a>
-                        </td>
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>City:</th>
+                        <th>State:</th>
+                        <th>Amenities:</th>
+                        <th>Edit:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var location in Model.Locations)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@location.City</b></td>
+                                <td>@location.State</td>
+                                <td>
+                                    <a asp-page="Amenities/Index" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">View Amenities</a>
+                                </td>
+                                <td>
+                                    <a asp-page="EditLocation" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     <a asp-page="NewLocation" class="btn rndbtn btn-light">Create New Location</a>
 </div>

@@ -4,31 +4,33 @@
 }
 
 <h2>@Model.UserName's Schedule</h2>
-
-<table class="table table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Event Name:</th>
-            <th>Activity Name:</th>
-            <th>Date:</th>
-            <th>Building:</th>
-            <th>Room Number:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var association in Model.UserAssociations)
-            {
+<div class="shdwbox">
+    <div class="table-responsive card">
+        <table class="table table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@association.EventName</td>
-                    <td>@association.ActivityName</td>
-                    <td>@association.Date</td>
-                    <td>@association.BuildingName</td>
-                    <td>@association.RoomNumber</td>
+                    <th>Event Name:</th>
+                    <th>Activity Name:</th>
+                    <th>Date:</th>
+                    <th>Building:</th>
+                    <th>Room Number:</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
-
+            </thead>
+            <tbody>
+                @{
+                    foreach (var association in Model.UserAssociations)
+                    {
+                        <tr>
+                            <td>@association.EventName</td>
+                            <td>@association.ActivityName</td>
+                            <td>@association.Date</td>
+                            <td>@association.BuildingName</td>
+                            <td>@association.RoomNumber</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 <a asp-page="UserAssociations" class="btn btn-secondary">Back</a>

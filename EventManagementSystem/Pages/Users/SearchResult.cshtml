@@ -7,48 +7,52 @@
     <br />
     <h2 class="font">All Users</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Name:</th>
-                <th>Email:</th>
-                <th>Phone Number:</th>
-                <th>Username:</th>
-                <th>Allergies:</th>
-                <th>Role:</th>
-                <th>Events:</th>
-                <th>Edit:</th>
-                <th>Deactivate Account:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var user in Model.Users)
-                {
-                    <tr class="table-secondary">
-                        <td><b>@user.FirstName</b></td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>@user.Username</td>
-                        <td>@user.Category</td>
-                        <td>@user.RoleType</td>
-
-                        <td>
-                            <a asp-page="UserSchedule" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Show</a>
-                        </td>
-
-                        <td>
-                            <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
-                        </td>
-                      
-                        <td>
-                            <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
-                        </td>
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Email:</th>
+                        <th>Phone Number:</th>
+                        <th>Username:</th>
+                        <th>Allergies:</th>
+                        <th>Role:</th>
+                        <th>Events:</th>
+                        <th>Edit:</th>
+                        <th>Deactivate Account:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var user in Model.Users)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@user.FirstName</b></td>
+                                <td>@user.Email</td>
+                                <td>@user.PhoneNumber</td>
+                                <td>@user.Username</td>
+                                <td>@user.Category</td>
+                                <td>@user.RoleType</td>
+
+                                <td>
+                                    <a asp-page="UserSchedule" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Show</a>
+                                </td>
+
+                                <td>
+                                    <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
+                                </td>
+                      
+                                <td>
+                                    <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     <a asp-page="NewUser" class="btn rndbtn btn-light">Create New User</a>
 </div>

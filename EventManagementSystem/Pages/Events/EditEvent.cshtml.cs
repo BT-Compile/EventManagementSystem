@@ -17,6 +17,8 @@ namespace EventManagementSystem.Pages.Events
 
         public List<SelectListItem> Spaces { get; set; }
 
+        public List<SelectListItem> EventType { get; set; }
+
         public EditEventModel()
         {
             EventToUpdate = new Event();
@@ -49,6 +51,16 @@ namespace EventManagementSystem.Pages.Events
                 EventToUpdate.Capacity = Int32.Parse(singleEvent["Capacity"].ToString());
                 EventToUpdate.Status = singleEvent["Status"].ToString();
                 EventToUpdate.EventType = singleEvent["EventType"].ToString();
+            }
+            DBClass.DBConnection.Close();
+
+            SqlDataReader EventTypeReader = DBClass.GeneralReaderQuery("SELECT DISTINCT Type FROM Event");
+            EventType = new List<SelectListItem>();
+            while (EventTypeReader.Read())
+            {
+                EventType.Add(new SelectListItem(
+                    EventTypeReader["Type"].ToString(),
+                    EventTypeReader["Type"].ToString()));
             }
             DBClass.DBConnection.Close();
 

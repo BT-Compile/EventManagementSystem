@@ -9,28 +9,31 @@
     <br />
     <hr />  
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Building:</th>
-                <th>Room Number:</th>
-                <th>Activity Name:</th>
-                <th>Event Name:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var association in Model.roomAssociations)
-                {
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
                     <tr>
-                        <td>@association.RoomNumber</td>
-                        <td>@association.ActivityName</td>
-                        <td>@association.EventName</td>
+                        <th>Building:</th>
+                        <th>Room Number:</th>
+                        <th>Activity Name:</th>
+                        <th>Event Name:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
-
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var association in Model.roomAssociations)
+                        {
+                            <tr>
+                                <td>@association.RoomNumber</td>
+                                <td>@association.ActivityName</td>
+                                <td>@association.EventName</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <a asp-page="AdminRoom" class="btn rndbtn btn-light">Back</a>
 </div>

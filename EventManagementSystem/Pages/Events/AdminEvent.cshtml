@@ -6,46 +6,50 @@
 <br />
 <div class="wrapper">
     <h2 class="font">All Events</h2>
-        <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Parent Event Name</th>
-                <th>Event Name:</th>
-                <th>Event Description:</th>
-                <th>Start Date:</th>
-                <th>End Date:</th>
-                <th>Registration Deadline:</th>
-                <th>Capacity:</th>
-                <th>Event Type:</th>
-                <th>Status:</th>
-                <th>Space Name:</th>
-                <th>Edit:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var event1 in Model.Events)
-                {
-                    <tr class="table-secondary">
-                        <td><b>@event1.ParentEventName</b></td>
-                        <td>@event1.EventName</td>
-                        <td>@event1.EventDescription</td>
-                        <td>@event1.StartDate</td>
-                        <td>@event1.EndDate</td>
-                        <td>@event1.RegistrationDeadline</td>
-                        <td>@event1.Capacity</td>
-                        <td>@event1.EventType</td>
-                        <td>@event1.Status</td>
-                        <td>@event1.SpaceID</td>
-                        <td>
-                            <a asp-page="EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
-                        </td>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Parent Event Name</th>
+                        <th>Event Name:</th>
+                        <th>Event Description:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Registration Deadline:</th>
+                        <th>Capacity:</th>
+                        <th>Event Type:</th>
+                        <th>Status:</th>
+                        <th>Space Name:</th>
+                        <th>Edit:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var event1 in Model.Events)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@event1.ParentEventName</b></td>
+                                <td>@event1.EventName</td>
+                                <td>@event1.EventDescription</td>
+                                <td>@event1.StartDate</td>
+                                <td>@event1.EndDate</td>
+                                <td>@event1.RegistrationDeadline</td>
+                                <td>@event1.Capacity</td>
+                                <td>@event1.EventType</td>
+                                <td>@event1.Status</td>
+                                <td>@event1.SpaceID</td>
+                                <td>
+                                    <a asp-page="EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     <a asp-page="NewEvent" class="btn logbtn btn-light">Create New Event</a>
 </div>

@@ -7,29 +7,33 @@
     <br />
     <h2 class="font">Available Teams</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Team Name:</th>
-                <th>Team Description:</th>
-                <th>Sign Up:</th>
-            </tr>
-        </thead>
-        <tbody class="table-secondary">
-            @{
-                foreach (var team in Model.Teams)
-                {
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
                     <tr>
-                        <td><b>@team.Name</b></td>
-                        <td>@team.Description</td>
-                        <td>
-                            <a asp-page="Confirmation" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Join</a>
-                        </td>
+                        <th>Team Name:</th>
+                        <th>Team Description:</th>
+                        <th>Sign Up:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody class="table-secondary">
+                    @{
+                        foreach (var team in Model.Teams)
+                        {
+                            <tr>
+                                <td><b>@team.Name</b></td>
+                                <td>@team.Description</td>
+                                <td>
+                                    <a asp-page="Confirmation" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Join</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     @if (Model.HasTeam)
     {

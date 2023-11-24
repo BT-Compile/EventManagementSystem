@@ -12,36 +12,39 @@
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
-
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Event Name:</th>
-                <th>Start Date:</th>
-                <th>End Date:</th>
-                <th>Event Type:</th>
-                <th>Status:</th>
-                <th>Date Approved:</th>
-                <th>Event Details:</th>
-            </tr>
-        </thead>
-        <tbody class="table-secondary">
-            @{
-                foreach (var record in Model.Events)
-                {
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
                     <tr>
-                        <td><b>@record.EventName</b></td>
-                        <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                        <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
-                        <td>@record.EventType</td>
-                        <td>@record.Status</td>
-                        <td>@record.RequestDate.ToString("MM/dd/yyyy")</td>
-                        <td>
-                            <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View/Edit</a>
-                        </td>
+                        <th>Event Name:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Event Type:</th>
+                        <th>Status:</th>
+                        <th>Date Approved:</th>
+                        <th>Event Details:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody class="table-secondary">
+                    @{
+                        foreach (var record in Model.Events)
+                        {
+                            <tr>
+                                <td><b>@record.EventName</b></td>
+                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EventType</td>
+                                <td>@record.Status</td>
+                                <td>@record.RequestDate.ToString("MM/dd/yyyy")</td>
+                                <td>
+                                    <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View/Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

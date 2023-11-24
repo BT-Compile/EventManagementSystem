@@ -7,35 +7,39 @@
     <br />
     <h2 class="font">All Teams</h2>
     <br />
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Team Name:</th>
-                <th>Description:</th>
-                <th>Max Size:</th>
-                <th>Edit:</th>
-                <th>Deactivate Team:</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var team in Model.Teams)
-                {
-                    <tr class="table-secondary">
-                        <td>@team.Name</td>
-                        <td>@team.Description</td>
-                        <td>@team.MaxSize</td>
-                        <td>
-                            <a asp-page="EditTeam" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Edit</a>
-                        </td>
-                        <td>
-                            <a asp-page="DeactivateTeam" class="btn rndbtn btn-warning" asp-route-teamid="@team.TeamID">Deactivate</a>
-                        </td>
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Team Name:</th>
+                        <th>Description:</th>
+                        <th>Max Size:</th>
+                        <th>Edit:</th>
+                        <th>Deactivate Team:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var team in Model.Teams)
+                        {
+                            <tr class="table-secondary">
+                                <td>@team.Name</td>
+                                <td>@team.Description</td>
+                                <td>@team.MaxSize</td>
+                                <td>
+                                    <a asp-page="EditTeam" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Edit</a>
+                                </td>
+                                <td>
+                                    <a asp-page="DeactivateTeam" class="btn rndbtn btn-warning" asp-route-teamid="@team.TeamID">Deactivate</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br />
     <a asp-page="NewTeam" class="btn rndbtn btn-light">Create New Team</a>
 </div>

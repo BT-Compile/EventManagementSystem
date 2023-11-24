@@ -30,7 +30,7 @@
             <select asp-for="@Model.SpaceToCreate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces" >
                 <option value=""></option>
             </select>
-            <br />
+            <br /><br />
             <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
             <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
             <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewRoom" />

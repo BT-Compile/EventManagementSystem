@@ -39,7 +39,10 @@
             <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.PhoneNumber" />
             <br />
             <label asp-for="@Model.UserToUpdate.AllergyID">- Allergies -</label>
-            <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.AllergyID" />
+            <br />
+            <select asp-for="@Model.UserToUpdate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
+                <option value=""></option>
+            </select>
             <br />
             <label asp-for="@Model.UserToUpdate.RoleType">- Role -</label>
             <br />

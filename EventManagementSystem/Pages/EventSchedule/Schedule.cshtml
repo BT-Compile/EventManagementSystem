@@ -4,29 +4,31 @@
 }
 
 <h2>@Model.EventName Schedule</h2>
-
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Activity Name:</th>
-            <th>Description:</th>
-            <th>Date:</th>
-            <th>Start Time:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var activity in Model.Activities)
-            {
+<div class="shdwbox">
+    <div class="table-responsive card">
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@activity.ActivityName</td>
-                    <td>@activity.ActivityDescription</td>
-                    <td>@activity.Date.ToShortDateString()</td>
-                    <td>@activity.StartTime.ToShortTimeString()</td>
+                    <th>Activity Name:</th>
+                    <th>Description:</th>
+                    <th>Date:</th>
+                    <th>Start Time:</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
-
+            </thead>
+            <tbody>
+                @{
+                    foreach (var activity in Model.Activities)
+                    {
+                        <tr>
+                            <td>@activity.ActivityName</td>
+                            <td>@activity.ActivityDescription</td>
+                            <td>@activity.Date.ToShortDateString()</td>
+                            <td>@activity.StartTime.ToShortTimeString()</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 <a asp-page="Index" class="btn btn-secondary">Back</a>

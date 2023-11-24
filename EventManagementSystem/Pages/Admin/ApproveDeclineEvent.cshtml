@@ -12,43 +12,50 @@
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
-
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Date Submitted:</th>
-                <th>Event Name:</th>
-                <th>Event Description:</th>
-                <th>Start Date:</th>
-                <th>End Date:</th>
-                <th>Registration Deadline:</th>
-                <th>Event Type:</th>
-                <th>Location:</th>
-                <th>Address:</th>
-                <th>Action:</th>
-            </tr>
-        </thead>
-        <tbody class="table-secondary">
-            @{
-                foreach (var record in Model.Events)
-                {
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
                     <tr>
-                        <td>@record.RequestDate</td>
-                        <td><b>@record.EventName</b></td>
-                        <td>@record.EventDescription</td>
-                        <td>@record.StartDate</td>
-                        <td>@record.EndDate</td>
-                        <td>@record.RegistrationDeadline</td>
-                        <td>@record.EventType</td>
-                        <td>@record.SpaceName</td>
-                        <td>@record.SpaceAddress</td>
-                        <td>
-                            <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
-                            <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>
-                        </td>
+                        <th>Date Submitted:</th>
+                        <th>Event Name:</th>
+                        <th>Event Description:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Registration Deadline:</th>
+                        <th>Event Type:</th>
+                        <th>Location:</th>
+                        <th>Address:</th>
+                        <th>Accept:</th>
+                        <th>Decline:</th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody class="table-secondary">
+                    @{
+                        foreach (var record in Model.Events)
+                        {
+                            <tr>
+                                <td>@record.RequestDate</td>
+                                <td><b>@record.EventName</b></td>
+                                <td>@record.EventDescription</td>
+                                <td>@record.StartDate</td>
+                                <td>@record.EndDate</td>
+                                <td>@record.RegistrationDeadline</td>
+                                <td>@record.EventType</td>
+                                <td>@record.SpaceName</td>
+                                <td>@record.SpaceAddress</td>
+                                <td>
+                                    <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
+                                </td>
+                                <td>
+
+                                    <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

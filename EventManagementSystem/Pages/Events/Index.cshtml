@@ -6,33 +6,37 @@
 <div class="wrapper">
     <br />
     <h2 class="font">All Events</h2>
-        <table class="table table-responsive table-hover">
-            <thead>
-                <tr>
-                    <th>Event Name:</th>
-                    <th>Event Description:</th>
-                    <th>Start Date:</th>
-                    <th>End Date:</th>
-                    <th>Registration Deadline:</th>
-                    <th>Capacity:</th>
-                    <th>Status:</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var event1 in Model.Events)
-                    {
-                        <tr class="table-secondary">
-                            <td>@event1.EventName</td>
-                            <td>@event1.EventDescription</td>
-                            <td>@event1.StartDate</td>
-                            <td>@event1.EndDate</td>
-                            <td>@event1.RegistrationDeadline</td>
-                            <td>@event1.Capacity</td>
-                            <td>@event1.Status</td>
-                        </tr>
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Event Name:</th>
+                        <th>Event Description:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Registration Deadline:</th>
+                        <th>Capacity:</th>
+                        <th>Status:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var event1 in Model.Events)
+                        {
+                            <tr class="table-secondary">
+                                <td>@event1.EventName</td>
+                                <td>@event1.EventDescription</td>
+                                <td>@event1.StartDate</td>
+                                <td>@event1.EndDate</td>
+                                <td>@event1.RegistrationDeadline</td>
+                                <td>@event1.Capacity</td>
+                                <td>@event1.Status</td>
+                            </tr>
+                        }
                     }
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

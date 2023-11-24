@@ -8,31 +8,30 @@
 <a asp-page="SearchActivities" class="btn btn-secondary">Search Activities</a>
 <br />
 <br />
-<table class="table table-bordered table-responsive table-hover">
-    <thead>
-        <tr>
-            <th>Activity Name:</th>
-            <th>Activity Description:</th>
-            <th>Date:</th>
-            <th>Start Time:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var activity in Model.Activities)
-            {
+<div class="shdwbox">
+    <div class="table-responsive card">
+        <table class="table table-responsive table-hover">
+            <thead>
                 <tr>
-                    <td>@activity.ActivityName</td>
-                    <td>@activity.ActivityDescription</td>
-                    <td>@activity.Date</td>
-                    <td>@activity.StartTime</td>
+                    <th>Activity Name:</th>
+                    <th>Activity Description:</th>
+                    <th>Date:</th>
+                    <th>Start Time:</th>
                 </tr>
-            }
-        }
-    </tbody>
-</table>
-
-<br />
-<br />
-<br />
-<br />
+            </thead>
+            <tbody>
+                @{
+                    foreach (var activity in Model.Activities)
+                    {
+                        <tr>
+                            <td>@activity.ActivityName</td>
+                            <td>@activity.ActivityDescription</td>
+                            <td>@activity.Date</td>
+                            <td>@activity.StartTime</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

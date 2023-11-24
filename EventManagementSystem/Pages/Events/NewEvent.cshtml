@@ -39,7 +39,9 @@
                 <br />
             <label asp-for="@Model.EventToCreate.EventType">- Event Type -</label>
                 <br />
-            <input type="text" class="newlogfield" id="EventType" asp-for="@Model.EventToCreate.EventType" required />
+            <select asp-for="@Model.EventToCreate.EventType" class="newlogfield" asp-items="Model.EventType">
+                <option value=""></option>
+            </select>
                 <br />
             <label asp-for="@Model.EventToCreate.SpaceID">- Space Name -</label>
                 <br />
