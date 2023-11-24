@@ -38,23 +38,27 @@
                             @if (Context.Session.GetString("RoleType") == "Admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link purpletxt font" asp-page="/Admin/Index">Home</a>
+                                    <a class="nav-link purpletxt font" asp-page="/Attendee/Index">My Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link purpletxt font" asp-page="/Events/AdminEvent">Create Event</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link purpletxt font" asp-page="/Attendee/AttendeeSignUp/Index">Sign up for an event</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link purpletxt font" asp-page="/Users/Index">User Data</a>
+                                    <a class="nav-link purpletxt font" asp-page="/Admin/Index">Admin Tools</a>
                                 </li>
                             }
 
-                            @if (Context.Session.GetString("RoleType") != "Admin" && Context.Session.GetString("RoleType") != null)
+                            @if (Context.Session.GetString("RoleType") == "Organizer")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link purpletxt font" asp-page="/Users/Index">Home</a>
+                                    <a class="nav-link purpletxt font" asp-page="/Attendee/Index">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Organizer/Index">Organizer Tools</a>
+                                </li>
+                            }
+
+                            @if (Context.Session.GetString("RoleType") != "Admin" && Context.Session.GetString("RoleType") != "Organizer" && Context.Session.GetString("RoleType") != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-page="/Attendee/Index">My Home</a>
                                 </li>
                             }
                         }
