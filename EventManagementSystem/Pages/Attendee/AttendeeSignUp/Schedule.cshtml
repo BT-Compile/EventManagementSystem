@@ -13,8 +13,8 @@
                 <thead>
                     <tr>
                         <th>Event Name:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
+                        <th>Date:</th>
+                        <th>Time:</th>
                         <th>Location:</th>
                         <th>View Details:</th>
                         <th>Cancel Registration:</th>
@@ -26,11 +26,43 @@
                         {
                         <tr>
                             <td><b>@record.EventName</b></td>
-                            <td>@record.StartDate</td>
-                            <td>@record.EndDate</td>
+                            <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")</td>
                             <td>@record.SpaceID</td>
                             <td>
-                                <a asp-page="/Attendee/AttendeeSignUp/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
+                                        View Details
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ViewDetails" tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="wrapper purpletxt font">
+                                                    <h3>@record.EventName</h3>
+                                                    Date: @record.StartDate.ToString("MM/dd/yyyy") |
+                                                    Time: @record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")
+                                                    <br />
+                                                    Registration Deadline: @record.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                                    <br />
+                                                    <br />
+                                                    @record.ParentSpaceName @record.SpaceName
+                                                    <br />
+                                                    @record.SpaceAddress
+                                                    <br />
+                                                    <br />
+                                                    @record.EventDescription
+                                                    <br />
+                                                    <br />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </td>
                             <td>
                                 <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
@@ -43,6 +75,6 @@
         </div>
     </div>
     <br />
-
-    <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
+    <form method="post" asp-page-handler="Register"><input type="submit" value="Register For Subevents" class="btn rndbtn btn-light" /></form>
+    <a asp-page="../Index" class="btn rndbtn btn-secondary">Return</a>
 </div>

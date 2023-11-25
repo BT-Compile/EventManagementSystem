@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
+namespace EventManagementSystem.Pages.Attendee
 {
     public class ViewEventModel : PageModel
     {

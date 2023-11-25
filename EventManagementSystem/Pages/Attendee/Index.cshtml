@@ -30,11 +30,11 @@
                 <thead>
                     <tr>
                         <th>Event Name:</th>
-                        <th>Event Description:</th>
                         <th>Start Date:</th>
                         <th>End Date:</th>
                         <th>Location:</th>
-                        <th>View Schedule</th>
+                        <th>Details:</th>
+                        <th>Schedule:</th>
                         <th>Cancel Registration:</th>
                     </tr>
                 </thead>
@@ -44,10 +44,12 @@
                         {
                             <tr>
                                 <td><b>@record.EventName</b></td>
-                                <td>@record.EventDescription</td>
-                                <td>@record.StartDate</td>
-                                <td>@record.EndDate</td>
+                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
                                 <td>@record.SpaceID</td>
+                                <td>
+                                    <a asp-page="ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                                </td>
                                 <td>
                                     <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Schedule</a>
                                 </td>

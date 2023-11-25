@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 {
-    public class CancelModel : PageModel
+    public class CancelModel : PageModel //Cancels registration for overarching EVENTS
     {
         [BindProperty]
         public User UserToCancel { get; set; }

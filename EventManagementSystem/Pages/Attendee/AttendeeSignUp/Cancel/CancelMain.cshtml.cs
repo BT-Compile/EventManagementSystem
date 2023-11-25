@@ -7,13 +7,15 @@ using System.Data.SqlClient;
 
 namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
 {
-    public class CancelMainModel : PageModel
+    public class CancelMainModel : PageModel //Cancels registration for single SUBEVENTS
     {
         [BindProperty]
         public User UserToCancel { get; set; }
 
         [BindProperty]
         public Event EventToCancel { get; set; }
+
+        public int? TempParent {  get; set; }
 
         public CancelMainModel()
         {
@@ -29,6 +31,20 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
             }
 
             string sqlQuery;
+
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
+            SqlDataReader singlePEvent = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (singlePEvent.Read())
+            {
+                EventToCancel.TempParentID = Int32.Parse(singlePEvent["ParentEventID"].ToString());
+            }
+
+            HttpContext.Session.SetInt32("parentid", EventToCancel.TempParentID);
+
+            TempParent = HttpContext.Session.GetInt32("parentid");
+
+            DBClass.DBConnection.Close();
 
             sqlQuery = "SELECT * FROM \"User\" " +
                 "WHERE Username = '" + HttpContext.Session.GetString("username") + "';";
@@ -65,7 +81,9 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp.Cancel
             DBClass.GeneralQuery(ssqlQuery);
             DBClass.DBConnection.Close();
 
-            return RedirectToPage("/Attendee/Index");
+            int? eventid = HttpContext.Session.GetInt32("parentid");
+
+            return RedirectToPage("/Attendee/AttendeeSignUp/Schedule", new { eventid });
         }
     }
 }

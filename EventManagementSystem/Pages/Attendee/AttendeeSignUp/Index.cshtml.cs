@@ -42,7 +42,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "SELECT " + HttpContext.Session.GetString("userid") +
                                 "FROM EventRegister " +
                                 "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventRegister.EventID = Event.EventID) " +
-                                "AND ParentEventID IS NULL ORDER BY Event.StartDate DESC";
+                                "AND ParentEventID IS NULL AND Event.Status = 'Active' ORDER BY Event.StartDate DESC";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 

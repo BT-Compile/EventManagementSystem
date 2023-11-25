@@ -22,7 +22,6 @@
                         <th>Phone Number:</th>
                         <th>Username:</th>
                         <th>Allergies:</th>
-                        <th>View Info:</th>
                         <th>Edit:</th>
                         <th>Deactivate Account:</th>
                     </tr>
@@ -37,9 +36,6 @@
                                 <td>@user.PhoneNumber</td>
                                 <td>@user.Username</td>
                                 <td>@user.Accomodation</td>
-                                <td>
-                                    <a asp-page="" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">View</a>
-                                </td>
                                 <td>
                                     <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
                                 </td>

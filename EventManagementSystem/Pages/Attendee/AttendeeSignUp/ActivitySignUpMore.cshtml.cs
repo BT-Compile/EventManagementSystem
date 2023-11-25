@@ -1,15 +1,14 @@
 using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using System.Text.RegularExpressions;
 
 namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 {
-    public class ActivitySignUpModel : PageModel
+    public class ActivitySignUpMoreModel : PageModel
     {
         [BindProperty]
         public bool HasPosted { get; set; }
@@ -27,7 +26,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         [BindProperty]
         public Event ParentEvent { get; set; }
 
-        public ActivitySignUpModel()
+        public ActivitySignUpMoreModel()
         {
             Events = new List<Event>();
             ParentEvent = new Event();
@@ -139,31 +138,17 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         //Post request to register a user for selected events
         public IActionResult OnPostRegister(List<int> Checked)
         {
-            string sqlQuery = "SELECT * FROM Event WHERE EventID = " + ParentEvent.EventID;
-            SqlDataReader singleActivity = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (singleActivity.Read())
-            {
-                ParentEvent.EventID = Int32.Parse(singleActivity["ParentEventID"].ToString());
-            }
-
-            DBClass.DBConnection.Close();
-
-            sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
-                ParentEvent.EventID + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
-            DBClass.GeneralQuery(sqlQuery);
-
-            DBClass.DBConnection.Close();
-
             foreach (int i in Checked)
             {
-                sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
+                string sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
                 i + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
                 DBClass.GeneralQuery(sqlQuery);
                 DBClass.DBConnection.Close();
             }
 
-            return RedirectToPage("../Index");
+            int? eventid = HttpContext.Session.GetInt32("EventInt");
+
+            return RedirectToPage("/Attendee/AttendeeSignup/Schedule", new { eventid });
         }
     }
 }

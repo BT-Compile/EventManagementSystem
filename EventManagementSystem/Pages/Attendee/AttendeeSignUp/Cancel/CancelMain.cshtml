@@ -13,6 +13,6 @@
         <h3 class="font">@Model.EventToCancel.EventName</h3>
         <br />
         <button class="btn rndbtn btn-light" type="submit">I am sure</button>
-        <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+        <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.TempParent" class="btn rndbtn btn-light">Cancel</a>
     </div>
 </form>
