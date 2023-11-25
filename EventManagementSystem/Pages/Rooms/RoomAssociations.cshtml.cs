@@ -30,6 +30,8 @@ namespace EventManagementSystem.Pages.Rooms
             Subspaces = new List<RoomAssociation>();
         }
 
+
+        // I FIXED THE DATE ITS ALL GOOD
         public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("RoleType") != "Admin" &&
