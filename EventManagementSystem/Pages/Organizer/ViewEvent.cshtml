@@ -30,12 +30,12 @@
                 <p class="font">@s.EventName
         
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                     View Details
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="ViewDetails" tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
