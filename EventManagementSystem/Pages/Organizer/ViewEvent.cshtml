@@ -28,10 +28,7 @@
             foreach (var s in Model.Subevents)
             {
                 <p class="font">@s.EventName
-                    <a asp-page="/Organizer/ModifySubevent" class=" btn rndbtn btn-light" asp-route-eventid="@s.EventID">Edit</a>
-                
-
-                <!-- Button trigger modal -->
+        
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
                     View Details
