@@ -38,6 +38,8 @@
 
         public string? ParentEventName { get; set; }
 
+        public string? ParentSpaceName { get; set; }
+
         public string? ParentEventID { get; set; }
 
         public DateTime RequestDate { get; set; }

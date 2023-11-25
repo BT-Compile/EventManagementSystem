@@ -27,7 +27,46 @@
 
             foreach (var s in Model.Subevents)
             {
-                <p class="font">@s.EventName</p>
+                <p class="font">@s.EventName
+                    <a asp-page="/Organizer/ModifySubevent" class=" btn rndbtn btn-light" asp-route-eventid="@s.EventID">Edit</a>
+                
+
+                <!-- Button trigger modal -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
+                    View Details
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="ViewDetails" tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <div class="wrapper purpletxt font">
+                                    <h3>@s.EventName</h3>
+                                    Date: @s.StartDate.ToString("MM/dd/yyyy") |
+                                    Time: @s.StartDate.ToString("HH:mm")
+                                <br/>
+                                    @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                <br/>
+                                <br/>
+                                    @s.ParentSpaceName @s.SpaceName
+                                <br/>
+                                @s.SpaceAddress
+                                <br />
+                                <br />
+                                @s.EventDescription
+                                <br/>
+                                <br/>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </p>
             }
             <br />
         }

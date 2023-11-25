@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 
 namespace EventManagementSystem.Pages.Organizer
 {
@@ -53,9 +54,9 @@ namespace EventManagementSystem.Pages.Organizer
 
             DBClass.DBConnection.Close();
 
-            sqlQuery = "SELECT Event.*, [Space].*, Location.* FROM  Event INNER JOIN " +
-                       "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = [Space].SpaceID INNER JOIN " +
-                       "Location ON [Space].LocationID = Location.LocationID " +
+            sqlQuery = "SELECT Event.*, Space.*, Location.*, CASE WHEN Space.ParentSpaceID IS NOT NULL THEN ParentSpace.Name ELSE NULL " +
+                       "END AS ParentSpaceName FROM Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN Space ON EventSpace.SpaceID = Space.SpaceID INNER JOIN " +
+                       "Location ON Space.LocationID = Location.LocationID LEFT JOIN Space ParentSpace ON Space.ParentSpaceID = ParentSpace.SpaceID " +
                        "WHERE [Event].ParentEventID = " + eventID + " AND [Event].OrganizerID = " + HttpContext.Session.GetString("userid") +
                        " ORDER BY Event.StartDate DESC";
 
@@ -75,7 +76,8 @@ namespace EventManagementSystem.Pages.Organizer
                     EventType = subeventReader["Type"].ToString(),
                     Status = subeventReader["Status"].ToString(),
                     SpaceName = subeventReader["Name"].ToString(),
-                    SpaceAddress = subeventReader["Address"].ToString()
+                    SpaceAddress = subeventReader["Address"].ToString(),
+                    ParentSpaceName = subeventReader["ParentSpaceName"].ToString()
                 });
             }
 

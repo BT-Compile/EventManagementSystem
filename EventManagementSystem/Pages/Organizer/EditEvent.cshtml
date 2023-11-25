@@ -28,7 +28,9 @@
 
             foreach (var s in Model.Subevents)
             {
-                <p class="font">@s.EventName</p>
+                <p class="font">@s.EventName
+                    <a asp-page="/Organizer/ModifySubevent" class=" btn rndbtn btn-light" asp-route-eventid="@s.EventID">Edit</a>
+                </p>
             }
             <br />
         }
