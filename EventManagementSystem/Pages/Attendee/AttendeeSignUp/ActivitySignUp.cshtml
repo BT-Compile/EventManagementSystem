@@ -12,6 +12,7 @@
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
+    <form method="post" class="table-secondary" asp-page-handler="Register">
     <table class="table table-responsive table-hover">
         <thead>
             <tr>
@@ -25,7 +26,7 @@
             </tr>
         </thead>
         <tbody class="table-secondary">
-            <form method="post" asp-page-handler="Register" class="table-secondary">
+            
                 @{
                     foreach (var record in Model.Events)
                     {
@@ -43,10 +44,11 @@
                     </tr>
                     }
                 }
-            </form>
+            
         </tbody>
-    </table>
-    <br />
-    <input type="submit" value="Register" class="btn rndbtn btn-light" />
+        </table>
+        <br />
+        <input type="submit" class="btn rndbtn btn-light" />
+    </form>
     <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
 </div>
