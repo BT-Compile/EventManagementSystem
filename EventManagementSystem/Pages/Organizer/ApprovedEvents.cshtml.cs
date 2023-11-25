@@ -66,11 +66,11 @@ namespace EventManagementSystem.Pages.Organizer
         }
 
         //Post request for search functionality
-        public IActionResult OnPost()
+        public IActionResult OnPost(string keyword)
         {
             HasPosted = true;
             Keywords = Regex.Split(InputString, @"\s+");
-            string keyword, sqlQuery;
+            string sqlQuery;
 
             for (int i = 0; i < Keywords.Length; i++)
             {
@@ -89,14 +89,16 @@ namespace EventManagementSystem.Pages.Organizer
                 {
                     Events.Add(new Event
                     {
+                        EventID = Int32.Parse(eventReader["EventID"].ToString()),
                         EventName = eventReader["EventName"].ToString(),
                         EventDescription = eventReader["EventDescription"].ToString(),
                         StartDate = (DateTime)eventReader["StartDate"],
                         EndDate = (DateTime)eventReader["EndDate"],
                         RegistrationDeadline = (DateTime)eventReader["RegistrationDeadline"],
                         Capacity = Int32.Parse(eventReader["Capacity"].ToString()),
+                        EventType = eventReader["Type"].ToString(),
                         Status = eventReader["Status"].ToString(),
-                        EventType = eventReader["Type"].ToString()
+                        RequestDate = (DateTime)eventReader["CreationDate"]
                     });
                 }
             }

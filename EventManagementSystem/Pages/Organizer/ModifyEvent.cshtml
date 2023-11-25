@@ -11,7 +11,7 @@
     <br />
     <br />
     <div class="newlogbox">
-        <form asp-page="NewUser">
+        <form asp-page="ModifyEvent">
             <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
             <label asp-for="@Model.EventToCreate.EventName">- Event Name -</label>
             <input type="text" asp-for="@Model.EventToCreate.EventName" id="EventName" class="newlogfield" required />
@@ -50,7 +50,7 @@
             <input type="text" asp-for="@Model.LocationToCreate.State" id="State" class="newlogfield" required />
             <br /><br />
             <button type="button" class="btn rndbtn btn-light" onclick="clearForm()">Clear</button>
-            <input value="Create Event" type="submit" class="btn rndbtn btn-light" id="textfield" asp-page="Organizer/Index" />
+            <input value="Submit" type="submit" class="btn rndbtn btn-light" id="textfield" asp-page="Organizer/Index" />
             <a asp-page="/Organizer/EditEvent" asp-route-eventid="@Model.RouteID" class="btn rndbtn btn-light" id="textfield">Cancel</a>
         </form>
     </div>

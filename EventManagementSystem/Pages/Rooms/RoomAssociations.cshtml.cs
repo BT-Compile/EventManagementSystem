@@ -56,6 +56,7 @@ namespace EventManagementSystem.Pages.Rooms
                     SpaceName = spaceReader["Name"].ToString(),
                     Address = spaceReader["Address"].ToString(),
                     Capacity = Int32.Parse(spaceReader["Capacity"].ToString()),
+                    EventDate = (DateTime)spaceReader["StartDate"],
                     EventName = spaceReader["EventName"].ToString()
                 });
             }
