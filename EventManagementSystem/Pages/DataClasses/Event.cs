@@ -42,6 +42,8 @@
 
         public string? ParentEventID { get; set; }
 
+        public int TempParentID { get; set; }
+
         public DateTime RequestDate { get; set; }
     }
 }

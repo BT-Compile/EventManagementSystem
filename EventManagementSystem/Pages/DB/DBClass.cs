@@ -61,7 +61,7 @@ namespace EventManagementSystem.Pages.DB
             cmdProductRead.Connection = new SqlConnection();
             cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
             cmdProductRead.CommandText = "SELECT E.EventName, E.EventDescription, E.StartDate, E.EndDate, E.RegistrationDeadline, " +
-                "E.Capacity, E.Type AS EventType, E.Status, S.Name AS SpaceID " +
+                "E.Capacity, E.Type AS EventType, E.Status, S.Name AS SpaceID, E.ParentEventID " +
                 "FROM [Event] E " +
                 "INNER JOIN EventSpace ES ON E.EventID = ES.EventID " +
                 "INNER JOIN [Space] S ON ES.SpaceID = S.SpaceID " +
@@ -485,6 +485,49 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Parameters.AddWithValue("@Type", type);
             cmdCreation.Parameters.AddWithValue("@UserID", userid);
             cmdCreation.Parameters.AddWithValue("@ParentEventID", parentid);
+
+            cmdCreation.Connection.Open();
+            cmdCreation.ExecuteNonQuery();
+        }
+
+        public static void SecureSubeventModification(string eventName, string eventDescription, DateTime startDate,
+            DateTime endDate, DateTime registrationDeadline, int? capacity, string type, int? eventid)
+        {
+            // set all null variables to an empty string
+            if (eventName == null)
+            {
+                eventName = "";
+            }
+            if (eventDescription == null)
+            {
+                eventDescription = "";
+            }
+            if (type == null)
+            {
+                type = "";
+            }
+            if (capacity == null)
+            {
+                capacity = 1;
+            }
+
+            string creationQuery = "UPDATE [Event] SET EventName = @EventName, EventDescription = @EventDescription, StartDate = @StartDate, EndDate = @EndDate, RegistrationDeadline = @RegistrationDeadline, " +
+                                   "Capacity = @Capacity, Type = @Type " +
+                                   "WHERE EventID = " + eventid;
+
+
+            SqlCommand cmdCreation = new SqlCommand();
+            cmdCreation.Connection = DBConnection;
+            cmdCreation.Connection.ConnectionString = CapstoneDBConnString;
+
+            cmdCreation.CommandText = creationQuery;
+            cmdCreation.Parameters.AddWithValue("@EventName", eventName);
+            cmdCreation.Parameters.AddWithValue("@EventDescription", eventDescription);
+            cmdCreation.Parameters.AddWithValue("@StartDate", startDate);
+            cmdCreation.Parameters.AddWithValue("@EndDate", endDate);
+            cmdCreation.Parameters.AddWithValue("@RegistrationDeadline", registrationDeadline);
+            cmdCreation.Parameters.AddWithValue("@Capacity", capacity);
+            cmdCreation.Parameters.AddWithValue("@Type", type);
 
             cmdCreation.Connection.Open();
             cmdCreation.ExecuteNonQuery();

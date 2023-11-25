@@ -68,7 +68,7 @@ namespace EventManagementSystem.Pages.Organizer
             DBClass.SecureSubeventSpaceCreation(SpaceToCreate.Name, SpaceToCreate.Address, SpaceToCreate.Capacity, ParentLocationIDGet, ParentSpaceIDGet);
             DBClass.DBConnection.Close();
 
-            //Acuire EventID to Create an eventSpace entity
+            //Acquire EventID to Create an eventSpace entity
             string sqlQuery = "SELECT EventID From [Event] WHERE EventName = '" + SubeventToCreate.EventName + "' AND OrganizerID = " + Id + " AND ParentEventID = " + ParentID;
             SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
             while (singleEvent.Read())
