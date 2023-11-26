@@ -22,9 +22,9 @@
                         <th>Phone Number:</th>
                         <th>Username:</th>
                         <th>Role:</th>
-                        <th>Allergies:</th>
                         <th>Edit:</th>
-                        <th>Deactivate Account:</th>
+                        <th>Status:</th>
+                        <th>Account Action:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,19 +37,29 @@
                                 <td>@user.PhoneNumber</td>
                                 <td>@user.Username</td>
                                 <td>@user.RoleType</td>
-                                <td>@user.Accomodation</td>
                                 <td>
                                     <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
                                 </td>
+                                @if (user.IsActive == true)
+                                {
+                                    <td>Active</td>
+                                }
+                                else
+                                {
+                                    <td>Inactive</td>
+                                }
+
                                 @if (user.IsActive == true)
                                 {
                                     <td>
                                         <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
                                     </td>
                                 }
-                                else
+                                @if (user.IsActive == false)
                                 {
-                                    <td> Deactivated </td>
+                                    <td>
+                                        <a asp-page="ActivateUser" class="btn rndbtn btn-success" asp-route-userid="@user.UserID">Activate</a>
+                                    </td>
                                 }
 
                             </tr>

@@ -13,6 +13,11 @@ namespace EventManagementSystem.Pages.Organizer
     {
         public List<EventUser> Users { get; set; }
 
+        public List<EventUser> SubUsers { get; set; }
+
+        [BindProperty]
+        public Event EventNames { get; set; }
+
         [BindProperty]
         public string? InputString { get; set; }
 
@@ -24,6 +29,8 @@ namespace EventManagementSystem.Pages.Organizer
         public ParticipantListModel()
         {
             Users = new List<EventUser>();
+            SubUsers = new List<EventUser>();
+            EventNames = new Event();
             test = false;
         }
 
@@ -41,7 +48,7 @@ namespace EventManagementSystem.Pages.Organizer
                               "= EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN UserRole ON [User].UserID = UserRole.UserID INNER JOIN Role " +
                               "ON UserRole.RoleID = Role.RoleID LEFT OUTER JOIN Allergy ON [User].AllergyID = Allergy.AllergyID LEFT OUTER JOIN AllergyBridge ON [User].UserID = AllergyBridge.UserID " +
                               "AND Allergy.AllergyID = AllergyBridge.AllergyID WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") +
-                               " AND ([Event].EventID = " + eventid + " OR [Event].ParentEventID = " + eventid + ") AND [User].IsActive = 'true' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
+                               " AND ([Event].EventID = " + eventid + ") AND [User].IsActive = 'true' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
 
             SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -65,6 +72,47 @@ namespace EventManagementSystem.Pages.Organizer
 
             DBClass.DBConnection.Close();
 
+            sqlQuery = "SELECT Event.*, [User].UserID, concat_ws(' ', [User].FirstName, [User].LastName) as FullName, [User].Email, [User].PhoneNumber, [User].Username, " +
+                              "[User].Accomodation, [User].IsActive, Role.*, Allergy.Category, EventRegister.RegistrationDate FROM  Event INNER JOIN EventRegister ON Event.EventID " +
+                              "= EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN UserRole ON [User].UserID = UserRole.UserID INNER JOIN Role " +
+                              "ON UserRole.RoleID = Role.RoleID LEFT OUTER JOIN Allergy ON [User].AllergyID = Allergy.AllergyID LEFT OUTER JOIN AllergyBridge ON [User].UserID = AllergyBridge.UserID " +
+                              "AND Allergy.AllergyID = AllergyBridge.AllergyID WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") +
+                               " AND ([Event].ParentEventID = " + eventid + ") AND [User].IsActive = 'true' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
+
+            SqlDataReader subuserReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (subuserReader.Read())
+            {
+                SubUsers.Add(new EventUser
+                {
+                    UserID = Int32.Parse(subuserReader["UserID"].ToString()),
+                    FirstName = subuserReader["FullName"].ToString(),
+                    Email = subuserReader["Email"].ToString(),
+                    PhoneNumber = subuserReader["PhoneNumber"].ToString(),
+                    Username = subuserReader["Username"].ToString(),
+                    Category = subuserReader["Category"].ToString(),
+                    Accomodation = subuserReader["Accomodation"].ToString(),
+                    RoleType = subuserReader["Name"].ToString(),
+                    EventID = Int32.Parse(subuserReader["EventID"].ToString()),
+                    EventName = subuserReader["EventName"].ToString(),
+                    RegistrationDate = (DateTime)subuserReader["RegistrationDate"]
+                });
+            }
+
+            DBClass.DBConnection.Close();
+
+            sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
+            SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (singleEvent.Read())
+            {
+                EventNames.EventID = eventid;
+                EventNames.EventName = singleEvent["EventName"].ToString();
+            }
+
+            HttpContext.Session.SetString("eventname", EventNames.EventName);
+            DBClass.DBConnection.Close();
+
             return Page();
         }
 
@@ -84,7 +132,7 @@ namespace EventManagementSystem.Pages.Organizer
                               "= EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN UserRole ON [User].UserID = UserRole.UserID INNER JOIN Role " +
                               "ON UserRole.RoleID = Role.RoleID LEFT OUTER JOIN Allergy ON [User].AllergyID = Allergy.AllergyID LEFT OUTER JOIN AllergyBridge ON [User].UserID = AllergyBridge.UserID " +
                               "AND Allergy.AllergyID = AllergyBridge.AllergyID WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") +
-                               " AND ([Event].EventID = " + eventid + " OR [Event].ParentEventID = " + eventid + ") AND [User].IsActive = 'true' " +
+                               " AND ([Event].EventID = " + eventid + ") AND [User].IsActive = 'true' " +
                                 "AND ([User].FirstName LIKE '%" + keyword + "%' OR [User].LastName LIKE '%" + keyword + "%' " +
                                 "OR [User].Username LIKE '%" + keyword + "%') ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
 
@@ -106,7 +154,37 @@ namespace EventManagementSystem.Pages.Organizer
                         EventName = userReader["EventName"].ToString(),
                         RegistrationDate = (DateTime)userReader["RegistrationDate"]
                     });
-                }    
+                }
+                DBClass.DBConnection.Close();
+
+                sqlQuery = "SELECT Event.*, [User].UserID, concat_ws(' ', [User].FirstName, [User].LastName) as FullName, [User].Email, [User].PhoneNumber, [User].Username, " +
+                              "[User].Accomodation, [User].IsActive, Role.*, Allergy.Category, EventRegister.RegistrationDate FROM  Event INNER JOIN EventRegister ON Event.EventID " +
+                              "= EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN UserRole ON [User].UserID = UserRole.UserID INNER JOIN Role " +
+                              "ON UserRole.RoleID = Role.RoleID LEFT OUTER JOIN Allergy ON [User].AllergyID = Allergy.AllergyID LEFT OUTER JOIN AllergyBridge ON [User].UserID = AllergyBridge.UserID " +
+                              "AND Allergy.AllergyID = AllergyBridge.AllergyID WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") +
+                               " AND ([Event].ParentEventID = " + eventid + ") AND [User].IsActive = 'true' " +
+                                "AND ([User].FirstName LIKE '%" + keyword + "%' OR [User].LastName LIKE '%" + keyword + "%' " +
+                                "OR [User].Username LIKE '%" + keyword + "%') ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
+
+                SqlDataReader subuserReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+                while (subuserReader.Read())
+                {
+                    SubUsers.Add(new EventUser
+                    {
+                        UserID = Int32.Parse(subuserReader["UserID"].ToString()),
+                        FirstName = subuserReader["FullName"].ToString(),
+                        Email = subuserReader["Email"].ToString(),
+                        PhoneNumber = subuserReader["PhoneNumber"].ToString(),
+                        Username = subuserReader["Username"].ToString(),
+                        Category = subuserReader["Category"].ToString(),
+                        Accomodation = subuserReader["Accomodation"].ToString(),
+                        RoleType = subuserReader["Name"].ToString(),
+                        EventID = Int32.Parse(subuserReader["EventID"].ToString()),
+                        EventName = subuserReader["EventName"].ToString(),
+                        RegistrationDate = (DateTime)subuserReader["RegistrationDate"]
+                    });
+                }
             }
 
             DBClass.DBConnection.Close();

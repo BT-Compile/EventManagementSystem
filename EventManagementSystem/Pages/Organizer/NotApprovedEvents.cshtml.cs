@@ -39,7 +39,7 @@ namespace EventManagementSystem.Pages.Organizer
             }
 
             // Displays events created by the organizer that are pending approval
-            string sqlQuery = "SELECT * FROM Event WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND [Status] = 'Not Approved'";
+            string sqlQuery = "SELECT * FROM Event WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND ([Status] = 'Not Approved' OR [Status] = 'Deactivated')";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 

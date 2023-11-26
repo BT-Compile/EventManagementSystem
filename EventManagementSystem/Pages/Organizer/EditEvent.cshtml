@@ -15,7 +15,11 @@
             <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
             <p class="font">@e.SpaceName</p>
             <br />
-            <h1 class="font">@e.EventName <a asp-page="/Organizer/ModifyEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Modify Event</a>    <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a> </h1>
+            <h1 class="font">@e.EventName 
+                <a asp-page="/Organizer/ModifyEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Modify Event</a>
+                <a asp-page="/Organizer/DeactivateEvent" class=" btn rndbtn btn-warning" asp-route-eventid="@e.EventID"> Deactivate Event</a>
+                <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a>
+            </h1>
             <br />
             <p class="font">@e.EventDescription</p>
             <br />
