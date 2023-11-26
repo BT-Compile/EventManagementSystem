@@ -1,13 +1,13 @@
 ﻿@page
-@model EventManagementSystem.Pages.Organizer.ApprovedEventsModel
+@model EventManagementSystem.Pages.Organizer.SelectParticipantTypeModel
 @{
 }
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Your Approved Events:</h2>
+    <h2 class="font">Select an Event to Define and View Participant Types:</h2>
     <br />
-    <form method="post" asp-page="Organizer/ApprovedEvents">
+    <form method="post" asp-page="Organizer/SelectParticipantType">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -22,8 +22,7 @@
                         <th>End Date:</th>
                         <th>Event Type:</th>
                         <th>Status:</th>
-                        <th>Date Approved:</th>
-                        <th>Event Details:</th>
+                        <th>Participant Types:</th>
                     </tr>
                 </thead>
                 <tbody class="table-secondary">
@@ -36,9 +35,8 @@
                                 <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
                                 <td>@record.EventType</td>
                                 <td>@record.Status</td>
-                                <td>@record.RequestDate.ToString("MM/dd/yyyy")</td>
                                 <td>
-                                    <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View/Edit</a>
+                                    <a asp-page="/Organizer/ParticipantType" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View | Edit</a>
                                 </td>
                             </tr>
                         }

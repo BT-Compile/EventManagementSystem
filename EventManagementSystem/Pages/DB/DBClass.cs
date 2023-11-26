@@ -95,6 +95,17 @@ namespace EventManagementSystem.Pages.DB
 
             return tempReader;
         }
+        public static SqlDataReader SingleRoleReader(int roleid)
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = new SqlConnection();
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
+            cmdProductRead.CommandText = "SELECT * FROM [Role] WHERE RoleID = " + roleid;
+            cmdProductRead.Connection.Open();
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+
+            return tempReader;
+        }
 
         public static SqlDataReader SingleLocationReader(int LocationID)
         {

@@ -43,7 +43,7 @@ namespace EventManagementSystem.Pages.Users
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "UPDATE \"User\" SET IsActive = 0 WHERE UserID = " + UserToDelete.UserID;
+            string sqlQuery = "UPDATE [User] SET IsActive = 0 WHERE UserID = " + UserToDelete.UserID;
 
             DBClass.GeneralQuery(sqlQuery);
 

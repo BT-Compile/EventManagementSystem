@@ -21,6 +21,7 @@
                         <th>Email:</th>
                         <th>Phone Number:</th>
                         <th>Username:</th>
+                        <th>Role:</th>
                         <th>Allergies:</th>
                         <th>Edit:</th>
                         <th>Deactivate Account:</th>
@@ -35,13 +36,22 @@
                                 <td>@user.Email</td>
                                 <td>@user.PhoneNumber</td>
                                 <td>@user.Username</td>
+                                <td>@user.RoleType</td>
                                 <td>@user.Accomodation</td>
                                 <td>
                                     <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
                                 </td>
-                                <td>
-                                    <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
-                                </td>
+                                @if (user.IsActive == true)
+                                {
+                                    <td>
+                                        <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td> Deactivated </td>
+                                }
+
                             </tr>
                         }
                     }

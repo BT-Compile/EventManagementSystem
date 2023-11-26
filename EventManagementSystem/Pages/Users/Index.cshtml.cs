@@ -44,7 +44,7 @@ namespace EventManagementSystem.Pages.Users
             string sqlQuery = "SELECT [User].UserID, concat_ws(' ', [User].FirstName, [User].LastName) as FullName, [User].Email, [User].PhoneNumber, [User].Username, Allergy.Category, " +
                             "[User].Accomodation, [User].IsActive, Role.Name FROM Allergy INNER JOIN " +
                             "[User] ON Allergy.AllergyID = [User].AllergyID INNER JOIN UserRole ON[User].UserID = UserRole.UserID INNER JOIN " +
-                            "Role ON UserRole.RoleID = Role.RoleID";
+                            "Role ON UserRole.RoleID = Role.RoleID ORDER BY [User].IsActive DESC, Role.Name ASC";
 
             SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -57,7 +57,9 @@ namespace EventManagementSystem.Pages.Users
                     Email = userReader["Email"].ToString(),
                     PhoneNumber = userReader["PhoneNumber"].ToString(),
                     Username = userReader["Username"].ToString(),
-                    Accomodation = userReader["Category"].ToString()
+                    Accomodation = userReader["Category"].ToString(),
+                    IsActive = Boolean.Parse(userReader["IsActive"].ToString()),
+                    RoleType = userReader["Name"].ToString()
                 });
             }
 

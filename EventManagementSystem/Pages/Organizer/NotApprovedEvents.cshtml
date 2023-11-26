@@ -7,7 +7,7 @@
     <br />
     <h2 class="font">Your Not Approved Events:</h2>
     <br />
-    <form method="post" asp-page="Organizer/PendingEvent">
+    <form method="post" asp-page="Organizer/NotApprovedEvents">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -43,4 +43,5 @@
             </table>
         </div>
     </div>
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

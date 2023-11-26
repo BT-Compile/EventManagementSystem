@@ -1,0 +1,32 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.ParticipantTypes.NewParticipantRoleModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Create New Participant Role</h2>
+    <br />
+    <hr />
+    <br />
+    <div class="newlogbox">
+        <form asp-page="NewParticipantRole">
+            <input type="hidden" asp-for="@Model.RoleToCreate.RoleID" />
+            <label asp-for="@Model.RoleToCreate.Name">- Role Name -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoleToCreate.Name" required />
+            <br />
+            <label asp-for="@Model.RoleToCreate.Description">- Role Description -</label>
+            <br />
+            <input type="text" class="newlogfield" asp-for="@Model.RoleToCreate.Description" required />
+            <br />
+            <label asp-for="@Model.RoleToCreate.EventID">- Select Event to Define Role For -</label>
+            <select asp-for="@Model.RoleToCreate.EventID" class="newlogfield" asp-items="Model.EventNames">
+                <option value=""></option>
+            </select>
+            <br /><br />
+            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewParticipantRole" required />
+            <a asp-page="/Organizer/ParticipantType" class="btn rndbtn btn-light">Cancel</a>
+        </form>
+    </div>
+</div>

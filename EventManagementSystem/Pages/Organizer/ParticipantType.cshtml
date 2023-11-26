@@ -1,0 +1,47 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.ParticipantTypeModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font">All Participant Types 
+        <a asp-page="/Organizer/ParticipantTypes/NewParticipantRole" class="btn rndbtn btn-light">Create New Participant Role</a>
+    </h2>
+    <br />
+    <form method="post" asp-page="/Organizer/ParticipantType">
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Participant Type:</th>
+                        <th>Description:</th>
+                        <th>Edit:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var user in Model.Users)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@user.RoleName</b></td>
+                                <td>@user.RoleDescription</td>
+                                <td>
+                                    <a asp-page="/Organizer/ParticipantTypes/EditParticipantType" class="btn rndbtn btn-light" asp-route-roleid="@user.RoleID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br />
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
+</div>

@@ -7,7 +7,7 @@
     <br />
     <h2 class="font">Available Events:</h2>
     <br />
-    <form method="post" asp-page="Index">
+    <form method="post" asp-page="Index" asp-page-handler="Search">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -40,7 +40,10 @@
                                     <a asp-page="ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View</a>
                                 </td>
                                 <td>
-                                    <a asp-page="ActivitySignUp" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">Join</a>
+                                <form method="post" asp-page="Index" asp-page-handler="Register">
+                                        <input type="hidden" name="EventID" value="@record.EventID" />
+                                        <button type="submit" class="btn rndbtn btn-light">Join</button>
+                                </form>
                                 </td>
                             </tr>
                         }

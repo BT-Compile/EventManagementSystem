@@ -66,7 +66,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
         }
 
         //Post Request for search functionality for events to sign up for
-        public IActionResult OnPost()
+        public IActionResult OnPostSearch()
         {
             HasPosted = true;
             Keywords = Regex.Split(InputString, @"\s+");
@@ -83,7 +83,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "SELECT " + HttpContext.Session.GetString("userid") +
                                 "FROM EventRegister " +
                                 "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventRegister.EventID = Event.EventID) " +
-                                "AND ParentEventID IS NULL AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE'%" + keyword + "%') " +
+                                "AND Event.ParentEventID IS NULL AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE '%" + keyword + "%') " +
                                 "ORDER BY Event.StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
@@ -110,6 +110,16 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             }
 
             return Page();
+        }
+
+        public IActionResult OnPostRegister(int eventid)
+        {
+            string sqlQuery = "INSERT INTO EventRegister (EventID, UserID, RegistrationDate) VALUES (" +
+                eventid + ", " + HttpContext.Session.GetString("userid") + ", GETDATE())";
+            DBClass.GeneralQuery(sqlQuery);
+            DBClass.DBConnection.Close();
+
+            return RedirectToPage("/Attendee/Index");
         }
     }
 }

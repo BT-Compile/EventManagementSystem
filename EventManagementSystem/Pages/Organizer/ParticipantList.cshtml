@@ -1,0 +1,47 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.ParticipantListModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font">All Users</h2>
+    <br />
+    <form method="post" asp-page="/Organizer/ParticipantList">
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Username:</th>
+                        <th>Role:</th>
+                        <th>Event Name:</th>
+                        <th>Date Registered:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var user in Model.Users)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@user.FirstName</b></td>
+                                <td>@user.Username</td>
+                                <td>@user.RoleType</td>
+                                <td>@user.EventName</td>
+                                <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br />
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
+</div>
