@@ -23,19 +23,21 @@
             <input type="text" asp-for="@Model.EventToCreate.EventDescription" id="EventDescription" class="newlogfield" required />
             <br />
             <label asp-for="@Model.EventToCreate.StartDate">- Start Date -</label>
-            <input type="text" asp-for="@Model.EventToCreate.StartDate" id="StartDate" class="newlogfield" required />
+            <input type="datetime-local" asp-for="@Model.EventToCreate.StartDate" id="StartDate" class="newlogfield" required />
             <br />
             <label asp-for="@Model.EventToCreate.EndDate">- End Date -</label>
-            <input type="text" asp-for="@Model.EventToCreate.EndDate" id="EndDate" class="newlogfield" required />
+            <input type="datetime-local" asp-for="@Model.EventToCreate.EndDate" id="EndDate" class="newlogfield" required />
             <br />
             <label asp-for="@Model.EventToCreate.RegistrationDeadline">- Registration Deadline -</label>
-            <input type="text" asp-for="@Model.EventToCreate.RegistrationDeadline" id="RegistrationDeadline" class="newlogfield" />
+            <input type="datetime-local" asp-for="@Model.EventToCreate.RegistrationDeadline" id="RegistrationDeadline" class="newlogfield" />
             <br />
             <label asp-for="@Model.EventToCreate.Capacity">- Capacity -</label>
             <input type="text" asp-for="@Model.EventToCreate.Capacity" id="Capacity" class="newlogfield" />
             <br />
             <label asp-for="@Model.EventToCreate.EventType">-  Event Type -</label>
-            <input type="text" asp-for="@Model.EventToCreate.EventType" id="EventType" class="newlogfield" />
+            <select asp-for="@Model.EventToCreate.EventType" class="newlogfield" id="EventType" asp-items="Model.EventType">
+                <option value=""></option>
+            </select>
             <br />
             <label asp-for="@Model.SpaceToCreate.Name">- Location Name -</label>
             <input type="text" asp-for="@Model.SpaceToCreate.Name" id="SpaceName" class="newlogfield" />
@@ -71,7 +73,7 @@
         document.getElementById("Capacity").value = "50";
         document.getElementById("EventType").value = "Dinner";
         document.getElementById("SpaceName").value = "Test Space";
-        document.getElementById("SpaceAddress").value = "123 Test Spave Lane";
+        document.getElementById("SpaceAddress").value = "123 Test Space Lane";
         document.getElementById("SpaceCapacity").value = "400";
         document.getElementById("City").value = "Harrisonburg";
         document.getElementById("State").value = "Virginia";

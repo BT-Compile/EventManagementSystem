@@ -13,42 +13,46 @@
     </form>
     <br />
     <form method="post" class="table-secondary" asp-page-handler="Register">
-    <table class="table table-responsive table-hover">
-        <thead>
-            <tr>
-                <th>Event Name:</th>
-                <th>Event Description:</th>
-                <th>Start Date:</th>
-                <th>End Date:</th>
-                <th>Registration Deadline:</th>
-                <th>Location:</th>
-                <th>Sign Up:</th>
-            </tr>
-        </thead>
-        <tbody class="table-secondary">
-            
-                @{
-                    foreach (var record in Model.Events)
-                    {
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
                     <tr>
-                        <td><b>@record.EventName</b></td>
-                        <td>@record.EventDescription</td>
-                        <td>@record.StartDate</td>
-                        <td>@record.EndDate</td>
-                        <td>@record.RegistrationDeadline</td>
-                        <td>@record.SpaceID</td>
-                        <td>
-                            <input type="hidden" name="EventID" value="@record.EventID" />
-                            <input name="Checked" type="checkbox" style="transform: scale(2)" value="@record.EventID" />
-                        </td>
+                        <th>Event Name:</th>
+                        <th>Event Description:</th>
+                        <th>Start Date:</th>
+                        <th>End Date:</th>
+                        <th>Registration Deadline:</th>
+                        <th>Location:</th>
+                        <th>Sign Up:</th>
                     </tr>
-                    }
-                }
+                </thead>
+                <tbody class="table-secondary">
             
-        </tbody>
-        </table>
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                            <tr>
+                                <td><b>@record.EventName</b></td>
+                                <td>@record.EventDescription</td>
+                                <td>@record.StartDate</td>
+                                <td>@record.EndDate</td>
+                                <td>@record.RegistrationDeadline</td>
+                                <td>@record.SpaceID</td>
+                                <td>
+                                    <input type="hidden" name="EventID" value="@record.EventID" />
+                                    <input name="Checked" type="checkbox" style="transform: scale(2)" value="@record.EventID" />
+                                </td>
+                            </tr>
+                            }
+                        }
+            
+                </tbody>
+                </table>
+            </div>
+        </div>
         <br />
-        <input type="submit" class="btn rndbtn btn-light" />
     </form>
+    <input type="submit" class="btn rndbtn btn-light" />
     <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
 </div>

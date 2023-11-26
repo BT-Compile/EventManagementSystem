@@ -9,31 +9,35 @@
         {
             <br />
             <br />
-            <br />
-            <br />
-            <br />
             <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
             <p class="font">@e.SpaceName</p>
             <br />
-            <h1 class="font">@e.EventName <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Register</a> </h1>
+            <h1 class="font centertxt">@e.EventName</h1>
             <br />
-            <p class="font">@e.EventDescription</p>
+            <div class="centertxt">
+                <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class="btn widebutton btn-light" asp-route-eventid="@e.EventID">Register</a>
+            </div>
             <br />
-
-
-            <h3 class="font">Subevents</h3>
-
             <hr />
-
+            <br />
+            <br />
+            <div class="shdwbox">
+                <p class="centertxt">@e.EventDescription</p>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <h3 class="font centertxt">Subevents</h3>
+            <br />
             foreach (var s in Model.Subevents)
             {
-                <p class="font">
-                    @s.EventName
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                        View Details
-                    </button>
+                    <div class="shdwbox subsubcontainer">
+                        <p class="font centertxt">@s.EventName</p>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn widebutton-flex btn-light" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                            View Details
+                        </button>  
+                    </div>
 
                     <!-- Modal -->
                     <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
@@ -59,12 +63,10 @@
                                     @s.EventDescription
                                     <br />
                                     <br />
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </p>
             }
             <br />
         }

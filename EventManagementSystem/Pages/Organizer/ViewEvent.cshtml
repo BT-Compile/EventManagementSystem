@@ -8,17 +8,16 @@
         foreach (var e in Model.Events)
         {
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
             <p class="font">@e.SpaceName</p>
             <br />
-            <h1 class="font">@e.EventName <a asp-page="/Organizer/EditEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Edit</a> 
-                <a asp-page="/Organizer/ParticipantList" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">View Participants</a></h1>
+            <h2 class="font">@e.EventName</h2>
             <br />
-            <p class="font">@e.EventDescription</p>
+            <a asp-page="/Organizer/EditEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Edit</a>
+            <a asp-page="/Organizer/ParticipantList" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">View Participants</a>
+            <br />
+            <br />
+            <p>@e.EventDescription</p>
             <br />
 
 

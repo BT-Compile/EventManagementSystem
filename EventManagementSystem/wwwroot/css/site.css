@@ -59,14 +59,6 @@ thead {
     border-radius: 25px;
 }
 
-#widebutton {
-    height: 10vh;
-    width: 100%;
-    border-radius: 25px;
-    font-family: 'Arvo', serif;
-    font-size: 24pt;
-}
-
 /*--------------------------Quick Classes--------------------------*/
 
 .btnvert {
@@ -81,7 +73,7 @@ thead {
     border: solid 3px #450084;
 }
 
-.center {
+.centermarg {
     margin: auto;
 }
 
@@ -109,9 +101,32 @@ thead {
     border-radius: 25pt;
 }
 
+.rndbtn {
+    font-family: 'Arvo', serif;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 25pt;
+    font-size: 12pt;
+}
+
 .wrapper {
     margin: 0 15% 0 15%;
     height: 100%;
+}
+
+.widebutton-flex {
+    height: 10vh;
+    width: 100%;
+    border-radius: 25px;
+    font-family: 'Arvo', serif;
+    font-size: 24pt;
+}
+
+.widebutton {
+    height: 5vh;
+    width: 20%;
+    border-radius: 25px;
+    font-family: 'Arvo', serif;
+    font-size: 16pt;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -243,13 +258,6 @@ thead {
     border-radius: 25pt;
 }
 
-.rndbtn {
-    font-family: 'Arvo', serif;
-    padding: 5pt 10pt 5pt 10pt;
-    border-radius: 25pt;
-    font-size: 12pt;
-}
-
 .logbtn {
     font-family: 'Arvo', serif;
     margin-right: 5%;
@@ -341,19 +349,15 @@ thead {
     margin: auto;
 }
 
+.subsubcontainer {
+    width: 350px;
+    margin-bottom: 10px;
+}
+
 /*-----------------------------MOBILE------------------------------*/
 
 @media (max-width: 768px) {
 
-/*----------------------------Mobile IDs---------------------------*/
-
-    #widebutton {
-        height: 10vh;
-        width: 100%;
-        border-radius: 25px;
-        font-family: 'Arvo', serif;
-        font-size: 24pt;
-    }
 
 /*----------------------------Mobile Tags---------------------------*/
 
@@ -459,5 +463,13 @@ thead {
 
     .ITguy {
         display: none;
+    }
+
+    .widebutton {
+        height: 10vh;
+        width: 100%;
+        border-radius: 25px;
+        font-family: 'Arvo', serif;
+        font-size: 24pt;
     }
 }

@@ -5,9 +5,7 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">All Participant Types 
-        <a asp-page="/Organizer/ParticipantTypes/NewParticipantRole" class="btn rndbtn btn-light">Create New Participant Role</a>
-    </h2>
+    <h2 class="font">All Participant Types</h2>
     <br />
     <form method="post" asp-page="/Organizer/ParticipantType">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
@@ -43,5 +41,6 @@
     </div>
 
     <br />
+    <a asp-page="/Organizer/ParticipantTypes/NewParticipantRole" class="btn rndbtn btn-light">Create New Participant Role</a>
     <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

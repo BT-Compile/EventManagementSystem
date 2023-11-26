@@ -2,6 +2,7 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
@@ -20,8 +21,20 @@ namespace EventManagementSystem.Pages.Organizer
         [BindProperty]
         public Location LocationToCreate { get; set; }
 
+        public List<SelectListItem> EventType { get; set; }
+
         public void OnGet()
         {
+            //Acquires the event types to add to the dropdown option
+            SqlDataReader EventTypeReader = DBClass.GeneralReaderQuery("SELECT DISTINCT Type FROM Event");
+            EventType = new List<SelectListItem>();
+            while (EventTypeReader.Read())
+            {
+                EventType.Add(new SelectListItem(
+                    EventTypeReader["Type"].ToString(),
+                    EventTypeReader["Type"].ToString()));
+            }
+            DBClass.DBConnection.Close();
         }
 
         public IActionResult OnPost()
@@ -50,7 +63,7 @@ namespace EventManagementSystem.Pages.Organizer
             DBClass.SecurePendingEventSpaceCreation(SpaceToCreate.Name, SpaceToCreate.Address, SpaceToCreate.Capacity, LocationToCreate.LocationID);
             DBClass.DBConnection.Close();
 
-            //Acuire EventID to Creat an eventSpace entity
+            //Acquire EventID to Creat an eventSpace entity
             sqlQuery = "SELECT EventID From [Event] WHERE EventName = '" + EventToCreate.EventName + "' AND OrganizerID = " + Id;
             SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);
             while (singleEvent.Read())
