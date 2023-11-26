@@ -1,0 +1,19 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.RemoveParticipantEventModel
+@{
+}
+
+<form asp-page="RemoveParticipantEvent">
+    <div class="text-center">
+        <br />
+        <h2 class="font"> Are you sure you want to remove @Model.UserToCancel.FirstName @Model.UserToCancel.LastName from this Event?</h2>
+        <h3 class="font"> (This user will no longer be registered for this event and removed from all subevents)</h3>
+        <br />
+        <hr />
+        <br />
+        <h3 class="font">@Model.EventToCancel.EventName</h3>
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
+    </div>
+</form>
