@@ -36,7 +36,7 @@
                                 <td>@event1.EventType</td>
                                 <td>@event1.Status</td>
                                 <td>
-                                    <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">View|Edit</a>
+                                    <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">View | Edit</a>
                                 </td>
                             </tr>
                         }
@@ -46,5 +46,6 @@
         </div>
     </div>
     <br />
-    <a asp-page="/Admin/Index" class="btn logbtn btn-light">Back</a> <a asp-page="NewEvent" class="btn logbtn btn-light">Create New Event</a>
+    <a asp-page="NewEvent" class="btn rndbtn btn-light">Create New Event</a>
+    <a asp-page="/Admin/Index" class="btn rndbtn btn-light">Cancel</a>
 </div>
