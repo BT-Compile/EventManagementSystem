@@ -47,7 +47,7 @@ namespace EventManagementSystem.Pages.Events
                 "FROM [Event] E " +
                 "INNER JOIN EventSpace ES ON E.EventID = ES.EventID " +
                 "INNER JOIN [Space] S ON ES.SpaceID = S.SpaceID " +
-                "LEFT JOIN [Event] ParentEvent ON E.ParentEventID = ParentEvent.EventID ORDER BY E.EventName, E.Status";
+                "LEFT JOIN [Event] ParentEvent ON E.ParentEventID = ParentEvent.EventID ORDER BY E.Status, E.EventName";
             SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (eventReader.Read())
@@ -94,7 +94,7 @@ namespace EventManagementSystem.Pages.Events
                 "INNER JOIN EventSpace ES ON E.EventID = ES.EventID " +
                 "INNER JOIN [Space] S ON ES.SpaceID = S.SpaceID " +
                 "LEFT JOIN [Event] ParentEvent ON E.ParentEventID = ParentEvent.EventID " +
-                "WHERE (E.EventName LIKE'%" + keyword + "%') ORDER BY E.EventName, E.Status";
+                "WHERE (E.EventName LIKE'%" + keyword + "%') ORDER BY E.Status, E.EventName";
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);
 
                 while (eventReader.Read())

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace EventManagementSystem.Pages.Organizer
 {
-    public class SelectParticipantListModel : PageModel
+    public class AssignRoleSelectEventModel : PageModel
     {
         [BindProperty]
         public bool HasPosted { get; set; }
@@ -20,12 +20,9 @@ namespace EventManagementSystem.Pages.Organizer
         [BindProperty]
         public string FullName { get; set; }
 
-        [BindProperty]
-        public string TeamName { get; set; }
-
         public List<Event> Events { get; set; }
 
-        public SelectParticipantListModel()
+        public AssignRoleSelectEventModel()
         {
             Events = new List<Event>();
             HasPosted = false;

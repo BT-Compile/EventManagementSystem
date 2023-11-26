@@ -1,13 +1,13 @@
 ﻿@page
-@model EventManagementSystem.Pages.Events.AdminEventModel
+@model EventManagementSystem.Pages.Organizer.AssignRoleSelectEventModel
 @{
 }
 
-<br />
 <div class="wrapper">
-    <h2 class="font">All Events</h2>
     <br />
-    <form method="post" asp-page="Events/AdminEvent">
+    <h2 class="font">Select an Event to Assign Roles For:</h2>
+    <br />
+    <form method="post" asp-page="Organizer/AssignRoleSelectEvent">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -22,21 +22,21 @@
                         <th>End Date:</th>
                         <th>Event Type:</th>
                         <th>Status:</th>
-                        <th>Event Details:</th>
+                        <th>Select Event:</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-secondary">
                     @{
-                        foreach (var event1 in Model.Events)
+                        foreach (var record in Model.Events)
                         {
-                            <tr class="table-secondary">
-                                <td>@event1.EventName</td>
-                                <td>@event1.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@event1.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@event1.EventType</td>
-                                <td>@event1.Status</td>
+                            <tr>
+                                <td><b>@record.EventName</b></td>
+                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                <td>@record.EventType</td>
+                                <td>@record.Status</td>
                                 <td>
-                                    <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">View | Edit</a>
+                                    <a asp-page="/Organizer/AssignRoleSelectUser" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">Select</a>
                                 </td>
                             </tr>
                         }
@@ -45,6 +45,5 @@
             </table>
         </div>
     </div>
-    <br />
-    <a asp-page="/Admin/Index" class="btn logbtn btn-light">Back</a> <a asp-page="NewEvent" class="btn logbtn btn-light">Create New Event</a>
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

@@ -108,7 +108,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                     }
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
