@@ -96,8 +96,8 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
                 sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity FROM Space LEFT OUTER JOIN " +
                             "EventSpace ON Space.SpaceID = EventSpace.SpaceID LEFT OUTER JOIN Event ON EventSpace.EventID = Event.EventID " +
                             "WHERE (Space.ParentSpaceID IS NULL) AND (Event.OrganizerID = " + HttpContext.Session.GetString("userid") + " OR Space.CreatorID = " + HttpContext.Session.GetString("userid") +
-                              ") AND (Space.Name LIKE '%" + keyword + "%' OR Space.[Address] LIKE '%" + keyword + "%' OR Space_1.Name LIKE '%" + keyword + "%' OR Space_1.[Address] LIKE '%" + keyword + "%') " +
-                              "ORDER BY Space_1.Name ";
+                              ") AND (Space.Name LIKE '%" + keyword + "%' OR Space.[Address] LIKE '%" + keyword + "%') " +
+                              "ORDER BY Space.Name ";
 
                 SqlDataReader spaceReader = DBClass.GeneralReaderQuery(sqlQuery);
 

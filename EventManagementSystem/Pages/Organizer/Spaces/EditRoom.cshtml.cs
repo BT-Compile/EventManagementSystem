@@ -32,6 +32,8 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
                 return RedirectToPage("/Login/Index");
             }
 
+            HttpContext.Session.SetInt32("deletespaceid", spaceid);
+
             SqlDataReader singleSpace = DBClass.SingleSpaceReader(spaceid);
             while (singleSpace.Read())
             {
@@ -100,7 +102,7 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
 
             DBClass.DBConnection.Close();
 
-            return RedirectToPage("AdminRoom");
+            return RedirectToPage("/Organizer/Spaces/Index");
         }
 
     }

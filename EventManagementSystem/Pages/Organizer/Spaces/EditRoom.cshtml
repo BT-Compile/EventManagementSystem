@@ -35,6 +35,7 @@
             <br /><br />
             <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditRoom" />
             <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
+            <a asp-page="DeleteSpace" asp-route-spaceid="@HttpContext.Session.GetInt32("deletespaceid")" class="btn rndbtn btn-warning">Delete</a>
         </form>
     </div>
 </div>
