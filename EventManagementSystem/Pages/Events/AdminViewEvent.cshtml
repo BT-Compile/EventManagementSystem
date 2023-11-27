@@ -9,9 +9,6 @@
         {
             <br />
             <br />
-            <br />
-            <br />
-            <br />
             <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
             <p class="font">@e.SpaceName</p>
             if (e.ParentEventID == string.Empty)
@@ -22,11 +19,15 @@
             {
                 <p class="font">Parent Event: @e.ParentEventName</p>
             }
-
             <br />
-            <h1 class="font">@e.EventName <a asp-page="EditEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Edit :)</a> </h1>
+            <h1 class="font bigtxt centertxt">@e.EventName</h1>
             <br />
-            <p class="font">@e.EventDescription</p>
+            <a asp-page="EditEvent" class=" btn widebutton btn-light" asp-route-eventid="@e.EventID">Edit</a>
+            <br />
+            <br />
+            <div class="shdwbox">
+                <p class="font">@e.EventDescription</p>
+            </div>
             <br />
         }
     }

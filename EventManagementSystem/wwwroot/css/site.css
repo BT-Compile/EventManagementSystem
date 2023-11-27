@@ -68,12 +68,16 @@ thead {
     padding: 25px;
 }
 
+.bigtxt {
+    font-size: 32pt;
+}
+
 .card {
     border-radius: 15pt;
     border: solid 3px #450084;
 }
 
-.centermarg {
+.centermargin {
     margin: auto;
 }
 
@@ -122,11 +126,28 @@ thead {
 }
 
 .widebutton {
-    height: 5vh;
+    height: 5%;
     width: 20%;
     border-radius: 25px;
     font-family: 'Arvo', serif;
     font-size: 16pt;
+}
+
+.shdwbox {
+    background-color: rgba(0, 0, 0, 0.10);
+    border-radius: 25px;
+    padding: 10px;
+    margin: auto;
+}
+
+.shdwbox2{
+    background-color: rgba(0, 0, 0, 0.10);
+    border-radius: 25px;
+    padding: 10px;
+}
+
+smltxt {
+    font-size: 10pt;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -340,13 +361,6 @@ thead {
 .searchbar {
     border: none;
     padding: 5px;
-}
-
-.shdwbox {
-    background-color: rgba(0, 0, 0, 0.10);
-    border-radius: 25px;
-    padding: 10px;
-    margin: auto;
 }
 
 .subsubcontainer {

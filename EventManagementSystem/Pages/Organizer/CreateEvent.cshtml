@@ -67,9 +67,10 @@
     function populateForm() {
         document.getElementById("EventName").value = "Test Event";
         document.getElementById("EventDescription").value = "Test Event Description";
-        document.getElementById("StartDate").value = "12-20-2023";
-        document.getElementById("EndDate").value = "12-25-2023";
-        document.getElementById("RegistrationDeadline").value = "12-19-2023";
+        // Format dates according to datetime-local format (YYYY-MM-DDTHH:mm)
+        document.getElementById("StartDate").value = "2023-12-20T00:00";
+        document.getElementById("EndDate").value = "2023-12-25T00:00";
+        document.getElementById("RegistrationDeadline").value = "2023-12-19T00:00";
         document.getElementById("Capacity").value = "50";
         document.getElementById("EventType").value = "Dinner";
         document.getElementById("SpaceName").value = "Test Space";
