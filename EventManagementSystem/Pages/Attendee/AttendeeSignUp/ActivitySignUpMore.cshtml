@@ -7,12 +7,12 @@
     <br />
     <h2 class="font">Available Subevents at @Model.ParentEvent.EventName:</h2>
     <br />
-    <form method="post" asp-page="ActivitySignUp" asp-page-handler="Search">
+    <form method="post" asp-page="ActivitySignUpMore" asp-page-handler="Search">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
     <br />
-    <form method="post" class="table-secondary" asp-page-handler="Register">
+    <form method="post" class="table-secondary" asp-page="ActivitySignUpMore" asp-page-handler="Register">
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
@@ -48,7 +48,6 @@
             </tbody>
         </table>
         <br />
-        <input type="submit" class="btn rndbtn btn-light" />
+        <input type="submit" class="btn rndbtn btn-light" /> <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.HttpContext.Session.GetInt32("EventInt")" class="btn rndbtn btn-light">Cancel</a>
     </form>
-    <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.HttpContext.Session.GetInt32("EventInt")" class="btn rndbtn btn-light">Cancel</a>
 </div>

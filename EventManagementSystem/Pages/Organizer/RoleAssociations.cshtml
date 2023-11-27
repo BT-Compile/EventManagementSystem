@@ -1,13 +1,13 @@
 ﻿@page
-@model EventManagementSystem.Pages.Organizer.AssignRoleSelectUserModel
+@model EventManagementSystem.Pages.Organizer.RoleAssociationsModel
 @{
 }
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Select Participant to Assign Role at @HttpContext.Session.GetString("eventname")</h2>
+    <h2 class="font">Participant Role Assignments</h2>
     <br />
-    <form method="post" asp-page="/Organizer/ParticipantList">
+    <form method="post" asp-page="/Organizer/RoleAssociations">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
         &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
     </form>
@@ -20,7 +20,7 @@
                         <th>Name:</th>
                         <th>Role:</th>
                         <th>Date Registered:</th>
-                        <th>Remove User:</th>
+                        <th>Edit Role:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                             <td>@user.RoleType</td>
                             <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
                             <td>
-                                <a asp-page="AssignRole" class="btn rndbtn btn-light" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Assign</a>
+                                <a asp-page="AssignRole" class="btn rndbtn btn-light" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Edit</a>
                             </td>
                         </tr>
                     }

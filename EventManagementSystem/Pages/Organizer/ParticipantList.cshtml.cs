@@ -48,7 +48,7 @@ namespace EventManagementSystem.Pages.Organizer
                               "= EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN UserRole ON [User].UserID = UserRole.UserID INNER JOIN Role " +
                               "ON UserRole.RoleID = Role.RoleID LEFT OUTER JOIN Allergy ON [User].AllergyID = Allergy.AllergyID LEFT OUTER JOIN AllergyBridge ON [User].UserID = AllergyBridge.UserID " +
                               "AND Allergy.AllergyID = AllergyBridge.AllergyID WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") +
-                               " AND ([Event].EventID = " + eventid + ") AND [User].IsActive = 'true' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
+                               " AND ([Event].EventID = " + eventid + ") AND [User].IsActive = 'true' AND Role.Name = 'Participant' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";
 
             SqlDataReader userReader = DBClass.GeneralReaderQuery(sqlQuery);
 

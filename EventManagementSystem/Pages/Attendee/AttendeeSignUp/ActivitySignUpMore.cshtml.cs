@@ -148,7 +148,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
             int? eventid = HttpContext.Session.GetInt32("EventInt");
 
-            return RedirectToPage("/Attendee/AttendeeSignup/Schedule", new { eventid });
+            return RedirectToPage("/Attendee/AttendeeSignUp/Schedule", new { eventid });
         }
     }
 }
