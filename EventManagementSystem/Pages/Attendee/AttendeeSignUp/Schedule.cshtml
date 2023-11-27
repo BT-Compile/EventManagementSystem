@@ -80,6 +80,8 @@
         </div>
     </div>
     <br />
-    <input type="submit" value="Register For Subevents" class="btn rndbtn btn-light" />
-    <a asp-page="../Index" class="btn rndbtn btn-light">Return</a>
+    <form method="post" asp-page="Schedule" asp-page-handler="Register">
+        <input type="submit" value="Register For Subevents" class="btn rndbtn btn-light" /> <a asp-page="../Index" class="btn rndbtn btn-light">Return</a>
+    </form>
+    
 </div>

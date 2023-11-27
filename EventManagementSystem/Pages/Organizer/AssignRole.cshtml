@@ -2,3 +2,32 @@
 @model EventManagementSystem.Pages.Organizer.AssignRoleModel
 @{
 }
+
+<div class="wrapper">
+    <br />
+    <h2 class="font centertxt">Assign Role Form</h2>
+    <br />
+    <hr />
+    <br />
+    <h3 class="font centertxt">@Model.FieldToUpdate.FirstName</h3>
+    <br />
+    <div class="newlogbox">
+        <form asp-page="AssignRole">
+            <label asp-for="@Model.FieldToUpdate.RoleID">- Participant Role -</label>
+            <br />
+            <select asp-for="@Model.FieldToUpdate.RoleID" class="newlogfield" asp-items="Model.UserRole">
+                <option value=""></option>
+            </select>
+            <br />
+            <label asp-for="@Model.FieldToUpdate.EventID">- Event -</label>
+            <br />
+            <select asp-for="@Model.FieldToUpdate.EventID" class="newlogfield" asp-items="Model.Subevent">
+                <option value=""></option>
+            </select>
+            <br />
+            <br />
+            <input type="submit" class="btn rndbtn btn-light" asp-page="AssignRole" />
+            <a asp-page="/Organizer/AssignRoleSelectUser" class="btn rndbtn btn-light" asp-route-eventID="@HttpContext.Session.GetInt32("assigneventid")">Cancel</a>
+        </form>
+    </div>
+</div>
