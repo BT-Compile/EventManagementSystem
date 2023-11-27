@@ -18,13 +18,9 @@
                 <thead>
                     <tr>
                         <th>Name:</th>
-                        <th>Email:</th>
-                        <th>Phone Number:</th>
-                        <th>Username:</th>
                         <th>Role:</th>
-                        <th>Edit:</th>
-                        <th>Status:</th>
-                        <th>Account Action:</th>
+                        <th>Account Status:</th>
+                        <th>View | Edit:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,13 +29,7 @@
                         {
                             <tr class="table-secondary">
                                 <td><b>@user.FirstName</b></td>
-                                <td>@user.Email</td>
-                                <td>@user.PhoneNumber</td>
-                                <td>@user.Username</td>
                                 <td>@user.RoleType</td>
-                                <td>
-                                    <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@user.UserID">Edit</a>
-                                </td>
                                 @if (user.IsActive == true)
                                 {
                                     <td>Active</td>
@@ -48,20 +38,9 @@
                                 {
                                     <td>Inactive</td>
                                 }
-
-                                @if (user.IsActive == true)
-                                {
-                                    <td>
-                                        <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID">Deactivate</a>
-                                    </td>
-                                }
-                                @if (user.IsActive == false)
-                                {
-                                    <td>
-                                        <a asp-page="ActivateUser" class="btn rndbtn btn-success" asp-route-userid="@user.UserID">Activate</a>
-                                    </td>
-                                }
-
+                                <td>
+                                    <a asp-page="UserProfile" class="btn rndbtn btn-success" asp-route-userid="@user.UserID">View</a>
+                                </td>
                             </tr>
                         }
                     }

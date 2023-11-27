@@ -1,0 +1,88 @@
+﻿@page
+@model EventManagementSystem.Pages.Organizer.Spaces.IndexModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <h2 class="font">
+        All Event Spaces:
+        <!--BEN - Hi its Jonathan I want to right align these buttons but I do not have the skills, thanks! -->
+        <a asp-page="NewRoom" class="btn rndbtn btn-light">Create New Space</a> |
+        <a asp-page="RoomAssociations" class="btn rndbtn btn-light">Show Space Assignments</a>
+    </h2>
+    <br />
+    <form method="post" asp-page="Index">
+        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+    </form>
+    <br />
+    <h2 class="font">Event Main Spaces:</h2>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Address:</th>
+                        <th>Capacity:</th>
+                        <th>Edit:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var space in Model.Spaces)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@space.Name</b></td>
+                                <td>@space.Address</td>
+                                <td>@space.Capacity</td>
+                                <td>
+                                    <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-spaceid="@space.SpaceID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+
+    <h2 class="font">Event Subspaces:</h2>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Main Space:</th>
+                        <th>Subspace Name:</th>
+                        <th>Address:</th>
+                        <th>Capacity:</th>
+                        <th>Edit:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var space in Model.SubSpaces)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@space.ParentSpaceName</b></td>
+                                <td>@space.Name</td>
+                                <td>@space.Address</td>
+                                <td>@space.Capacity</td>
+                                <td>
+                                    <a asp-page="EditRoom" class="btn rndbtn btn-light" asp-route-spaceid="@space.SpaceID">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Back</a>
+</div>

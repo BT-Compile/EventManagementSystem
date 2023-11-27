@@ -45,7 +45,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "SELECT " + HttpContext.Session.GetString("userid") +
                                 "FROM EventRegister " +
                                 "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventRegister.EventID = Event.EventID) " +
-                                "AND ParentEventID = " + eventid + " ORDER BY Event.StartDate DESC";
+                                "AND ParentEventID = " + eventid + " ORDER BY Event.StartDate ASC";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -102,7 +102,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                                 "FROM EventRegister " +
                                 "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventRegister.EventID = Event.EventID) " +
                                 "AND (Event.EventDescription LIKE '%" + keyword + "%' OR Event.EventName LIKE'%" + keyword + "%') " +
-                                "ORDER BY Event.StartDate DESC";
+                                "ORDER BY Event.StartDate ASC";
 
                 SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 

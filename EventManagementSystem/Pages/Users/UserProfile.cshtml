@@ -1,0 +1,94 @@
+﻿@page
+@model EventManagementSystem.Pages.Users.UserProfileModel
+@{
+}
+<div class="wrapper">
+    <br />
+    <br />
+    <img class="profilepic" src="/images/profile.png" /> <h1 class="centertxt font">@Model.UsersTable.FirstName</h1>
+
+
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Email:</th>
+                        <th>Username:</th>
+                        <th>Role:</th>
+                        <th>Status:</th>
+                        <th>Account Action:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-secondary">
+                        <td><b>@Model.UsersTable.FirstName</b></td>
+                        <td>@Model.UsersTable.Email</td>
+                        <td>@Model.UsersTable.Username</td>
+                        <td>@Model.UsersTable.RoleType</td>
+                        @if (Model.UsersTable.IsActive == true)
+                        {
+                            <td>Active</td>
+                        }
+                        else
+                        {
+                            <td>Inactive</td>
+                        }
+
+                        @if (Model.UsersTable.RoleName == "Admin")
+                        {
+                            @if (Model.UsersTable.IsActive == true)
+                            {
+                                <td>
+                                    <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@Model.UsersTable.UserID">Deactivate</a>
+                                    <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                                </td>
+                            }
+                            @if (Model.UsersTable.IsActive == false)
+                            {
+                                <td>
+                                    <a asp-page="ActivateUser" class="btn rndbtn btn-success" asp-route-userid="@Model.UsersTable.UserID">Activate</a>
+                                    <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                                </td>
+                            }
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-page="EditUsers" class="btn rndbtn btn-light" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+        <h2 class="centertxt font">@Model.UsersTable.FirstName's Events:</h2>
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Start Date:</th>
+                            <th>Registration Date:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr class="table-secondary">
+                            <td><b>@user.EventName</b></td>
+                            <td>@user.StartDate.ToString("MM/dd/yyyy")</td>
+                            <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <br />
+    <a asp-page="/Users/Index" class="btn rndbtn btn-light">Return</a>
+</div>

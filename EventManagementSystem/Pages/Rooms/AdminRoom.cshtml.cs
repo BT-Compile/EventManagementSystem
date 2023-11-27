@@ -41,8 +41,8 @@ namespace EventManagementSystem.Pages.Rooms
             }
 
             string sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity, Space_1.Name AS ParentSpaceName FROM Space INNER JOIN " +
-                              "Space AS Space_1 ON Space.ParentSpaceID = Space_1.SpaceID WHERE(Space.ParentSpaceID IS NOT NULL) " +
-                              "ORDER BY Space_1.Name";
+                   "Space AS Space_1 ON Space.ParentSpaceID = Space_1.SpaceID WHERE(Space.ParentSpaceID IS NOT NULL) " +
+                   "ORDER BY Space_1.Name";
             SqlDataReader subspaceReader = DBClass.GeneralReaderQuery(sqlQuery);
 
             while (subspaceReader.Read())

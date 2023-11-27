@@ -58,7 +58,8 @@ namespace EventManagementSystem.Pages.Organizer
                     RoleType = userReader["Name"].ToString(),
                     EventID = Int32.Parse(userReader["EventID"].ToString()),
                     EventName = userReader["EventName"].ToString(),
-                    RegistrationDate = (DateTime)userReader["RegistrationDate"]
+                    RegistrationDate = (DateTime)userReader["RegistrationDate"],
+                    RoleID = Int32.Parse(userReader["RoleID"].ToString())
                 });
             }
 

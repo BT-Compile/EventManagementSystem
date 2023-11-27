@@ -56,7 +56,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
                        "END AS ParentSpaceName FROM Event INNER JOIN EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN Space ON EventSpace.SpaceID = Space.SpaceID INNER JOIN " +
                        "Location ON Space.LocationID = Location.LocationID LEFT JOIN Space ParentSpace ON Space.ParentSpaceID = ParentSpace.SpaceID " +
                        "WHERE [Event].ParentEventID = " + eventid +
-                       " ORDER BY Event.StartDate DESC";
+                       " ORDER BY Event.StartDate ASC";
 
             SqlDataReader subeventReader = DBClass.GeneralReaderQuery(sqlQuery);
 

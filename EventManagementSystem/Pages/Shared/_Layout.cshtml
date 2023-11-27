@@ -43,6 +43,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link purpletxt font" asp-page="/Admin/Index">Admin Tools</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-route-userid="@Context.Session.GetString("userid")" asp-page="/Users/UserProfile">My Profile</a>
+                                </li>
                             }
 
                             @if (Context.Session.GetString("RoleType") == "Organizer")
@@ -53,12 +56,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link purpletxt font" asp-page="/Organizer/Index">Organizer Tools</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-route-userid="@Context.Session.GetString("userid")" asp-page="/Users/UserProfile">My Profile</a>
+                                </li>
                             }
 
                             @if (Context.Session.GetString("RoleType") != "Admin" && Context.Session.GetString("RoleType") != "Organizer" && Context.Session.GetString("RoleType") != null)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link purpletxt font" asp-page="/Attendee/Index">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link purpletxt font" asp-route-userid="@Context.Session.GetString("userid")" asp-page="/Users/UserProfile">My Profile</a>
                                 </li>
                             }
                         }

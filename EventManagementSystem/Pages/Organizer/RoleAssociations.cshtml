@@ -21,6 +21,7 @@
                         <th>Role:</th>
                         <th>Date Registered:</th>
                         <th>Edit Role:</th>
+                        <th>Remove User From Role:</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,9 @@
                             <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
                             <td>
                                 <a asp-page="AssignRole" class="btn rndbtn btn-light" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Edit</a>
+                            </td>
+                            <td>
+                                <a asp-page="AssignRoleDelete" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID" asp-route-roleid="@user.RoleID">Remove</a>
                             </td>
                         </tr>
                     }
