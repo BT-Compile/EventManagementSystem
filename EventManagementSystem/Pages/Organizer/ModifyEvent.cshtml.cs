@@ -2,7 +2,6 @@ using EventManagementSystem.Pages.DataClasses;
 using EventManagementSystem.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
 
@@ -18,8 +17,6 @@ namespace EventManagementSystem.Pages.Organizer
         public int TempLocationID { get; set; }
 
         public int TempSpaceID { get; set; }
-
-        public List<SelectListItem> EventType { get; set; }
 
         [BindProperty]
         public Event EventToCreate { get; set; }
@@ -41,16 +38,6 @@ namespace EventManagementSystem.Pages.Organizer
             {
                 TempLocationID = Int32.Parse(singleLocation["LocationID"].ToString());
                 TempSpaceID = Int32.Parse(singleLocation["SpaceID"].ToString());
-            }
-            DBClass.DBConnection.Close();
-
-            SqlDataReader EventTypeReader = DBClass.GeneralReaderQuery("SELECT DISTINCT Type FROM Event");
-            EventType = new List<SelectListItem>();
-            while (EventTypeReader.Read())
-            {
-                EventType.Add(new SelectListItem(
-                    EventTypeReader["Type"].ToString(),
-                    EventTypeReader["Type"].ToString()));
             }
             DBClass.DBConnection.Close();
 
