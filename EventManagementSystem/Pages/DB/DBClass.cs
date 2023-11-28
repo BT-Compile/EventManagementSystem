@@ -12,9 +12,9 @@ namespace EventManagementSystem.Pages.DB
         public static SqlConnection DBConnection = new SqlConnection();
 
         // Connection String
-        public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True";
+        public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True;max pool size=30000";
         // For Hashed Passwords
-        private static readonly string? AuthDBConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
+        private static readonly string? AuthDBConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True;max pool size= 30000";
 
         // Can run and return results for any "ExecuteReader query", if results exist.
         // Query is passed from the invoking code.
