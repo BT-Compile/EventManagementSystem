@@ -11,9 +11,9 @@ namespace EventManagementSystem.Pages.DB
         // Connection Object at the class level
         public static SqlConnection DBConnection = new SqlConnection();
 
-        public static readonly string CapstoneDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=CAPSTONE;uid=Admin;password=MasterPassword";
+        public static readonly string CapstoneDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=CAPSTONE;uid=Admin;password=MasterPassword;max pool size=30000";
 
-        private static readonly string? AuthDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=AUTH;uid=Admin;password=MasterPassword";
+        private static readonly string? AuthDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=AUTH;uid=Admin;password=MasterPassword;max pool size=30000";
 
         // Connection String
         //public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True";

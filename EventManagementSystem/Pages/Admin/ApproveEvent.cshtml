@@ -3,17 +3,22 @@
 @{
 }
 
-<form asp-page="ApproveEvent">
-    <div class="text-center">
-        <br />
-        <h2 class="font"> Are you sure you want to approve the creation of this Event?</h2>
-        <h4 class="font"> (This will allow the organizer to create subevents independently)</h4>
-        <br />
-        <hr />
-        <br />
-        <h3 class="font">@Model.EventToApprove.EventName</h3>
-        <br />
-        <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
-        <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
+<div class="wrapper">
+    <br/>
+    <div class="whitebox purpletxt">
+        <form asp-page="ApproveEvent">
+            <div class="text-center">
+                <br />
+                <h2 class="font"> Are you sure you want to approve the creation of this Event?</h2>
+                <h4 class="font"> (This will allow the organizer to create subevents independently)</h4>
+                <br />
+                <hr />
+                <br />
+                <h3 class="font">@Model.EventToApprove.EventName</h3>
+                <br />
+                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+                <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>
