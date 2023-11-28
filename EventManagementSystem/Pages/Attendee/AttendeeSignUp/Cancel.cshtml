@@ -4,22 +4,17 @@
     ViewData["Title"] = "Cancel Event Confirmation";
 }
 
-<div class="wrapper">
-    <br/>
-    <div class="whitebox purpletxt">
-        <form asp-page="Cancel">
-            <div class="text-center">
-                <br />
-                <h2 class="font"> Are you sure you want to cancel registration for this Event?</h2>
-                <h3 class="font"> (This will cancel registration for all Subevents at this Event)</h3>
-                <br />
-                <hr />
-                <br />
-                <h3 class="font">@Model.EventToCancel.EventName</h3>
-                <br />
-                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
-                <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
-            </div>
-        </form>
+<form asp-page="Cancel">
+    <div class="text-center">
+        <br />
+        <h2 class="font"> Are you sure you want to cancel registration for this Event?</h2>
+        <h3 class="font"> (This will cancel registration for all Subevents at this Event)</h3>
+        <br />
+        <hr />
+        <br />
+        <h3 class="font">@Model.EventToCancel.EventName</h3>
+        <br />
+        <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+        <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
-</div>
+</form>

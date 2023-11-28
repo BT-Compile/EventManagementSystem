@@ -6,12 +6,11 @@
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-        <h2 class="font">All Event Spaces</h2>
-        <br/>
-        <div>
-            <a asp-page="NewRoom" class="btn rndbtn rbtn btn-dark">Create New Space</a>
-            <a style="margin-right: 5px;" asp-page="RoomAssociations" class="btn rndbtn rbtn btn-dark">Show Space Assignments</a>
-        </div>
+        <h1 class="font">
+            All Event Spaces
+            <a asp-page="NewRoom" class="btn rndbtn float-end btn-dark">Create New Space</a>
+            <a style="margin-right: 5px;" asp-page="RoomAssociations" class="btn rndbtn float-end btn-dark">Show Space Assignments</a>
+        </h1>
         <br />
         <form method="post" asp-page="Index">
             <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
