@@ -23,8 +23,7 @@
                             <th>End Date:</th>
                             <th>Registration Deadline:</th>
                             <th>Location:</th>
-                            <th>View Details:</th>
-                            <th>Register:</th>
+                            <th>Registration:</th>
                         </tr>
                     </thead>
                     <tbody class="table-secondary">
@@ -38,13 +37,7 @@
                                     <td>@record.RegistrationDeadline.ToString("MM/dd/yyyy")</td>
                                     <td>@record.SpaceID</td>
                                     <td>
-                                        <a asp-page="ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View</a>
-                                    </td>
-                                    <td>
-                                    <form method="post" asp-page="Index" asp-page-handler="Register">
-                                            <input type="hidden" name="EventID" value="@record.EventID" />
-                                            <button type="submit" class="btn rndbtn btn-dark">Join</button>
-                                    </form>
+                                        <a asp-page="ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Register</a>
                                     </td>
                                 </tr>
                             }
