@@ -1,0 +1,49 @@
+﻿@page
+@model EventManagementSystem.Pages.Users.EditUsersNotAdminModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <div class="whitebox blktxt">
+        <h2 class="font centertxt">Edit User Data</h2>
+        <br />
+        <hr />
+        <br />
+        <p class="notetxt">NOTE: The "Password" field must be left blank if no password change is desired. Otherwise, enter a password, and it will be encrypted.</p>
+        <p class="notetxt">NOTE: The "RoleType" field must be left blank if no role change is desired. Otherwise, select a role for this user.</p>
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditUsers">
+                <input type="hidden" asp-for="@Model.UserToUpdate.UserID" />
+                <label asp-for="@Model.UserToUpdate.FirstName">- First Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.FirstName" required />
+                <br />
+                <label asp-for="@Model.UserToUpdate.LastName">- Last Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.LastName" required />
+                <br />
+                <label asp-for="@Model.UserToUpdate.Username">- Username -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Username" required />
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Email" />
+                <br />
+                <label asp-for="@Model.UserToUpdate.PhoneNumber">- Phone -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.PhoneNumber" />
+                <br />
+                <label asp-for="@Model.UserToUpdate.AllergyID">- Allergies -</label>
+                <br />
+                <select asp-for="@Model.UserToUpdate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
+                    <option value=""></option>
+                </select>
+                <br />
+                <br />
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditUsers" />
+                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
