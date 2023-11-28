@@ -41,6 +41,7 @@ namespace EventManagementSystem.Pages.Organizer
                 UserToCancel.FirstName = singleUser["FirstName"].ToString();
                 UserToCancel.LastName = singleUser["LastName"].ToString();
             }
+            DBClass.DBConnection.Close();
 
             sqlQuery = "SELECT * FROM Event WHERE EventID = " + eventid;
             SqlDataReader singleEvent = DBClass.GeneralReaderQuery(sqlQuery);

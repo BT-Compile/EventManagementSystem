@@ -2,3 +2,16 @@
 @model EventManagementSystem.Pages.Organizer.Spaces.DeleteSpaceModel
 @{
 }
+
+<form asp-page="DeleteSpace">
+    <div class="text-center">
+        <br />
+        <h2 class="font"> Are you sure you want to delete this Space: @Model.SpaceToDelete.Name</h2>
+        <h3 class="font"> (Any rooms, subspaces, etc. under this Space will be deleted and cannot be recovered)</h3>
+        <br />
+        <hr />
+        <br />
+        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
+        <a asp-page="/Organizer/Spaces/Index" class="btn rndbtn btn-light">Cancel</a>
+    </div>
+</form>

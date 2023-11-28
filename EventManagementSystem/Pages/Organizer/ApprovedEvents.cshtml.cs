@@ -62,6 +62,7 @@ namespace EventManagementSystem.Pages.Organizer
                 });
             }
 
+            DBClass.DBConnection.Close();
             return Page();
         }
 
@@ -103,8 +104,8 @@ namespace EventManagementSystem.Pages.Organizer
                 }
             }
 
+            DBClass.DBConnection.Close();
             return Page();
-
         }
     }
 }

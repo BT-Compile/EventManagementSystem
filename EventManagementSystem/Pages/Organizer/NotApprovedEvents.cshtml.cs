@@ -56,7 +56,7 @@ namespace EventManagementSystem.Pages.Organizer
                     EventType = scheduleReader["Type"].ToString()
                 });
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
@@ -92,7 +92,7 @@ namespace EventManagementSystem.Pages.Organizer
                     });
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
 
         }

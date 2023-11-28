@@ -86,7 +86,7 @@ namespace EventManagementSystem.Pages.Attendee
                     SpaceID = scheduleReader["Name"].ToString()
                 });
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
@@ -129,7 +129,7 @@ namespace EventManagementSystem.Pages.Attendee
                     }
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
     }

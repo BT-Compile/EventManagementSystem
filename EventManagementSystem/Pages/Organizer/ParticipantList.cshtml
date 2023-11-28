@@ -14,73 +14,70 @@
         </form>
         <br />
 
-        <h2 class="font">@HttpContext.Session.GetString("eventname") Participants</h2>
-        <br />
-        <div class="shdwbox">
-            <div class="table-responsive card">
-                <table class="table table-responsive table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name:</th>
-                            <th>Role:</th>
-                            <th>Event Name:</th>
-                            <th>Date Registered:</th>
-                            <th>Remove User:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var user in Model.Users)
-                        {
-                                <tr class="table-secondary">
-                                    <td><b>@user.FirstName</b></td>
-                                    <td>@user.RoleType</td>
-                                    <td>@user.EventName</td>
-                                    <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
-                                    <td>
-                                        <a asp-page="RemoveParticipantEvent" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Remove</a>
-                                    </td>
-                                </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+    <h2 class="font">@HttpContext.Session.GetString("eventname") Participants</h2>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Role:</th>
+                        <th>Event Name:</th>
+                        <th>Date Registered:</th>
+                        <th>Remove User:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                            <tr class="table-secondary">
+                                <td><b>@user.FirstName</b></td>
+                                <td>@user.RoleType</td>
+                                <td>@user.EventName</td>
+                                <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
+                                <td>
+                                    <a asp-page="RemoveParticipantEvent" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Remove</a>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        <br />
-        <br />
-        <h2 class="font">@HttpContext.Session.GetString("eventname") Subevent Participants</h2>
-        <br />
-        <div class="shdwbox">
-            <div class="table-responsive card">
-                <table class="table table-responsive table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name:</th>
-                            <th>Username:</th>
-                            <th>Role:</th>
-                            <th>Event Name:</th>
-                            <th>Date Registered:</th>
-                            <th>Remove User:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var user in Model.SubUsers)
-                        {
-                                <tr class="table-secondary">
-                                    <td><b>@user.FirstName</b></td>
-                                    <td>@user.Username</td>
-                                    <td>@user.RoleType</td>
-                                    <td>@user.EventName</td>
-                                    <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
-                                    <td>
-                                        <a asp-page="RemoveParticipantSubevent" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Remove</a>
-                                    </td>
-                                </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <br />
-        <a asp-page="/Organizer/Index" class="btn rndbtn btn-dark">Return</a>
     </div>
+    <br />
+    <br />
+    <h2 class="font">@HttpContext.Session.GetString("eventname") Subevent Participants</h2>
+    <br />
+    <div class="shdwbox">
+        <div class="table-responsive card">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Role:</th>
+                        <th>Event Name:</th>
+                        <th>Date Registered:</th>
+                        <th>Remove User:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.SubUsers)
+                    {
+                            <tr class="table-secondary">
+                                <td><b>@user.FirstName</b></td>
+                                <td>@user.RoleType</td>
+                                <td>@user.EventName</td>
+                                <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
+                                <td>
+                                    <a asp-page="RemoveParticipantSubevent" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Remove</a>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br />
+    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

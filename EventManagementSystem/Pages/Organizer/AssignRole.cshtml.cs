@@ -92,6 +92,8 @@ namespace EventManagementSystem.Pages.Organizer
             sqlQuery = "UPDATE EventRegister SET RoleID = " + FieldToUpdate.RoleID + " WHERE EventID = " + HttpContext.Session.GetInt32("assigneventid") + " AND UserID = " + HttpContext.Session.GetInt32("assignuserid");
             DBClass.GeneralQuery(sqlQuery);
 
+            DBClass.DBConnection.Close();
+
             int? eventid = HttpContext.Session.GetInt32("assigneventid");
 
             return RedirectToPage("/Organizer/AssignRoleSelectUser", new { eventid });
