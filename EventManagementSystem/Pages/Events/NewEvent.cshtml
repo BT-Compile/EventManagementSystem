@@ -6,59 +6,61 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Enter New Event Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-            <form asp-page="NewEvent">
-            <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
-            <label asp-for="@Model.EventToCreate.EventName">- Event Name -</label>
-                <br />
-            <input type="text" class="newlogfield" id="EventName" asp-for="@Model.EventToCreate.EventName" required />
-                <br />
-            <label asp-for="@Model.EventToCreate.EventDescription">- Description -</label>
-                <br />
-            <input type="text" class="newlogfield" id="Description" asp-for="@Model.EventToCreate.EventDescription" />
-                <br />
-            <label asp-for="@Model.EventToCreate.StartDate">- Start Date -</label>
-                <br />
-            <input type="datetime-local" class="newlogfield" id="StartDate" asp-for="@Model.EventToCreate.StartDate" required />
-                <br />
-            <label asp-for="@Model.EventToCreate.EndDate">- End Date -</label>
-                <br />
-            <input type="datetime-local" class="newlogfield" id="EndDate" asp-for="@Model.EventToCreate.EndDate" required />
-                <br />
-            <label asp-for="@Model.EventToCreate.RegistrationDeadline">- Registration Deadline -</label>
-                <br />
-            <input type="datetime-local" class="newlogfield" id="RegistrationDeadline" asp-for="@Model.EventToCreate.RegistrationDeadline" required />
-                <br />
-            <label asp-for="@Model.EventToCreate.Capacity">- Capacity -</label>
-                <br />
-            <input type="text" class="newlogfield" id="Capacity" asp-for="@Model.EventToCreate.Capacity" required />
-                <br />
-            <label asp-for="@Model.EventToCreate.EventType">- Event Type -</label>
-                <br />
-            <select asp-for="@Model.EventToCreate.EventType" class="newlogfield" asp-items="Model.EventType">
-                <option value=""></option>
-            </select>
-                <br />
-            <label asp-for="@Model.EventToCreate.SpaceID">- Space Name -</label>
-                <br />
-            <select asp-for="@Model.EventToCreate.SpaceID" class="newlogfield" asp-items="Model.Spaces">
+    <div class="whitebox blktxt">
+        <h2 class="font centertxt">Enter New Event Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+                <form asp-page="NewEvent">
+                <input type="hidden" asp-for="@Model.EventToCreate.EventID" />
+                <label asp-for="@Model.EventToCreate.EventName">- Event Name -</label>
+                    <br />
+                <input type="text" class="newlogfield" id="EventName" asp-for="@Model.EventToCreate.EventName" required />
+                    <br />
+                <label asp-for="@Model.EventToCreate.EventDescription">- Description -</label>
+                    <br />
+                <input type="text" class="newlogfield" id="Description" asp-for="@Model.EventToCreate.EventDescription" />
+                    <br />
+                <label asp-for="@Model.EventToCreate.StartDate">- Start Date -</label>
+                    <br />
+                <input type="datetime-local" class="newlogfield" id="StartDate" asp-for="@Model.EventToCreate.StartDate" required />
+                    <br />
+                <label asp-for="@Model.EventToCreate.EndDate">- End Date -</label>
+                    <br />
+                <input type="datetime-local" class="newlogfield" id="EndDate" asp-for="@Model.EventToCreate.EndDate" required />
+                    <br />
+                <label asp-for="@Model.EventToCreate.RegistrationDeadline">- Registration Deadline -</label>
+                    <br />
+                <input type="datetime-local" class="newlogfield" id="RegistrationDeadline" asp-for="@Model.EventToCreate.RegistrationDeadline" required />
+                    <br />
+                <label asp-for="@Model.EventToCreate.Capacity">- Capacity -</label>
+                    <br />
+                <input type="text" class="newlogfield" id="Capacity" asp-for="@Model.EventToCreate.Capacity" required />
+                    <br />
+                <label asp-for="@Model.EventToCreate.EventType">- Event Type -</label>
+                    <br />
+                <select asp-for="@Model.EventToCreate.EventType" class="newlogfield" asp-items="Model.EventType">
                     <option value=""></option>
-            </select>
+                </select>
+                    <br />
+                <label asp-for="@Model.EventToCreate.SpaceID">- Space Name -</label>
+                    <br />
+                <select asp-for="@Model.EventToCreate.SpaceID" class="newlogfield" asp-items="Model.Spaces">
+                        <option value=""></option>
+                </select>
+                    <br />
+                <label asp-for="@Model.EventToCreate.Status">- Status -</label>
+                    <br />
+                <input type="text" class="newlogfield" id="Status" asp-for=" @Model.EventToCreate.Status" required />
                 <br />
-            <label asp-for="@Model.EventToCreate.Status">- Status -</label>
                 <br />
-            <input type="text" class="newlogfield" id="Status" asp-for=" @Model.EventToCreate.Status" required />
-            <br />
-            <br />
-            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
-            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewUser" />
-            <a asp-page="AdminEvent" class="btn rndbtn btn-light">Cancel</a>
-        </form>
+                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
+                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewUser" />
+                <a asp-page="AdminEvent" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>
 

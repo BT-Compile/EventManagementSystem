@@ -6,31 +6,33 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Amenity Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-        <form asp-page="EditAmenity">
-            <input type="hidden" asp-for="@Model.AmenityToUpdate.AmenityID" />
-            <label asp-for="@Model.AmenityToUpdate.Name">- Name -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Name" required />
-            <br />
-            <label asp-for="@Model.AmenityToUpdate.Description">- Description -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Description"  />
-            <br />
-            <label asp-for="@Model.AmenityToUpdate.Type">- Type -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Type" />
-            <br />
-            <label asp-for="@Model.AmenityToUpdate.URL">- URL -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.URL" />
-            <br /><br />
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditAmenity" />
-            <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
-        </form>
+    <div class="whitebox blktxt">
+        <h2 class="font centertxt">Edit Amenity Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditAmenity">
+                <input type="hidden" asp-for="@Model.AmenityToUpdate.AmenityID" />
+                <label asp-for="@Model.AmenityToUpdate.Name">- Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Name" required />
+                <br />
+                <label asp-for="@Model.AmenityToUpdate.Description">- Description -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Description"  />
+                <br />
+                <label asp-for="@Model.AmenityToUpdate.Type">- Type -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.Type" />
+                <br />
+                <label asp-for="@Model.AmenityToUpdate.URL">- URL -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToUpdate.URL" />
+                <br /><br />
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditAmenity" />
+                <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>

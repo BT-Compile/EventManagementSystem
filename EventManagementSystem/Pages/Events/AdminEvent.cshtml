@@ -5,47 +5,50 @@
 
 <br />
 <div class="wrapper">
-    <h2 class="font">All Events</h2>
-    <br />
-    <form method="post" asp-page="Events/AdminEvent">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Event Type:</th>
-                        <th>Status:</th>
-                        <th>Event Details:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var event1 in Model.Events)
-                        {
-                            <tr class="table-secondary">
-                                <td>@event1.EventName</td>
-                                <td>@event1.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@event1.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@event1.EventType</td>
-                                <td>@event1.Status</td>
-                                <td>
-                                    <a asp-page="AdminViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@event1.EventID">View | Edit</a>
-                                </td>
-                            </tr>
+    <br/>
+    <div class="whitebox purpletxt">
+        <h2 class="font">All Events</h2>
+        <br />
+        <form method="post" asp-page="Events/AdminEvent">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Event Type:</th>
+                            <th>Status:</th>
+                            <th>Event Details:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var event1 in Model.Events)
+                            {
+                                <tr class="table-secondary">
+                                    <td>@event1.EventName</td>
+                                    <td>@event1.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@event1.EndDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@event1.EventType</td>
+                                    <td>@event1.Status</td>
+                                    <td>
+                                        <a asp-page="AdminViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@event1.EventID">View | Edit</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="NewEvent" class="btn rndbtn btn-dark">Create New Event</a>
+        <a asp-page="/Admin/Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
-    <br />
-    <a asp-page="NewEvent" class="btn rndbtn btn-light">Create New Event</a>
-    <a asp-page="/Admin/Index" class="btn rndbtn btn-light">Cancel</a>
 </div>

@@ -5,46 +5,48 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Select an Event to View Participants:</h2>
-    <br />
-    <form method="post" asp-page="Organizer/SelectParticipantList">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Event Type:</th>
-                        <th>Status:</th>
-                        <th>Participant List:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
-                            <tr>
-                                <td><b>@record.EventName</b></td>
-                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EventType</td>
-                                <td>@record.Status</td>
-                                <td>
-                                    <a asp-page="/Organizer/ParticipantList" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View</a>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Select an Event to View Participants:</h2>
+        <br />
+        <form method="post" asp-page="Organizer/SelectParticipantList">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Event Type:</th>
+                            <th>Status:</th>
+                            <th>Participant List:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                                <tr>
+                                    <td><b>@record.EventName</b></td>
+                                    <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EventType</td>
+                                    <td>@record.Status</td>
+                                    <td>
+                                        <a asp-page="/Organizer/ParticipantList" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="/Organizer/Index" class="btn rndbtn btn-dark">Return</a>
     </div>
-    <br />
-    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

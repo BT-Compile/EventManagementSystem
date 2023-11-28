@@ -6,44 +6,47 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">All Locations</h2>
-    <br />
-    <form method="post" asp-page="Locations/Index">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>City:</th>
-                        <th>State:</th>
-                        <th>Amenities:</th>
-                        <th>Edit:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var location in Model.Locations)
-                        {
-                            <tr class="table-secondary">
-                                <td><b>@location.City</b></td>
-                                <td>@location.State</td>
-                                <td>
-                                    <a asp-page="Amenities/Index" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">View Amenities</a>
-                                </td>
-                                <td>
-                                    <a asp-page="EditLocation" class="btn rndbtn btn-light" asp-route-locationid="@location.LocationID">Edit</a>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">All Locations</h2>
+        <br />
+        <form method="post" asp-page="Locations/Index">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>City:</th>
+                            <th>State:</th>
+                            <th>Amenities:</th>
+                            <th>Edit:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var location in Model.Locations)
+                            {
+                                <tr class="table-secondary">
+                                    <td><b>@location.City</b></td>
+                                    <td>@location.State</td>
+                                    <td>
+                                        <a asp-page="Amenities/Index" class="btn rndbtn btn-dark" asp-route-locationid="@location.LocationID">View Amenities</a>
+                                    </td>
+                                    <td>
+                                        <a asp-page="EditLocation" class="btn rndbtn btn-dark" asp-route-locationid="@location.LocationID">Edit</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="NewLocation" class="btn rndbtn btn-dark">Create New Location</a>
+        <a asp-page="/Admin/Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
-    <br />
-    <a asp-page="NewLocation" class="btn rndbtn btn-light">Create New Location</a>
 </div>

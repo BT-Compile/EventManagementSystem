@@ -5,44 +5,46 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Your Events Awaiting Approval:</h2>
-    <br />
-    <form method="post" asp-page="Organizer/PendingEvent">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Event Description:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Registration Deadline:</th>
-                        <th>Event Type:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
-                            <tr>
-                                <td><b>@record.EventName</b></td>
-                                <td>@record.EventDescription</td>
-                                <td>@record.StartDate</td>
-                                <td>@record.EndDate</td>
-                                <td>@record.RegistrationDeadline</td>
-                                <td>@record.EventType</td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Your Events Awaiting Approval:</h2>
+        <br />
+        <form method="post" asp-page="Organizer/PendingEvent">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Event Description:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Registration Deadline:</th>
+                            <th>Event Type:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                                <tr>
+                                    <td><b>@record.EventName</b></td>
+                                    <td>@record.EventDescription</td>
+                                    <td>@record.StartDate</td>
+                                    <td>@record.EndDate</td>
+                                    <td>@record.RegistrationDeadline</td>
+                                    <td>@record.EventType</td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="/Organizer/Index" class="btn rndbtn btn-dark">Return</a>
     </div>
-    <br />
-    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

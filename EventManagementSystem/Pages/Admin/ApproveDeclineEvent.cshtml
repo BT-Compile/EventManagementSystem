@@ -5,55 +5,57 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Events Pending Approval:</h2>
-    <br />
-    <form method="post" asp-page="ApproveDeclineEvent">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Event Description:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Event Type:</th>
-                        <th>Location:</th>
-                        <th>Address:</th>
-                        <th>Accept:</th>
-                        <th>Decline:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
-                            <tr>
-                                <td><b>@record.EventName</b></td>
-                                <td>@record.EventDescription</td>
-                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EventType</td>
-                                <td>@record.SpaceName</td>
-                                <td>@record.SpaceAddress</td>
-                                <td>
-                                    <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
-                                </td>
-                                <td>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Events Pending Approval</h2>
+        <br />
+        <form method="post" asp-page="ApproveDeclineEvent">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Event Description:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Event Type:</th>
+                            <th>Location:</th>
+                            <th>Address:</th>
+                            <th>Accept:</th>
+                            <th>Decline:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                                <tr>
+                                    <td><b>@record.EventName</b></td>
+                                    <td>@record.EventDescription</td>
+                                    <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EventType</td>
+                                    <td>@record.SpaceName</td>
+                                    <td>@record.SpaceAddress</td>
+                                    <td>
+                                        <a asp-page="ApproveEvent" class="btn rndbtn btn-success" asp-route-eventid="@record.EventID">Approve</a>
+                                    </td>
+                                    <td>
 
-                                    <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>
-                                </td>
-                            </tr>
+                                        <a asp-page="DeclineEvent" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Decline</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="/Admin/Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
-    <br />
-    <a asp-page="/Admin/Index" class="btn rndbtn btn-light">Cancel</a>
 </div>

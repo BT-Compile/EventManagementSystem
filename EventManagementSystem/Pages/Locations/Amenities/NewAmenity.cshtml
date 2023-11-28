@@ -6,34 +6,36 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Enter New Amenity Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-        <form asp-page="NewLocation">
-            <input type="hidden" asp-for="@Model.AmenityToCreate.AmenityID" />
-            <label asp-for="@Model.AmenityToCreate.Name">- Name -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Name" id="LocationName" required />
-            <br />
-            <label asp-for="@Model.AmenityToCreate.Type">- Description -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Description" id="LocationDescription" />
-            <br />
-            <label asp-for="@Model.AmenityToCreate.Type">- Type -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Type" id="LocationType" />
-            <br />
-            <label asp-for="@Model.AmenityToCreate.URL">- URL -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.URL" id="URL" />
-            <br /><br />
-            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
-            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewAmenity" />
-            <a asp-page="../Index" class="btn rndbtn btn-light">Cancel</a>
-        </form>
+    <div class="whitebox blktxt">
+        <h2 class="font centertxt">Enter New Amenity Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+            <form asp-page="NewLocation">
+                <input type="hidden" asp-for="@Model.AmenityToCreate.AmenityID" />
+                <label asp-for="@Model.AmenityToCreate.Name">- Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Name" id="LocationName" required />
+                <br />
+                <label asp-for="@Model.AmenityToCreate.Type">- Description -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Description" id="LocationDescription" />
+                <br />
+                <label asp-for="@Model.AmenityToCreate.Type">- Type -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.Type" id="LocationType" />
+                <br />
+                <label asp-for="@Model.AmenityToCreate.URL">- URL -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.AmenityToCreate.URL" id="URL" />
+                <br /><br />
+                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
+                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewAmenity" />
+                <a asp-page="../Index" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>
 

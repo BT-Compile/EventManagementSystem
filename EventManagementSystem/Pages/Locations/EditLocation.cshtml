@@ -6,23 +6,25 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Location Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-        <form asp-page="EditLocation">
-            <input type="hidden" asp-for="@Model.LocationToUpdate.LocationID" />
-            <label asp-for="@Model.LocationToUpdate.City">- City -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.City" required />
-            <br />
-            <label asp-for="@Model.LocationToUpdate.State">- State -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.State" required />
-            <br /><br />
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditLocation" />
-            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
-        </form>
+    <div class="whitebox blktxt">
+        <h2 class="font centertxt">Edit Location Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditLocation">
+                <input type="hidden" asp-for="@Model.LocationToUpdate.LocationID" />
+                <label asp-for="@Model.LocationToUpdate.City">- City -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.City" required />
+                <br />
+                <label asp-for="@Model.LocationToUpdate.State">- State -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.LocationToUpdate.State" required />
+                <br /><br />
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditLocation" />
+                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>

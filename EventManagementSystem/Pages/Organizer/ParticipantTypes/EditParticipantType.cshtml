@@ -5,29 +5,31 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Participant Role Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-        <form asp-page="EditParticipantType">
-            <input type="hidden" asp-for="@Model.RoleToUpdate.RoleID" />
-            <label asp-for="@Model.RoleToUpdate.Name">- Role Name -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoleToUpdate.Name" required />
-            <br />
-            <label asp-for="@Model.RoleToUpdate.Description">- Role Description -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.RoleToUpdate.Description" required />
-            <br />
-            <label asp-for="@Model.RoleToUpdate.EventID">- Select Event to Define Role For -</label>
-            <select asp-for="@Model.RoleToUpdate.EventID" class="newlogfield" asp-items="Model.EventNames">
-                <option value=""></option>
-            </select>
-            <br /><br />
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="EditParticipantType" required />
-            <a asp-page="/Organizer/ParticipantType" class="btn rndbtn btn-light">Cancel</a>
-            <a asp-page="/Organizer/ParticipantTypes/DeleteParticipantType" asp-route-roleid="@HttpContext.Session.GetInt32("roleid")" class="btn rndbtn btn-warning">Delete</a>
-        </form>
+    <div class="whitebox purpletxt">
+        <h2 class="font centertxt">Edit Participant Role Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditParticipantType">
+                <input type="hidden" asp-for="@Model.RoleToUpdate.RoleID" />
+                <label asp-for="@Model.RoleToUpdate.Name">- Role Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.RoleToUpdate.Name" required />
+                <br />
+                <label asp-for="@Model.RoleToUpdate.Description">- Role Description -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.RoleToUpdate.Description" required />
+                <br />
+                <label asp-for="@Model.RoleToUpdate.EventID">- Select Event to Define Role For -</label>
+                <select asp-for="@Model.RoleToUpdate.EventID" class="newlogfield" asp-items="Model.EventNames">
+                    <option value=""></option>
+                </select>
+                <br /><br />
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditParticipantType" required />
+                <a asp-page="/Organizer/ParticipantType" class="btn rndbtn btn-dark">Cancel</a>
+                <a asp-page="/Organizer/ParticipantTypes/DeleteParticipantType" asp-route-roleid="@HttpContext.Session.GetInt32("roleid")" class="btn rndbtn btn-warning">Delete</a>
+            </form>
+        </div>
     </div>
 </div>

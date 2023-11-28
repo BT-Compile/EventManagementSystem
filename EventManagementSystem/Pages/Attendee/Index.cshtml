@@ -5,6 +5,8 @@
 
 <div class="wrapper">
     <br />
+    <div class="whitebox purpletxt">
+    <br />
     <h2 class="display-6 font centertxt">Welcome,</h2>
     <h2 class="display-6 font centertxt">@Model.FullName</h2>
     <br />
@@ -20,7 +22,7 @@
     <br />
     <form method="post" asp-page="Index">
         <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
+        &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
     </form>
     <br />
 
@@ -48,10 +50,10 @@
                                 <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
                                 <td>@record.SpaceID</td>
                                 <td>
-                                    <a asp-page="ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Details</a>
+                                    <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>
                                 </td>
                                 <td>
-                                    <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-light" asp-route-eventid="@record.EventID">View Schedule</a>
+                                    <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Schedule</a>
                                 </td>
                                 <td>
                                     <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
@@ -63,8 +65,7 @@
             </table>
         </div>
     </div>
-
     <br />
-
-    <a class="btn rndbtn btn-light" href="/Attendee/AttendeeSignUp">Sign up for an event</a>
+    <a class="btn rndbtn btn-dark" href="/Attendee/AttendeeSignUp">Sign up for an event</a>
+    </div>
 </div>

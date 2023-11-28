@@ -5,83 +5,84 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Subevents at @Model.ParentEvent.EventName:</h2>
-    <br />
-    <form method="post" asp-page="Schedule" asp-page-handler="Search">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br/>
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Date:</th>
-                        <th>Time:</th>
-                        <th>Location:</th>
-                        <th>View Details:</th>
-                        <th>Cancel Registration:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
+    <div class="whitebox purpletxt">
+        <h2 class="font">Subevents at @Model.ParentEvent.EventName:</h2>
+        <br />
+        <form method="post" asp-page="Schedule" asp-page-handler="Search">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br/>
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
                         <tr>
-                            <td><b>@record.EventName</b></td>
-                            <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")</td>
-                            <td>@record.SpaceID</td>
-                            <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
-                                        View Details
-                                    </button>
+                            <th>Event Name:</th>
+                            <th>Date:</th>
+                            <th>Time:</th>
+                            <th>Location:</th>
+                            <th>View Details:</th>
+                            <th>Cancel Registration:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                            <tr>
+                                <td><b>@record.EventName</b></td>
+                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")</td>
+                                <td>@record.SpaceID</td>
+                                <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
+                                            View Details
+                                        </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="ViewDetails" tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="wrapper purpletxt font">
-                                                    <h3>@record.EventName</h3>
-                                                    Date: @record.StartDate.ToString("MM/dd/yyyy") |
-                                                    Time: @record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")
-                                                    <br />
-                                                    Registration Deadline: @record.RegistrationDeadline.ToString("MM/dd/yyyy")
-                                                    <br />
-                                                    <br />
-                                                    @record.ParentSpaceName @record.SpaceName
-                                                    <br />
-                                                    @record.SpaceAddress
-                                                    <br />
-                                                    <br />
-                                                    @record.EventDescription
-                                                    <br />
-                                                    <br />
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="ViewDetails" tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="wrapper purpletxt font">
+                                                        <h3>@record.EventName</h3>
+                                                        Date: @record.StartDate.ToString("MM/dd/yyyy") |
+                                                        Time: @record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")
+                                                        <br />
+                                                        Registration Deadline: @record.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                                        <br />
+                                                        <br />
+                                                        @record.ParentSpaceName @record.SpaceName
+                                                        <br />
+                                                        @record.SpaceAddress
+                                                        <br />
+                                                        <br />
+                                                        @record.EventDescription
+                                                        <br />
+                                                        <br />
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                            </td>
-                            <td>
-                                <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <a asp-page="/Attendee/AttendeeSignUp/Cancel/CancelMain" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
+                                </td>
+                            </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <form method="post" asp-page="Schedule" asp-page-handler="Register">
+            <input type="submit" value="Register For Subevents" class="btn rndbtn btn-dark" /> <a asp-page="../Index" class="btn rndbtn btn-dark">Return</a>
+        </form>
     </div>
-    <br />
-    <form method="post" asp-page="Schedule" asp-page-handler="Register">
-        <input type="submit" value="Register For Subevents" class="btn rndbtn btn-light" /> <a asp-page="../Index" class="btn rndbtn btn-light">Return</a>
-    </form>
-    
 </div>

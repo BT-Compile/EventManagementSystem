@@ -5,51 +5,53 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">All Users</h2>
-    <br />
-    <form method="post" asp-page="Users/Index">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Name:</th>
-                        <th>Role:</th>
-                        <th>Account Status:</th>
-                        <th>View | Edit:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var user in Model.Users)
-                        {
-                            <tr class="table-secondary">
-                                <td><b>@user.FirstName</b></td>
-                                <td>@user.RoleType</td>
-                                @if (user.IsActive == true)
-                                {
-                                    <td>Active</td>
-                                }
-                                else
-                                {
-                                    <td>Inactive</td>
-                                }
-                                <td>
-                                    <a asp-page="UserProfile" class="btn rndbtn btn-success" asp-route-userid="@user.UserID">View</a>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">All Users</h2>
+        <br />
+        <form method="post" asp-page="Users/Index">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name:</th>
+                            <th>Role:</th>
+                            <th>Account Status:</th>
+                            <th>View | Edit:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var user in Model.Users)
+                            {
+                                <tr class="table-secondary">
+                                    <td><b>@user.FirstName</b></td>
+                                    <td>@user.RoleType</td>
+                                    @if (user.IsActive == true)
+                                    {
+                                        <td>Active</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Inactive</td>
+                                    }
+                                    <td>
+                                        <a asp-page="UserProfile" class="btn rndbtn btn-dark" asp-route-userid="@user.UserID">View | Edit</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
    
-    <br />
-    <a asp-page="NewUser" class="btn rndbtn btn-light">Create New User</a>
-    <a asp-page="/Admin/Index" class="btn rndbtn btn-light">Cancel</a>
+        <br />
+        <a asp-page="NewUser" class="btn rndbtn btn-dark">Create New User</a>
+        <a asp-page="/Admin/Index" class="btn rndbtn btn-dark">Cancel</a>
+    </div>
 </div>

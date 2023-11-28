@@ -5,53 +5,55 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Available Teams</h2>
-    <br />
-    <form method="post" asp-page="Attendee/TeamSignUp/Index">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Teams" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Team Name:</th>
-                        <th>Team Description:</th>
-                        <th>Sign Up:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var team in Model.Teams)
-                        {
-                            <tr>
-                                <td><b>@team.Name</b></td>
-                                <td>@team.Description</td>
-                                <td>
-                                    <a asp-page="Confirmation" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Join</a>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Available Teams</h2>
+        <br />
+        <form method="post" asp-page="Attendee/TeamSignUp/Index">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Teams" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Team Name:</th>
+                            <th>Team Description:</th>
+                            <th>Sign Up:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var team in Model.Teams)
+                            {
+                                <tr>
+                                    <td><b>@team.Name</b></td>
+                                    <td>@team.Description</td>
+                                    <td>
+                                        <a asp-page="Confirmation" class="btn rndbtn btn-dark" asp-route-teamid="@team.TeamID">Join</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        @if (Model.HasTeam)
+        {
+            <h2 class="font">Leave current team?</h2>
+            <br />
+            <a asp-page="LeaveTeam" class="btn rndbtn btn-warning">Leave Team</a>
+            <br />
+            <br />
+            <a asp-page="/Attendee/Index" class="btn rndbtn btn-dark">Cancel</a>
+        } else
+        {
+            <a asp-page="/Attendee/Index" class="btn rndbtn btn-dark">Cancel</a>
+        }
     </div>
-    <br />
-    @if (Model.HasTeam)
-    {
-        <h2 class="font">Leave current team?</h2>
-        <br />
-        <a asp-page="LeaveTeam" class="btn rndbtn btn-warning">Leave Team</a>
-        <br />
-        <br />
-        <a asp-page="/Attendee/Index" class="btn rndbtn btn-light">Cancel</a>
-    } else
-    {
-        <a asp-page="/Attendee/Index" class="btn rndbtn btn-light">Cancel</a>
-    }
 </div>
 
 

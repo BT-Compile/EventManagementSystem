@@ -4,39 +4,47 @@
 }
 
 <div class="wrapper">
-    @{
-        foreach (var e in Model.Events)
-        {
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
-            <p class="font">@e.SpaceName</p>
-            <br />
-            <h1 class="font">@e.EventName 
-                <a asp-page="/Organizer/ModifyEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Modify Event</a>
-                <a asp-page="/Organizer/DeactivateEvent" class=" btn rndbtn btn-warning" asp-route-eventid="@e.EventID"> Deactivate Event</a>
-                <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID"> Finish Editing :)</a>
-            </h1>
-            <br />
-            <p class="font">@e.EventDescription</p>
-            <br />
-
-            <h3 class="font">Subevents</h3>
-
-            <hr />
-
-            <a asp-page="/Organizer/AddSubevent" class=" btn rndbtn btn-light" asp-route-eventid="@e.EventID">Add Subevent</a>
-
-            foreach (var s in Model.Subevents)
+    <br/>
+    <div class="whitebox purpletxt">
+        @{
+            foreach (var e in Model.Events)
             {
-                <p class="font">@s.EventName
-                    <a asp-page="/Organizer/ModifySubevent" class=" btn rndbtn btn-light" asp-route-tempeventid="@s.EventID">Edit</a>
-                </p>
+                <br />
+                <br />
+                <h1 class="font centertxt bigtxt">@e.EventName</h1>
+                <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
+                <p class="font centertxt">@e.SpaceName</p>
+                <br />
+                <div class="centertxt">
+                    <a asp-page="/Organizer/ModifyEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@e.EventID"> Modify Event</a>
+                    <a asp-page="/Organizer/DeactivateEvent" class=" btn rndbtn btn-warning" asp-route-eventid="@e.EventID"> Deactivate Event</a>
+                    <a asp-page="/Organizer/ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@e.EventID"> Finish Editing</a>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div class="shdwbox">
+                    <p class="centertxt">@e.EventDescription</p>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <h2 class="font centertxt">Subevents</h2>
+                <br />
+                <div class="row">
+                    @foreach (var s in Model.Subevents)
+                    {
+                        <div class="col-md-4">
+                            <div class="shdwbox subsubcontainer">
+                                <p class="font centertxt">@s.EventName</p>
+                                <a asp-page="/Organizer/ModifySubevent" class=" btn widebutton-flex btn-dark" asp-route-tempeventid="@s.EventID">Edit</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <br/>
+                <a asp-page="/Organizer/AddSubevent" class=" btn rndbtn btn-dark" asp-route-eventid="@e.EventID">Add Subevent</a>
             }
-            <br />
         }
-    }
+    </div>
 </div>

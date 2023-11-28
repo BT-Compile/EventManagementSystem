@@ -6,30 +6,32 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Team Data</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="newlogbox">
-        <form asp-page="EditTeam">
-            <input type="hidden" asp-for="@Model.TeamToCreate.TeamID" />
-            <label asp-for="@Model.TeamToCreate.Name">- Team Name -</label>
-            <br />
-            <input type="text" class="newlogfield" id="TeamName" asp-for="@Model.TeamToCreate.Name" required />
-            <br />
-            <label asp-for="@Model.TeamToCreate.Description">- Description -</label>
-            <br />
-            <input type="text" class="newlogfield" id="TeamDescription" asp-for="@Model.TeamToCreate.Description" />
-            <br />
-            <label asp-for="@Model.TeamToCreate.MaxSize">- Max Size -</label>
-            <input type="text" class="newlogfield" id="TeamSize" asp-for="@Model.TeamToCreate.MaxSize" />
-            <br />
-            <br />
-            <button type="button" onclick="populateForm()" class="btn rndbtn btn-light">Populate</button>
-            <button type="button" onclick="clearForm()" class="btn rndbtn btn-light">Clear</button>
-            <input type="submit" value="Submit" class="btn rndbtn btn-light" asp-page="NewTeam" />
-            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
-        </form>
+    <div class="whitebox purpletxt">
+        <h2 class="font centertxt">Edit Team Data</h2>
+        <br />
+        <hr />
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditTeam">
+                <input type="hidden" asp-for="@Model.TeamToCreate.TeamID" />
+                <label asp-for="@Model.TeamToCreate.Name">- Team Name -</label>
+                <br />
+                <input type="text" class="newlogfield" id="TeamName" asp-for="@Model.TeamToCreate.Name" required />
+                <br />
+                <label asp-for="@Model.TeamToCreate.Description">- Description -</label>
+                <br />
+                <input type="text" class="newlogfield" id="TeamDescription" asp-for="@Model.TeamToCreate.Description" />
+                <br />
+                <label asp-for="@Model.TeamToCreate.MaxSize">- Max Size -</label>
+                <input type="text" class="newlogfield" id="TeamSize" asp-for="@Model.TeamToCreate.MaxSize" />
+                <br />
+                <br />
+                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
+                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewTeam" />
+                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+            </form>
+        </div>
     </div>
 </div>
 

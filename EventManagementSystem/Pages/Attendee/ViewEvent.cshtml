@@ -4,36 +4,42 @@
 }
 
 <div class="wrapper">
-    @{
-        foreach (var e in Model.Events)
-        {
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
-            <p class="font">@e.SpaceName</p>
-            <br />
-            <h1 class="font">@e.EventName </h1>
-            <br />
-            <p class="font">@e.EventDescription</p>
-            <br />
-
-
-            <h3 class="font">Subevents</h3>
-
-            <hr />
-
-            foreach (var s in Model.Subevents)
+    <br/>
+    <div class="whitebox purpletxt">
+        @{
+            foreach (var e in Model.Events)
             {
-                <p class="font">
-                    @s.EventName
-
+                <br />
+                <br />
+                <h1 class="font centertxt bigtxt">@e.EventName</h1>
+                <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
+                <p class="font centertxt">@e.SpaceName</p>
+                <br />
+                <hr />
+                <br />
+                <div class="shdwbox">
+                    <p class="centertxt">@e.EventDescription</p>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <h2 class="font centertxt">Subevents</h2>
+                <br />
+                <hr />
+                <br />
+                <div class="row">
+                @foreach (var s in Model.Subevents)
+                {
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                        View Details
-                    </button>
+                    <div class="col-md-4">
+                        <div class="shdwbox subsubcontainer">
+                                <p class="font centertxt">@s.EventName</p>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
 
                     <!-- Modal -->
                     <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
@@ -44,11 +50,12 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="wrapper purpletxt font">
+                                    <br/>
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("hh:mm tt") - @s.EndDate.ToString("hh:mm tt")
+                                    Time: @s.StartDate.ToString("HH:mm")
                                     <br />
-                                    Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                    @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
                                     <br />
                                     @s.ParentSpaceName @s.SpaceName
@@ -59,15 +66,15 @@
                                     @s.EventDescription
                                     <br />
                                     <br />
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </p>
+                }
+                </div>
+                <br />
+                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
             }
-            <br />
-            <a asp-page="Index" class="btn rndbtn btn-light">Cancel</a>
         }
-    }
+    </div>
 </div>

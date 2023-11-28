@@ -5,44 +5,46 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Participant Role Assignments</h2>
-    <br />
-    <form method="post" asp-page="/Organizer/RoleAssociations">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Name:</th>
-                        <th>Role:</th>
-                        <th>Date Registered:</th>
-                        <th>Edit Role:</th>
-                        <th>Remove User From Role:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var user in Model.Users)
-                    {
-                        <tr class="table-secondary">
-                            <td><b>@user.FirstName</b></td>
-                            <td>@user.RoleType</td>
-                            <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
-                            <td>
-                                <a asp-page="AssignRole" class="btn rndbtn btn-light" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Edit</a>
-                            </td>
-                            <td>
-                                <a asp-page="AssignRoleDelete" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID" asp-route-roleid="@user.RoleID">Remove</a>
-                            </td>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Participant Role Assignments</h2>
+        <br />
+        <form method="post" asp-page="/Organizer/RoleAssociations">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Users" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name:</th>
+                            <th>Role:</th>
+                            <th>Date Registered:</th>
+                            <th>Edit Role:</th>
+                            <th>Remove User From Role:</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr class="table-secondary">
+                                <td><b>@user.FirstName</b></td>
+                                <td>@user.RoleType</td>
+                                <td>@user.RegistrationDate.ToString("MM/dd/yyyy")</td>
+                                <td>
+                                    <a asp-page="AssignRole" class="btn rndbtn btn-dark" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID">Edit</a>
+                                </td>
+                                <td>
+                                    <a asp-page="AssignRoleDelete" class="btn rndbtn btn-warning" asp-route-userid="@user.UserID" asp-route-eventid="@user.EventID" asp-route-roleid="@user.RoleID">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="/Organizer/Index" class="btn rndbtn btn-dark">Return</a>
     </div>
-    <br />
-    <a asp-page="/Organizer/Index" class="btn rndbtn btn-light">Return</a>
 </div>

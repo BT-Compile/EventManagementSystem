@@ -5,8 +5,11 @@
 }
 
 <div class="wrapper">
-        <br />
+    <br />
+    <div class="whitebox blktxt">
         <h2 class="font centertxt">Please Enter Your Information</h2>
+        <br />
+        <hr />
         <br />
         <div class="newlogbox">
             <form asp-page="NewUser">
@@ -38,22 +41,23 @@
                 <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
                 <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />
                 <br /><br />
-                <button type="button" class="btn btn-light" onclick="populateForm()">Populate</button>
-                <button type="button" class="btn btn-light" onclick="clearForm()">Clear</button>
-                <input value="Create Account" type="submit" class="btn btn-light" id="textfield" asp-page="NewUser" />
-                <a asp-page="../Index" class="btn btn-light" id="textfield">Cancel</a>
+                <button type="button" class="btn rndbtn btn-dark" onclick="populateForm()">Populate</button>
+                <button type="button" class="btn rndbtn btn-dark" onclick="clearForm()">Clear</button>
+                <input value="Create Account" type="submit" class="btn rndbtn btn-dark" id="textfield" asp-page="NewUser" />
+                <a asp-page="../Index" class="btn rndbtn btn-dark" id="textfield">Cancel</a>
             </form>
         </div>
+    </div>
 </div>
 
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request
     function populateForm() {
-        document.getElementById("FirstName").value = "Don";
-        document.getElementById("LastName").value = "Collins";
-        document.getElementById("Username").value = "testuser";
-        document.getElementById("Password").value = "testpass";
-        document.getElementById("Email").value = "DonCollins@example.com";
+        document.getElementById("FirstName").value = "Mike";
+        document.getElementById("LastName").value = "West";
+        document.getElementById("Username").value = "User";
+        document.getElementById("Password").value = "pass";
+        document.getElementById("Email").value = "MikeWest@example.com";
         document.getElementById("PhoneNumber").value = "123-456-7890";
     }
 

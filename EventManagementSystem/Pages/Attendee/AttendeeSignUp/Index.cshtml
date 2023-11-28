@@ -5,54 +5,55 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">Available Events:</h2>
-    <br />
-    <form method="post" asp-page="Index" asp-page-handler="Search">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Registration Deadline:</th>
-                        <th>Location:</th>
-                        <th>View Details:</th>
-                        <th>Register:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
-                            <tr>
-                                <td><b>@record.EventName</b></td>
-                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.RegistrationDeadline.ToString("MM/dd/yyyy")</td>
-                                <td>@record.SpaceID</td>
-                                <td>
-                                    <a asp-page="ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@record.EventID">View</a>
-                                </td>
-                                <td>
-                                <form method="post" asp-page="Index" asp-page-handler="Register">
-                                        <input type="hidden" name="EventID" value="@record.EventID" />
-                                        <button type="submit" class="btn rndbtn btn-light">Join</button>
-                                </form>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">Available Events</h2>
+        <br />
+        <form method="post" asp-page="Index" asp-page-handler="Search">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Registration Deadline:</th>
+                            <th>Location:</th>
+                            <th>View Details:</th>
+                            <th>Register:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                                <tr>
+                                    <td><b>@record.EventName</b></td>
+                                    <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.RegistrationDeadline.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.SpaceID</td>
+                                    <td>
+                                        <a asp-page="ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View</a>
+                                    </td>
+                                    <td>
+                                    <form method="post" asp-page="Index" asp-page-handler="Register">
+                                            <input type="hidden" name="EventID" value="@record.EventID" />
+                                            <button type="submit" class="btn rndbtn btn-dark">Join</button>
+                                    </form>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
     </div>
-    <br />
-
-    <a asp-page="../Index" class="btn rndbtn btn-secondary">Cancel</a>
 </div>

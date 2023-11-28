@@ -5,26 +5,28 @@
 }
 
 <div class="wrapper">
-    <div class="text-center">
-        <br />
-        <h2 class="display-6 font">Welcome @HttpContext.Session.GetString("RoleType"),</h2>
-        <h2 class="display-6 font">@Model.FullName</h2>
-        <hr />
-        <div class="btn-group-vertical">
-            <a class="btn btnvert btn-light" href="Users">Define Users</a>
+    <br />
+    <div class="whitebox purpletxt">
+        <div class="text-center">
             <br />
-            <a class="btn btnvert btn-light" href="Teams">Define Teams</a>
-            <br />
-            <a class="btn btnvert btn-light" href="Admin/ApproveDeclineEvent">Events Requiring Action</a> 
-            <br />
-            <a class="btn btnvert btn-light" href="Events/AdminEvent">Define Events</a>
-            <br />
-            <a class="btn btnvert btn-light" href="Rooms/AdminRoom">Define Spaces</a>
-            <br />
-            <a class="btn btnvert btn-light" href="Locations">Define Locations</a>
-            <br />
-            <a class="btn btnvert btn-light" href="/Attendee/Index">My Events</a>
+            <h2 class="display-6 font">Welcome @HttpContext.Session.GetString("RoleType"),</h2>
+            <h2 class="display-6 font">@Model.FullName</h2>
+            <hr />
+            <div class="btn-group-vertical">
+                <a class="btn btnvert btn-dark" href="Users">Define Users</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="Teams">Define Teams</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="Admin/ApproveDeclineEvent">Events Requiring Action</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="Events/AdminEvent">Define Events</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="Rooms/AdminRoom">Define Spaces</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="Locations">Define Locations</a>
+                <br />
+                <a class="btn btnvert btn-dark" href="/Attendee/Index">My Events</a>
+            </div>
         </div>
     </div>
-    <br />  
 </div>

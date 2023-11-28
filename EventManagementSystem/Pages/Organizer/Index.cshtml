@@ -3,21 +3,25 @@
 @{
 }
 
-<div class="text-center">
-    <br />
-    <h2 class="display-6 font">Welcome @HttpContext.Session.GetString("RoleType"),</h2>
-    <h2 class="display-6 font">@Model.FullName</h2>
-    <br />
-    <hr />
-    <br />
-    <div class="btn-group-vertical">
-        <a class="btn btnvert btn-light" href="/Organizer/CreateEvent">Create New Event</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/ApprovedEvents">View Approved Events</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/SelectParticipantList">View Participant Lists</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/Spaces/Index">View and Modify Spaces</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/ParticipantType">View Attendee Roles</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/PendingEvent">View Events Pending Approval</a> <br />
-        <a class="btn btnvert btn-light" href="/Organizer/NotApprovedEvents">View Declined/Deactivated Events</a> <br />
+<div class="wrapper">
+    <div class="text-center">
+        <br />
+        <div class="whitebox purpletxt">
+            <h2 class="display-6 font">Welcome @HttpContext.Session.GetString("RoleType"),</h2>
+            <h2 class="display-6 font">@Model.FullName</h2>
+            <br />
+            <hr />
+            <br />
+            <div class="btn-group-vertical">
+                <a class="btn btnvert btn-dark" href="/Organizer/CreateEvent">Create New Event</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/ApprovedEvents">View Approved Events</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/SelectParticipantList">View Participant Lists</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/Spaces/Index">View and Modify Spaces</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/ParticipantType">View Attendee Roles</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/PendingEvent">View Events Pending Approval</a> <br />
+                <a class="btn btnvert btn-dark" href="/Organizer/NotApprovedEvents">View Declined/Deactivated Events</a> <br />
+            </div>
+        </div>
     </div>
 </div>
 

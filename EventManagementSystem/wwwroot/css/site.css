@@ -6,8 +6,8 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: black;
-}
+    color: #2C3539;
+    }
 
 body {
     margin-bottom: 60px;
@@ -28,7 +28,7 @@ input {
 }
 
 hr {
-    border: solid white 0;
+    border: solid black 0;
     border-width: 3px;
     max-width: 70px;
     margin: auto;
@@ -77,16 +77,18 @@ thead {
     border: solid 3px #450084;
 }
 
-.centermargin {
-    margin: auto;
-}
-
 .centertxt {
     text-align: center;
 }
 
 .font {
     font-family: 'Arvo', serif;
+}
+
+.whitebox {
+    background-color: white;
+    border-radius: 25px;
+    padding: 50px;
 }
 
 .justify {
@@ -99,6 +101,10 @@ thead {
 
 .goldtxt {
     color: #CBB677;
+}
+
+.blktxt {
+    color: black;
 }
 
 .round {
@@ -157,7 +163,7 @@ smltxt {
     color: white;
 }
 
-.btn-light {
+.btn-dark {
     border: none;
 }
 
@@ -333,6 +339,7 @@ smltxt {
     margin-top: 1vh;
     padding: .5vh;
     width: 500px;
+    background-color: #D1D2D4;
 }
 
 .notetxt {
@@ -361,6 +368,8 @@ smltxt {
 .searchbar {
     border: none;
     padding: 5px;
+    background-color: #D1D2D4;
+    color: black;
 }
 
 .subsubcontainer {

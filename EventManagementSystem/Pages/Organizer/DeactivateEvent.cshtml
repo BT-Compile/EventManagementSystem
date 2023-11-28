@@ -3,15 +3,20 @@
 @{
 }
 
-<form asp-page="DeactivateEvent">
-    <div class="text-center">
-        <br />
-        <h2 class="font"> Are you sure you want to deactivate this Event: @Model.EventToDelete.EventName</h2>
-        <h3 class="font"> (All Subevents at this event will be deactivated and can not be recovered)</h3>
-        <br />
-        <hr />
-        <br />
-        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
-        <a asp-page="/Organizer/ApprovedEvents" class="btn btn-secondary">Cancel</a>
+<div class="wrapper">
+    <br />
+    <div class="whitebox purpletxt">
+        <form asp-page="DeactivateEvent">
+            <div class="text-center">
+                <br />
+                <h2 class="font"> Are you sure you want to deactivate this Event: @Model.EventToDelete.EventName</h2>
+                <h3 class="font"> (All Subevents at this event will be deactivated and can not be recovered)</h3>
+                <br />
+                <hr />
+                <br />
+                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+                <a asp-page="/Organizer/ApprovedEvents" class="btn rndbtn btn-dark">Cancel</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>

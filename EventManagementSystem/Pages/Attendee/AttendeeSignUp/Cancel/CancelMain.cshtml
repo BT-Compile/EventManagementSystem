@@ -3,16 +3,21 @@
 @{
 }
 
-<form asp-page="Cancel">
-    <div class="text-center">
-        <br />
-        <h2 class="font"> Are you sure you want to cancel registration for this Event?</h2>
-        <br />
-        <hr />
-        <br />
-        <h3 class="font">@Model.EventToCancel.EventName</h3>
-        <br />
-        <button class="btn rndbtn btn-light" type="submit">I am sure</button>
-        <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.TempParent" class="btn rndbtn btn-light">Cancel</a>
-    </div>
-</form>
+<div class="wrapper">
+    <br/>
+    <div class="whitebox purpletxt">
+        <form asp-page="Cancel">
+            <div class="text-center">
+                <br />
+                <h2 class="font"> Are you sure you want to cancel registration for this Event?</h2>
+                <br />
+                <hr />
+                <br />
+                <h3 class="font">@Model.EventToCancel.EventName</h3>
+                <br />
+                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+                <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.TempParent" class="btn rndbtn btn-dark">Cancel</a>
+            </div>
+        </form>
+    </div>  
+</div>

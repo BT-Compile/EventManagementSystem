@@ -4,71 +4,76 @@
 }
 
 <div class="wrapper">
-    @{
-        @foreach (var e in Model.Events)
+    <br />
+    <div class="whitebox purpletxt">
+        @{
+            @foreach (var e in Model.Events)
             {
-            <br />
-            <br />
-            <h1 class="font centertxt bigtxt">@e.EventName</h1>
-            <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
-            <p class="font centertxt">@e.SpaceName</p>
-            <br />
-            <div class="centertxt">
-                <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class="btn widebutton btn-light" asp-route-eventid="@e.EventID">Register</a>
-            </div>
-            <br />
-            <hr />
-            <br />
-            <div class="shdwbox">
-                <p class="centertxt">@e.EventDescription</p>
-            </div>
-            <br />
-            <hr />
-            <br />
-            <h2 class="font centertxt">Subevents</h2>
-            <br />
-            <div class="row">
-                @foreach (var s in Model.Subevents)
-                {
-                    <div class="col-md-4">
-                        <div class="shdwbox subsubcontainer">
-                            <p class="font centertxt">@s.EventName</p>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn widebutton-flex btn-light" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                                View Details
-                            </button>
-                        </div>
+                <br />
+                <br />
+                <h1 class="font centertxt bigtxt">@e.EventName</h1>
+                <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
+                <p class="font centertxt">@e.SpaceName</p>
+                <br />
+                <div class="centertxt">
+                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class="btn widebutton btn-dark" asp-route-eventid="@e.EventID">Register</a>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div class="shdwbox">
+                    <p class="centertxt">@e.EventDescription</p>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <h2 class="font centertxt">Subevents</h2>
+                <br />
+                <div class="row">
+                    @foreach (var s in Model.Subevents)
+                    {
+                        <div class="col-md-4">
+                            <div class="shdwbox subsubcontainer">
+                                <p class="font centertxt">@s.EventName</p>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                    View Details
+                                </button>
+                            </div>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="wrapper purpletxt font">
-                                        <h3>@s.EventName</h3>
-                                        Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                        Time: @s.StartDate.ToString("HH:mm")
-                                        <br />
-                                        @s.RegistrationDeadline.ToString("MM/dd/yyyy")
-                                        <br />
-                                        <br />
-                                        @s.ParentSpaceName @s.SpaceName
-                                        <br />
-                                        @s.SpaceAddress
-                                        <br />
-                                        <br />
-                                        @s.EventDescription
-                                        <br />
-                                        <br />
+                            <!-- Modal -->
+                            <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="wrapper purpletxt font">
+                                            <br />
+                                            <h3>@s.EventName</h3>
+                                            Date: @s.StartDate.ToString("MM/dd/yyyy") |
+                                            Time: @s.StartDate.ToString("HH:mm")
+                                            <br />
+                                            @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                            <br />
+                                            <br />
+                                            @s.ParentSpaceName @s.SpaceName
+                                            <br />
+                                            @s.SpaceAddress
+                                            <br />
+                                            <br />
+                                            @s.EventDescription
+                                            <br />
+                                            <br />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }</div>
+                    }
+                </div>
             }
         }
+    </div>
 </div>

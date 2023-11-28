@@ -4,32 +4,35 @@
 }
 
 <div class="wrapper">
-    @{
-        foreach (var e in Model.Events)
-        {
-            <br />
-            <br />
-            <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
-            <p class="font">@e.SpaceName</p>
-            if (e.ParentEventID == string.Empty)
+    <br/>
+    <div class="whitebox purpletxt">
+        @{
+            foreach (var e in Model.Events)
             {
-                <p class="font">This is a Parent Event</p>
+                <p class="font">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
+                <p class="font">@e.SpaceName</p>
+                if (e.ParentEventID == string.Empty)
+                {
+                    <p class="font">This is a Parent Event</p>
+                }
+                else
+                {
+                    <p class="font">Parent Event: @e.ParentEventName</p>
+                }
+                <br />
+                <h1 class="font bigtxt centertxt">@e.EventName</h1>
+                <br />
+                <div style="text-align: center">
+                    <a asp-page="EditEvent" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">Edit</a>
+                </div>
+                <br />
+                <br />
+                <div class="shdwbox">
+                    <p class="font centertxt">@e.EventDescription</p>
+                </div>
+                <br />
             }
-            else
-            {
-                <p class="font">Parent Event: @e.ParentEventName</p>
-            }
-            <br />
-            <h1 class="font bigtxt centertxt">@e.EventName</h1>
-            <br />
-            <a asp-page="EditEvent" class=" btn widebutton btn-light" asp-route-eventid="@e.EventID">Edit</a>
-            <br />
-            <br />
-            <div class="shdwbox">
-                <p class="font">@e.EventDescription</p>
-            </div>
-            <br />
         }
-    }
-    <a asp-page="AdminEvent" class="btn logbtn btn-light">Back</a>
+        <a asp-page="AdminEvent" class="btn logbtn btn-dark">Back</a>
+    </div>
 </div>

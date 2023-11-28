@@ -5,47 +5,49 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font">All Teams</h2>
-    <br />
-    <form method="post" asp-page="Teams/Index">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-light">Search</button>
-    </form>
-    <br />
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Team Name:</th>
-                        <th>Description:</th>
-                        <th>Max Size:</th>
-                        <th>Edit:</th>
-                        <th>Deactivate Team:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var team in Model.Teams)
-                        {
-                            <tr class="table-secondary">
-                                <td>@team.Name</td>
-                                <td>@team.Description</td>
-                                <td>@team.MaxSize</td>
-                                <td>
-                                    <a asp-page="EditTeam" class="btn rndbtn btn-light" asp-route-teamid="@team.TeamID">Edit</a>
-                                </td>
-                                <td>
-                                    <a asp-page="DeactivateTeam" class="btn rndbtn btn-warning" asp-route-teamid="@team.TeamID">Deactivate</a>
-                                </td>
-                            </tr>
+    <div class="whitebox purpletxt">
+        <h2 class="font">All Teams</h2>
+        <br />
+        <form method="post" asp-page="Teams/Index">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Team Name:</th>
+                            <th>Description:</th>
+                            <th>Max Size:</th>
+                            <th>Edit:</th>
+                            <th>Deactivate Team:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var team in Model.Teams)
+                            {
+                                <tr class="table-secondary">
+                                    <td>@team.Name</td>
+                                    <td>@team.Description</td>
+                                    <td>@team.MaxSize</td>
+                                    <td>
+                                        <a asp-page="EditTeam" class="btn rndbtn btn-dark" asp-route-teamid="@team.TeamID">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a asp-page="DeactivateTeam" class="btn rndbtn btn-warning" asp-route-teamid="@team.TeamID">Deactivate</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <br />
+        <a asp-page="NewTeam" class="btn rndbtn btn-dark">Create New Team</a>
+        <a asp-page="/Admin/Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
-    <br />
-    <a asp-page="NewTeam" class="btn rndbtn btn-light">Create New Team</a>
-    <a asp-page="/Admin/Index" class="btn rndbtn btn-light">Cancel</a>
 </div>
