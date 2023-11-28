@@ -73,6 +73,10 @@
                                     <br />
                                     <br />
                                 </div>
+                                    <div class="modal-footer">
+                                        <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">Add Subevent</a>
+                                        <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">View Details</a>
+                                    </div>
                             </div>
                         </div>
                     </div>
