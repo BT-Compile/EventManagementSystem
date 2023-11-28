@@ -37,6 +37,7 @@ namespace EventManagementSystem.Pages.Organizer
             }
             nameReader.Close();
 
+            DBClass.DBConnection.Close();
 
             return Page();
         }

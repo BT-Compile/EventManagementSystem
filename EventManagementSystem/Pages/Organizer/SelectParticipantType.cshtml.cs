@@ -61,7 +61,7 @@ namespace EventManagementSystem.Pages.Organizer
                     RequestDate = (DateTime)scheduleReader["CreationDate"]
                 });
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
@@ -102,7 +102,7 @@ namespace EventManagementSystem.Pages.Organizer
                     });
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
 
         }

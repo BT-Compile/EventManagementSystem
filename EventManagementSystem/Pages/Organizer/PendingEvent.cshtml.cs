@@ -60,7 +60,7 @@ namespace EventManagementSystem.Pages.Organizer
                     SpaceAddress = scheduleReader["Address"].ToString()
                 });
             }
-
+            DBClass.DBConnection.Close();
             return Page();
         }
 
@@ -96,7 +96,7 @@ namespace EventManagementSystem.Pages.Organizer
                         });
                 }
             }
-
+            DBClass.DBConnection.Close();
             return Page();
 
         }
