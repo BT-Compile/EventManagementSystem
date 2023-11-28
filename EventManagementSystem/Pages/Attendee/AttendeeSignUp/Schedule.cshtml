@@ -6,7 +6,7 @@
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-        <h2 class="font">Subevents at @Model.ParentEvent.EventName:</h2>
+        <h2 class="font">My Subevents at @Model.ParentEvent.EventName:</h2>
         <br />
         <form method="post" asp-page="Schedule" asp-page-handler="Search">
             <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
@@ -36,7 +36,7 @@
                                     <td>@record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")</td>
                                 <td>@record.SpaceID</td>
                                 <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ViewDetails">
+                                        <button type="button" class="btn rndbtn btn-dark" data-bs-toggle="modal" data-bs-target="#ViewDetails">
                                             View Details
                                         </button>
 
@@ -49,6 +49,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="wrapper purpletxt font">
+                                                        <br/>
                                                         <h3>@record.EventName</h3>
                                                         Date: @record.StartDate.ToString("MM/dd/yyyy") |
                                                         Time: @record.StartDate.ToString("hh:mm tt") - @record.EndDate.ToString("hh:mm tt")

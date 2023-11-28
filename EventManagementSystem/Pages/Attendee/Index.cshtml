@@ -36,7 +36,7 @@
                         <th>End Date:</th>
                         <th>Location:</th>
                         <th>Details:</th>
-                        <th>Schedule:</th>
+                        <th>Subevents:</th>
                         <th>Cancel Registration:</th>
                     </tr>
                 </thead>
@@ -53,7 +53,7 @@
                                     <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>
                                 </td>
                                 <td>
-                                    <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Schedule</a>
+                                    <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Find Subevents</a>
                                 </td>
                                 <td>
                                     <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
