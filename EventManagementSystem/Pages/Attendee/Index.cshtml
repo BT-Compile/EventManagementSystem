@@ -6,66 +6,77 @@
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-    <br />
-    <h2 class="display-6 font centertxt">Welcome,</h2>
-    <h2 class="display-6 font centertxt">@Model.FullName</h2>
-    <br />
-    <img class="profilepic" src="/images/profile.png" />
-    <br />
-    <hr />
-    <br />
+        <br />
+        <h2 class="display-6 font centertxt">Welcome,</h2>
+        <h2 class="display-6 font centertxt">@Model.FullName</h2>
+        <br />
+        <img class="profilepic" src="/images/profile.png" />
+        <br />
+        <hr />
+        <br />
         <h3 class="font centertxt">Team: @Model.TeamName</h3>
-    <p class="centertxt">Want to sign up / change teams? <a class="font" href="/Attendee/TeamSignUp"> Click Here</a></p>
-    <br />
-    <hr />
-    <h2 class="font">Your scheduled events:</h2>
-    <br />
-    <form method="post" asp-page="Index">
-        <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-        &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
-    </form>
-    <br />
+        <p class="centertxt">Want to sign up / change teams? <a class="font" href="/Attendee/TeamSignUp"> Click Here</a></p>
+        <br />
+        <hr />
+        <h2 class="font">Your scheduled events:</h2>
+        <br />
+        <form method="post" asp-page="Index">
+            <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
+            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+        </form>
+        <br />
 
-    <div class="shdwbox">
-        <div class="table-responsive card">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Event Name:</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Location:</th>
-                        <th>Details:</th>
-                        <th>Subevents:</th>
-                        <th>Cancel Registration:</th>
-                    </tr>
-                </thead>
-                <tbody class="table-secondary">
-                    @{
-                        foreach (var record in Model.Events)
-                        {
-                            <tr>
-                                <td><b>@record.EventName</b></td>
-                                <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
-                                <td>@record.SpaceID</td>
-                                <td>
-                                    <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>
-                                </td>
-                                <td>
-                                    <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Find Subevents</a>
-                                </td>
-                                <td>
-                                    <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
-                                </td>
-                            </tr>
+        <div class="shdwbox">
+            <div class="table-responsive card">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Event Name:</th>
+                            <th>Start Date:</th>
+                            <th>End Date:</th>
+                            <th>Location:</th>
+                            <th>Check In:</th>
+                            <th>Details:</th>
+                            <th>Subevents:</th>
+                            <th>Cancel Registration:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                        @{
+                            foreach (var record in Model.Events)
+                            {
+                                <tr>
+                                    <td><b>@record.EventName</b></td>
+                                    <td>@record.StartDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.EndDate.ToString("MM/dd/yyyy")</td>
+                                    <td>@record.SpaceID</td>
+                                    @if (record.EventCheckinEventID == "")
+                                    {
+                                        <td>
+                                            <a asp-page="/Attendee/CheckIn" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Check In</a>
+                                        </td>
+                                    }
+                                    @if (record.EventCheckinEventID != "")
+                                    {
+                                        <td>Checked In</td>
+                                    }
+                                    <td>
+                                        <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>
+                                    </td>
+                                    <td>
+                                        <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Find Subevents</a>
+                                    </td>
+                                    <td>
+                                        <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <br />
-    <a class="btn rndbtn btn-dark" href="/Attendee/AttendeeSignUp">Sign up for an event</a>
+        <br />
+        <a class="btn rndbtn btn-dark" href="/Attendee/AttendeeSignUp">Sign up for an event</a>
     </div>
 </div>

@@ -44,6 +44,12 @@
 
         public int TempParentID { get; set; }
 
+        public string EventCheckinEventID { get; set; }
+
+        public string EventCheckinUserID { get; set; }
+
+        public DateTime CheckInDateTime { get; set; }
+
         public DateTime RequestDate { get; set; }
     }
 }

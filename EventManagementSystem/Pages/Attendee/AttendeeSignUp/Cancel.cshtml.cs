@@ -64,12 +64,18 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             DBClass.DBConnection.Close();
 
             
-            string ssqlQuery = "DELETE FROM EventRegister " +
+            sqlQuery = "DELETE FROM EventRegister " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
                 " AND EventID = " + EventToCancel.EventID;
-            DBClass.GeneralQuery(ssqlQuery);
+            DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
-            
+
+            sqlQuery = "DELETE FROM EventCheckIn " +
+                "WHERE UserID = " + HttpContext.Session.GetString("userid") +
+                " AND EventID = " + EventToCancel.EventID;
+            DBClass.GeneralQuery(sqlQuery);
+            DBClass.DBConnection.Close();
+
             return RedirectToPage("../Index");
         }
     }

@@ -1,0 +1,23 @@
+﻿@page
+@model EventManagementSystem.Pages.Attendee.CheckInModel
+@{
+}
+
+<div class="wrapper">
+    <br />
+    <div class="whitebox purpletxt">
+        <form asp-page="CheckIn">
+            <div class="text-center">
+                <br />
+                <h2 class="font">Are you sure you want to Check In to this Event:</h2>
+                <h2 class="font">@Model.EventToCheckIn.EventName</h2>
+                <h3 class="font">(You cannot undo check in once you check in)</h3>
+                <br />
+                <hr />
+                <br />
+                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+                <a asp-page="/Attendee/Index" class="btn rndbtn btn-dark">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

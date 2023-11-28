@@ -24,6 +24,9 @@ namespace EventManagementSystem.Pages.Attendee
         public string FullName { get; set; }
 
         [BindProperty]
+        public Event CheckIn { get; set; }
+
+        [BindProperty]
         public string TeamName { get; set; }
 
         public List<Event> Events { get; set; }
@@ -31,6 +34,7 @@ namespace EventManagementSystem.Pages.Attendee
         public IndexModel()
         {
             Events = new List<Event>();
+            CheckIn = new Event();
             HasPosted = false;
         }
 
@@ -66,9 +70,10 @@ namespace EventManagementSystem.Pages.Attendee
 
             // This only displays the major EVENTS that contain subevents, the parent events only
             // query to select all events that this user has signed up for already
-            string sqlQuery =  "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name " +
+            string sqlQuery =  "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Space.Name, EventCheckIn.EventID AS EventIDEvent, EventCheckIn.UserID AS UserIDUser " +
                                 "FROM Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
                                 "EventSpace ON Event.EventID = EventSpace.EventID INNER JOIN [Space] ON EventSpace.SpaceID = Space.SpaceID " +
+                                "LEFT OUTER JOIN EventCheckIn ON Event.EventID = EventCheckIn.EventID AND[User].UserID = EventCheckIn.UserID " +
                                 "WHERE Event.ParentEventID IS NULL AND [User].UserID = " + HttpContext.Session.GetString("userid") +
                                 " ORDER BY [Event].StartDate DESC";
 
@@ -83,10 +88,14 @@ namespace EventManagementSystem.Pages.Attendee
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
                     EndDate = (DateTime)scheduleReader["EndDate"],
-                    SpaceID = scheduleReader["Name"].ToString()
+                    SpaceID = scheduleReader["Name"].ToString(),
+                    EventCheckinEventID = scheduleReader["EventIDEvent"].ToString(),
+                    EventCheckinUserID = scheduleReader["UserIDUser"].ToString()
+
                 });
             }
             DBClass.DBConnection.Close();
+
             return Page();
         }
 
