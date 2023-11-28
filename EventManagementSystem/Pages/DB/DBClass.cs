@@ -11,10 +11,14 @@ namespace EventManagementSystem.Pages.DB
         // Connection Object at the class level
         public static SqlConnection DBConnection = new SqlConnection();
 
+        public static readonly string CapstoneDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=CAPSTONE;uid=Admin;password=MasterPassword";
+
+        private static readonly string? AuthDBConnString = @"Server=capstonedb.cmgfqzgo5xht.us-east-1.rds.amazonaws.com;Database=AUTH;uid=Admin;password=MasterPassword";
+
         // Connection String
-        public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True";
+        //public static readonly string CapstoneDBConnString = "Server=Localhost;Database=CAPSTONE;Trusted_Connection=True";
         // For Hashed Passwords
-        private static readonly string? AuthDBConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
+        //private static readonly string? AuthDBConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
 
         // Can run and return results for any "ExecuteReader query", if results exist.
         // Query is passed from the invoking code.
