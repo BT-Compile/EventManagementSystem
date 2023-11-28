@@ -65,10 +65,11 @@
                                     @s.EventDescription
                                     <br />
                                     <br />
-                                <div/>
-                                </div class="modal-footer">
-                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">Register For Subevents</a>
-                                <div/>
+                                </div>
+                                        <div class="modal-footer">
+                                            <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">Add Subevent</a>
+                                            <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">View Details</a>
+                                        </div>
                             </div>
                         </div>
                     </div>
