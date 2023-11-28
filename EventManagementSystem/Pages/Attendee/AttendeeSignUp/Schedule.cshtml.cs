@@ -70,6 +70,7 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
             {
                 ParentEvent.EventID = eventid;
                 ParentEvent.EventName = singleActivity["EventName"].ToString();
+                DBClass.DBConnection.Close();
             }
 
             DBClass.DBConnection.Close();

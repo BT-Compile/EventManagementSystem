@@ -52,11 +52,10 @@
                     </table>
                 </div>
             </div>
+            <br/>
+            <input type="submit" value="Sign Up" class="btn rndbtn btn-dark" style="float: left; margin-right: 10px"/>
+            <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.HttpContext.Session.GetInt32("EventInt")" class="btn rndbtn btn-dark" style="float: left">Cancel</a>
         </form>
         <br />
-        <form method="post" asp-page="ActivitySignUpMore" asp-page-handler="Register">
-            <input type="submit" value="Sign Up" class="btn rndbtn btn-dark" />
-            <a asp-page="/Attendee/AttendeeSignUp/Schedule" asp-route-eventid="@Model.HttpContext.Session.GetInt32("EventInt")" class="btn rndbtn btn-dark">Cancel</a>
-        </form>
     </div>
 </div>
