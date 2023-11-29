@@ -14,10 +14,14 @@ namespace EventManagementSystem.Pages.Organizer
 
         public List<Event> Subevents { get; set; }
 
+        [BindProperty]
+        public Event RegisterCount { get; set; }
+
         public ViewEventModel()
         {
             Events = new List<Event>();
             Subevents = new List<Event>();
+            RegisterCount = new Event();
         }
         public IActionResult OnGet(int eventID)
         {
@@ -79,6 +83,20 @@ namespace EventManagementSystem.Pages.Organizer
                     SpaceAddress = subeventReader["Address"].ToString(),
                     ParentSpaceName = subeventReader["ParentSpaceName"].ToString()
                 });
+            }
+
+            DBClass.DBConnection.Close();
+
+            sqlQuery = "SELECT COUNT(EventCheckIn.UserID) AS RegisterCount FROM Event INNER JOIN " +
+                                         "EventCheckIn ON Event.EventID = EventCheckIn.EventID INNER JOIN [User] ON EventCheckIn.UserID = [User].UserID INNER JOIN " +
+                                         "UserRole ON[User].UserID = UserRole.UserID INNER JOIN Role ON UserRole.RoleID = Role.RoleID " +
+                                         "WHERE Event.EventID = " + eventID;
+
+            SqlDataReader registercCount = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (registercCount.Read())
+            {
+                RegisterCount.Capacity = Int32.Parse(registercCount["RegisterCount"].ToString());
             }
 
             DBClass.DBConnection.Close();

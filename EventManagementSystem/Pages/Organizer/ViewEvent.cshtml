@@ -20,7 +20,13 @@
                     <br />
                     <br />
                     <a asp-page="/Organizer/ParticipantList" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Participants</a>
+                    <a asp-page="/Organizer/ViewCheckIn" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Check In List</a>
                 </div>
+                <br />
+                if (Model.RegisterCount.Capacity > 0)
+                {
+                    <p><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
+                }
                 <br />
                 <hr />
                 <br />
