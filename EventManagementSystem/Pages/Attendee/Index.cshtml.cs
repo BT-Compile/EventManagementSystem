@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using System.Text.RegularExpressions;
 
 namespace EventManagementSystem.Pages.Attendee
@@ -27,12 +26,13 @@ namespace EventManagementSystem.Pages.Attendee
         public Event CheckIn { get; set; }
 
         [BindProperty]
-        public string TeamName { get; set; }
+        public List<Team> Teams { get; set; }
 
         public List<Event> Events { get; set; }
 
         public IndexModel()
         {
+            Teams = new List<Team>();
             Events = new List<Event>();
             CheckIn = new Event();
             HasPosted = false;
@@ -54,19 +54,22 @@ namespace EventManagementSystem.Pages.Attendee
             }
             nameReader.Close();
 
-            // Retrieve this participant's team name (if any)
-            string teamNameQuery = "SELECT Team.Name AS TeamName " +
+            // Retrieve all of this participant's teams they are signed up for (if any)
+            string teamNamesQuery = "SELECT Team.Name AS TeamName " +
                 "FROM [User] " +
                 "INNER JOIN UserTeam ON [User].UserID = UserTeam.UserID " +
                 "INNER JOIN Team ON UserTeam.TeamID = Team.TeamID " +
                 "WHERE [User].Username = '" + HttpContext.Session.GetString("username") + "'";
-            SqlDataReader teamNameReader = DBClass.GeneralReaderQuery(teamNameQuery);
+            SqlDataReader teamNamesReader = DBClass.GeneralReaderQuery(teamNamesQuery);
 
-            if (teamNameReader.Read())
+            while (teamNamesReader.Read())
             {
-                TeamName = teamNameReader["TeamName"].ToString();
+                Teams.Add(new Team
+                {
+                    Name = teamNamesReader["TeamName"].ToString()
+                });
             }
-            teamNameReader.Close();
+            teamNamesReader.Close();
 
             // This only displays the major EVENTS that contain subevents, the parent events only
             // query to select all events that this user has signed up for already

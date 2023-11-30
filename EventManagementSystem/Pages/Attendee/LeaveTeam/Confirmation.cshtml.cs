@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
-namespace EventManagementSystem.Pages.Attendee.TeamSignUp
+namespace EventManagementSystem.Pages.Attendee.LeaveTeam
 {
-    public class LeaveTeamModel : PageModel
+    public class ConfirmationModel : PageModel
     {
         [BindProperty]
         public User UserToLeave { get; set; }
@@ -14,7 +14,7 @@ namespace EventManagementSystem.Pages.Attendee.TeamSignUp
         [BindProperty]
         public Team TeamToLeave { get; set; }
 
-        public LeaveTeamModel()
+        public ConfirmationModel()
         {
             UserToLeave = new User();
             TeamToLeave = new Team();
