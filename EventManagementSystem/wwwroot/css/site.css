@@ -4,9 +4,9 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: none;
-    color: #2C3539;
+    a:hover {
+        text-decoration: none;
+        color: #2C3539;
     }
 
 body {
@@ -120,7 +120,7 @@ thead {
 
 .wrapper {
     margin: 0 15% 0 15%;
-    height: 100%;
+    height: auto;
 }
 
 .widebutton-flex {
@@ -139,6 +139,13 @@ thead {
     font-size: 16pt;
 }
 
+.searchbar {
+    border: none;
+    padding: 5px;
+    background-color: #D1D2D4;
+    color: black;
+}
+
 .shdwbox {
     background-color: rgba(0, 0, 0, 0.10);
     border-radius: 25px;
@@ -146,7 +153,7 @@ thead {
     margin: auto;
 }
 
-.shdwbox2{
+.shdwbox2 {
     background-color: rgba(0, 0, 0, 0.10);
     border-radius: 25px;
     padding: 10px;
@@ -188,7 +195,7 @@ smltxt {
     margin: 0 auto;
 }
 
-.cartxtbox{
+.cartxtbox {
     background-color: white;
     border-radius: 15px;
     filter: opacity(75%);
@@ -258,11 +265,11 @@ smltxt {
     border-radius: 25pt;
 }
 
-.indexBox h2 {
-    font-family: 'Arvo', serif;
-    font-size: 36pt;
-    color: white;
-}
+    .indexBox h2 {
+        font-family: 'Arvo', serif;
+        font-size: 36pt;
+        color: white;
+    }
 
 .ITguy {
     float: right;
@@ -304,9 +311,9 @@ smltxt {
     margin-right: 2%;
 }
 
-.nav-item :hover {
-    color: black;
-}
+    .nav-item :hover {
+        color: black;
+    }
 
 .navbar-brand {
     padding: 50px;
@@ -324,14 +331,14 @@ smltxt {
     justify-content: center;
 }
 
-.newlogbox button {
-    border-radius: 25px;
-    border: none;
-}
+    .newlogbox button {
+        border-radius: 25px;
+        border: none;
+    }
 
-.newlogbox label {
-    font-family: 'Arvo', serif;
-}
+    .newlogbox label {
+        font-family: 'Arvo', serif;
+    }
 
 .newlogfield {
     border: none;
@@ -355,6 +362,10 @@ smltxt {
     margin: auto;
 }
 
+.rbtn {
+    float: right;
+}
+
 .table-secondary {
     text-align: center;
 }
@@ -363,13 +374,6 @@ smltxt {
     width: 300px;
     height: auto;
     margin: 5% 0 0 10%;
-}
-
-.searchbar {
-    border: none;
-    padding: 5px;
-    background-color: #D1D2D4;
-    color: black;
 }
 
 .subsubcontainer {
@@ -382,32 +386,48 @@ smltxt {
 @media (max-width: 768px) {
 
 
-/*----------------------------Mobile Tags---------------------------*/
+    /*----------------------------Mobile Tags---------------------------*/
 
     body {
         margin: auto;
-        height: 100%;
+        height: auto;
     }
 
     html {
         font-size: 16px;
-        height: 100vh
+        height: auto;
+    }
+
+    h2 {
+        text-align: center;
     }
 
     footer {
         text-align: center;
+        height: auto;
     }
 
-/*---------------------------Mobile Classes--------------------------*/
+    main {
+        height: auto;
+    }
+
+    /*---------------------------Mobile Classes--------------------------*/
+
+    .btnvert {
+        margin: 2vh auto;
+        font-family: 'Arvo', serif;
+        font-size: 20pt;
+        padding: 10px;
+    }
 
     .indexwrapper {
-        margin: 0 5% 0 5%;
-        height: 100%;
+        margin: 0 3% 0 3%;
+        height: auto;
     }
 
     .wrapper {
-        margin: 0 5% 0 5%;
-        height: 100%;
+        margin: 0 3% 0 3%;
+        height: auto;
     }
 
     .carimg {
@@ -416,6 +436,11 @@ smltxt {
         height: auto; /* Add this line to maintain the aspect ratio of the images */
         display: flex;
         margin: 0 auto;
+    }
+
+    .card {
+        height: 50%;
+        font-size: 12pt;
     }
 
     .container {
@@ -443,7 +468,7 @@ smltxt {
     }
 
     .navbar {
-        height: 10vh;
+        height: 10%;
         width: 100%;
     }
 
@@ -460,6 +485,15 @@ smltxt {
         display: none;
     }
 
+    .newlogfield {
+        border: none;
+        display: block;
+        margin-top: 1vh;
+        padding: .5vh;
+        width: 350px;
+        background-color: #D1D2D4;
+    }
+
     .indexBox {
         position: relative;
         top: 5vh;
@@ -470,10 +504,10 @@ smltxt {
         font-size: 14pt;
         border-radius: 25pt;
     }
-    
-    .indexBox h2 {
-        font-size: 24pt;
-    }
+
+        .indexBox h2 {
+            font-size: 24pt;
+        }
 
     .indexContainer {
         margin-bottom: 10vh;
@@ -488,11 +522,66 @@ smltxt {
         display: none;
     }
 
+    .profilepic {
+        border-radius: 50%;
+        width: 100px;
+        height: auto;
+        display: flex;
+        margin: auto;
+    }
+
+    .rbtn {
+        float: none;
+    }
+
+    .rndbtn {
+        font-family: 'Arvo', serif;
+        padding: 5pt 10pt 5pt 10pt;
+        border-radius: 25pt;
+        font-size: 10pt;
+        margin: 2px;
+    }
+
+    .searchbar {
+        border: none;
+        padding: 5px;
+        background-color: #D1D2D4;
+        color: black;
+        width: 70%;
+    }
+
+    .shdwbox {
+        background-color: rgba(0, 0, 0, 0.10);
+        border-radius: 25px;
+        padding: 5px;
+        margin: 10px auto;
+    }
+
+    .shdwbox2 {
+        background-color: rgba(0, 0, 0, 0.10);
+        border-radius: 25px;
+        padding: 5px;
+    }
+
+    .scheduleimg {
+        display: none;
+    }
+
     .widebutton {
-        height: 10vh;
+        height: 10%;
         width: 100%;
         border-radius: 25px;
         font-family: 'Arvo', serif;
         font-size: 24pt;
+    }
+
+    .whitebox {
+        background-color: white;
+        border-radius: 25px;
+        padding-top: 15px;
+        padding: 10px;
+        height: auto;
+        margin-bottom: 10%;
+        overflow: hidden;
     }
 }
