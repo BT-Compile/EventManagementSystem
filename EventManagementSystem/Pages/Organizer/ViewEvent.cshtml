@@ -20,7 +20,13 @@
                     <br />
                     <br />
                     <a asp-page="/Organizer/ParticipantList" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Participants</a>
+                    <a asp-page="/Organizer/ViewCheckIn" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Check In List</a>
                 </div>
+                <br />
+                if (Model.RegisterCount.Capacity > 0)
+                {
+                    <p><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
+                }
                 <br />
                 <hr />
                 <br />
@@ -29,10 +35,29 @@
                 </div>
                 <br />
                 <hr />
-                <br />
-                <h2 class="font centertxt">Subevents</h2>
-                <br />
-                <hr />
+                <br /> 
+                <ul class="font centertxt nav nav-tabs nav-justified">
+                    <li class="nav-item">
+                        <form method="post" asp-page="/Organizer/ViewEvent" asp-page-handler="Schedule">
+                            <button type="submit" class="btn rndbtn btn-dark">Schedule</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" asp-page="/Organizer/ViewEvent" asp-page-handler="Location">
+                            <button type="submit" class="btn rndbtn btn-dark">Location</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" asp-page="/Organizer/ViewEvent" asp-page-handler="Organizers">
+                            <button type="submit" class="btn rndbtn btn-dark">Organizers</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" asp-page="/Organizer/ViewEvent" asp-page-handler="Amenities">
+                            <button type="submit" class="btn rndbtn btn-dark">Amenities</button>
+                        </form>
+                    </li>
+                </ul>
                 <br />
                 <div class="row">
                 @foreach (var s in Model.Subevents)

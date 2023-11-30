@@ -1,14 +1,14 @@
 ﻿@page
-@model EventManagementSystem.Pages.Attendee.TeamSignUpModel
+@model EventManagementSystem.Pages.Attendee.LeaveTeam.IndexModel
 @{
 }
 
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-        <h2 class="font">Available Teams</h2>
+        <h2 class="font">Teams you are signed up for</h2>
         <br />
-        <form method="post" asp-page="Attendee/TeamSignUp/Index">
+        <form method="post" asp-page="Attendee/LeaveTeam/Index">
             <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Teams" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
             &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
         </form>
@@ -20,7 +20,7 @@
                         <tr>
                             <th>Team Name:</th>
                             <th>Team Description:</th>
-                            <th>Sign Up:</th>
+                            <th>Leave Team:</th>
                         </tr>
                     </thead>
                     <tbody class="table-secondary">
@@ -31,7 +31,7 @@
                                     <td><b>@team.Name</b></td>
                                     <td>@team.Description</td>
                                     <td>
-                                        <a asp-page="Confirmation" class="btn rndbtn btn-dark" asp-route-teamid="@team.TeamID">Join</a>
+                                        <a asp-page="Confirmation" class="btn rndbtn btn-dark" asp-route-teamid="@team.TeamID">Leave</a>
                                     </td>
                                 </tr>
                             }
@@ -40,5 +40,6 @@
                 </table>
             </div>
         </div>
+        <a asp-page="/Attendee/Index" class="btn rndbtn btn-dark">Cancel</a>
     </div>
 </div>
