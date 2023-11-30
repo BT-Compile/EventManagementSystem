@@ -14,13 +14,28 @@ namespace EventManagementSystem.Pages.Attendee
 
         public List<Event> Subevents { get; set; }
 
+        public List<Event> Subevent1 { get; set; }
+
+        public List<Event> Subevent2 { get; set; }
+
+        public List<Event> Subevent3 { get; set; }
+
+        public List<Event> Subevent4 { get; set; }
+
         public List<Event> Locations { get; set; }
+
+        public List<Amenity> AmenityList { get; set; }
 
         public ViewEventModel()
         {
             Events = new List<Event>();
             Subevents = new List<Event>();
             Locations = new List<Event>();
+            AmenityList = new List<Amenity>();
+            Subevent1 = new List<Event>();
+            Subevent2 = new List<Event>();
+            Subevent3 = new List<Event>();
+            Subevent4 = new List<Event>();
         }
         public IActionResult OnGet(int eventid)
         {
@@ -43,6 +58,7 @@ namespace EventManagementSystem.Pages.Attendee
                 Events.Add(new Event
                 {
                     EventID = Int32.Parse(scheduleReader["EventID"].ToString()),
+                    ParentEventID = scheduleReader["ParentEventID"].ToString(),
                     EventName = scheduleReader["EventName"].ToString(),
                     EventDescription = scheduleReader["EventDescription"].ToString(),
                     StartDate = (DateTime)scheduleReader["StartDate"],
@@ -54,6 +70,81 @@ namespace EventManagementSystem.Pages.Attendee
                     SpaceName = scheduleReader["Name"].ToString(),
                     SpaceAddress = scheduleReader["Address"].ToString()
                 });
+            }
+
+            //While ParentEventID IS NOT NULL keep looping to find the parenteventid and event details
+            foreach (Event e in Events)
+            {
+                if (e.ParentEventID != "")
+                {
+                    sqlQuery = "SELECT * FROM [Event] WHERE EventID = " + e.ParentEventID;
+                    SqlDataReader subevent1Reader = DBClass.GeneralReaderQuery(sqlQuery);
+                    while (subevent1Reader.Read())
+                    {
+                        Subevent1.Add(new Event
+                        {
+                            ParentEventID = subevent1Reader["ParentEventID"].ToString(),
+                            EventName = subevent1Reader["EventName"].ToString(),
+                        });
+                    }
+                }
+                
+            }
+            DBClass.DBConnection.Close();
+
+            foreach (Event e in Subevent1)
+            {
+                if (e.ParentEventID != "")
+                {
+                    sqlQuery = "SELECT * FROM [Event] WHERE EventID = " + e.ParentEventID;
+                    SqlDataReader subevent1Reader = DBClass.GeneralReaderQuery(sqlQuery);
+                    while (subevent1Reader.Read())
+                    {
+                        Subevent2.Add(new Event
+                        {
+                            ParentEventID = subevent1Reader["ParentEventID"].ToString(),
+                            EventName = subevent1Reader["EventName"].ToString(),
+                        });
+                    }
+                }
+            }
+
+            DBClass.DBConnection.Close();
+
+            foreach (Event e in Subevent2)
+            {
+                if (e.ParentEventID != "")
+                {
+                    sqlQuery = "SELECT * FROM [Event] WHERE EventID = " + e.ParentEventID;
+                    SqlDataReader subevent1Reader = DBClass.GeneralReaderQuery(sqlQuery);
+                    while (subevent1Reader.Read())
+                    {
+                        Subevent3.Add(new Event
+                        {
+                            ParentEventID = subevent1Reader["ParentEventID"].ToString(),
+                            EventName = subevent1Reader["EventName"].ToString(),
+                        });
+                    }
+                }
+            }
+
+            DBClass.DBConnection.Close();
+
+            foreach (Event e in Subevent3)
+            {
+                if (e.ParentEventID != "")
+                {
+                    sqlQuery = "SELECT * FROM [Event] WHERE EventID = " + e.ParentEventID;
+                    SqlDataReader subevent1Reader = DBClass.GeneralReaderQuery(sqlQuery);
+                    while (subevent1Reader.Read())
+                    {
+                        Subevent4.Add(new Event
+                        {
+                            ParentEventID = subevent1Reader["ParentEventID"].ToString(),
+                            EventName = subevent1Reader["EventName"].ToString(),
+                        });
+                    }
+                }
             }
 
             DBClass.DBConnection.Close();
@@ -250,11 +341,29 @@ namespace EventManagementSystem.Pages.Attendee
                     Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
                     EventType = scheduleReader["Type"].ToString(),
                     Status = scheduleReader["Status"].ToString(),
+                    LocationID = Int32.Parse(scheduleReader["LocationID"].ToString()),
                     SpaceName = scheduleReader["Name"].ToString(),
                     SpaceAddress = scheduleReader["Address"].ToString()
                 });
             }
+            DBClass.DBConnection.Close();
 
+            foreach (Event e in Events)
+            {
+                sqlQuery = "SELECT * FROM Amenity WHERE LocationID = " + e.LocationID;
+                SqlDataReader amenityReader = DBClass.GeneralReaderQuery(sqlQuery);
+                while (amenityReader.Read())
+                {
+                    AmenityList.Add(new Amenity
+                    {
+                        AmenityID = Int32.Parse(amenityReader["AmenityID"].ToString()),
+                        Name = amenityReader["Name"].ToString(),
+                        Description = amenityReader["Description"].ToString(),
+                        Type = amenityReader["Type"].ToString(),
+                        URL = amenityReader["URL"].ToString()
+                    });
+                }
+            }
             DBClass.DBConnection.Close();
             return Page();
         }

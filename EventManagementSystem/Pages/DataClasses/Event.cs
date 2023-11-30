@@ -24,6 +24,8 @@
 
         public string? EventType { get; set;}
 
+        public int LocationID { get; set; }
+
         public string? SpaceName { get; set; }
 
         public string? SpaceAddress { get; set;}
