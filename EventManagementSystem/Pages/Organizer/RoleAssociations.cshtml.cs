@@ -42,7 +42,7 @@ namespace EventManagementSystem.Pages.Organizer
 
             string sqlQuery = "SELECT Event.EventID, Event.EventName, Event.EventDescription, Event.StartDate, Event.EndDate, Event.RegistrationDeadline, EventRegister.RegistrationDate, Event.Capacity, Event.Type, " +
                 "Event.Status, Event.OrganizerID, Event.ParentEventID, [User].UserID, concat_ws(' ', [User].FirstName, [User].LastName) AS FullName, Role.RoleID, Role.Name, Role.Description " +
-                "FROM  UserRole INNER JOIN Role ON UserRole.RoleID = Role.RoleID INNER JOIN Event LEFT OUTER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN " +
+                "FROM  UserRole INNER JOIN Role ON UserRole.RoleID = Role.RoleID INNER JOIN Event INNER JOIN EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN " +
                 "[User] ON EventRegister.UserID = [User].UserID ON UserRole.UserID = [User].UserID " +
                 "WHERE Event.OrganizerID = " + HttpContext.Session.GetString("userid") + " AND Event.ParentEventID IS NOT NULL " +
                 "AND [User].IsActive = 'true' ORDER BY EventRegister.RegistrationDate, [Event].EventName, Role.Name DESC";

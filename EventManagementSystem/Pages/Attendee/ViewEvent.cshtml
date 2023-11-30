@@ -26,27 +26,29 @@
                 <ul class="font centertxt nav nav-tabs nav-justified">
                     <li class="nav-item">
                         <form method="post" asp-page="/Attendee/ViewEvent" asp-page-handler="Schedule">
-                            <button type="submit" class="btn rndbtn btn-dark">Schedule</button>
+                            <button type="submit" class="btn widebutton-flex btn-dark">Schedule</button>
                         </form>
                     </li>
                     <li class="nav-item">
                         <form method="post" asp-page="/Attendee/ViewEvent" asp-page-handler="Location">
-                            <button type="submit" class="btn rndbtn btn-dark">Location</button>
+                            <button type="submit" class="btn widebutton-flex btn-dark">Location</button>
                         </form>
                     </li>
                     <li class="nav-item">
                         <form method="post" asp-page="/Attendee/ViewEvent" asp-page-handler="Organizers">
-                            <button type="submit" class="btn rndbtn btn-dark">Organizers</button>
+                            <button type="submit" class="btn widebutton-flex btn-dark">Organizers</button>
                         </form>
                     </li>
                     <li class="nav-item">
                         <form method="post" asp-page="/Attendee/ViewEvent" asp-page-handler="Amenities">
-                            <button type="submit" class="btn rndbtn btn-dark">Amenities</button>
+                            <button type="submit" class="btn widebutton-flex btn-dark">Amenities</button>
                         </form>
                     </li>
                 </ul>
                 <br />
-                <div class="row">
+
+                //Subevents post request
+                <div class="list">
                 @foreach (var s in Model.Subevents)
                 {
                     <!-- Button trigger modal -->
@@ -54,7 +56,7 @@
                         <div class="shdwbox subsubcontainer">
                                 <p class="font centertxt">@s.EventName</p>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                <button type="button" class="btn rndbtn btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                                 View Details
                             </button>
                         </div>
@@ -95,6 +97,19 @@
                     </div>
                 }
                 </div>
+                <br />
+
+                //Location Post Request
+                @foreach (var s in Model.Locations)
+                {
+                    <div class="font centertxt">
+                        <h2>@s.SpaceName</h2>
+                        
+                        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.368408961688!2d-78.86202632420257!3d38.43295857397452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b492951873e343%3A0x24137d634e2c28f7!2sFestival%20Conference%20and%20Student%20Center!5e0!3m2!1sen!2sus!4v1701369263697!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                }
                 <br />
             }
         }
