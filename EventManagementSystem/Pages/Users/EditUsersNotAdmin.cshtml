@@ -28,6 +28,9 @@
                 <br />
                 <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Username" required />
                 <br />
+                <label asp-for="@Model.UserToUpdate.UserPassword">- Password -</label>
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.UserPassword" required />
+                <br />
                 <label asp-for="@Model.UserToUpdate.Email">- Email -</label>
                 <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Email" />
                 <br />
