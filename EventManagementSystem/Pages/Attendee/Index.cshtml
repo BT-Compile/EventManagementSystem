@@ -78,7 +78,9 @@
                                     }
                                     @if (record.EventCheckinEventID != "")
                                     {
-                                        <td>Checked In</td>
+                                        <td>
+                                            <img class="check" src="/images/check.png" />
+                                        </td>
                                     }
                                     <td>
                                         <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>

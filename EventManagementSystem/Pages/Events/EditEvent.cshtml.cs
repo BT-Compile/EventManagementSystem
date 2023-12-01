@@ -151,9 +151,9 @@ namespace EventManagementSystem.Pages.Events
                 {
                     cmd.Parameters.AddWithValue("@EventName", EventToUpdate.EventName);
                     cmd.Parameters.AddWithValue("@EventDescription", EventToUpdate.EventDescription);
-                    cmd.Parameters.AddWithValue("@StartDate", EventToUpdate.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@EndDate", EventToUpdate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToUpdate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@StartDate", EventToUpdate.StartDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    cmd.Parameters.AddWithValue("@EndDate", EventToUpdate.EndDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToUpdate.RegistrationDeadline.ToString("yyyy-MM-dd hh:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToUpdate.Capacity);
                     cmd.Parameters.AddWithValue("@Status", EventToUpdate.Status);
                     cmd.Parameters.AddWithValue("@Type", EventToUpdate.EventType);
