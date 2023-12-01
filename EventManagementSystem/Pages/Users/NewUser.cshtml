@@ -6,7 +6,7 @@
 
 <div class="wrapper">
     <br />
-    <div class="whitebox blktxt">
+    <div class="whitebox purpletxt">
         <h2 class="font centertxt">Enter New User Data</h2>
         <br />
         <hr />
@@ -27,7 +27,7 @@
                 <input type="password" asp-for="@Model.UserToCreate.UserPassword" id="Password" class="newlogfield" required />
                 <br />
                 <label asp-for="@Model.UserToCreate.Email">- Email -</label>
-                <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" />
+                <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" required />
                 <br />
                 <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
                 <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
@@ -43,7 +43,7 @@
                 <br />
                 <label asp-for="@Model.UserToCreate.RoleType">- Role -</label>
                 <br />
-                <select asp-for="@Model.UserToCreate.RoleType" class="newlogfield" asp-items="Model.Roles">
+                <select asp-for="@Model.UserToCreate.RoleType" class="newlogfield" asp-items="Model.Roles" required >
                     <option value=""></option>
                 </select>
                 <br />
