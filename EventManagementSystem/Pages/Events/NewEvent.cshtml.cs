@@ -72,9 +72,9 @@ namespace EventManagementSystem.Pages.Events
                 {
                     cmd.Parameters.AddWithValue("@EventName", EventToCreate.EventName);
                     cmd.Parameters.AddWithValue("@EventDescription", EventToCreate.EventDescription);
-                    cmd.Parameters.AddWithValue("@StartDate", EventToCreate.StartDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@EndDate", EventToCreate.EndDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@StartDate", EventToCreate.StartDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    cmd.Parameters.AddWithValue("@EndDate", EventToCreate.EndDate.ToString("yyyy-MM-dd hh:mm:ss"));
+                    cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd hh:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
                     cmd.Parameters.AddWithValue("@[Type]", EventToCreate.EventType);
                     cmd.Parameters.AddWithValue("@[Status]", EventToCreate.Status);

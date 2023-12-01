@@ -15,28 +15,28 @@
                     {
                         if (parent1.ParentEventID == "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent3)
                     {
                         if (parent1.ParentEventID == "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent2)
                     {
                         if (parent1.ParentEventID == "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent1)
                     {
                         if (parent1.ParentEventID == "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }                        
                     }
                 }
@@ -47,28 +47,28 @@
                     {
                         if (parent1.ParentEventID != "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent3)
                     {
                         if (parent1.ParentEventID != "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent2)
                     {
                         if (parent1.ParentEventID != "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     foreach (var parent1 in Model.Subevent1)
                     {
                         if (parent1.ParentEventID != "")
                         {
-                            @parent1.EventName <span>---></span>
+                            @parent1.EventName <span> / </span>
                         }
                     }
                     <b>@e.EventName</b>
@@ -111,7 +111,7 @@
                     </li>
                 </ul>
                 <br />
-
+                <br />
                 //Subevents post request
                 <div class="list">
                 @foreach (var s in Model.Subevents)
@@ -121,10 +121,12 @@
                         <div class="shdwbox subsubcontainer">
                                 <p class="font centertxt">@s.EventName</p>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn rndbtn btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                                View Details
-                            </button>
+                                <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                    View Details
+                                </button>
                         </div>
+                        <br />
+                        <br />
                     </div>
 
                     <!-- Modal -->
@@ -139,7 +141,7 @@
                                     <br/>
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("HH:mm")
+                                    Time: @s.StartDate.ToString("hh:mm")
                                     <br />
                                     @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
@@ -153,45 +155,45 @@
                                     <br />
                                     <br />
                                 </div>
-                                    <div class="modal-footer">
-                                        <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">Register For Subevent</a>
-                                        <a asp-page="/Attendee/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">View Details</a>
-                                    </div>
+                                <div class="modal-footer">
+                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Register For @s.EventName Subevent</a>
+                                    <a asp-page="/Attendee/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 }
                 </div>
-                <br />
 
                 //Location Post Request
                 @foreach (var s in Model.Locations)
                 {
                     <div class="font centertxt">
                         <h2>@s.SpaceName</h2>
-                        
+                        <br/>
                         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.368408961688!2d-78.86202632420257!3d38.43295857397452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b492951873e343%3A0x24137d634e2c28f7!2sFestival%20Conference%20and%20Student%20Center!5e0!3m2!1sen!2sus!4v1701369263697!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d657.0251957945642!2d-78.87351584307049!3d38.43324177921034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b492e62b400047%3A0x652d69dd5f1e16b8!2sJames%20Madison%20University%20College%20of%20Business!5e0!3m2!1sen!2sus!4v1701449657978!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 }
-                <br />
 
                 //Amenity Post Request
                 @foreach (var s in Model.AmenityList)
                 {
-                    <div class="font centertxt">
-                        <h2>Amenities</h2>
-                        @s.Name
+                    <div class="centertxt">
+                        <h2 class="font">Amenities</h2>
                         <br/>
-                        @s.Description
-                        <br />
-                        @s.Type
-                        <br />
-                        @s.URL
+                        <h3 class="font">@s.Name</h3>
+                        <br/>
+                        <div class="shdwbox">
+                            @s.Description
+                            <br />
+                            @s.Type
+                            <br />
+                            <a href="@s.URL">@s.URL</a>
+                        </div>
                     </div>
                 }
-                <br />
             }
         }
     </div>

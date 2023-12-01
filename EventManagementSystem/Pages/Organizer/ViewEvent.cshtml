@@ -63,7 +63,7 @@
                                 <div class="wrapper purpletxt font">
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("HH:mm")
+                                    Time: @s.StartDate.ToString("hh:mm")
                                     <br />
                                     @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
@@ -78,8 +78,8 @@
                                     <br />
                                 </div>
                                     <div class="modal-footer">
-                                        <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">Add Subevent</a>
-                                        <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-light" asp-route-eventid="@s.EventID">View Details</a>
+                                        <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Add Subevent</a>
+                                        <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
                                     </div>
                             </div>
                         </div>

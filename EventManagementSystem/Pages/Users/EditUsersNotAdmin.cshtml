@@ -5,7 +5,7 @@
 
 <div class="wrapper">
     <br />
-    <div class="whitebox blktxt">
+    <div class="whitebox purpletxt">
         <h2 class="font centertxt">Edit User Data</h2>
         <br />
         <hr />
@@ -28,6 +28,10 @@
                 <br />
                 <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Username" required />
                 <br />
+                <label asp-for="@Model.UserToUpdate.UserPassword">- Password -</label>
+                <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.UserPassword" required />
+                <br />
+                <label asp-for="@Model.UserToUpdate.Email">- Email -</label>
                 <input type="text" class="newlogfield" asp-for="@Model.UserToUpdate.Email" />
                 <br />
                 <label asp-for="@Model.UserToUpdate.PhoneNumber">- Phone -</label>

@@ -38,20 +38,29 @@
                                 <td>Inactive</td>
                             }
 
-                            @if (Model.UsersTable.RoleType == "Admin")
+                            @if (HttpContext.Session.GetString("RoleType") == "Admin")
                             {
-                                @if (Model.UsersTable.IsActive == true)
+                                if (Model.UsersTable.RoleType != "Admin")
                                 {
-                                    <td>
-                                        <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@Model.UsersTable.UserID">Deactivate</a>
-                                        <a asp-page="EditUsers" class="btn rndbtn btn-dark" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
-                                    </td>
+                                    @if (Model.UsersTable.IsActive == true)
+                                    {
+                                        <td>
+                                            <a asp-page="DeleteUser" class="btn rndbtn btn-warning" asp-route-userid="@Model.UsersTable.UserID">Deactivate</a>
+                                            <a asp-page="EditUsers" class="btn rndbtn btn-dark" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                                        </td>
+                                    }
+                                    @if (Model.UsersTable.IsActive == false)
+                                    {
+                                        <td>
+                                            <a asp-page="ActivateUser" class="btn rndbtn btn-success" asp-route-userid="@Model.UsersTable.UserID">Activate</a>
+                                            <a asp-page="EditUsers" class="btn rndbtn btn-dark" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                                        </td>
+                                    }
                                 }
-                                @if (Model.UsersTable.IsActive == false)
+                                else
                                 {
                                     <td>
-                                        <a asp-page="ActivateUser" class="btn rndbtn btn-success" asp-route-userid="@Model.UsersTable.UserID">Activate</a>
-                                        <a asp-page="EditUsers" class="btn rndbtn btn-dark" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
+                                        <a asp-page="EditUsersNotAdmin" class="btn rndbtn btn-dark" asp-route-userid="@Model.UsersTable.UserID">Edit</a>
                                     </td>
                                 }
                             }

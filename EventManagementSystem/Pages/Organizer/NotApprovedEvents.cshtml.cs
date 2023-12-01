@@ -39,7 +39,7 @@ namespace EventManagementSystem.Pages.Organizer
             }
 
             // Displays events created by the organizer that are pending approval
-            string sqlQuery = "SELECT * FROM Event WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND ([Status] = 'Not Approved' OR [Status] = 'Deactivated')";
+            string sqlQuery = "SELECT * FROM Event WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND ([Status] = 'Not Approved' OR [Status] = 'Deactivated' OR [Status] = 'Pending')";
 
             SqlDataReader scheduleReader = DBClass.GeneralReaderQuery(sqlQuery);
 
@@ -53,6 +53,7 @@ namespace EventManagementSystem.Pages.Organizer
                     EndDate = (DateTime)scheduleReader["EndDate"],
                     RegistrationDeadline = (DateTime)scheduleReader["RegistrationDeadline"],
                     Capacity = Int32.Parse(scheduleReader["Capacity"].ToString()),
+                    Status = scheduleReader["Status"].ToString(),
                     EventType = scheduleReader["Type"].ToString()
                 });
             }
@@ -73,7 +74,7 @@ namespace EventManagementSystem.Pages.Organizer
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Activity table 
                 sqlQuery = "SELECT * FROM Event " +
-                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
+                           "WHERE OrganizerID = " + HttpContext.Session.GetString("userid") + " AND ([Status] = 'Not Approved' OR [Status] = 'Deactivated' OR [Status] = 'Pending') AND (EventDescription LIKE '%" + keyword + "%' OR EventName LIKE'%" + keyword + "%') " +
                            "ORDER BY StartDate DESC";
 
                 SqlDataReader eventReader = DBClass.GeneralReaderQuery(sqlQuery);

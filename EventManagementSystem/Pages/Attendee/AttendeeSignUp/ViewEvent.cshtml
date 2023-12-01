@@ -33,10 +33,10 @@
                     @foreach (var s in Model.Subevents)
                     {
                         <div class="col-md-4">
-                            <div class="shdwbox subsubcontainer">
+                            <div class="subsubcontainer">
+                                <p class="font circle">@s.StartDate.ToString("hh:mm")</p>
                                 <p class="font centertxt">@s.EventName</p>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                                     View Details
                                 </button>
                             </div>
@@ -53,7 +53,7 @@
                                             <br />
                                             <h3>@s.EventName</h3>
                                             Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                            Time: @s.StartDate.ToString("HH:mm")
+                                            Time: @s.StartDate.ToString("hh:mm")
                                             <br />
                                             @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                             <br />
