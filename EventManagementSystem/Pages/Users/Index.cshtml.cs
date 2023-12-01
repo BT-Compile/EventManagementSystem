@@ -97,7 +97,9 @@ namespace EventManagementSystem.Pages.Users
                         Email = userReader["Email"].ToString(),
                         PhoneNumber = userReader["PhoneNumber"].ToString(),
                         Username = userReader["Username"].ToString(),
-                        Accomodation = userReader["Category"].ToString()
+                        Accomodation = userReader["Category"].ToString(),
+                        IsActive = Boolean.Parse(userReader["IsActive"].ToString()),
+                        RoleType = userReader["Name"].ToString()
                     });
                 }
             }
