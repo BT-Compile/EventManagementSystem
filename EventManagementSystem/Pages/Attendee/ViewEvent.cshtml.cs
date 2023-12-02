@@ -26,11 +26,15 @@ namespace EventManagementSystem.Pages.Attendee
 
         public List<Amenity> AmenityList { get; set; }
 
+        [BindProperty]
+        public Event RegisterCount { get; set; }
+
         public ViewEventModel()
         {
             Events = new List<Event>();
             Subevents = new List<Event>();
             Locations = new List<Event>();
+            RegisterCount = new Event();
             AmenityList = new List<Amenity>();
             Subevent1 = new List<Event>();
             Subevent2 = new List<Event>();
@@ -70,6 +74,19 @@ namespace EventManagementSystem.Pages.Attendee
                     SpaceName = scheduleReader["Name"].ToString(),
                     SpaceAddress = scheduleReader["Address"].ToString()
                 });
+            }
+            DBClass.DBConnection.Close();
+
+            sqlQuery = "SELECT COUNT(EventRegister.UserID) AS RegisterCount FROM Event INNER JOIN " +
+                                         "EventRegister ON Event.EventID = EventRegister.EventID INNER JOIN [User] ON EventRegister.UserID = [User].UserID INNER JOIN " +
+                                         "UserRole ON[User].UserID = UserRole.UserID INNER JOIN Role ON UserRole.RoleID = Role.RoleID " +
+                                         "WHERE Event.EventID = " + eventid;
+
+            SqlDataReader registercCount = DBClass.GeneralReaderQuery(sqlQuery);
+
+            while (registercCount.Read())
+            {
+                RegisterCount.Capacity = Int32.Parse(registercCount["RegisterCount"].ToString());
             }
 
             //While ParentEventID IS NOT NULL keep looping to find the parenteventid and event details

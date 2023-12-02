@@ -79,7 +79,14 @@
                 <h1 class="font centertxt bigtxt">@e.EventName</h1>
                 <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
                 <p class="font centertxt">@e.SpaceName</p>
-                <br />
+                if (Model.RegisterCount.Capacity == 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Person Interested</b></u></p>
+                }
+                if (Model.RegisterCount.Capacity > 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity People Interested</b></u></p>
+                }
                 <hr />
                 <br />
                 <div class="shdwbox">
@@ -156,7 +163,7 @@
                                     <br />
                                 </div>
                                 <div class="modal-footer">
-                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Register For @s.EventName Subevent</a>
+                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Register For Subevents at @s.EventName</a>
                                     <a asp-page="/Attendee/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
                                 </div>
                             </div>
