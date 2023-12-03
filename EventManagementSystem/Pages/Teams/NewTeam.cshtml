@@ -24,9 +24,8 @@
                 <input type="text" class="newlogfield" id="TeamSize" asp-for="@Model.TeamToCreate.MaxSize" />
                 <br />
                 <button type="button" onclick="populateForm()" class="btn rndbtn2 btn-dark">Populate</button>
-                <br />
                 <button type="button" onclick="clearForm()" class="btn rndbtn2 btn-dark">Clear</button>
-                <br />
+                <br/>
                 <input type="submit" value="Submit" class="btn rndbtn2 btn-dark" asp-page="NewTeam" />
                 <a asp-page="Index" class="btn rndbtn2 btn-dark">Cancel</a>
             </form>

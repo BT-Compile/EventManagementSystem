@@ -88,7 +88,9 @@ thead {
     border-radius: 50%;
     background-color: #450084;
     color: white;
-    padding: 10px;
+    padding: 1px;
+    padding-top: 5px;
+    font-size: 14px;
 }
 
 .font {
@@ -302,7 +304,6 @@ thead {
 }
 
 .check {
-    margin: 10%;
     height: auto;
     width: 25px;
 }
@@ -446,7 +447,7 @@ thead {
 .subsubcontainer {
     padding: 10px;
     border: solid #450084 2px;
-    border-radius: 25px;
+    border-radius: 50px;
     cursor: pointer;
     height: auto;
     width: 100%;

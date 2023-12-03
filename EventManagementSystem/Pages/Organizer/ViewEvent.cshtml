@@ -42,48 +42,46 @@
                 {
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
-                        <div class="shdwbox subsubcontainer">
-                            <p class="font centertxt">@s.EventName</p>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                                View Details
-                            </button>
+                        <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                            <div class="font" style="display: flex; align-items: center;">
+                                <div class="circle">@s.StartDate.ToString("MM/dd") <br /> @s.StartDate.ToString("hh:mm") <br /> @s.StartDate.ToString("tt")</div>
+                                <p style="margin: auto;" class="centertxt">@s.EventName</p>
+                            </div>
                         </div>
-                    </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="wrapper purpletxt font">
-                                    <h3>@s.EventName</h3>
-                                    Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("hh:mm")
-                                    <br />
-                                    @s.RegistrationDeadline.ToString("MM/dd/yyyy")
-                                    <br />
-                                    <br />
-                                    @s.ParentSpaceName @s.SpaceName
-                                    <br />
-                                    @s.SpaceAddress
-                                    <br />
-                                    <br />
-                                    @s.EventDescription
-                                    <br />
-                                    <br />
-                                </div>
-                                    <div class="modal-footer">
-                                        <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Add Subevent</a>
-                                        <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
+                        <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="purpletxt font" id="ViewDetailsLabel">Event Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <div class="wrapper purpletxt font">
+                                        <h3>@s.EventName</h3>
+                                        Date: @s.StartDate.ToString("MM/dd/yyyy") |
+                                        Time: @s.StartDate.ToString("hh:mm")
+                                        <br />
+                                        @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                        <br />
+                                        <br />
+                                        @s.ParentSpaceName @s.SpaceName
+                                        <br />
+                                        @s.SpaceAddress
+                                        <br />
+                                        <br />
+                                        @s.EventDescription
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="modal-footer">
+                                            <a asp-page="/Organizer/EditEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Add Subevent</a>
+                                            <a asp-page="/Organizer/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                
                 }
                 </div>
                 <br />
