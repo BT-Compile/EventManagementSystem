@@ -14,6 +14,10 @@
                 <h1 class="font centertxt bigtxt">@e.EventName</h1>
                 <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
                 <p class="font centertxt">@e.SpaceName</p>
+                if (Model.RegisterCount.Capacity > 0)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
+                }
                 <br />
                 <div style="text-align: center">
                     <a asp-page="/Organizer/EditEvent" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">Edit</a>
@@ -23,10 +27,8 @@
                     <a asp-page="/Organizer/ViewCheckIn" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Check In List</a>
                 </div>
                 <br />
-                if (Model.RegisterCount.Capacity > 0)
-                {
-                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
-                }
+                <hr />
+                <br />
                 <div class="shdwbox">
                     <p class="centertxt">@e.EventDescription</p>
                 </div>
@@ -43,7 +45,7 @@
                         <div class="shdwbox subsubcontainer">
                             <p class="font centertxt">@s.EventName</p>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                                 View Details
                             </button>
                         </div>

@@ -7,7 +7,7 @@
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-        <h2 class="font centertxt">Edit Team Data</h2>
+        <h2 class="font centertxt">Enter Team Data</h2>
         <br />
         <hr />
         <br />
@@ -15,21 +15,20 @@
             <form asp-page="EditTeam">
                 <input type="hidden" asp-for="@Model.TeamToCreate.TeamID" />
                 <label asp-for="@Model.TeamToCreate.Name">- Team Name -</label>
-                <br />
                 <input type="text" class="newlogfield" id="TeamName" asp-for="@Model.TeamToCreate.Name" required />
                 <br />
                 <label asp-for="@Model.TeamToCreate.Description">- Description -</label>
-                <br />
                 <input type="text" class="newlogfield" id="TeamDescription" asp-for="@Model.TeamToCreate.Description" />
                 <br />
                 <label asp-for="@Model.TeamToCreate.MaxSize">- Max Size -</label>
                 <input type="text" class="newlogfield" id="TeamSize" asp-for="@Model.TeamToCreate.MaxSize" />
                 <br />
+                <button type="button" onclick="populateForm()" class="btn rndbtn2 btn-dark">Populate</button>
                 <br />
-                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
-                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
-                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewTeam" />
-                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+                <button type="button" onclick="clearForm()" class="btn rndbtn2 btn-dark">Clear</button>
+                <br />
+                <input type="submit" value="Submit" class="btn rndbtn2 btn-dark" asp-page="NewTeam" />
+                <a asp-page="Index" class="btn rndbtn2 btn-dark">Cancel</a>
             </form>
         </div>
     </div>

@@ -62,7 +62,7 @@ thead {
 /*--------------------------Quick Classes--------------------------*/
 
 .btnvert {
-    margin: 2vh auto;
+    margin: 10px auto;
     font-family: 'Arvo', serif;
     font-size: 20pt;
     padding: 25px;
@@ -88,10 +88,19 @@ thead {
     border-radius: 50%;
     background-color: #450084;
     color: white;
+    padding: 10px;
 }
 
 .font {
     font-family: 'Arvo', serif;
+}
+
+.FL {
+    float: left;
+}
+
+.FR {
+    float: right;
 }
 
 .whitebox {
@@ -137,6 +146,39 @@ thead {
     padding: 5pt 10pt 5pt 10pt;
     border-radius: 7.5pt;
     font-size: 12pt;
+    margin: 0px 5px 0 5px;
+    min-width: 150px;
+    white-space: nowrap
+}
+
+.rndbtn2 {
+    font-family: 'Arvo', serif;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 7.5pt;
+    font-size: 12pt;
+    width: auto;
+    min-width: 150px;
+    margin: 10px 5px 0 5px;
+    white-space: nowrap
+}
+
+.rndbtn3 {
+    font-family: 'Arvo', serif;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 7.5pt;
+    font-size: 12pt;
+    width: auto;
+    min-width: 150px;
+    white-space: nowrap
+}
+
+.srchbtn {
+    font-family: 'Arvo', serif;
+    padding: 5pt 10pt 5pt 10pt;
+    border-radius: 7.5pt;
+    font-size: 12pt;
+    width: 100px;
+    margin: 0 0 5px 5px;
 }
 
 .wrapper {
@@ -145,11 +187,12 @@ thead {
 }
 
 .widebutton-flex {
-    height: 10% ;
+    height: 10%;
     width: 100%;
     border-radius: 10px;
     font-family: 'Arvo', serif;
     font-size: 24pt;
+    margin: 5px;
 }
 
 .widebutton {
@@ -158,6 +201,11 @@ thead {
     border-radius: 10px;
     font-family: 'Arvo', serif;
     font-size: 16pt;
+}
+
+.row {
+    text-align: center;
+    margin: 10px;
 }
 
 .searchbar {
@@ -178,10 +226,6 @@ thead {
     background-color: rgba(0, 0, 0, 0.10);
     border-radius: 10px;
     padding: 10px;
-}
-
-smltxt {
-    font-size: 10pt;
 }
 
 /*-----------------------------Classes-----------------------------*/
@@ -258,6 +302,7 @@ smltxt {
 }
 
 .check {
+    margin: 10%;
     height: auto;
     width: 25px;
 }
@@ -279,7 +324,7 @@ smltxt {
     height: auto;
     background-color: rgba(0, 0, 0, 0.10);
     padding: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     border-radius: 25pt;
     width: 60%;
 }
@@ -351,7 +396,7 @@ smltxt {
 
 .newlogbox {
     text-align: center;
-    display: flex;
+    display: grid;
     margin: auto;
     justify-content: center;
     height: auto;
@@ -366,7 +411,8 @@ smltxt {
     border: none;
     display: block;
     padding: .5%;
-    width: 300px;
+    width: 100%;
+    min-width: 350px;
     background-color: #D1D2D4;
 }
 
@@ -398,8 +444,13 @@ smltxt {
 }
 
 .subsubcontainer {
-    width: 300px;
-    margin-bottom: 10px;
+    padding: 10px;
+    border: solid #450084 2px;
+    border-radius: 25px;
+    cursor: pointer;
+    height: auto;
+    width: 100%;
+    margin: 10px;
 }
 
 /*-----------------------------MOBILE------------------------------*/
@@ -462,6 +513,7 @@ smltxt {
     .card {
         height: 50%;
         font-size: 12pt;
+        border-radius: 10px;
     }
 
     .container {
@@ -490,8 +542,9 @@ smltxt {
 
     .logonav {
         width: auto;
-        height: 60px;
-        filter: drop-shadow(5px 5px 5px #450084)
+        height: 50px;
+        filter: drop-shadow(5px 5px 5px black);
+        margin: 0;
     }
 
     .navbar {
@@ -563,18 +616,39 @@ smltxt {
 
     .rndbtn {
         font-family: 'Arvo', serif;
-        padding: 5pt 10pt 5pt 10pt;
+        padding: 5pt 7.5pt 5pt 7.5pt;
         border-radius: 10pt;
-        font-size: 10pt;
+        font-size: 12pt;
+        min-width: 75px;
         margin: 2px;
+    }
+
+    .rndbtn2 {
+        font-family: 'Arvo', serif;
+        padding: 5pt 7.5pt 5pt 7.5pt;
+        border-radius: 7.5pt;
+        font-size: 12pt;
+        width: auto;
+        min-width: 75px;
+        margin: 2px;
+    }
+
+    .rndbtn3 {
+        font-family: 'Arvo', serif;
+        padding: 5pt 7.5pt 5pt 7.5pt;
+        border-radius: 7.5pt;
+        font-size: 12pt;
+        width: auto;
+        min-width: 75px;
+        white-space: nowrap
     }
 
     .searchbar {
         border: none;
-        padding: 5px;
         background-color: #D1D2D4;
         color: black;
         width: 70%;
+        height: 100%;
     }
 
     .shdwbox {

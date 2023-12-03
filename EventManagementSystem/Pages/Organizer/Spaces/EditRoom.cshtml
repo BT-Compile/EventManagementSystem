@@ -6,36 +6,38 @@
 
 <div class="wrapper">
     <br />
-    <h2 class="font centertxt">Edit Space Data</h2>
-    <br />
-    <hr />
-    <br />
-    <p class="notetxt">NOTE: The "Parent Space Name" field must be left blank if there exists no parent space. Otherwise, select a parent space from the dropdown.</p>
-    <br />
-    <div class="newlogbox">
-        <form asp-page="EditRoom">
-            <input type="hidden" asp-for="@Model.SpaceToUpdate.SpaceID" />
-            <label asp-for="@Model.SpaceToUpdate.Name">- Space Name -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Name" required />
-            <br />
-            <label asp-for="@Model.SpaceToUpdate.Address">- Address -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Address" required />
-            <br />
-            <label asp-for="@Model.SpaceToUpdate.Capacity">- Capacity -</label>
-            <br />
-            <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Capacity" required />
-            <br />
-            <label asp-for="@Model.SpaceToUpdate.ParentSpaceID">- Parent Space Name -</label>
-            <br />
-            <select asp-for="@Model.SpaceToUpdate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces">
-                <option value=""></option>
-            </select>
-            <br /><br />
-            <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditRoom" />
-            <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
-            <a asp-page="DeleteSpace" asp-route-spaceid="@HttpContext.Session.GetInt32("deletespaceid")" class="btn rndbtn btn-warning">Delete</a>
-        </form>
+    <div class="whitebox purpletxt">
+        <h2 class="font centertxt">Edit Space Data</h2>
+        <br />
+        <hr />
+        <br />
+        <p class="notetxt">NOTE: The "Parent Space Name" field must be left blank if there exists no parent space. Otherwise, select a parent space from the dropdown.</p>
+        <br />
+        <div class="newlogbox">
+            <form asp-page="EditRoom">
+                <input type="hidden" asp-for="@Model.SpaceToUpdate.SpaceID" />
+                <label asp-for="@Model.SpaceToUpdate.Name">- Space Name -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Name" required />
+                <br />
+                <label asp-for="@Model.SpaceToUpdate.Address">- Address -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Address" required />
+                <br />
+                <label asp-for="@Model.SpaceToUpdate.Capacity">- Capacity -</label>
+                <br />
+                <input type="text" class="newlogfield" asp-for="@Model.SpaceToUpdate.Capacity" required />
+                <br />
+                <label asp-for="@Model.SpaceToUpdate.ParentSpaceID">- Parent Space Name -</label>
+                <br />
+                <select asp-for="@Model.SpaceToUpdate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces">
+                    <option value=""></option>
+                </select>
+                <br /><br />
+                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="EditRoom" />
+                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+                <a asp-page="DeleteSpace" asp-route-spaceid="@HttpContext.Session.GetInt32("deletespaceid")" class="btn rndbtn btn-warning">Delete</a>
+            </form>
+        </div>
     </div>
 </div>

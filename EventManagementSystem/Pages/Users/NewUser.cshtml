@@ -11,47 +11,54 @@
         <br />
         <hr />
         <br />
-        <div class="newlogbox">
+        <div class="newlogbox centertxt">
             <form asp-page="NewUser">
-                <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
-                <label asp-for="@Model.UserToCreate.FirstName">- First Name -</label>
-                <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" class="newlogfield" required />
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" asp-for="@Model.UserToCreate.UserID" />
+                        <label asp-for="@Model.UserToCreate.FirstName">- First Name -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.FirstName" id="FirstName" class="newlogfield" required />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.LastName">- Last Name -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" class="newlogfield" required />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.Username">- Username -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" class="newlogfield" required />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.UserPassword">- Password -</label>
+                        <input type="password" asp-for="@Model.UserToCreate.UserPassword" id="Password" class="newlogfield" required />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.Email">- Email -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" />
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Allergies -</label>
+                        <br />
+                        <select asp-for="@Model.UserToCreate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
+                            <option value=""></option>
+                        </select>
+                        <br />
+                        <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
+                        <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />
+                        <br />
+                        <label asp-for="@Model.UserToCreate.RoleType">- Role -</label>
+                        <br />
+                        <select asp-for="@Model.UserToCreate.RoleType" class="newlogfield" asp-items="Model.Roles" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
                 <br />
-                <label asp-for="@Model.UserToCreate.LastName">- Last Name -</label>
-                <input type="text" asp-for="@Model.UserToCreate.LastName" id="LastName" class="newlogfield" required />
-                <br />
-                <label asp-for="@Model.UserToCreate.Username">- Username -</label>
-                <input type="text" asp-for="@Model.UserToCreate.Username" id="Username" class="newlogfield" required />
-                <br />
-                <label asp-for="@Model.UserToCreate.UserPassword">- Password -</label>
-                <input type="password" asp-for="@Model.UserToCreate.UserPassword" id="Password" class="newlogfield" required />
-                <br />
-                <label asp-for="@Model.UserToCreate.Email">- Email -</label>
-                <input type="text" asp-for="@Model.UserToCreate.Email" id="Email" class="newlogfield" required />
-                <br />
-                <label asp-for="@Model.UserToCreate.PhoneNumber">- Phone -</label>
-                <input type="text" asp-for="@Model.UserToCreate.PhoneNumber" id="PhoneNumber" class="newlogfield" />
-                <br />
-                <label asp-for="@Model.UserToCreate.AllergyID">- Relevant Allergies -</label>
-                <br />
-                <select asp-for="@Model.UserToCreate.AllergyID" class="newlogfield" asp-items="Model.Allergies">
-                    <option value=""></option>
-                </select>
-                <br />
-                <label asp-for="@Model.UserToCreate.Accomodation">- Accommodations -</label>
-                <input type="text" asp-for="@Model.UserToCreate.Accomodation" id="Accessibility" class="newlogfield" />
-                <br />
-                <label asp-for="@Model.UserToCreate.RoleType">- Role -</label>
-                <br />
-                <select asp-for="@Model.UserToCreate.RoleType" class="newlogfield" asp-items="Model.Roles" required >
-                    <option value=""></option>
-                </select>
-                <br />
-                <br />
-                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
-                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
-                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewUser" />
-                <a asp-page="Index" class="btn rndbtn btn-dark">Cancel</a>
+                <div class="d-flex justify-content-center">
+                    <button type="button" onclick="populateForm()" class="btn rndbtn2 btn-dark">Populate</button>
+                    <button type="button" onclick="clearForm()" class="btn rndbtn2 btn-dark">Clear</button>
+                    <input type="submit" value="Submit" class="btn rndbtn2 btn-dark" asp-page="NewUser" />
+                    <a asp-page="Index" class="btn rndbtn2 btn-dark">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

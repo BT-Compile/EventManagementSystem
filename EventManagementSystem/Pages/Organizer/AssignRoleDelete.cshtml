@@ -3,14 +3,19 @@
 @{
 }
 
-<form asp-page="AssignRoleDelete">
-    <div class="text-center">
-        <br />
-        <h2 class="font"> Are you sure you want to remove @Model.UserToFind.FirstName @Model.UserToFind.LastName from the @Model.UserToFind.RoleName at @Model.EventToFind.EventName</h2>
-        <br />
-        <hr />
-        <br />
-        <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
-        <a asp-page="/Organizer/RoleAssociations" class="btn rndbtn btn-dark">Cancel</a>
+<div class="wrapper">
+    <br />
+    <div class="whitebox purpletxt">
+        <form asp-page="AssignRoleDelete">
+            <div class="text-center">
+                <br />
+                <h2 class="font"> Are you sure you want to remove @Model.UserToFind.FirstName @Model.UserToFind.LastName from the @Model.UserToFind.RoleName at @Model.EventToFind.EventName</h2>
+                <br />
+                <hr />
+                <br />
+                <button class="btn rndbtn btn-dark" type="submit">I am sure</button>
+                <a asp-page="/Organizer/RoleAssociations" class="btn rndbtn btn-dark">Cancel</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>

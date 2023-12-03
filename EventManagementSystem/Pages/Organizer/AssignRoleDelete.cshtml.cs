@@ -74,7 +74,7 @@ namespace EventManagementSystem.Pages.Organizer
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
 
-            return RedirectToPage("/Organizer/ApprovedEvents");
+            return RedirectToPage("/Organizer/RoleAssociations");
         }
     }
 }

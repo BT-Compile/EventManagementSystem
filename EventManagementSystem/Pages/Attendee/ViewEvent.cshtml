@@ -119,13 +119,11 @@
                 </ul>
                 <br />
                 //Subevents post request
-                <div class="list">
+                <div class="row">
                 @foreach (var s in Model.Subevents)
                 {
-                    <br/>
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
-                            <span class="font">@s.StartDate.ToString("M/dd") @s.StartDate.ToString("h:mm tt")</span>
                         <div class="shdwbox subsubcontainer">
                                 <p class="font centertxt">@s.EventName</p>
                             <!-- Button trigger modal -->
@@ -149,7 +147,7 @@
                                     <br/>
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("h:mm tt")
+                                    Time: @s.StartDate.ToString("hh:mm")
                                     <br />
                                     Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
@@ -200,6 +198,7 @@
                     </div>
                 }
             }
+            <a asp-page="Index" class="btn rndbtn2 btn-dark">Cancel</a>
         }
     </div>
 </div>

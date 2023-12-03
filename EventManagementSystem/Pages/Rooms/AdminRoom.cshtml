@@ -6,18 +6,16 @@
 <div class="wrapper">
     <br />
     <div class="whitebox purpletxt">
-        <h2 class="font">
-            All Event Spaces:
-            <a asp-page="NewRoom" class="btn rndbtn float-end btn-dark">Create New Space</a>
-            <a style="margin-right: 5px;" asp-page="RoomAssociations" class="btn rndbtn float-end btn-dark">Show Space Assignments</a>
-        </h2>
+        <h2 class="font">All Event Spaces</h2>
+        <a asp-page="NewRoom" class="btn rndbtn FR btn-dark">Create New Space</a>
+        <a asp-page="RoomAssociations" class="btn rndbtn FR btn-dark">Show Space Assignments</a>
         <br />
         <form method="post" asp-page="AdminRoom">
             <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+            <button type="submit" class="btn srchbtn btn-dark">Search</button>
         </form>
         <br />
-        <h2 class="font">Event Main Spaces:</h2>
+        <h2 class="font">Event Main Spaces</h2>
         <br />
         <div class="shdwbox">
             <div class="table-responsive card">
@@ -50,7 +48,7 @@
         </div>
         <br />
 
-        <h2 class="font">Event Subspaces:</h2>
+        <h2 class="font">Event Subspaces</h2>
         <br />
         <div class="shdwbox">
             <div class="table-responsive card">
