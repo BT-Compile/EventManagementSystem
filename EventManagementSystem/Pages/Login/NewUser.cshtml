@@ -47,6 +47,12 @@
                 <a asp-page="../Index" class="btn rndbtn btn-dark" id="textfield">Cancel</a>
             </form>
         </div>
+        @{
+            if (Model.IsTaken)
+            {
+                <p class="text-danger centertxt">@ViewData["temp"]</p>
+            }
+        }
     </div>
 </div>
 

@@ -13,13 +13,20 @@ namespace EventManagementSystem.Pages.Login
         [BindProperty]
         public User UserToCreate { get; set; }
 
+        [BindProperty]
+        public bool IsTaken { get; set; }
+
         public int ParticipantRole {  get; set; }
 
         public List<SelectListItem> Allergies { get; set; }
 
+        public List<User> UsernameFinder { get; set; }
+
         public NewUserModel()
         {
             UserToCreate = new User();
+            UsernameFinder = new List<User>();
+            IsTaken = false;
         }
 
         // No User is needed to get in this method,
@@ -39,16 +46,43 @@ namespace EventManagementSystem.Pages.Login
 
         public IActionResult OnPost()
         {
-            DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
-                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
+
+            SqlDataReader scheduleReader = DBClass.GeneralReaderQuery("SELECT Username FROM [User]");
+
+            while (scheduleReader.Read())
+            {
+                UsernameFinder.Add(new User
+                {
+                    Username = scheduleReader["Username"].ToString()
+                });
+            }
             DBClass.DBConnection.Close();
 
-            DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
-            DBClass.DBConnection.Close();
+            foreach (var user in UsernameFinder)
+            {
+                if (user.Username == UserToCreate.Username)
+                {
+                    IsTaken = true;
+                    ViewData["temp"] = "Username Already Taken.";
+                    return RedirectToPage("NewUser");
+                }
+                else
+                {
+                    IsTaken = false;
 
-            DBClass.NewUserParticipantAssign(UserToCreate.Username);
-            DBClass.DBConnection.Close();
+                    DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
+                    UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
+                    DBClass.DBConnection.Close();
 
+                    DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
+                    DBClass.DBConnection.Close();
+
+                    DBClass.NewUserParticipantAssign(UserToCreate.Username);
+                    DBClass.DBConnection.Close();
+
+                    return RedirectToPage("Index");
+                }
+            }
             return RedirectToPage("Index");
         }
     }
