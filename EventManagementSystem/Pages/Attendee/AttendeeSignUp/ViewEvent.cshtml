@@ -19,6 +19,15 @@
                     <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class="btn widebutton btn-dark" asp-route-eventid="@e.EventID">Register</a>
                 </div>
                 <br />
+                if (Model.RegisterCount.Capacity == 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Person Interested</b></u></p>
+                }
+                if (Model.RegisterCount.Capacity > 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity People Interested</b></u></p>
+                }
+                <br />
                 <hr />
                 <br />
                 <div class="shdwbox">
@@ -52,12 +61,13 @@
                                             <br />
                                             <h3>@s.EventName</h3>
                                             Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                            Time: @s.StartDate.ToString("hh:mm")
+                                            Time: @s.StartDate.ToString("h:mm tt")
                                             <br />
-                                            @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                            Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                             <br />
                                             <br />
                                             @s.ParentSpaceName @s.SpaceName
+                                            <br />
                                             <br />
                                             @s.SpaceAddress
                                             <br />

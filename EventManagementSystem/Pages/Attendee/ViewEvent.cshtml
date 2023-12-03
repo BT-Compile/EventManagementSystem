@@ -79,7 +79,14 @@
                 <h1 class="font centertxt bigtxt">@e.EventName</h1>
                 <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
                 <p class="font centertxt">@e.SpaceName</p>
-                <br />
+                if (Model.RegisterCount.Capacity == 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Person Interested</b></u></p>
+                }
+                if (Model.RegisterCount.Capacity > 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity People Interested</b></u></p>
+                }
                 <hr />
                 <br />
                 <div class="shdwbox">
@@ -111,20 +118,23 @@
                     </li>
                 </ul>
                 <br />
-                <br />
                 //Subevents post request
                 <div class="row">
                 @foreach (var s in Model.Subevents)
                 {
+                    <!-- Button trigger modal -->
                     <div class="col-md-4">
-                         <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                              <div class="font" style="display: flex; align-items: center;">
-                                  <div class="circle">@s.StartDate.ToString("hh:mm tt")</div>
-                                  <p style="margin: auto;" class="centertxt">@s.EventName</p>
-                              </div>
-                         </div>
-                    </div
->
+                        <div class="shdwbox subsubcontainer">
+                                <p class="font centertxt">@s.EventName</p>
+                            <!-- Button trigger modal -->
+                                <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                    View Details
+                                </button>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+
                     <!-- Modal -->
                     <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -137,13 +147,14 @@
                                     <br/>
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("hh:mm tt")
+                                    Time: @s.StartDate.ToString("hh:mm")
                                     <br />
-                                    @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                    Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
                                     <br />
                                     @s.ParentSpaceName @s.SpaceName
                                     <br />
+                                    <br/>
                                     @s.SpaceAddress
                                     <br />
                                     <br />
@@ -152,7 +163,7 @@
                                     <br />
                                 </div>
                                 <div class="modal-footer">
-                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Register For @s.EventName Subevent</a>
+                                    <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUpMore" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">Register For Subevents at @s.EventName</a>
                                     <a asp-page="/Attendee/ViewEvent" class="btn rndbtn btn-dark" asp-route-eventid="@s.EventID">View Details</a>
                                 </div>
                             </div>
@@ -168,7 +179,7 @@
                         <h2>@s.SpaceName</h2>
                         <br/>
                         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.368408961688!2d-78.86202632420257!3d38.43295857397452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b492951873e343%3A0x24137d634e2c28f7!2sFestival%20Conference%20and%20Student%20Center!5e0!3m2!1sen!2sus!4v1701369263697!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d657.0251957945642!2d-78.87351584307049!3d38.43324177921034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b492e62b400047%3A0x652d69dd5f1e16b8!2sJames%20Madison%20University%20College%20of%20Business!5e0!3m2!1sen!2sus!4v1701449657978!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 }
@@ -177,14 +188,10 @@
                 @foreach (var s in Model.AmenityList)
                 {
                     <div class="centertxt">
-                        <h2 class="font">Amenities</h2>
                         <br/>
                         <h3 class="font">@s.Name</h3>
-                        <br/>
                         <div class="shdwbox">
                             @s.Description
-                            <br />
-                            @s.Type
                             <br />
                             <a href="@s.URL">@s.URL</a>
                         </div>

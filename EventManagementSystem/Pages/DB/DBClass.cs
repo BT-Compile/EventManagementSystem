@@ -147,34 +147,6 @@ namespace EventManagementSystem.Pages.DB
             return tempReader;
         }
 
-        public static int MaxCapacityGet(int ActivityID)
-        {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT Count(UserID) As Result FROM ActivityAttendance WHERE ActivityID = " + ActivityID;
-            cmdProductRead.Connection.Open();
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
-            tempReader.Read();
-            int result = Int32.Parse(tempReader["Result"].ToString());
-
-            return result;
-        }
-
-        // MaxCapacityGet is getting replaced with joining the attendance table to get the room assign feature to work
-        public static SqlDataReader AssignRoomReader(int activityid)
-        {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = new SqlConnection();
-            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM Room WHERE " +
-                "Room.Capacity>= " + MaxCapacityGet(activityid);
-            cmdProductRead.Connection.Open();
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
-
-            return tempReader;
-        }
-
         // Method to retrieve the EventName attribute from the current Event that was selected
         // when viewing the schedule
         public static string GetEventName(int eventID)
@@ -703,5 +675,33 @@ namespace EventManagementSystem.Pages.DB
             cmdCreation.Connection.Open();
             cmdCreation.ExecuteNonQuery();
         }
+        // Test in Progress Area
+        public static int GetAttendance(int EventID)
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = new SqlConnection();
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
+            cmdProductRead.CommandText = "SELECT Count(*) FROM EventRegister WHERE EventID = " + EventID;
+            cmdProductRead.Connection.Open();
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            tempReader.Read();
+            int result = Int32.Parse(tempReader["Count"].ToString());
+
+            return result;
+        }
+
+        public static SqlDataReader AssignRoomReader(int EventID)
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = new SqlConnection();
+            cmdProductRead.Connection.ConnectionString = CapstoneDBConnString;
+            cmdProductRead.CommandText = "SELECT * FROM Space WHERE " +
+                "Space.Capacity >= " + GetAttendance(EventID);
+            cmdProductRead.Connection.Open();
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+
+            return tempReader;
+        }
+        // End Test Area
     }
 }

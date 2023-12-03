@@ -41,7 +41,7 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
             }
 
             //Overarching main spaces
-            string sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity FROM Space LEFT OUTER JOIN " +
+            string sqlQuery = "SELECT DISTINCT Space.SpaceID, Space.Name, Space.Address, Space.Capacity FROM Space LEFT OUTER JOIN " +
                        "EventSpace ON Space.SpaceID = EventSpace.SpaceID LEFT OUTER JOIN Event ON EventSpace.EventID = Event.EventID " +
                        "WHERE (Space.ParentSpaceID IS NULL) AND (Event.OrganizerID = " + HttpContext.Session.GetString("userid") + " OR Space.CreatorID = " + HttpContext.Session.GetString("userid") +
                        ") ORDER BY Space.Name";
@@ -61,7 +61,7 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
             DBClass.DBConnection.Close();
 
             //Subspaces
-            sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity, Space_1.Name AS ParentSpaceName FROM  Space INNER JOIN " +
+            sqlQuery = "SELECT DISTINCT Space.SpaceID, Space.Name, Space.Address, Space.Capacity, Space_1.Name AS ParentSpaceName FROM  Space INNER JOIN " +
                              "Space AS Space_1 ON Space.ParentSpaceID = Space_1.SpaceID LEFT OUTER JOIN EventSpace ON Space.SpaceID = EventSpace.SpaceID LEFT OUTER JOIN " +
                              "Event ON EventSpace.EventID = Event.EventID WHERE (Space.ParentSpaceID IS NOT NULL) AND ([Event].OrganizerID = " + 
                              HttpContext.Session.GetString("userid") + " OR Space.CreatorID = " + HttpContext.Session.GetString("userid") + ") ORDER BY ParentSpaceName";
@@ -93,7 +93,7 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
                 keyword = Keywords[i];
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Space table for Main Spaces
-                sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity FROM Space LEFT OUTER JOIN " +
+                sqlQuery = "SELECT DISTINCT Space.SpaceID, Space.Name, Space.Address, Space.Capacity FROM Space LEFT OUTER JOIN " +
                             "EventSpace ON Space.SpaceID = EventSpace.SpaceID LEFT OUTER JOIN Event ON EventSpace.EventID = Event.EventID " +
                             "WHERE (Space.ParentSpaceID IS NULL) AND (Event.OrganizerID = " + HttpContext.Session.GetString("userid") + " OR Space.CreatorID = " + HttpContext.Session.GetString("userid") +
                               ") AND (Space.Name LIKE '%" + keyword + "%' OR Space.[Address] LIKE '%" + keyword + "%') " +
@@ -114,7 +114,7 @@ namespace EventManagementSystem.Pages.Organizer.Spaces
                 DBClass.DBConnection.Close();
 
                 // query to do a CASE INSENSITIVE search for a keyword in the Space table for SUB SPACES
-                sqlQuery = "SELECT Space.SpaceID, Space.Name, Space.Address, Space.Capacity, Space_1.Name AS ParentSpaceName FROM  Space INNER JOIN " +
+                sqlQuery = "SELECT DISTINCT Space.SpaceID, Space.Name, Space.Address, Space.Capacity, Space_1.Name AS ParentSpaceName FROM  Space INNER JOIN " +
                              "Space AS Space_1 ON Space.ParentSpaceID = Space_1.SpaceID LEFT OUTER JOIN EventSpace ON Space.SpaceID = EventSpace.SpaceID LEFT OUTER JOIN " +
                              "Event ON EventSpace.EventID = Event.EventID WHERE (Space.ParentSpaceID IS NOT NULL) AND ([Event].OrganizerID = " +
                              HttpContext.Session.GetString("userid") + " OR Space.CreatorID = " + HttpContext.Session.GetString("userid") + ") AND " +

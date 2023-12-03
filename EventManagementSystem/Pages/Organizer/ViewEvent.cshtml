@@ -42,13 +42,14 @@
                 {
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
-                         <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                              <div class="font" style="display: flex; align-items: center;">
-                                  <div class="circle">@s.StartDate.ToString("hh:mm tt")</div>
-                                  <p style="margin: auto;" class="centertxt">@s.EventName</p>
-                              </div>
-                         </div>
-                    </div
+                        <div class="shdwbox subsubcontainer">
+                            <p class="font centertxt">@s.EventName</p>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
 
                     <!-- Modal -->
                     <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">

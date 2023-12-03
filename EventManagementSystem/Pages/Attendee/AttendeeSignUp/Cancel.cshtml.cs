@@ -58,18 +58,20 @@ namespace EventManagementSystem.Pages.Attendee.AttendeeSignUp
 
         public IActionResult OnPost()
         {
+            //Deletes all direct subevents of the main event
             string sqlQuery = "DELETE FROM EventRegister WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND EventID IN (Select Event.EventID FROM  Event INNER JOIN " +
                                 "EventRegister ON Event.EventID = EventRegister.EventID WHERE ParentEventID = " + EventToCancel.EventID + ")";
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
 
-            
+            //Deletes the actual main event
             sqlQuery = "DELETE FROM EventRegister " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
                 " AND EventID = " + EventToCancel.EventID;
             DBClass.GeneralQuery(sqlQuery);
             DBClass.DBConnection.Close();
 
+            //Deletes the actual check in
             sqlQuery = "DELETE FROM EventCheckIn " +
                 "WHERE UserID = " + HttpContext.Session.GetString("userid") +
                 " AND EventID = " + EventToCancel.EventID;
