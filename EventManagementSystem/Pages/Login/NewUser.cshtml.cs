@@ -64,20 +64,17 @@ namespace EventManagementSystem.Pages.Login
                 {
                     HttpContext.Session.SetString("IsTaken", "yes");
                     IsTaken = true;
-                    ViewData["temp"] = "Username Already Taken.";
-
-                    break;
                 }
             }
 
             if (IsTaken == true)
             {
-                return RedirectToPage("NewUser");
+                ViewData["temp"] = "Username Already Taken.";
+                return Page();
             }
 
             else
             {
-
                 DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
                 UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
                 DBClass.DBConnection.Close();
