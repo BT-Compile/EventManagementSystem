@@ -19,6 +19,15 @@
                     <a asp-page="/Attendee/AttendeeSignUp/ActivitySignUp" class="btn widebutton btn-dark" asp-route-eventid="@e.EventID">Register</a>
                 </div>
                 <br />
+                if (Model.RegisterCount.Capacity == 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Person Interested</b></u></p>
+                }
+                if (Model.RegisterCount.Capacity > 1)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity People Interested</b></u></p>
+                }
+                <br />
                 <hr />
                 <br />
                 <div class="shdwbox">
@@ -33,9 +42,10 @@
                     @foreach (var s in Model.Subevents)
                     {
                         <div class="col-md-4">
-                            <div class="subsubcontainer">
-                                <p class="font circle">@s.StartDate.ToString("h:mm tt")</p>
+                            <span class="font">@s.StartDate.ToString("M/dd") @s.StartDate.ToString("h:mm tt")</span>
+                            <div class="shdwbox subsubcontainer">
                                 <p class="font centertxt">@s.EventName</p>
+                                <!-- Button trigger modal -->
                                 <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                                     View Details
                                 </button>
