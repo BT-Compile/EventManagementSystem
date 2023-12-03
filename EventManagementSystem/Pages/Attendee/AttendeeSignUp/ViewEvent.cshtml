@@ -28,17 +28,16 @@
                 <hr />
                 <br />
                 <h2 class="font centertxt">Subevents</h2>
-                <br />
+                <p class="font centertxt">click to see more!</p>
                 <div class="row">
                     @foreach (var s in Model.Subevents)
                     {
                         <div class="col-md-4">
-                            <div class="subsubcontainer">
-                                <p class="font circle">@s.StartDate.ToString("hh:mm")</p>
-                                <p class="font centertxt">@s.EventName</p>
-                                <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                                    View Details
-                                </button>
+                            <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                                <div class="font" style="display: flex; align-items: center;">
+                                    <div class="circle">@s.StartDate.ToString("hh:mm tt")</div>
+                                    <p style="margin: auto;" class="centertxt">@s.EventName</p>
+                                </div>
                             </div>
 
                             <!-- Modal -->

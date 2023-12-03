@@ -38,11 +38,12 @@
         }
         <br />
         <hr />
+        <br />
         <h2 class="font">Your scheduled events:</h2>
         <br />
         <form method="post" asp-page="Index">
             <input type="text" class="searchbar" asp-for="InputString" placeholder="Search Events" required pattern=".*\S+.*" title="Input must contain at least one non-whitespace character" />
-            &emsp;<button type="submit" class="btn rndbtn btn-dark">Search</button>
+           <button type="submit" class="btn srchbtn btn-dark">Search</button>
         </form>
         <br />
 
@@ -73,7 +74,7 @@
                                     @if (record.EventCheckinEventID == "")
                                     {
                                         <td>
-                                            <a asp-page="/Attendee/CheckIn" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Check In</a>
+                                            <a asp-page="/Attendee/CheckIn" class=" btn rndbtn3 text-nowrap btn-success" asp-route-eventid="@record.EventID">Check In</a>
                                         </td>
                                     }
                                     @if (record.EventCheckinEventID != "")
@@ -83,13 +84,13 @@
                                         </td>
                                     }
                                     <td>
-                                        <a asp-page="ViewEvent" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">View Details</a>
+                                        <a asp-page="ViewEvent" class=" btn rndbtn3 btn-dark" asp-route-eventid="@record.EventID">View Details</a>
                                     </td>
                                     <td>
-                                        <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn btn-dark" asp-route-eventid="@record.EventID">Find Subevents</a>
+                                        <a asp-page="AttendeeSignUp/Schedule" class=" btn rndbtn3 btn-dark" asp-route-eventid="@record.EventID">Find Subevents</a>
                                     </td>
                                     <td>
-                                        <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
+                                        <a asp-page="AttendeeSignUp/Cancel" class="btn rndbtn3 btn-warning" asp-route-eventid="@record.EventID">Cancel Registration</a>
                                     </td>
                                 </tr>
                             }

@@ -14,6 +14,10 @@
                 <h1 class="font centertxt bigtxt">@e.EventName</h1>
                 <p class="centertxt">@e.StartDate.ToString("MM/dd/yyyy") - @e.EndDate.ToString("MM/dd/yyyy")</p>
                 <p class="font centertxt">@e.SpaceName</p>
+                if (Model.RegisterCount.Capacity > 0)
+                {
+                    <p class="centertxt"><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
+                }
                 <br />
                 <div style="text-align: center">
                     <a asp-page="/Organizer/EditEvent" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">Edit</a>
@@ -22,11 +26,6 @@
                     <a asp-page="/Organizer/ParticipantList" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Participants</a>
                     <a asp-page="/Organizer/ViewCheckIn" class=" btn widebutton btn-dark" asp-route-eventid="@e.EventID">View Check In List</a>
                 </div>
-                <br />
-                if (Model.RegisterCount.Capacity > 0)
-                {
-                    <p><u><b>@Model.RegisterCount.Capacity Attending</b></u></p>
-                }
                 <br />
                 <hr />
                 <br />
@@ -43,14 +42,13 @@
                 {
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
-                        <div class="shdwbox subsubcontainer">
-                            <p class="font centertxt">@s.EventName</p>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn widebutton-flex btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
+                         <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
+                              <div class="font" style="display: flex; align-items: center;">
+                                  <div class="circle">@s.StartDate.ToString("hh:mm tt")</div>
+                                  <p style="margin: auto;" class="centertxt">@s.EventName</p>
+                              </div>
+                         </div>
+                    </div
 
                     <!-- Modal -->
                     <div class="modal fade" id=@("ViewDetails" + s.EventID) tabindex="-1" aria-labelledby="ViewDetailsLabel" aria-hidden="true">

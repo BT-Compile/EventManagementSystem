@@ -9,33 +9,31 @@
     <div class="whitebox purpletxt">
         <h2 class="font centertxt">Enter New Space Data</h2>
         <br />
-        <hr /> <!-- THIS DOES NOT HAVE FUNCTIONALITY FOR LOCATION -->
+        <hr />
         <br />
         <div class="newlogbox">
             <form asp-page="NewSpace">
                 <input type="hidden" asp-for="@Model.SpaceToCreate.SpaceID" />
                 <label asp-for="@Model.SpaceToCreate.Name">- Space Name -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Name" id="RoomNumber" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.Address">- Address -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Address" id="Address" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.Capacity">- Capacity -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Capacity" id="Capacity" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.ParentSpaceID">- Parent Space Name -</label>
-                <br />
                 <select asp-for="@Model.SpaceToCreate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces" >
                     <option value=""></option>
                 </select>
-                <br /><br />
-                <button type="button" onclick="populateForm()" class="btn rndbtn btn-dark">Populate</button>
-                <button type="button" onclick="clearForm()" class="btn rndbtn btn-dark">Clear</button>
-                <input type="submit" value="Submit" class="btn rndbtn btn-dark" asp-page="NewRoom" />
-                <a asp-page="AdminRoom" class="btn rndbtn btn-dark">Cancel</a>
+                <br />
+                <button type="button" onclick="populateForm()" class="btn rndbtn2 btn-dark">Populate</button>
+                <br />
+                <button type="button" onclick="clearForm()" class="btn rndbtn2 btn-dark">Clear</button>
+                <br />
+                <input type="submit" value="Submit" class="btn rndbtn2 btn-dark" asp-page="NewRoom" />
+                <a asp-page="AdminRoom" class="btn rndbtn2 btn-dark">Cancel</a>
             </form>
         </div>
     </div>

@@ -17,52 +17,50 @@
         <br />
         <div class="newlogbox">
             <form asp-page="EditEvents">
-                <input type="hidden" asp-for="@Model.EventToUpdate.EventID" />
-                <label asp-for="@Model.EventToUpdate.EventName">- Event -</label>
-                <br />
-                <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventName" required />
-                <br />
-                <label asp-for="@Model.EventToUpdate.EventDescription">- Description -</label>
-                <br />
-                <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventDescription" />
-                <br />
-                <label asp-for="@Model.EventToUpdate.StartDate">- Start Date -</label>
-                <br />
-                <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.StartDate" required />
-                <br />
-                <label asp-for="@Model.EventToUpdate.EndDate">- End Date -</label>
-                <br />
-                <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.EndDate" required />
-                <br />
-                <label asp-for="@Model.EventToUpdate.RegistrationDeadline">- Registration Deadline -</label>
-                <br />
-                <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.RegistrationDeadline" required />
-                <br />
-                <label asp-for="@Model.EventToUpdate.Capacity">- Capacity -</label>
-                <br />
-                <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.Capacity" required />
-                <br />
-                <label asp-for="@Model.EventToUpdate.EventType">- Event Type -</label>
-                <br />
-                <select asp-for="@Model.EventToUpdate.EventType" class="newlogfield" asp-items="Model.EventType">
-                    <option value=""></option>
-                </select>
-                <br />
-                <label asp-for="@Model.EventToUpdate.SpaceID">- Space Name -</label>
-                <br />
-                <select asp-for="@Model.EventToUpdate.SpaceID" class="newlogfield" asp-items="Model.Spaces">
-                    <option value=""></option>
-                </select>
-                <br />
-                <label asp-for="@Model.EventToUpdate.Status">- Event Status -</label>
-                <br />
-                <select asp-for="@Model.EventToUpdate.Status" class="newlogfield" asp-items="Model.EventStatus">
-                    <option value=""></option>
-                </select>
-                <br />
-                <br />
-                <input type="submit" value="Save" class="btn rndbtn btn-dark" asp-page="EditEvent" />
-                <a asp-page="AdminViewEvent" class="btn rndbtn btn-dark" asp-route-eventID="@Model.eventID">Cancel</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" asp-for="@Model.EventToUpdate.EventID" />
+                        <label asp-for="@Model.EventToUpdate.EventName">- Event -</label>
+                        <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventName" required />
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.EventDescription">- Description -</label>
+                        <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.EventDescription" />
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.StartDate">- Start Date -</label>
+                        <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.StartDate" required />
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.EndDate">- End Date -</label>
+                        <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.EndDate" required />
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.RegistrationDeadline">- Registration Deadline -</label>
+                        <input type="datetime-local" class="newlogfield" asp-for="@Model.EventToUpdate.RegistrationDeadline" required />
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.Capacity">- Capacity -</label>
+                        <input type="text" class="newlogfield" asp-for="@Model.EventToUpdate.Capacity" required />
+                        <br />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="@Model.EventToUpdate.EventType">- Event Type -</label>
+                        <select asp-for="@Model.EventToUpdate.EventType" class="newlogfield" asp-items="Model.EventType">
+                            <option value=""></option>
+                        </select>
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.SpaceID">- Space Name -</label>
+                        <select asp-for="@Model.EventToUpdate.SpaceID" class="newlogfield" asp-items="Model.Spaces">
+                            <option value=""></option>
+                        </select>
+                        <br />
+                        <label asp-for="@Model.EventToUpdate.Status">- Event Status -</label>
+                        <select asp-for="@Model.EventToUpdate.Status" class="newlogfield" asp-items="Model.EventStatus">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="d-flex justify-content-center">
+                    <input type="submit" value="Save" class="btn rndbtn2 btn-dark" asp-page="EditEvent" />
+                    <a asp-page="AdminViewEvent" class="btn rndbtn2 btn-dark" asp-route-eventID="@Model.eventID">Cancel</a>
+                </div>
             </form>
         </div>
     </div>
