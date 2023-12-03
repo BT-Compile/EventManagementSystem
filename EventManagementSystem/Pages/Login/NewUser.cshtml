@@ -9,6 +9,12 @@
     <div class="whitebox purpletxt">
         <h2 class="font centertxt">Please Enter Your Information</h2>
         <p class="font centertxt">Eventra promises to never share your data with anyone</p>
+        @{
+            if (HttpContext.Session.GetString("IsTaken") == "yes")
+            {
+                <p class="text-danger centertxt">@ViewData["temp"]</p>
+            }
+        }
         <br />
         <hr />
         <br />
@@ -56,12 +62,6 @@
                 </div>
             </form>
         </div>
-        @{
-            if (Model.IsTaken)
-            {
-                <p class="text-danger centertxt">@ViewData["temp"]</p>
-            }
-        }
     </div>
 </div>
 

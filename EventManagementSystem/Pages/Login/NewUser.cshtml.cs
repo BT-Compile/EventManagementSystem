@@ -16,7 +16,7 @@ namespace EventManagementSystem.Pages.Login
         [BindProperty]
         public bool IsTaken { get; set; }
 
-        public int ParticipantRole {  get; set; }
+        public int ParticipantRole { get; set; }
 
         public List<SelectListItem> Allergies { get; set; }
 
@@ -62,28 +62,34 @@ namespace EventManagementSystem.Pages.Login
             {
                 if (user.Username == UserToCreate.Username)
                 {
+                    HttpContext.Session.SetString("IsTaken", "yes");
                     IsTaken = true;
                     ViewData["temp"] = "Username Already Taken.";
-                    return RedirectToPage("NewUser");
-                }
-                else
-                {
-                    IsTaken = false;
 
-                    DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
-                    UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
-                    DBClass.DBConnection.Close();
-
-                    DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
-                    DBClass.DBConnection.Close();
-
-                    DBClass.NewUserParticipantAssign(UserToCreate.Username);
-                    DBClass.DBConnection.Close();
-
-                    return RedirectToPage("Index");
+                    break;
                 }
             }
-            return RedirectToPage("Index");
+
+            if (IsTaken == true)
+            {
+                return RedirectToPage("NewUser");
+            }
+
+            else
+            {
+
+                DBClass.SecureUserCreation(UserToCreate.FirstName, UserToCreate.LastName, UserToCreate.Email,
+                UserToCreate.PhoneNumber, UserToCreate.Username, UserToCreate.Accomodation, UserToCreate.AllergyID);
+                DBClass.DBConnection.Close();
+
+                DBClass.CreateHashedUser(UserToCreate.Username, UserToCreate.UserPassword);
+                DBClass.DBConnection.Close();
+
+                DBClass.NewUserParticipantAssign(UserToCreate.Username);
+                DBClass.DBConnection.Close();
+
+                return RedirectToPage("Index");
+            }
         }
     }
 }
