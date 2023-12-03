@@ -34,7 +34,7 @@
                     {
                         <div class="col-md-4">
                             <div class="subsubcontainer">
-                                <p class="font circle">@s.StartDate.ToString("hh:mm")</p>
+                                <p class="font circle">@s.StartDate.ToString("h:mm tt")</p>
                                 <p class="font centertxt">@s.EventName</p>
                                 <button type="button" class="btn rndbtn float-end btn-dark" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                                     View Details
@@ -53,12 +53,13 @@
                                             <br />
                                             <h3>@s.EventName</h3>
                                             Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                            Time: @s.StartDate.ToString("hh:mm")
+                                            Time: @s.StartDate.ToString("h:mm tt")
                                             <br />
-                                            @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                            Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                             <br />
                                             <br />
                                             @s.ParentSpaceName @s.SpaceName
+                                            <br />
                                             <br />
                                             @s.SpaceAddress
                                             <br />

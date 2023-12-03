@@ -118,13 +118,14 @@
                     </li>
                 </ul>
                 <br />
-                <br />
                 //Subevents post request
                 <div class="list">
                 @foreach (var s in Model.Subevents)
                 {
+                    <br/>
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
+                            <span class="font">@s.StartDate.ToString("M/dd") @s.StartDate.ToString("h:mm tt")</span>
                         <div class="shdwbox subsubcontainer">
                                 <p class="font centertxt">@s.EventName</p>
                             <!-- Button trigger modal -->
@@ -148,13 +149,14 @@
                                     <br/>
                                     <h3>@s.EventName</h3>
                                     Date: @s.StartDate.ToString("MM/dd/yyyy") |
-                                    Time: @s.StartDate.ToString("hh:mm")
+                                    Time: @s.StartDate.ToString("h:mm tt")
                                     <br />
-                                    @s.RegistrationDeadline.ToString("MM/dd/yyyy")
+                                    Registration Deadline: @s.RegistrationDeadline.ToString("MM/dd/yyyy")
                                     <br />
                                     <br />
                                     @s.ParentSpaceName @s.SpaceName
                                     <br />
+                                    <br/>
                                     @s.SpaceAddress
                                     <br />
                                     <br />
@@ -188,14 +190,10 @@
                 @foreach (var s in Model.AmenityList)
                 {
                     <div class="centertxt">
-                        <h2 class="font">Amenities</h2>
                         <br/>
                         <h3 class="font">@s.Name</h3>
-                        <br/>
                         <div class="shdwbox">
                             @s.Description
-                            <br />
-                            @s.Type
                             <br />
                             <a href="@s.URL">@s.URL</a>
                         </div>
