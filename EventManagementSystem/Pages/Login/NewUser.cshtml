@@ -56,7 +56,6 @@
                 <br />
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn rndbtn2 btn-dark" onclick="populateMikeForm()">Populate Mike</button>
-                    <button type="button" class="btn rndbtn2 btn-dark" onclick="populateDonForm()">Populate Don</button>
                     <button type="button" class="btn rndbtn2 btn-dark" onclick="clearForm()">Clear</button>
                     <input value="Create" type="submit" class="btn rndbtn2 btn-dark" id="textfield" asp-page="NewUser" />
                     <a asp-page="./Index" class="btn rndbtn2 btn-dark" id="textfield">Cancel</a>
@@ -74,15 +73,6 @@
         document.getElementById("Username").value = "mwest";
         document.getElementById("Password").value = "pass";
         document.getElementById("Email").value = "MikeWest@example.com";
-        document.getElementById("PhoneNumber").value = "123-456-7890";
-    }
-
-    function populateDonForm() {
-        document.getElementById("FirstName").value = "Don";
-        document.getElementById("LastName").value = "Collins";
-        document.getElementById("Username").value = "doncon";
-        document.getElementById("Password").value = "pass";
-        document.getElementById("Email").value = "DonCon@example.com";
         document.getElementById("PhoneNumber").value = "123-456-7890";
     }
 
