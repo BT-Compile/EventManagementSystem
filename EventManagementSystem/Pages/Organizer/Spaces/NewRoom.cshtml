@@ -14,19 +14,15 @@
             <form asp-page="NewSpace">
                 <input type="hidden" asp-for="@Model.SpaceToCreate.SpaceID" />
                 <label asp-for="@Model.SpaceToCreate.Name">- Space Name -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Name" id="RoomNumber" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.Address">- Address -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Address" id="Address" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.Capacity">- Capacity -</label>
-                <br />
                 <input type="text" class="newlogfield" asp-for="@Model.SpaceToCreate.Capacity" id="Capacity" required />
                 <br />
                 <label asp-for="@Model.SpaceToCreate.ParentSpaceID">- Parent Space Name -</label>
-                <br />
                 <select asp-for="@Model.SpaceToCreate.ParentSpaceID" class="newlogfield" asp-items="Model.ParentSpaces">
                     <option value=""></option>
                 </select>
@@ -43,13 +39,15 @@
 <script>
     // links to the Populate button, which populates all fields but DOES NOT send a post request
     function populateForm() {
-        document.getElementById("RoomNumber").value = "110";
+        document.getElementById("RoomNumber").value = "Room 2110";
+        document.getElementById("Address").value = "421 Bluestone Dr, Harrisonburg, VA 22807";
         document.getElementById("Capacity").value = "31";
         document.getElementById("BuildingID").value = "1";
     }
 
     function clearForm() {
         document.getElementById("RoomNumber").value = "";
+        document.getElementById("Address").value = "";
         document.getElementById("Capacity").value = "";
         document.getElementById("BuildingID").value = "";
     }

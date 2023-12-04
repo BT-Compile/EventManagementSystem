@@ -62,8 +62,8 @@ namespace EventManagementSystem.Pages.Events
 
         public IActionResult OnPost()
         {
-            string sqlQuery = "INSERT INTO [Event] (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status], ParentEventID)" + 
-                              "VALUES(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @[Type], @[Status], @ParentEventID)";
+            string sqlQuery = "INSERT INTO [Event] (EventName, EventDescription, StartDate, EndDate, RegistrationDeadline, Capacity, [Type], [Status])" + 
+                              "VALUES(@EventName, @EventDescription, @StartDate, @EndDate, @RegistrationDeadline, @Capacity, @Type, @Status)";
 
             using (SqlConnection connection = new SqlConnection(DBClass.CapstoneDBConnString))
             {
@@ -76,9 +76,8 @@ namespace EventManagementSystem.Pages.Events
                     cmd.Parameters.AddWithValue("@EndDate", EventToCreate.EndDate.ToString("yyyy-MM-dd hh:mm:ss"));
                     cmd.Parameters.AddWithValue("@RegistrationDeadline", EventToCreate.RegistrationDeadline.ToString("yyyy-MM-dd hh:mm:ss"));
                     cmd.Parameters.AddWithValue("@Capacity", (int)EventToCreate.Capacity);
-                    cmd.Parameters.AddWithValue("@[Type]", EventToCreate.EventType);
-                    cmd.Parameters.AddWithValue("@[Status]", EventToCreate.Status);
-                    cmd.Parameters.AddWithValue("@ParentEventID", EventToCreate.ParentEventID);
+                    cmd.Parameters.AddWithValue("@Type", EventToCreate.EventType);
+                    cmd.Parameters.AddWithValue("@Status", EventToCreate.Status);
 
                     cmd.ExecuteNonQuery();
                 }
