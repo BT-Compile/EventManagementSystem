@@ -25,13 +25,16 @@
                             <th>End Date:</th>
                             <th>Registration Deadline:</th>
                             <th>Location:</th>
-                            <th>Sign Up:</th>
+                            <th style="white-space: nowrap">
+                                Sign Up:
+                                <br />
+                                <input type="checkbox" id="selectAllCheckbox" onclick="selectAll()" style="transform: scale(1.5)" />
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="table-secondary">
-            
-                            @{
-                                foreach (var record in Model.Events)
+                        @{
+                            foreach (var record in Model.Events)
                                 {
                                 <tr>
                                     <td><b>@record.EventName</b></td>
@@ -42,12 +45,11 @@
                                     <td>@record.SpaceID</td>
                                     <td>
                                         <input type="hidden" name="EventID" value="@record.EventID" />
-                                        <input name="Checked" type="checkbox" style="transform: scale(2)" value="@record.EventID" />
+                                        <input name="Checked" type="checkbox" class="signUpCheck" style="transform: scale(2)" value="@record.EventID" /> 
                                     </td>
                                 </tr>
-                                }
                             }
-            
+                         }
                     </tbody>
                     </table>
                 </div>
@@ -58,3 +60,18 @@
         </form>
     </div>
 </div>
+
+<script>
+    function selectAll() {
+        // Get the "Select All" checkbox
+        var selectAllCheckbox = document.getElementById("selectAllCheckbox");
+
+        // Get all checkboxes with the class 'signUpCheck'
+        var checkboxes = document.getElementsByClassName("signUpCheck");
+
+        // Set the 'checked' property of all checkboxes to the value of the "Select All" checkbox
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = selectAllCheckbox.checked;
+        }
+    }
+</script>
