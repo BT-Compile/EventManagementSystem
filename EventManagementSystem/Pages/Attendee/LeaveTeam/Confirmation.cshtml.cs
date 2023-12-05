@@ -20,7 +20,7 @@ namespace EventManagementSystem.Pages.Attendee.LeaveTeam
             TeamToLeave = new Team();
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int teamid)
         {
             if (HttpContext.Session.GetString("username") == null)
             {
@@ -42,18 +42,11 @@ namespace EventManagementSystem.Pages.Attendee.LeaveTeam
             }
             DBClass.DBConnection.Close();
 
-            // Query to get the teamid of the team the user the a part of
-            sqlQuery = "SELECT * FROM UserTeam WHERE UserID = " + HttpContext.Session.GetString("userid");
-            SqlDataReader userTeam = DBClass.GeneralReaderQuery(sqlQuery);
-
-            while (userTeam.Read())
-            {
-                HttpContext.Session.SetString("teamid", userTeam["TeamID"].ToString());
-            }
-
             // Query to get the team name and teamid that the user wants to leave
-            sqlQuery = "SELECT * FROM Team WHERE TeamID = " + HttpContext.Session.GetString("teamid");
+            sqlQuery = "SELECT * FROM Team WHERE TeamID = " + teamid;
             SqlDataReader singleTeam = DBClass.GeneralReaderQuery(sqlQuery);
+            
+            HttpContext.Session.SetInt32("teamid", teamid);
 
             while (singleTeam.Read())
             {
@@ -67,7 +60,7 @@ namespace EventManagementSystem.Pages.Attendee.LeaveTeam
         public IActionResult OnPost()
         {
             string sqlQuery = "DELETE FROM UserTeam " +
-                "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND TeamID = " + HttpContext.Session.GetString("teamid");
+                "WHERE UserID = " + HttpContext.Session.GetString("userid") + " AND TeamID = " + HttpContext.Session.GetInt32("teamid");
             DBClass.GeneralQuery(sqlQuery);
 
             HttpContext.Session.Remove("teamid");
