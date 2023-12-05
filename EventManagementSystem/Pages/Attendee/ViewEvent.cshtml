@@ -124,6 +124,7 @@
                 {
                     <!-- Button trigger modal -->
                     <div class="col-md-4">
+                        <p>@s.StartDate.ToString("MM/dd")</p>
                         <div class="subsubcontainer" data-bs-toggle="modal" data-bs-target=@("#ViewDetails" + s.EventID)>
                              <div class="font" style="display: flex; align-items: center;">
                                  <div class="circle">@s.StartDate.ToString("MM/dd") <br /> @s.StartDate.ToString("hh:mm") <br /> @s.StartDate.ToString("tt")</div>

@@ -63,7 +63,7 @@ namespace EventManagementSystem.Pages.Attendee.TeamSignUp
                 "(" + HttpContext.Session.GetString("userid") + ", " + TeamToJoin.TeamID + ", GETDATE())";
             DBClass.GeneralQuery(sqlQuery);
             
-            return RedirectToPage("../Index");
+            return RedirectToPage("Index");
         }
     }
 }
